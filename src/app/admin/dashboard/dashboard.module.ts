@@ -1,20 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { DefaultComponent } from './default/default.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-
-
-
+import { LayoutModule } from '../containers/layout/layout.module';
+import { DashboardComponent } from './dashboard.component';
 @NgModule({
   declarations: [
-    DefaultComponent
+    DefaultComponent,
+    DashboardComponent
   ],
   imports: [
-    CommonModule,
     SharedModule,
     DashboardRoutingModule,
+    LayoutModule,
 
-  ]
+
+
+  ],
+  exports:[
+    DashboardComponent,
+  ],
+
 })
 export class DashboardModule { }

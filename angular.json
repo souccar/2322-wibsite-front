@@ -30,14 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "src/assets/css/vendor/bootstrap.min.css",
               "src/assets/css/vendor/bootstrap.rtl.only.min.css",
-              {
-                "input": "src/assets/css/sass/themes/vien.dark.bluenavy.scss",
-                "bundleName": "dark.blue.navy",
-                "inject": false
-              },
+              "src/styles.scss",
               {
                 "input": "src/assets/css/sass/themes/vien.light.blueyale.scss",
                 "bundleName": "light.blue.yale",

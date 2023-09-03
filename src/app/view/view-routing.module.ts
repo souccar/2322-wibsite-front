@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'src/environments/environment';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,11 +11,8 @@ let routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: adminRoot,
+    path: 'app',
     loadChildren: () => import('../admin/app.module').then((m) => m.AppModule),
-    // data: { roles: [UserRole.Admin, UserRole.Editor] },
-    // canActivate: [AuthGuard],
-    // canActivateChild: [AuthGuard],
   },
 
 ];
