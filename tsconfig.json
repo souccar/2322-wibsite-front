@@ -21,6 +21,7 @@
     "useDefineForClassFields": false,
     "allowJs": true,
     "resolveJsonModule": true,
+    "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports":true,
     "lib": [
       "ES2022",

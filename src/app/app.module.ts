@@ -9,6 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ViewModule } from './view/view.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,11 +19,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ViewModule,
+    // ViewModule,
     LayoutModule,
     CommonModule,
     HttpClientModule ,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TranslateModule.forRoot(),
 
   ],
   providers: [],
