@@ -1,4 +1,4 @@
-<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+<!-- <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
   <div class="mobile-menu" (click)="$event.stopPropagation()">
       <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
           <span></span>
@@ -88,19 +88,7 @@
                   <div class="row">
                       <div class="col-12 p-0">
                           <div class="home-carousel">
-                              <!-- <app-glide [settings]="slideSettings">
-                                  <div class="card" *ngFor="let f of slideItems">
-                                      <div class="card-body text-center">
-                                          <div>
-                                              <i class="{{f.icon+ ' large-icon'}}"></i>
-                                              <h5 class="mb-3 font-weight-semibold">{{f.title}}</h5>
-                                          </div>
-                                          <div>
-                                              <p class="detail-text">{{f.detail}}</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </app-glide> -->
+
                           </div>
                       </div>
                   </div>
@@ -221,11 +209,7 @@
                   <div class="row screenshots">
                       <div class="col-12 text-center mb-4">
                           <tabset class="nav nav-tabs justify-content-center">
-                              <!-- <tab *ngFor="let app of applications" [heading]="app.title" class="card-body pt-0">
-                                  <a [routerLink]="app.path">
-                                      <img [alt]="app.title" [src]="app.img" class="app-image" />
-                                  </a>
-                              </tab> -->
+
                           </tabset>
                       </div>
                   </div>
@@ -310,4 +294,13 @@
 
       </div>
   </div>
-</div>
+</div> -->
+
+<app-main-image></app-main-image>
+<h2 class="text-center m-3 text-primary">DISCOVER MORE FROM CETAPHIL</h2>
+<app-product></app-product>
+<!-- <app-list-image></app-list-image>
+  <app-product [dir]="inputAlignDirectionRTL" [src]="src" [description]="description" [link]="link" [title]="title"></app-product>
+  <app-product [dir]="inputAlignDirectionLTL" [src]="src" [description]="description" [link]="link" [title]="title"></app-product>
+  <app-product  [dir]="inputAlignDirectionRTL" [src]="src" [description]="description" [link]="link" [title]="title"></app-product> -->
+

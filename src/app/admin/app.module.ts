@@ -8,21 +8,24 @@ import { AppRoutingModule } from '../admin/app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { MainImageComponent } from './components/main-image/main-image.component';
+import { ProductionModule } from './dashboard/default/production/production.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
-    LayoutModule,
-
+     LayoutModule,
     RouterModule,
     SharedModule,
     HttpClientModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-    AppRoutingModule,
+     AppRoutingModule,
      DashboardModule,
+     ProductionModule
 
   ],
   exports:[

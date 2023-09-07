@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Direction } from '@glidejs/glide/components/direction';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { environment } from 'src/environments/environment';
 
@@ -8,6 +9,12 @@ import { environment } from 'src/environments/environment';
 
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  inputAlignDirectionRTL= "rtl";
+  inputAlignDirectionLTL = "ltr";
+title='THERES SCIENCE TO SENSITIVE SKIN';
+   src="../../../../assets/img/homePage/01-INGREDIENTS_CETAPHIL_HEADER.jpg";
+ description="Cetaphil cleansers and moisturizers are backed by scientific research";
+ link='The Science of Sensitive Skin';
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {}
 
   showMobileMenu = false;
@@ -165,7 +172,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
 
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'no-footer');
+    // this.renderer.addClass(document.body, 'no-footer');
   }
   ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'no-footer');

@@ -27,11 +27,23 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "abp.signalr.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              },
+              {
+                "glob": "abp.signalr-client.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              }
             ],
             "styles": [
               "src/assets/css/vendor/bootstrap.min.css",
               "src/assets/css/vendor/bootstrap.rtl.only.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@glidejs/glide/dist/css/glide.core.min.css",
               "src/styles.scss",
               {
                 "input": "src/assets/css/sass/themes/vien.light.blueyale.scss",
@@ -39,7 +51,12 @@
                 "inject": false
               }
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/abp-web-resources/Abp/Framework/scripts/abp.js",
+              "src/assets/abp-web-resources/abp.sweet-alert.js",
+              "src/assets/abp-web-resources/abp.freeze-ui.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -97,12 +114,27 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "abp.signalr.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              },
+              {
+                "glob": "abp.signalr-client.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              }
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/abp-web-resources/Abp/Framework/scripts/abp.js",
+              "src/assets/abp-web-resources/abp.sweet-alert.js",
+              "src/assets/abp-web-resources/abp.freeze-ui.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js"
+            ]
           }
         }
       }

@@ -1,0 +1,75 @@
+
+<form class="form-horizontal " autocomplete="off" #createCategoryModal="ngForm" (ngSubmit)="save()" >
+  <abp-modal-header [title]="'Create New Category' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body modal-xl">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label" for="name">
+            {{ "Name" | translate }}
+          </label>
+          <div class="col-md-9">
+            <!-- <input type="text" class="form-control" name="name" id="name" required
+              [(ngModel)]="category.name" #nameModel="ngModel" #nameEl   /> -->
+              <input type="text" class="form-control" name="name" id="name" required
+             #nameEl   />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="parentCategoryId">
+            {{ "ParentCategory" | translate }}
+          </label>
+          <!-- <div class="col-md-9">
+            <select class="form-control" aria-label="ParentCategory" [(ngModel)]="category.parentCategoryId"
+            name="parentCategoryId" #parentCategoryModal="ngModel" #parentCategoryId>
+              <option *ngFor="let item of parentCategories" value={{item.id}}>{{item.fullName}}</option>
+          </select>
+          </div> -->
+          <div class="col-md-9">
+            <select class="form-control" aria-label="ParentCategory"
+            name="parentCategoryId"  #parentCategoryId>
+              <option>red</option>
+          </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="description">
+            {{ "Description" | translate }}
+          </label>
+          <div class="col-md-9">
+            <!-- <textarea type="text" class="form-control" name="description" id="description"
+              [(ngModel)]="category.description" #descriptionModel="ngModel" #descriptionEl >
+              </textarea> -->
+              <textarea type="text" class="form-control" name="description" id="description"
+            #descriptionEl >
+              </textarea>
+            <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+          </div>
+        </div>
+
+       <!--Image-->
+       <!-- <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="imageCategoryNews">
+            {{ "Image" | translate }}
+        </label>
+        <div class="col-md-9">
+          <div class="upload-img">
+         <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+        <ngx-dropzone-label>
+          <div>
+            <h2>Select Image</h2>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"  *ngFor="let im of images " [removable]="true" [file]="im"(removed)="onRemove(im)">
+
+        </ngx-dropzone-image-preview>
+      </div>
+
+      </div>
+      </div>
+    </div> -->
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createCategoryModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>
+

@@ -1,0 +1,2 @@
+<rating [readonly]="true" [max]="5" [(ngModel)]="rate" [customTemplate]="t"></rating>
+<ng-template #t let-index="index" let-value="value">{{index < value ? '' : ''}}</ng-template>

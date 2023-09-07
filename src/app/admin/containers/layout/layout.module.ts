@@ -12,6 +12,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeadingComponent } from './heading/heading.component';
+import { ListPageHeaderComponent } from './list-page-header/list-page-header.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HeadingComponent } from './heading/heading.component';
     SidebarComponent,
     BreadcrumbComponent,
     TopnavComponent,
-    HeadingComponent
+    HeadingComponent,
+    ListPageHeaderComponent
   ],
   imports: [
     RouterModule,
@@ -38,7 +40,8 @@ import { HeadingComponent } from './heading/heading.component';
     TranslateModule,
     TopnavComponent,
     BreadcrumbComponent,
-    HeadingComponent
+    HeadingComponent,
+    ListPageHeaderComponent
 
   ],
 

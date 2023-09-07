@@ -30,7 +30,8 @@ export class HeadingComponent {
 
   getLabel(path:any): string {
     if (path === environment.adminRoot) {
-      return 'menu.home';
+      // return 'menu.home';
+       return 'home';
     }
 
     // step 0
