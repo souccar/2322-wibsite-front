@@ -12,6 +12,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeadingComponent } from './heading/heading.component';
+import { HeadroomModule } from '@ctrl/ngx-headroom';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HeadingComponent } from './heading/heading.component';
   imports: [
     RouterModule,
     FormsModule,
+    HeadroomModule,
     PerfectScrollbarModule,
     CollapseModule,
     BsDropdownModule.forRoot(),

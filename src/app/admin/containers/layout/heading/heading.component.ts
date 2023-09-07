@@ -1,72 +1,132 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 import menuItems, { IMenuItem } from '../../../constance/menu';
 import { environment } from 'src/environments/environment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ISidebar, SidebarService } from '../sidebar/sidebar.service';
+import { LangService, Language } from 'src/shared/lang.service';
+
 @Component({
   selector: 'app-heading',
   templateUrl: './heading.component.html',
-
+  styleUrls: ['./heading.component.scss']
 })
-export class HeadingComponent {
+export class HeadingComponent  {
+  searchKey = '';
+  adminRoot = environment.adminRoot;
+  showMobileMenu = false;
+  modalRef: BsModalRef=new BsModalRef();
+  sidebar: ISidebar | any;
+  currentLanguage: string;
+  languages: Language[];
 
-  @Input() title = '';
-   menuItems: IMenuItem[] = menuItems;
-  path = '';
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    this.router.events
-    .pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.activatedRoute),
-      map((route) => {
-        while (route.firstChild) { route = route.firstChild; }
-        return route;
-      })
-    ).subscribe((event) => {
-     this.path = this.router.url.split('?')[0];
-    });
+
+  constructor(private router: Router,private modalService: BsModalService,private sidebarService: SidebarService,   private langService: LangService){
+    this.currentLanguage = this.langService.languageShorthand;
   }
 
-  getLabel(path:any): string {
-    if (path === environment.adminRoot) {
-      return 'menu.home';
+
+  mobileMenuButtonClick = (
+    event: { stopPropagation: () => void },
+    containerClassnames: string
+  ) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.sidebarService.clickOnMobileMenu(containerClassnames);
+  }
+  onLanguageChange(lang:any): void {
+    this.langService.language = lang.code;
+    this.currentLanguage = this.langService.languageShorthand;
+  }
+
+  menuButtonClick = (
+    e: { stopPropagation: () => void },
+    menuClickCount: number,
+    containerClassnames: string
+  ) => {
+    if (e) {
+      e.stopPropagation();
     }
 
-    // step 0
-    let foundedMenuItem = this.menuItems.find(x => x.to === path);
+    setTimeout(() => {
+      const event = document.createEvent('HTMLEvents');
+      event.initEvent('resize', false, false);
+      window.dispatchEvent(event);
+    }, 350);
 
-    if (!foundedMenuItem) {
-      // step 1
-      this.menuItems.map(menu => {
-        if (!foundedMenuItem && menu.subs) {foundedMenuItem = menu.subs.find(x => x.to === path); }
-      });
-      if (!foundedMenuItem) {
-        // step 2
-        this.menuItems.map(menu => {
-          if (menu.subs) {
-            menu.subs.map(sub => {
-                if (!foundedMenuItem && sub.subs) {foundedMenuItem = sub.subs.find(x => x.to === path); }
-              });
-          }
-        });
-        if (!foundedMenuItem) {
-          // step 3
-          this.menuItems.map(menu => {
-            if (menu.subs) {
-              menu.subs.map(sub => {
-                if (sub.subs) {
-                  sub.subs.map(deepSub => {
-                    if (!foundedMenuItem && deepSub.subs) {foundedMenuItem = deepSub.subs.find(x => x.to === path); }
-                  });
-                }
-              });
-            }
-          });
+    this.sidebarService.setContainerClassnames(
+      ++menuClickCount,
+      containerClassnames,
+      this.sidebar.selectedMenuHasSubItems
+    );
+  }
+
+
+  searchKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.search();
+    } else if (event.key === 'Escape') {
+      const input = document.querySelector('.mobile-view');
+      if (input && input.classList) {
+        input.classList.remove('mobile-view');
+      }
+      this.searchKey = '';
+    }
+  }
+
+  searchAreaClick(event:any): void {
+    event.stopPropagation();
+  }
+  searchClick(event:any): void {
+    if (window.innerWidth < environment.menuHiddenBreakpoint) {
+      let elem = event.target;
+      if (!event.target.classList.contains('search')) {
+        if (event.target.parentElement.classList.contains('search')) {
+          elem = event.target.parentElement;
+        } else if (
+          event.target.parentElement.parentElement.classList.contains('search')
+        ) {
+          elem = event.target.parentElement.parentElement;
         }
       }
-    }
 
-    if (foundedMenuItem) { return foundedMenuItem.label; } else { return 'notFoundInMenu'; }
+      if (elem.classList.contains('mobile-view')) {
+        this.search();
+        elem.classList.remove('mobile-view');
+      } else {
+        elem.classList.add('mobile-view');
+      }
+    } else {
+      this.search();
+    }
+    event.stopPropagation();
+  }
+
+  search(): void {
+    if (this.searchKey && this.searchKey.length > 1) {
+      this.router.navigate([this.adminRoot + '/pages/miscellaneous/search'], {
+        queryParams: { key: this.searchKey.toLowerCase().trim() },
+      });
+      this.searchKey = '';
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleDocumentClick(event:any): void {
+    const input = document.querySelector('.mobile-view');
+    if (input && input.classList) {
+      input.classList.remove('mobile-view');
+    }
+    this.searchKey = '';
+  }
+
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template);
+  }
+  addTagFn(addedName :any): { name: any; tag: true } {
+    return { name: addedName, tag: true };
   }
 }

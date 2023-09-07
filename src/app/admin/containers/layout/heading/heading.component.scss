@@ -1,0 +1,58 @@
+#dropdown-products {
+
+  width: 400px !important;
+}
+
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.h_line {
+  border-bottom: 2px solid rgb(121, 121, 120);
+  margin-top: 30px !important;
+  margin-left: 5px !important;
+ 
+}
+// .nav-link::after {
+//     background-color: red !important;
+//     content: "";
+//     width: 0;
+//     height: 5px;
+//     left: 0;
+//     bottom: 0;
+//     transition: width 0.35s ease 0s;
+//     position: absolute;
+//   }
+//   .nav-link:hover::after {
+//     width: 100%;
+//   }
+  
+
+.dropdown-menu {
+  font-size: 0.9rem !important;
+}
+
+.nav-item > a,
+.nav-item > .dropdown > a {
+  color:#3a3a3a !important;
+  
+}
+
+.dropdown {
+  height: 45px !important;
+}
+
+.landing-page-nav {
+  background:#ececec !important;
+}
+
+.btn-outline-primary {
+  color: #3a3a3a !important;
+  
+  border : none;
+
+
+}

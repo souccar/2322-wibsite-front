@@ -1,2 +1,126 @@
-<!-- <h1>{{ title || ( getLabel(path) | translate) }}</h1> -->
-<h1>{{ title || ( getLabel(path)) }}</h1>
+<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu} ">
+  <div class="mobile-menu">
+    <a href="javascript:;" class="logo-mobile">
+      <span></span>
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="javascript:;">Home</a></li>
+      <li class="nav-item"><a href="javascript:;">Our Products</a></li>
+      <li class="nav-item"><a href="javascript:;">Who We Are</a></li>
+      <li class="nav-item"><a href="javascript:;">Contact Us</a></li>
+      <li class="nav-item">
+        <div class="separator"></div>
+      </li>
+    </ul>
+  </div>
+  <div class="main-container">
+    <ngx-headroom class="landing-page-nav">
+      <nav>
+        <div class="container d-flex align-items-center justify-content-between">
+          <a class="navbar-logo pull-left" href="javascript:;">
+            <span class="logo d-none d-xl-block "></span>
+          </a>
+          <ul class="navbar-nav d-none d-lg-flex flex-row">
+            <!-- 1 -->
+            <li class="nav-item  ">
+              <div class="dropdown">
+                <a class="nav-link active  " href="#">{{"Home" |translate}} </a>
+                <ul class="dropdown-menu ">
+                  <li class="p-1 m-2"><a href="#" class="my-2  icon-menu-item">Product 1</a></li>
+                  <li class="p-1 m-2"><a href="#" class=" my-2  icon-menu-item">Product 2</a></li>
+                  <li class="p-1 m-2"><a href="#" class=" my-2  icon-menu-item">Product 3</a></li>
+                </ul>
+
+              </div>
+            </li>
+            <!-- 2 -->
+            <li class="nav-item dropdown " id="menu-products">
+              <a class="nav-link active" href="#">Our Products</a>
+              <ul class=" dropdown-menu " id="dropdown-products">
+                <div class=" row d-inline-flex justify-content-around text-nowrap">
+                  <li class=" col-xs-4 mt-2"><a href="#" class="icon-menu-item ">By Brand<li class="divider dropdown-divider"></li></a>
+                    <ul>
+                      <li class="p-1 m-2 "> <a class="icon-menu-item" href="#">MMT</a></li>
+                      <li class="p-1 m-2"><a class="icon-menu-item" href="#">MMT Care</a></li>
+                      <li class="p-1 m-2"><a class="icon-menu-item" href="#">Pre Sun</a> </li>
+                    </ul>
+                  </li>
+                  <li class=" col-xs-4 mt-2 "><a href="#" class="icon-menu-item   ">Category<li class="divider dropdown-divider"></li></a>
+                    <ul>
+                      <li class="p-1 m-2"><a href="" class="icon-menu-item">Hair Care</a> </li>
+                      <li class="p-1 m-2"> <a href="" class="icon-menu-item">Skin Care</a></li>
+                      <li class="p-1 m-2"> <a href="" class="icon-menu-item">Sunscreen</a></li>
+                    </ul>
+                  </li>
+                  <li class=" col-xs-4 mt-2"> <a href="#" class="icon-menu-item  ">Skin Type<li class="divider dropdown-divider"></li></a>
+                    <ul>
+                      <li class="p-1 m-2"> <a href="" class="icon-menu-item">Oily</a></li>
+                      <li class="p-1 m-2"> <a href="" class="icon-menu-item">Dry</a></li>
+                      <li class="p-1 m-2"> <a href="" class="icon-menu-item">Normal</a></li>
+                    </ul>
+                  </li>
+                </div>
+              </ul>
+            </li>
+            <!-- 3 -->
+            <li class="nav-item  ">
+              <div class="dropdown">
+                <a class="nav-link active  " aria-current="page" href="#">{{"Contact Us" |translate}}</a>
+                <ul class="dropdown-menu ">
+                  <li class="p-1 m-2"><a href="#" class="m-2 icon-menu-item text-nowrap "> linkedin page</a></li>
+                  <li class="p-1 m-2"><a href="javascript:;" (click)="openModal(template)"
+                      class=" m-2 icon-menu-item">Get in touch</a></li>
+                </ul>
+              </div>
+            </li>
+            <!-- 4 -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">{{"Who We Are " |translate}}</a>
+            </li>
+            <!-- 5 -->
+            <li class="nav-item">
+              <div class="dropdown">
+              <a  class=" nav-link active  ">
+                Language</a>
+                <ul  class="dropdown-menu" >
+                  <li class="p-1 m-2"><a href="#" class=" icon-menu-item text-nowrap ">English</a></li>
+                  <li class="p-1 m-2"><a href="#" class=" icon-menu-item text-nowrap ">Arabic</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu">
+            <i class="simple-icon-menu"></i>
+          </span>
+        </div>
+      </nav>
+    </ngx-headroom>
+  </div>
+</div>
+<!-- modal -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Contact With Us</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #overLineForm="ngForm" novalidate>
+      <label class="form-group has-float-label">
+        <input class="form-control" required ngModel #email2="ngModel" name="email2" />
+        <span>Email</span>
+        <div *ngIf="!email2.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" required ngModel #message="ngModel" name="message" />
+        <span>Message</span>
+        <div *ngIf="!message.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
+      </label>
+
+
+
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+</ng-template>
