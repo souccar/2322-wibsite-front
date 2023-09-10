@@ -15,6 +15,7 @@ const routes: Routes = [
             (m) => m.DashboardModule
           ),
       },
+      { path: 'production', loadChildren: () => import('../admin/dashboard/default/production/production.module').then(m => m.ProductionModule) },
 
     ],
   },

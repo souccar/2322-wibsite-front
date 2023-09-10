@@ -10,9 +10,11 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HeadingComponent } from './heading/heading.component';
 import { HeadroomModule } from '@ctrl/ngx-headroom';
+import { ListPageHeaderComponent } from './list-page-header/list-page-header.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { HeadroomModule } from '@ctrl/ngx-headroom';
     SidebarComponent,
     BreadcrumbComponent,
     TopnavComponent,
-    HeadingComponent
+    HeadingComponent,
+    ListPageHeaderComponent
   ],
   imports: [
     RouterModule,
@@ -31,18 +34,19 @@ import { HeadroomModule } from '@ctrl/ngx-headroom';
     CollapseModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    TranslateModule
+    TranslateModule.forRoot(),
   ],
   exports: [
     FooterComponent,
     SidebarComponent,
     TopnavComponent,
-    TranslateModule,
     TopnavComponent,
     BreadcrumbComponent,
-    HeadingComponent
+    HeadingComponent,
+    ListPageHeaderComponent
 
   ],
+  providers:[BsModalService,TranslateService  ]
 
 
 })

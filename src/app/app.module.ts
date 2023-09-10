@@ -3,13 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './admin/containers/layout/layout.module';
-import { SharedModule } from 'src/shared/shared.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ViewModule } from './view/view.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/shared/shared.module';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,9 +26,10 @@ import { TranslateModule } from '@ngx-translate/core';
     HttpClientModule ,
     BrowserAnimationsModule,
     TranslateModule.forRoot(),
+    // SharedModule
 
   ],
-  providers: [],
+  providers:[BsModalService,TranslateService],
   bootstrap: [AppComponent],
   schemas:[NO_ERRORS_SCHEMA]
 
