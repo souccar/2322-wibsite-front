@@ -42,27 +42,28 @@ export class HeadingComponent  {
     this.currentLanguage = this.langService.languageShorthand;
   }
 
-  menuButtonClick = (
-    e: { stopPropagation: () => void },
-    menuClickCount: number,
-    containerClassnames: string
-  ) => {
-    if (e) {
-      e.stopPropagation();
-    }
+  // menuButtonClick = (
+  //   e: { stopPropagation: () => void },
+  //   menuClickCount: number,
+  //   containerClassnames: string
+  // ) => {
+  //   if (e) {
+  //      e.stopPropagation();
+  //      return 'home';
+  //   }
 
-    setTimeout(() => {
-      const event = document.createEvent('HTMLEvents');
-      event.initEvent('resize', false, false);
-      window.dispatchEvent(event);
-    }, 350);
+  //   setTimeout(() => {
+  //     const event = document.createEvent('HTMLEvents');
+  //     event.initEvent('resize', false, false);
+  //     window.dispatchEvent(event);
+  //   }, 350);
 
-    this.sidebarService.setContainerClassnames(
-      ++menuClickCount,
-      containerClassnames,
-      this.sidebar.selectedMenuHasSubItems
-    );
-  }
+  //   this.sidebarService.setContainerClassnames(
+  //     ++menuClickCount,
+  //     containerClassnames,
+  //     this.sidebar.selectedMenuHasSubItems
+  //   );
+  // }
 
 
   searchKeyUp(event: KeyboardEvent): void {

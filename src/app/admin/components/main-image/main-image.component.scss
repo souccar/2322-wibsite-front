@@ -1,0 +1,19 @@
+// .centered {
+//   position: absolute;
+//   top: 30%;
+//   right: 20%;
+//   transform: translate(-50%, -50%);
+// }
+
+.image-side {
+  width: 100%;
+  background: url("../../../../assets/img/homePage/CETAPHIL_Why-Cetaphil.jpg") no-repeat center ;
+    // height:300%;
+  background-size:cover;
+   padding: 80px ;
+
+  .h3 {
+    line-height: 0.8rem;
+  }
+}
+

@@ -2117,7 +2117,6 @@ a.btn-secondary:not([href]):not([tabindex]) {
   transition: border-radius $menu-collapse-time;
 
   .main-menu {
-
     width: $main-menu-width;
     height: calc(100% - #{$navbar-height});
     background: $foreground-color;

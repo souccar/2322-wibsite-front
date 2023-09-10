@@ -9,6 +9,7 @@ export const environment = {
   buyUrl : 'https://1.envato.market/6NV1b',
   SCARF_ANALYTICS : false,
   adminRoot: '/app',
+  baseUrl:'http://127.0.0.1:8000/',
   apiUrl: 'https://api.coloredstrategies.com',
   defaultMenuType: 'menu-default',
   subHiddenBreakpoint: 1440,

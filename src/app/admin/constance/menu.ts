@@ -13,48 +13,75 @@ export interface IMenuItem {
 }
 
 const data: IMenuItem[] = [
-  {
-    icon: 'iconsminds-air-balloon-1',
-    label: 'menu.vien',
-    to: `${adminRoot}/vien`,
+    //Production
+    {
+      icon: 'iconsminds-factory',
+      label: 'Production',
+      to: `${adminRoot}/production`,
+      subs: [
+        {
+          label: 'Catalog',
+          to: `${adminRoot}/production/catalog`,
+          subs: [
+            {
+              subs:[],
+              icon: 'simple-icon-layers',
+              label: 'Products',
+              to: `${adminRoot}/production/catalog/product`,
+            },
+            {
+              subs:[],
+              icon: 'simple-icon-list',
+              label: 'Categories',
+              to: `${adminRoot}/production/catalog/category`,
+            },
 
-    subs: [
-      {
-        subs:[],
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.start',
-        to: `${adminRoot}/vien/start`,
-        // roles: [UserRole.Admin],
-      },
+          ],
+        },
+      ],
+    },
+  // {
+  //   icon: 'iconsminds-air-balloon-1',
+  //   label: 'menu.vien',
+  //   to: `${adminRoot}/vien`,
 
-    ],
-  },
-  {
-    icon: 'iconsminds-three-arrow-fork',
-    label: 'menu.second-menu',
-    to: `${adminRoot}/second-menu`,
-     // roles: [UserRole.Editor],
-    subs: [
-      {
-        subs:[],
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.second',
-        to: `${adminRoot}/second-menu/second`,
-      },
-    ],
-  },
-  {
-    icon: 'iconsminds-bucket',
-    label: 'menu.blank-page',
-    to: `${adminRoot}/blank-page`,
-    subs: []
-  },
-  {
-    icon: 'iconsminds-library',
-    label: 'menu.docs',
-    to: 'https://vien-docs.coloredstrategies.com/',
-    subs: [],
-    newWindow: true,
-  },
+  //   subs: [
+  //     {
+  //       subs:[],
+  //       icon: 'simple-icon-paper-plane',
+  //       label: 'menu.start',
+  //       to: `${adminRoot}/vien/start`,
+  //        roles: [UserRole.Admin],
+  //     },
+
+  //   ],
+  // },
+  // {
+  //   icon: 'iconsminds-three-arrow-fork',
+  //   label: 'menu.second-menu',
+  //   to: `${adminRoot}/second-menu`,
+  //    // roles: [UserRole.Editor],
+  //   subs: [
+  //     {
+  //       subs:[],
+  //       icon: 'simple-icon-paper-plane',
+  //       label: 'menu.second',
+  //       to: `${adminRoot}/second-menu/second`,
+  //     },
+  //   ],
+  // },
+  // {
+  //   icon: 'iconsminds-bucket',
+  //   label: 'menu.blank-page',
+  //   to: `${adminRoot}/blank-page`,
+  //   subs: []
+  // },
+  // {
+  //   icon: 'iconsminds-library',
+  //   label: 'menu.docs',
+  //   to: 'https://vien-docs.coloredstrategies.com/',
+  //   subs: [],
+  //   newWindow: true,
+  // },
 ];
 export default data;
