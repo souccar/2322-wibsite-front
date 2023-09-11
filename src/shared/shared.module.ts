@@ -9,7 +9,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ContextMenuModule } from 'ngx-contextmenu';
+// import { ContextMenuModule } from 'ngx-contextmenu';
 import { AbpModalHeaderComponent } from './modal/abp-modal-header.component';
 import { AbpModalFooterComponent } from './modal/abp-modal-footer.component';
 import { AbpValidationSummaryComponent } from './validations/abp-validation-summary.component';
@@ -24,7 +24,7 @@ import { AbpValidationSummaryComponent } from './validations/abp-validation-summ
   ]
   ,
   imports: [
-    ContextMenuModule,
+    // ContextMenuModule,
     // ContextMenuModule.forRoot({
     //   useBootstrap4: true,
     // }),

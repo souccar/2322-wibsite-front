@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { AppComponentBase } from '../../../../../../../src/shared/app-component-base';
+import { AppComponentBase } from '../../../../../src/shared/app-component-base';
 
 @Component({
   selector: 'app-catalog',

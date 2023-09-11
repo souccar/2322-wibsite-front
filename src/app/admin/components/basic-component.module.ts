@@ -8,7 +8,6 @@ import { SharedModule } from 'src/shared/shared.module';
 import { FormsModule, FormsModule as FormsModuleAngular } from '@angular/forms';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { RatingComponent } from './rating/rating.component';
-import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
@@ -22,7 +21,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
   ],
   imports: [
 
-    NgxImageZoomModule,
+
     RatingModule.forRoot(),
     FormsModuleAngular,
     CarouselModule,

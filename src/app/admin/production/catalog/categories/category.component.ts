@@ -1,6 +1,6 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-import { ContextMenuComponent } from 'ngx-contextmenu';
+// import { ContextMenuComponent } from 'ngx-contextmenu';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PagedRequestDto } from 'src/shared/paged-listing-component-base';
 import { CreateCategoryDialogComponent } from './create-category/create-category-dialog.component';
@@ -40,7 +40,7 @@ export class CategoryComponent {
   advancedFiltersVisible = false;
   loading = false;
   ColumnMode = ColumnMode;
-  @ViewChild('basicMenu') public basicMenu: ContextMenuComponent | undefined;
+  // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent | undefined;
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
