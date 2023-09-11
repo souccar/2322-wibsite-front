@@ -24,4 +24,5 @@ import { BsModalService } from 'ngx-bootstrap/modal';
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
   providers:[BsModalService,TranslateService  ]
 })
+// ContextMenuService,
 export class ProductionModule { }

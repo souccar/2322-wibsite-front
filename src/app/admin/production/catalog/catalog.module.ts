@@ -14,7 +14,6 @@ import { CatalogComponent } from './catalog.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { SharedModule } from 'src/shared/shared.module';
 import { TranslateService } from '@ngx-translate/core';
-import { SkinTypeModule } from 'src/app/admin/skin-type/skin-type.module';
 
 
 
@@ -29,15 +28,18 @@ import { SkinTypeModule } from 'src/app/admin/skin-type/skin-type.module';
   imports: [
     CommonModule,
     LayoutModule,
-   
+    NgxDatatableModule,
+    // ContextMenuModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
     CatalogRoutingModule,
-    SharedModule ,
-    SkinTypeModule,
+    SharedModule
 
 
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
   providers:[BsModalService,TranslateService  ]
-
+// /,ContextMenuService
 })
 export class CatalogModule { }

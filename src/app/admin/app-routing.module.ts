@@ -7,15 +7,9 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      { path: 'production', loadChildren: () => import('../admin/dashboard/default/production/production.module').then(m => m.ProductionModule) },
+      { path: '', pathMatch: 'full', redirectTo: 'production' },
+
+      { path: 'production', loadChildren: () => import('../admin/production/production.module').then(m => m.ProductionModule) },
 
     ],
   },

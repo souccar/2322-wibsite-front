@@ -15,6 +15,7 @@ import { HeadingComponent } from './heading/heading.component';
 import { HeadroomModule } from '@ctrl/ngx-headroom';
 import { ListPageHeaderComponent } from './list-page-header/list-page-header.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     BreadcrumbComponent,
     TopnavComponent,
     HeadingComponent,
-    ListPageHeaderComponent
+    ListPageHeaderComponent,
+    AdminHeaderComponent
   ],
   imports: [
     RouterModule,
@@ -43,7 +45,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     TopnavComponent,
     BreadcrumbComponent,
     HeadingComponent,
-    ListPageHeaderComponent
+    ListPageHeaderComponent,
+    AdminHeaderComponent
 
   ],
   providers:[BsModalService,TranslateService  ]

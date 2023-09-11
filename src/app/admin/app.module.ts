@@ -5,11 +5,11 @@ import { SharedModule } from 'src/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppRoutingModule } from '../admin/app-routing.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { ProductionModule } from './dashboard/default/production/production.module';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { ProductionModule } from './production/production.module';
 
 
 @NgModule({
@@ -26,7 +26,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     HttpClientModule,
     TranslateModule.forRoot(),
      AppRoutingModule,
-     DashboardModule,
      ProductionModule
 
   ],
