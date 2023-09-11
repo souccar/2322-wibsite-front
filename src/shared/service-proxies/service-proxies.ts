@@ -119,3 +119,155 @@ export interface ICreateSkinTypeDto {
     }
   }
   
+
+  export interface IReadSkinTypeDto {
+    id:number;
+    name: string | undefined;
+  }
+  
+  export class ReadSkinTypeDto implements IReadSkinTypeDto {
+    id:number;
+    name: string | undefined;
+ 
+  
+    constructor(data?: IReadSkinTypeDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+  
+  
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"]; 
+            this.name = _data["name"];
+        }
+    }
+  
+    static fromJS(data: any): ReadSkinTypeDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ReadSkinTypeDto();
+        result.init(data);
+        return result;
+    }
+  
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data;
+    }
+  
+    clone(): ReadSkinTypeDto {
+        const json = this.toJSON();
+        let result = new ReadSkinTypeDto();
+        result.init(json);
+        return result;
+    }
+  }
+
+  /**
+ * Brands
+ */
+
+  export interface ICreateBrandDto {
+    name: string | undefined;
+
+  }
+  export class CreateBrandDto implements ICreateBrandDto {
+    name: string | undefined;
+   
+  
+    constructor(data?: ICreateCategoryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+  
+  
+    init(_data?: any) {
+        if (_data) {
+  
+            this.name = _data["name"];
+
+        }
+    }
+  
+    static fromJS(data: any): CreateBrandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new CreateBrandDto();
+        result.init(data);
+        return result;
+    }
+  
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+  
+        return data;
+    }
+  
+    clone(): CreateBrandDto {
+        const json = this.toJSON();
+        let result = new CreateBrandDto();
+        result.init(json);
+        return result;
+    }
+  }
+
+
+  export interface IReadBrandDto {
+    id:number;
+    name: string | undefined;
+  }
+  
+  export class ReadBrandDto implements IReadBrandDto {
+    id:number;
+    name: string | undefined;
+ 
+  
+    constructor(data?: ReadBrandDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+  
+  
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"]; 
+            this.name = _data["name"];
+        }
+    }
+  
+    static fromJS(data: any): ReadBrandDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ReadBrandDto();
+        result.init(data);
+        return result;
+    }
+  
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data;
+    }
+  
+    clone(): ReadBrandDto {
+        const json = this.toJSON();
+        let result = new ReadBrandDto();
+        result.init(json);
+        return result;
+    }
+  }
+  

@@ -11,13 +11,14 @@ import { AppComponent } from './app.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ProductionModule } from './production/production.module';
 import { SkinTypeModule } from './skin-type/skin-type.module';
+import { BrandModule } from './brands/brand.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
-
+  
   ],
   imports: [
      LayoutModule,
@@ -28,7 +29,8 @@ import { SkinTypeModule } from './skin-type/skin-type.module';
     HttpClientModule,
     TranslateModule.forRoot(),
      AppRoutingModule,
-     ProductionModule
+     ProductionModule,
+     BrandModule
 
   ],
   exports:[

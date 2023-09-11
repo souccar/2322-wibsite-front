@@ -1,19 +1,27 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { CreateSkinTypeDialogComponent } from './create-skinType/create-skin-type-dialog.component';
-import { PagedRequestDto } from 'src/shared/paged-listing-component-base';
-import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
-import { ReadSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { finalize } from 'rxjs';
+import { PagedListingComponentBase, PagedRequestDto } from 'src/shared/paged-listing-component-base';
+import { ReadBrandDto } from 'src/shared/service-proxies/service-proxies';
+import { BrandService } from 'src/shared/services/brand-service/brand.service';
+import { CreateBrandDialogComponent } from './create-brand/create-brand-dialog.component';
+import { HttpParams } from '@angular/common/http';
+
 
 @Component({
-  selector: 'app-skin-type',
-  templateUrl: './skin-type.component.html',
+  selector: 'app-brand',
+  templateUrl: './brand.component.html',
 
 })
-export class SkinTypeComponent implements OnInit {
+
+export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  implements OnInit {
+
+
+  protected override list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
+    // throw new Error('Method not implemented.');
+  }
 
   title = "Skin Type"
   displayMode = 'list';
@@ -21,9 +29,9 @@ export class SkinTypeComponent implements OnInit {
   itemOptionsOrders = [{ label:"name", value: "name" },];
   itemsPerPage = 10;
   selectAllState = '';
-  selected: ReadSkinTypeDto[] = [];
+  selected: ReadBrandDto[] = [];
 
-  data: ReadSkinTypeDto[] = [];
+  data: ReadBrandDto[] = [];
  
 
   currentPage = 1;
@@ -40,20 +48,22 @@ export class SkinTypeComponent implements OnInit {
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _skinTypeService:SkinTypeService)
+    private _brandService:BrandService)
   {
    
-
+    super(injector);
   }
-  ngOnInit(): void {
-    this.getAllSkinType()
+  override ngOnInit(): void {
+    this.getAllBrand()
     // this.loadData(this.itemsPerPage, 1, this.search);
   }
 
-  getAllSkinType()
+  getAllBrand()
   {
+    let params = new HttpParams().set('count', this.itemsPerPage) ;
    
-    this._skinTypeService.getAll().subscribe((responce:any)=>{
+    this._brandService.getAll(params).subscribe((responce:any)=>{
+      console.log(responce.result.data);
       this.data=responce.result.data
       
     })
@@ -88,32 +98,32 @@ export class SkinTypeComponent implements OnInit {
       this.selectAllState = '';
     }
   }
-  protected list(
-    request: PagedSkinTypeRequestDto,
+  // protected list(
+  //   request: PagedBrandRequestDto,
    
-    finishedCallback: Function
-  ): void {
-    request.keyword = this.search;
+  //   finishedCallback: Function
+  // ): void {
+  //   request.keyword = this.search;
 
-    this._skinTypeService
-     .getAll()
-      .pipe(
-        finalize(() => {
-          finishedCallback();
-        })
-      )
-      .subscribe((result :any) => {
-        this.data = result.data;
-        // this.setSelectAllState();
-      });
-  }
+  //   this._brandService
+  //    .getAll()
+  //     .pipe(
+  //       finalize(() => {
+  //         finishedCallback();
+  //       })
+  //     )
+  //     .subscribe((result :any) => {
+  //       this.data = result.data;
+  //       // this.setSelectAllState();
+  //     });
+  // }
 
 
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
 
-  onContextMenuClick(action: string, item: ReadSkinTypeDto): void {
+  onContextMenuClick(action: string, item: ReadBrandDto): void {
     switch (action) {
       case "delete":
         this.delete(item);
@@ -132,7 +142,7 @@ export class SkinTypeComponent implements OnInit {
   showViewModal(id:number)
 {
   //  this._modalService.show(
-  //   ViewSkinTypeDialogComponent,
+  //   ViewBrandDialogComponent,
   //   {
   //     backdrop: true,
   //     ignoreBackdropClick: true,
@@ -144,8 +154,8 @@ export class SkinTypeComponent implements OnInit {
 
 }
   showEditModal(id:number): void {
-    // let EditSkinTypeDialog = this._modalService.show(
-    //   EditSkinTypeDialogComponent,
+    // let EditBrandDialog = this._modalService.show(
+    //   EditBrandDialogComponent,
     //   {
     //     backdrop: true,
     //     ignoreBackdropClick: true,
@@ -156,19 +166,19 @@ export class SkinTypeComponent implements OnInit {
     //     },
     //   }
     // );
-    // EditSkinTypeDialog.content.onSave.subscribe(() => {
+    // EditBrandDialog.content.onSave.subscribe(() => {
     //   this.refresh();
     // });
 
 }
-  // entity: ReadSkinTypeDto
+  // entity: ReadBrandDto
   protected delete(entity:any): void {
     // abp.message.confirm(
-    //   this.l('SkinTypeDeleteWarningMessage', this.selected.length, 'Categories'),
+    //   this.l('BrandDeleteWarningMessage', this.selected.length, 'Categories'),
     //   undefined,
     //   (result: boolean) => {
     //     if (result) {
-    //       this._SkinTypeService.delete(entity.id).subscribe(() => {
+    //       this._BrandService.delete(entity.id).subscribe(() => {
     //         abp.notify.success(this.l('SuccessfullyDeleted'));
     //         this.refresh();
     //       });
@@ -177,9 +187,9 @@ export class SkinTypeComponent implements OnInit {
     // );
   }
   showAddNewModal(): void {
-    let createOrEditSkinTypeDialog: BsModalRef;
-    createOrEditSkinTypeDialog = this._modalService.show(
-      CreateSkinTypeDialogComponent,
+    let createOrEditBrandDialog: BsModalRef;
+    createOrEditBrandDialog = this._modalService.show(
+      CreateBrandDialogComponent,
       {
         backdrop: true,
         ignoreBackdropClick: true,
@@ -187,11 +197,11 @@ export class SkinTypeComponent implements OnInit {
 
       }
     );
-    // createOrEditSkinTypeDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
+    createOrEditBrandDialog.content.onSave.subscribe(() => {
+      window.location.reload();
+    });
   }
-  // item: ReadSkinTypeDto
+  // item: ReadBrandDto
   onSelect(item: any): void {
     // if (this.isSelected(item)) {
     //   this.selected = this.selected.filter(x => x.id !== item.id);
@@ -207,12 +217,12 @@ export class SkinTypeComponent implements OnInit {
     }
     else {
       // abp.message.confirm(
-      //   'SkinTypeDeleteWarningMessage', this.selected.length, 'Categories',
+      //   'BrandDeleteWarningMessage', this.selected.length, 'Categories',
       //   undefined,
         // (result: boolean) => {
         //   if (result) {
         //     this.selected.forEach(element => {
-        //       this._SkinTypeService.delete(element.id).subscribe(() => {
+        //       this._BrandService.delete(element.id).subscribe(() => {
         //         abp.notify.success(this.l('SuccessfullyDeleted'));
         //         this.refresh();
         //       });
@@ -226,7 +236,7 @@ export class SkinTypeComponent implements OnInit {
     // this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
   }
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', sort_Desc: boolean = false): void {
-    let request: PagedSkinTypeRequestDto = new PagedSkinTypeRequestDto();
+    let request: PagedBrandRequestDto = new PagedBrandRequestDto();
     this.itemsPerPage = pageSize;
     this.currentPage = currentPage;
     this.search = search;
@@ -234,11 +244,11 @@ export class SkinTypeComponent implements OnInit {
     request.sort_Desc = sort_Desc;
     request.skipCount = (currentPage - 1) * pageSize;
     request.maxResultCount = this.itemsPerPage;
-    this.list(request, () => { });
+    // this.list(request, () => { });
   }
 }
 
-class PagedSkinTypeRequestDto extends PagedRequestDto {
+class PagedBrandRequestDto extends PagedRequestDto {
   keyword: string='';
   sort_Field: string='';
   sort_Desc: boolean=false;
