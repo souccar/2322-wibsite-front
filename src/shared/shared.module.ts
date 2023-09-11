@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -9,22 +9,24 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ContextMenuModule } from 'ngx-contextmenu';
+// import { ContextMenuModule } from 'ngx-contextmenu';
 import { AbpModalHeaderComponent } from './modal/abp-modal-header.component';
 import { AbpModalFooterComponent } from './modal/abp-modal-footer.component';
 import { AbpValidationSummaryComponent } from './validations/abp-validation-summary.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 @NgModule({
   declarations:
-   [
+    [
 
-    AbpModalHeaderComponent,
-    AbpModalFooterComponent,
-    AbpValidationSummaryComponent
-  ]
+      AbpModalHeaderComponent,
+      AbpModalFooterComponent,
+      AbpValidationSummaryComponent,
+    ]
   ,
   imports: [
-    ContextMenuModule,
+    // ContextMenuModule,
     // ContextMenuModule.forRoot({
     //   useBootstrap4: true,
     // }),
@@ -34,16 +36,26 @@ import { AbpValidationSummaryComponent } from './validations/abp-validation-summ
     CollapseModule.forRoot(),
     ModalModule.forRoot(),
     ReactiveFormsModule,
-        NgxDatatableModule,
+    NgxDatatableModule,
+    ContextMenuModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     RouterModule,
     TranslateModule,
     AbpModalHeaderComponent,
     AbpModalFooterComponent,
-    AbpValidationSummaryComponent
+    AbpValidationSummaryComponent,
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    ContextMenuModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
 
   ],
-  providers:[BsModalService,TranslateService],
+  providers: [],
 })
-export class SharedModule {}
+export class SharedModule { }

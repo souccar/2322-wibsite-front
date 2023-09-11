@@ -1,36 +1,29 @@
-import { Component, Injector, ViewChild } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-// import { ContextMenuComponent } from 'ngx-contextmenu';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { CreateSkinTypeDialogComponent } from './create-skinType/create-skin-type-dialog.component';
 import { PagedRequestDto } from 'src/shared/paged-listing-component-base';
-import { CreateCategoryDialogComponent } from './create-category/create-category-dialog.component';
-import { CategoryService } from 'src/shared/services/category-service/category.service';
-class PagedCategoriesRequestDto extends PagedRequestDto {
-  keyword: string='';
-  sort_Field: string='';
-  sort_Desc: boolean=false;
-  isActive: boolean=false;
-}
+import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
+
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
+  selector: 'app-skin-type',
+  templateUrl: './skin-type.component.html',
 
 })
+export class SkinTypeComponent {
 
-export class CategoryComponent {
-  title = "Categories"
+  title = "Skin Type"
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
-  itemOptionsOrders = [{ label:"name", value: "name" },
-  { label: "description", value: "description" }];
+  itemOptionsOrders = [{ label:"name", value: "name" },];
   itemsPerPage = 10;
   selectAllState = '';
-  // selected: ReadCategoryDto[] = [];
+  // selected: ReadSkinTypeDto[] = [];
    selected:any= '';
 
-  // data: ReadCategoryDto[] = [];
+  // data: ReadSkinTypeDto[] = [];
   data:any;
-  // parentCategoryFullName:CategoryForDropdownDto[]=[];
+
   currentPage = 1;
   search = '';
   totalItem = 0;
@@ -44,16 +37,16 @@ export class CategoryComponent {
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _categoryService:CategoryService)
+    private _skinTypeService:SkinTypeService)
   {
-    this.getAllCategory()
+    this.getAllSkinType()
 
   }
 
-  getAllCategory()
+  getAllSkinType()
   {
-    console.log("yessssss")
-    this._categoryService.getAll().subscribe((responce:any)=>{
+   
+    this._skinTypeService.getAll().subscribe((responce:any)=>{
       console.log(responce);
     })
   }
@@ -80,7 +73,7 @@ export class CategoryComponent {
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
-  // item: ReadCategoryDto
+  // item: ReadSkinTypeDto
   onContextMenuClick(action: string, item: any): void {
     switch (action) {
       case "delete":
@@ -100,7 +93,7 @@ export class CategoryComponent {
   showViewModal(id:number)
 {
   //  this._modalService.show(
-  //   ViewCategoryDialogComponent,
+  //   ViewSkinTypeDialogComponent,
   //   {
   //     backdrop: true,
   //     ignoreBackdropClick: true,
@@ -112,8 +105,8 @@ export class CategoryComponent {
 
 }
   showEditModal(id:number): void {
-    // let EditCategoryDialog = this._modalService.show(
-    //   EditCategoryDialogComponent,
+    // let EditSkinTypeDialog = this._modalService.show(
+    //   EditSkinTypeDialogComponent,
     //   {
     //     backdrop: true,
     //     ignoreBackdropClick: true,
@@ -124,19 +117,19 @@ export class CategoryComponent {
     //     },
     //   }
     // );
-    // EditCategoryDialog.content.onSave.subscribe(() => {
+    // EditSkinTypeDialog.content.onSave.subscribe(() => {
     //   this.refresh();
     // });
 
 }
-  // entity: ReadCategoryDto
+  // entity: ReadSkinTypeDto
   protected delete(entity:any): void {
     // abp.message.confirm(
-    //   this.l('CategoryDeleteWarningMessage', this.selected.length, 'Categories'),
+    //   this.l('SkinTypeDeleteWarningMessage', this.selected.length, 'Categories'),
     //   undefined,
     //   (result: boolean) => {
     //     if (result) {
-    //       this._CategoryService.delete(entity.id).subscribe(() => {
+    //       this._SkinTypeService.delete(entity.id).subscribe(() => {
     //         abp.notify.success(this.l('SuccessfullyDeleted'));
     //         this.refresh();
     //       });
@@ -145,9 +138,9 @@ export class CategoryComponent {
     // );
   }
   showAddNewModal(): void {
-    let createOrEditCategoryDialog: BsModalRef;
-    createOrEditCategoryDialog = this._modalService.show(
-      CreateCategoryDialogComponent,
+    let createOrEditSkinTypeDialog: BsModalRef;
+    createOrEditSkinTypeDialog = this._modalService.show(
+      CreateSkinTypeDialogComponent,
       {
         backdrop: true,
         ignoreBackdropClick: true,
@@ -155,11 +148,11 @@ export class CategoryComponent {
 
       }
     );
-    // createOrEditCategoryDialog.content.onSave.subscribe(() => {
+    // createOrEditSkinTypeDialog.content.onSave.subscribe(() => {
     //   this.refresh();
     // });
   }
-  // item: ReadCategoryDto
+  // item: ReadSkinTypeDto
   onSelect(item: any): void {
     // if (this.isSelected(item)) {
     //   this.selected = this.selected.filter(x => x.id !== item.id);
@@ -175,12 +168,12 @@ export class CategoryComponent {
     }
     else {
       // abp.message.confirm(
-      //   'CategoryDeleteWarningMessage', this.selected.length, 'Categories',
+      //   'SkinTypeDeleteWarningMessage', this.selected.length, 'Categories',
       //   undefined,
         // (result: boolean) => {
         //   if (result) {
         //     this.selected.forEach(element => {
-        //       this._CategoryService.delete(element.id).subscribe(() => {
+        //       this._SkinTypeService.delete(element.id).subscribe(() => {
         //         abp.notify.success(this.l('SuccessfullyDeleted'));
         //         this.refresh();
         //       });
@@ -205,4 +198,11 @@ export class CategoryComponent {
     request.maxResultCount = this.itemsPerPage;
     // this.list(request, this.pageNumber, () => { });
   }
+}
+
+class PagedCategoriesRequestDto extends PagedRequestDto {
+  keyword: string='';
+  sort_Field: string='';
+  sort_Desc: boolean=false;
+  isActive: boolean=false;
 }

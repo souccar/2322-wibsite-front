@@ -35,6 +35,13 @@ const data: IMenuItem[] = [
               label: 'Categories',
               to: `${adminRoot}/production/catalog/category`,
             },
+            
+            {
+              subs:[],
+              icon: 'simple-icon-user-female',
+              label: 'Skin Type',
+              to: `${adminRoot}/production/catalog/skintype`,
+            },
 
           ],
         },

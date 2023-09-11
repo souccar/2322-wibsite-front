@@ -6,7 +6,7 @@ import { EditCategoryDialogComponent } from './categories/edit-category/edit-cat
 import { CategoryComponent } from './categories/category.component';
 import { LayoutModule } from 'src/app/admin/containers/layout/layout.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ContextMenuModule, ContextMenuService } from 'ngx-contextmenu';
+// import { ContextMenuModule, ContextMenuService } from 'ngx-contextmenu';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CatalogRoutingModule } from './catalog-routing.module';
@@ -14,6 +14,7 @@ import { CatalogComponent } from './catalog.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { SharedModule } from 'src/shared/shared.module';
 import { TranslateService } from '@ngx-translate/core';
+import { SkinTypeModule } from 'src/app/admin/skin-type/skin-type.module';
 
 
 
@@ -28,18 +29,15 @@ import { TranslateService } from '@ngx-translate/core';
   imports: [
     CommonModule,
     LayoutModule,
-    NgxDatatableModule,
-    ContextMenuModule,
-    NgxPaginationModule,
-    FormsModule,
-    ReactiveFormsModule,
+   
     CatalogRoutingModule,
-    SharedModule
+    SharedModule ,
+    SkinTypeModule,
 
 
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
-  providers:[BsModalService,ContextMenuService,TranslateService  ]
+  providers:[BsModalService,TranslateService  ]
 
 })
 export class CatalogModule { }

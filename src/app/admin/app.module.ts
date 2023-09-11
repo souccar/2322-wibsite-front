@@ -15,6 +15,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [
     AppComponent,
+    
 
   ],
   imports: [

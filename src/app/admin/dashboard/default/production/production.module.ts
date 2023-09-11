@@ -5,8 +5,9 @@ import { SharedModule } from 'src/shared/shared.module';
 import { ProductionRoutingModule } from './production-routing.module';
 import { ProductionComponent } from './production.component';
 import { TranslateService } from '@ngx-translate/core';
-import { ContextMenuService } from 'ngx-contextmenu';
+// import { ContextMenuService } from 'ngx-contextmenu';
 import { BsModalService } from 'ngx-bootstrap/modal';
+
 
 
 
@@ -16,10 +17,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     CommonModule,
     CatalogModule,
     //  SharedModule,
-    ProductionRoutingModule
+    ProductionRoutingModule,
+   
 
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA],
-  providers:[BsModalService,ContextMenuService,TranslateService  ]
+  providers:[BsModalService,TranslateService  ]
 })
 export class ProductionModule { }
