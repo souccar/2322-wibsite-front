@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ProductionModule } from './production/production.module';
+import { SkinTypeModule } from './skin-type/skin-type.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ProductionModule } from './production/production.module';
   imports: [
      LayoutModule,
     RouterModule,
+    SkinTypeModule,
     SharedModule,
     HttpClientModule,
     HttpClientModule,
