@@ -5,8 +5,9 @@ import { CreateSkinTypeDialogComponent } from './create-skinType/create-skin-typ
 import { PagedRequestDto } from 'src/shared/paged-listing-component-base';
 import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
 import { ReadSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
-import { ContextMenuComponent } from 'ngx-contextmenu';
 import { finalize } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+import { EditSkinTypeDialogComponent } from './edit-skinType/edit-skin-type-dialog.component';
 
 @Component({
   selector: 'app-skin-type',
@@ -22,7 +23,6 @@ export class SkinTypeComponent implements OnInit {
   itemsPerPage = 10;
   selectAllState = '';
   selected: ReadSkinTypeDto[] = [];
-
   data: ReadSkinTypeDto[] = [];
  
 
@@ -36,8 +36,8 @@ export class SkinTypeComponent implements OnInit {
   loading = false;
   ColumnMode = ColumnMode;
 
-  @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
-
+  // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
+  // @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreateSkinTypeDialogComponent;
   constructor( injector: Injector,
     private _modalService: BsModalService,
     private _skinTypeService:SkinTypeService)
@@ -51,13 +51,26 @@ export class SkinTypeComponent implements OnInit {
   }
 
   getAllSkinType()
-  {
-   
-    this._skinTypeService.getAll().subscribe((responce:any)=>{
+  { let params = new HttpParams().set('count', this.itemsPerPage) ;
+    this._skinTypeService.getAll(params).subscribe((responce:any)=>{
       this.data=responce.result.data
-      
-    })
+    });
   }
+
+  deletebutton(id:number){
+    this._skinTypeService.delete(id).subscribe((responce:any)=>{
+      window.location.reload();
+    });
+  
+  }
+
+  edit (id:number)
+  {
+    console.log(id)
+  }
+
+
+
   itemsPerPageChange(perPage: number): void {
     this.loadData(perPage, 1, this.search);
   }
@@ -119,7 +132,7 @@ export class SkinTypeComponent implements OnInit {
         this.delete(item);
         break;
       case "edit":
-        this.showEditModal(item.id);
+        this.editModal(item.id);
         break;
       case "view":
         this.showViewModal(item.id);
@@ -143,22 +156,21 @@ export class SkinTypeComponent implements OnInit {
   // );
 
 }
-  showEditModal(id:number): void {
-    // let EditSkinTypeDialog = this._modalService.show(
-    //   EditSkinTypeDialogComponent,
-    //   {
-    //     backdrop: true,
-    //     ignoreBackdropClick: true,
-    //     class: 'modal-right'
-    //     ,
-    //     initialState: {
-    //       id: id,
-    //     },
-    //   }
-    // );
-    // EditSkinTypeDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
+ editModal(id:number): void {
+  let editSkinTypeDialog: BsModalRef;
+      editSkinTypeDialog = this._modalService.show(
+      EditSkinTypeDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        initialState: {
+          id: id,
+        },
+      }
+    );
+    editSkinTypeDialog.content.onSave.subscribe(() => {
+      window.location.reload();
+    });
 
 }
   // entity: ReadSkinTypeDto
@@ -187,9 +199,9 @@ export class SkinTypeComponent implements OnInit {
 
       }
     );
-    // createOrEditSkinTypeDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
+    createOrEditSkinTypeDialog.content.onSave.subscribe(() => {
+      window.location.reload();
+    });
   }
   // item: ReadSkinTypeDto
   onSelect(item: any): void {

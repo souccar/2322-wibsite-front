@@ -1,13 +1,13 @@
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ContextMenuComponent } from 'ngx-contextmenu';
 import { finalize } from 'rxjs';
 import { PagedListingComponentBase, PagedRequestDto } from 'src/shared/paged-listing-component-base';
 import { ReadBrandDto } from 'src/shared/service-proxies/service-proxies';
 import { BrandService } from 'src/shared/services/brand-service/brand.service';
 import { CreateBrandDialogComponent } from './create-brand/create-brand-dialog.component';
 import { HttpParams } from '@angular/common/http';
+import { EditBrandDialogComponent } from './edit-brand/edit-brand-dialog.component';
 
 
 @Component({
@@ -44,7 +44,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
   loading = false;
   ColumnMode = ColumnMode;
 
-  @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
+  // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
@@ -63,11 +63,36 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
     let params = new HttpParams().set('count', this.itemsPerPage) ;
    
     this._brandService.getAll(params).subscribe((responce:any)=>{
-      console.log(responce.result.data);
       this.data=responce.result.data
       
-    })
+    });
   }
+  deletebutton(id:number){
+    this._brandService.delete(id).subscribe((responce:any)=>{
+      window.location.reload();
+    });
+  
+  }
+
+  editModal(id:number): void {
+    let editBrandDialog: BsModalRef;
+        editBrandDialog = this._modalService.show(
+        EditBrandDialogComponent,
+        {
+          backdrop: true,
+          ignoreBackdropClick: true,
+          initialState: {
+            id: id,
+          },
+        }
+      );
+      editBrandDialog.content.onSave.subscribe(() => {
+        window.location.reload();
+      });
+  
+    }
+
+
   itemsPerPageChange(perPage: number): void {
     this.loadData(perPage, 1, this.search);
   }
@@ -129,7 +154,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
         this.delete(item);
         break;
       case "edit":
-        this.showEditModal(item.id);
+        this.editModal(item.id);
         break;
       case "view":
         this.showViewModal(item.id);

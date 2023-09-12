@@ -2,7 +2,7 @@ import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
-import { CreateBrandDto } from 'src/shared/service-proxies/service-proxies';
+import { CreateUpdateBrandDto } from 'src/shared/service-proxies/service-proxies';
 import { BrandService } from 'src/shared/services/brand-service/brand.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class CreateBrandDialogComponent  extends AppComponentBase implements OnI
 
 
   saving = false;
-  skinType = new CreateBrandDto();
+  skinType = new CreateUpdateBrandDto();
   @Output() onSave = new EventEmitter<any>();
   constructor(injector: Injector,
     public _brandService: BrandService,

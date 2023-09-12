@@ -4,6 +4,7 @@ import { SkinTypeComponent } from './skin-type.component';
 import { CreateSkinTypeDialogComponent } from './create-skinType/create-skin-type-dialog.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { LayoutModule } from "../containers/layout/layout.module";
+import { EditSkinTypeDialogComponent } from './edit-skinType/edit-skin-type-dialog.component';
 
 
 
@@ -12,6 +13,7 @@ import { LayoutModule } from "../containers/layout/layout.module";
     declarations: [
         SkinTypeComponent,
         CreateSkinTypeDialogComponent,
+        EditSkinTypeDialogComponent,
     ],
     imports: [
         CommonModule,

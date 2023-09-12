@@ -1,21 +1,21 @@
 /**
  * Category
  */
-export interface ICreateCategoryDto {
+export interface ICreateUpdateCategoryDto {
   name: string | undefined;
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
   image: any;
 }
-export class CreateCategoryDto implements ICreateCategoryDto {
+export class CreateUpdateCategoryDto implements ICreateUpdateCategoryDto {
   name: string | undefined;
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
   image: any;
 
-  constructor(data?: ICreateCategoryDto) {
+  constructor(data?: ICreateUpdateCategoryDto) {
       if (data) {
           for (var property in data) {
               if (data.hasOwnProperty(property))
@@ -40,9 +40,9 @@ export class CreateCategoryDto implements ICreateCategoryDto {
       }
   }
 
-  static fromJS(data: any): CreateCategoryDto {
+  static fromJS(data: any): CreateUpdateCategoryDto {
       data = typeof data === 'object' ? data : {};
-      let result = new CreateCategoryDto();
+      let result = new CreateUpdateCategoryDto();
       result.init(data);
       return result;
   }
@@ -62,9 +62,9 @@ export class CreateCategoryDto implements ICreateCategoryDto {
       return data;
   }
 
-  clone(): CreateCategoryDto {
+  clone(): CreateUpdateCategoryDto {
       const json = this.toJSON();
-      let result = new CreateCategoryDto();
+      let result = new CreateUpdateCategoryDto();
       result.init(json);
       return result;
   }
@@ -74,15 +74,15 @@ export class CreateCategoryDto implements ICreateCategoryDto {
  * skin type
  */
 
-export interface ICreateSkinTypeDto {
+export interface ICreateUpdateSkinTypeDto {
     name: string | undefined;
   }
 
-  export class CreateSkinTypeDto implements ICreateSkinTypeDto {
+  export class CreateUpdateSkinTypeDto implements ICreateUpdateSkinTypeDto {
     name: string | undefined;
  
   
-    constructor(data?: ICreateCategoryDto) {
+    constructor(data?: ICreateUpdateSkinTypeDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -98,9 +98,9 @@ export interface ICreateSkinTypeDto {
         }
     }
   
-    static fromJS(data: any): CreateSkinTypeDto {
+    static fromJS(data: any): CreateUpdateSkinTypeDto {
         data = typeof data === 'object' ? data : {};
-        let result = new CreateCategoryDto();
+        let result = new CreateUpdateSkinTypeDto();
         result.init(data);
         return result;
     }
@@ -111,9 +111,9 @@ export interface ICreateSkinTypeDto {
         return data;
     }
   
-    clone(): CreateCategoryDto {
+    clone(): CreateUpdateSkinTypeDto {
         const json = this.toJSON();
-        let result = new CreateCategoryDto();
+        let result = new CreateUpdateSkinTypeDto();
         result.init(json);
         return result;
     }
@@ -173,15 +173,15 @@ export interface ICreateSkinTypeDto {
  * Brands
  */
 
-  export interface ICreateBrandDto {
+  export interface ICreateUpdateBrandDto {
     name: string | undefined;
 
   }
-  export class CreateBrandDto implements ICreateBrandDto {
+  export class CreateUpdateBrandDto implements ICreateUpdateBrandDto {
     name: string | undefined;
    
   
-    constructor(data?: ICreateCategoryDto) {
+    constructor(data?: ICreateUpdateBrandDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -199,9 +199,9 @@ export interface ICreateSkinTypeDto {
         }
     }
   
-    static fromJS(data: any): CreateBrandDto {
+    static fromJS(data: any): CreateUpdateBrandDto {
         data = typeof data === 'object' ? data : {};
-        let result = new CreateBrandDto();
+        let result = new CreateUpdateBrandDto();
         result.init(data);
         return result;
     }
@@ -213,9 +213,9 @@ export interface ICreateSkinTypeDto {
         return data;
     }
   
-    clone(): CreateBrandDto {
+    clone(): CreateUpdateBrandDto {
         const json = this.toJSON();
-        let result = new CreateBrandDto();
+        let result = new CreateUpdateBrandDto();
         result.init(json);
         return result;
     }

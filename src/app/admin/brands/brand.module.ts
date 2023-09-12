@@ -4,12 +4,14 @@ import { SharedModule } from 'src/shared/shared.module';
 import { LayoutModule } from '../containers/layout/layout.module';
 import { BrandComponent } from './brand.component';
 import { CreateBrandDialogComponent } from './create-brand/create-brand-dialog.component';
+import { EditBrandDialogComponent } from './edit-brand/edit-brand-dialog.component';
 
 
 @NgModule({
   declarations: [
     BrandComponent,
-    CreateBrandDialogComponent
+    CreateBrandDialogComponent,
+    EditBrandDialogComponent
   ],
   imports: [
       CommonModule,

@@ -49,8 +49,7 @@ import { SharedModule } from 'src/shared/shared.module';
     ListPageHeaderComponent,
     AdminHeaderComponent
 
-  ],
-  providers:[BsModalService,TranslateService  ]
+  ]
 
 
 })
