@@ -32,6 +32,8 @@
             "styles": [
               "src/assets/css/vendor/bootstrap.min.css",
               "src/assets/css/vendor/bootstrap.rtl.only.min.css",
+              "node_modules/@glidejs/glide/dist/css/glide.core.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.scss",
               {
                 "input": "src/assets/css/sass/themes/vien.light.blueyale.scss",
@@ -39,7 +41,11 @@
                 "inject": false
               }
             ],
-            "scripts": []
+            "scripts": [
+
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

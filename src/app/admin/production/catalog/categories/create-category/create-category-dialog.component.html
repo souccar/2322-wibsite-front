@@ -45,11 +45,15 @@
             {{ "Image" | translate }}
         </label>
         <div class="col-md-9">
-          <div class="upload-img">
-
-          <input type="file" (change)="uploadfile($event)"  [(ngModel)]="category.image" name="image">
-         <button>upload</button>
-      </div>
+          <div class="custom-dropzone" [multiple]="false"  ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+            <ngx-dropzone-label>
+              <div>
+                <h2>{{'Upload Image'|translate}}</h2>
+              </div>
+            </ngx-dropzone-label>
+            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+            </ngx-dropzone-image-preview>
+          </div>
       </div>
     </div>
   </div>

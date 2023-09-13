@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
 import { CategoryComponent } from './categories/category.component';
 import { ProductComponent } from 'src/app/admin/components/product/product.component';
+import { ProductsComponent } from './products/products.component';
 const routes: Routes = [{
   path: '', component: CatalogComponent ,
   children:[
@@ -16,7 +17,7 @@ const routes: Routes = [{
     },
     {
       path: 'product',
-      component: ProductComponent,
+      component: ProductsComponent,
       //data: { permission : 'Pages.Categories' },
       // canActivate: [AppRouteGuard]
     },
