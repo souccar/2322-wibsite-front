@@ -13,7 +13,7 @@ export class CategoryService {
   {
     return this.http.get(this.baseUrl+'api/categories');
   }
-  insert(category:CreateUpdateCategoryDto)
+  insert(category:any)
   {
     console.log(category);
     return this.http.post(this.baseUrl+'api/categories',category);

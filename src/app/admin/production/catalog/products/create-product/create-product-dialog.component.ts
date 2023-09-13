@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChil
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
-import { CategoryForDropdownDto, CreateProductDto } from 'src/shared/service-proxies/service-proxies';
+import { CategoryForDropdownDto, CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 const MAX_SIZE: number = 1048576;
@@ -23,7 +23,7 @@ implements OnInit {
   };
   imageSrc: any='assets/img/upload.png';
   emptySrc = 'assets/img/upload.png';
-  product = new CreateProductDto();
+  product = new CreateUpdateProductDto();
    categories : CategoryForDropdownDto[] = [];
   // sizes :CreateProductSizeDto[]=[];
   // size:CreateProductSizeDto= new CreateProductSizeDto();

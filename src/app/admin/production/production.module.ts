@@ -5,6 +5,7 @@ import { ProductionRoutingModule } from './production-routing.module';
 import { ProductionComponent } from './production.component';
 import { TranslateService } from '@ngx-translate/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { SharedModule } from 'src/shared/shared.module';
 
 
 
@@ -14,7 +15,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
   imports: [
     CommonModule,
     CatalogModule,
-    //  SharedModule,
+      SharedModule,
     ProductionRoutingModule,
 
 
