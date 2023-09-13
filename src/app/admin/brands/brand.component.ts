@@ -43,6 +43,17 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
   advancedFiltersVisible = false;
   loading = false;
   ColumnMode = ColumnMode;
+  currentPageEvent = 4;
+  page: number;
+  limitsMaxSize = 5;
+  limitsTotalItems = 175;
+  limitsCurrentPage = 1;
+
+
+  setPage(pageNo: number): void {
+    this.currentPage = pageNo;
+  }
+
 
   // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
 

@@ -11,7 +11,7 @@ import { AbpModalHeaderComponent } from './modal/abp-modal-header.component';
 import { AbpModalFooterComponent } from './modal/abp-modal-footer.component';
 import { AbpValidationSummaryComponent } from './validations/abp-validation-summary.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations:
@@ -31,6 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,
+    PaginationModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -47,6 +48,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ReactiveFormsModule,
 
   ],
-  providers: [],
+schemas:[
+  CUSTOM_ELEMENTS_SCHEMA
+]
 })
 export class SharedModule { }
