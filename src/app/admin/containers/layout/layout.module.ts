@@ -16,6 +16,7 @@ import { HeadroomModule } from '@ctrl/ngx-headroom';
 import { ListPageHeaderComponent } from './list-page-header/list-page-header.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 
 @NgModule({
@@ -30,13 +31,13 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
   ],
   imports: [
     RouterModule,
-    FormsModule,
     HeadroomModule,
     PerfectScrollbarModule,
     CollapseModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    TranslateModule.forRoot(),
+    SharedModule
+
   ],
   exports: [
     FooterComponent,
@@ -48,8 +49,7 @@ import { AdminHeaderComponent } from './admin-header/admin-header.component';
     ListPageHeaderComponent,
     AdminHeaderComponent
 
-  ],
-  providers:[BsModalService,TranslateService  ]
+  ]
 
 
 })
