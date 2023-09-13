@@ -10,8 +10,8 @@ const MAX_SIZE: number = 1048576;
   templateUrl: './create-category-dialog.component.html',
 })
 export class CreateCategoryDialogComponent extends AppComponentBase implements OnInit {
-
-
+  files: File[] = [];
+  image:any;
   saving = false;
   category = new CreateUpdateCategoryDto();
   @Output() onSave = new EventEmitter<any>();
@@ -35,15 +35,24 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
 
 
   }
+	onSelect(event:any) {
+    this.image=event.addedFiles[0];
+    this.files.push(this.image);
+	}
 
-
-
+	onRemove(event:any) {
+		this.files.splice(this.files.indexOf(event), 1);
+	}
   save(): void {
     this.saving = true;
-    console.log(this.category)
+    const myFormData=new FormData();
+    myFormData.append("name",this.category.name);
+    myFormData.append("point",this.category.point.toString());
+    myFormData.append("description",this.category.description);
+    myFormData.append("image",this.image);
     this._categoryService
         .insert(
-            this.category
+          myFormData
         )
         .pipe(
             finalize(() => {

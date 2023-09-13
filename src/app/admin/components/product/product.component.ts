@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Direction } from '@glidejs/glide/components/direction';
 
 @Component({
-  selector: 'app-product',
+  selector: 'product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
