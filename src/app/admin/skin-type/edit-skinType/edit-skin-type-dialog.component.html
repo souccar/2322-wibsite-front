@@ -1,0 +1,18 @@
+<form class="form-horizontal" autocomplete="off" #editSkinTypeModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Edite Skin Type' " (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body">
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="name">
+          {{ "name" }}
+        </label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="name" id="name" required [(ngModel)]="skinType.name"
+            #nameModel="ngModel" #nameEl />
+          <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+        </div>
+      </div>
+  
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editSkinTypeModal.form.valid || saving"
+      (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+  </form>

@@ -1,6 +1,6 @@
 
-import { NgModule } from '@angular/core';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -10,18 +10,17 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AbpModalHeaderComponent } from './modal/abp-modal-header.component';
 import { AbpModalFooterComponent } from './modal/abp-modal-footer.component';
 import { AbpValidationSummaryComponent } from './validations/abp-validation-summary.component';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations:
-   [
+    [
 
-    AbpModalHeaderComponent,
-    AbpModalFooterComponent,
-    AbpValidationSummaryComponent
-  ]
+      AbpModalHeaderComponent,
+      AbpModalFooterComponent,
+      AbpValidationSummaryComponent,
+    ]
   ,
   imports: [
     RouterModule,
@@ -29,6 +28,11 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     ModalModule.forRoot(),
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    NgxPaginationModule,
+    PaginationModule.forRoot(),
+    FormsModule,
     ReactiveFormsModule,
    NgxDatatableModule,
    NgxDropzoneModule
@@ -40,9 +44,16 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
-
+,
+    ReactiveFormsModule,
+    NgxDatatableModule,
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
 
   ],
-  providers:[BsModalService,TranslateService],
+schemas:[
+  CUSTOM_ELEMENTS_SCHEMA
+]
 })
-export class SharedModule {}
+export class SharedModule { }

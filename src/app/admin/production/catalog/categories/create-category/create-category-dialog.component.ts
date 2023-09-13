@@ -2,7 +2,7 @@ import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
-import { CreateCategoryDto } from 'src/shared/service-proxies/service-proxies';
+import { CreateUpdateCategoryDto } from 'src/shared/service-proxies/service-proxies';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 const MAX_SIZE: number = 1048576;
 @Component({
@@ -13,7 +13,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
   files: File[] = [];
   image:any;
   saving = false;
-  category = new CreateCategoryDto();
+  category = new CreateUpdateCategoryDto();
   @Output() onSave = new EventEmitter<any>();
   imageSrc: any='assets/img/upload.png';
   emptySrc = 'assets/img/upload.png';

@@ -4,9 +4,7 @@ import { CreateCategoryDialogComponent } from './categories/create-category/crea
 import { EditCategoryDialogComponent } from './categories/edit-category/edit-category-dialog.component';
 import { CategoryComponent } from './categories/category.component';
 import { LayoutModule } from 'src/app/admin/containers/layout/layout.module';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { ContextMenuModule, ContextMenuService } from 'ngx-contextmenu';
 import { CatalogRoutingModule } from './catalog-routing.module';
 import { CatalogComponent } from './catalog.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -30,10 +28,7 @@ import { CreateProductDialogComponent } from './products/create-product/create-p
   imports: [
     CommonModule,
     LayoutModule,
-    NgxDatatableModule,
-    NgxPaginationModule,
-    FormsModule,
-    ReactiveFormsModule,
+    // ContextMenuModule,
     CatalogRoutingModule,
     SharedModule
 

@@ -1,4 +1,4 @@
-import { CreateCategoryDto } from './../../service-proxies/service-proxies';
+import { CreateUpdateCategoryDto } from './../../service-proxies/service-proxies';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -13,7 +13,7 @@ export class CategoryService {
   {
     return this.http.get(this.baseUrl+'api/categories');
   }
-  insert(category:any)
+  insert(category:CreateUpdateCategoryDto)
   {
     console.log(category);
     return this.http.post(this.baseUrl+'api/categories',category);
