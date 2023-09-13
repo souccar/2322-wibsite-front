@@ -6,6 +6,7 @@ import { CategoryComponent } from './categories/category.component';
 import { ProductComponent } from 'src/app/admin/components/product/product.component';
 import { SkinTypeComponent } from 'src/app/admin/skin-type/skin-type.component';
 import { BrandComponent } from '../../brands/brand.component';
+import { NewsComponent } from '../../news/news.component';
 const routes: Routes = [{
   path: '', component: CatalogComponent ,
   children:[
@@ -32,6 +33,12 @@ const routes: Routes = [{
     {
       path: 'brand',
       component: BrandComponent,
+      //data: { permission : 'Pages.Categories' },
+      // canActivate: [AppRouteGuard]
+    },   
+    {
+      path: 'news',
+      component: NewsComponent,
       //data: { permission : 'Pages.Categories' },
       // canActivate: [AppRouteGuard]
     },
