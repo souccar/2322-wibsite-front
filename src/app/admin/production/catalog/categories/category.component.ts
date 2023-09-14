@@ -22,7 +22,6 @@ class PagedCategoriesRequestDto extends PagedRequestDto {
 })
 
 export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto>{
-export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto>{
   title = "Categories"
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
@@ -33,8 +32,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   selectAllState = '';
   selected: ReadCategoryDto[] = [];
    data: ReadCategoryDto[] = [];
-  selected: ReadCategoryDto[] = [];
-   data: ReadCategoryDto[] = [];
+
   currentPage = 1;
   search = '';
   totalItem = 0;
@@ -51,7 +49,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     private _categoryService:CategoryService)
   {
     super(injector);
-    super(injector);
+
     this.getAllCategory()
 
   }
@@ -59,9 +57,9 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   getAllCategory()
   {
     this._categoryService.getAll().subscribe((response:any)=>{
+
        this.data=response.result.data;
-    this._categoryService.getAll().subscribe((response:any)=>{
-       this.data=response.result.data;
+
     })
   }
   itemsPerPageChange(perPage: number): void {
@@ -91,22 +89,14 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     }
     this.setSelectAllState();
   }
-  setSelectAllState(): void {
-    if (this.selected.length === this.data.length) {
-      this.selectAllState = 'checked';
-    } else if (this.selected.length !== 0) {
-      this.selectAllState = 'indeterminate';
-    } else {
-      this.selectAllState = '';
-    }
-  }
+
   changeDisplayMode(mode:any): void {
     this.displayMode = mode;
   }
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
-  onContextMenuClick(action: string, item: ReadCategoryDto): void {
+
   onContextMenuClick(action: string, item: ReadCategoryDto): void {
     switch (action) {
       case "delete":

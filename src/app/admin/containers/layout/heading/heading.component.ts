@@ -6,14 +6,15 @@ import { environment } from 'src/environments/environment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ISidebar, SidebarService } from '../sidebar/sidebar.service';
 import { LangService, Language } from 'src/shared/lang.service';
+import { NewsService } from 'src/shared/services/news-service/news.service';
 
 @Component({
   selector: 'app-heading',
   templateUrl: './heading.component.html',
   styleUrls: ['./heading.component.scss']
 })
-export class HeadingComponent  {
-  @Input() title = '';
+export class HeadingComponent  implements OnInit{
+  // @Input() title = '';
   searchKey = '';
   adminRoot = environment.adminRoot;
   showMobileMenu = false;
@@ -21,13 +22,24 @@ export class HeadingComponent  {
   sidebar: ISidebar | any;
   currentLanguage: string;
   languages: Language[];
+  news:any[];
 
 
 
-  constructor(private router: Router,private modalService: BsModalService,private sidebarService: SidebarService,   private langService: LangService){
+  constructor(private router: Router,private modalService: BsModalService,private sidebarService: SidebarService,
+    private langService: LangService,private _newsCategory:NewsService){
     this.currentLanguage = this.langService.languageShorthand;
   }
+  ngOnInit(): void {
+    this.getAllNews();
+  }
 
+  getAllNews()
+  {
+     this._newsCategory.getAll().subscribe((response:any)=>{
+      this.news=response.result.data;
+    })
+  }
 
   mobileMenuButtonClick = (
     event: { stopPropagation: () => void },

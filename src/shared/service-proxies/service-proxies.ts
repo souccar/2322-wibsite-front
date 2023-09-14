@@ -11,8 +11,6 @@ export interface ICreateUpdateCategoryDto {
 export class CreateUpdateCategoryDto implements ICreateUpdateCategoryDto {
   name: string;
   description: string;
-  name: string;
-  description: string;
   point: number;
   // parentCategoryId: number | undefined;
   image: any;
@@ -125,69 +123,7 @@ export class ReadCategoryDto implements IReadCategoryDto {
       return result;
   }
 }
-export interface IReadCategoryDto {
-  id:number;
-  name: string | undefined;
-  description: string | undefined;
-  point: number;
-  // parentCategoryId: number | undefined;
-  image: any;
-}
 
-export class ReadCategoryDto implements IReadCategoryDto {
-  id:number;
-  name: string | undefined;
-  description: string | undefined;
-  point: number;
-  // parentCategoryId: number | undefined;
-  image: any;
-
-
-  constructor(data?: ReadBrandDto) {
-      if (data) {
-          for (var property in data) {
-              if (data.hasOwnProperty(property))
-                  (<any>this)[property] = (<any>data)[property];
-          }
-      }
-  }
-
-
-  init(_data?: any) {
-      if (_data) {
-          this.id = _data["id"];
-          this.name = _data["name"];
-          this.description = _data["description"];
-          this.point = _data["point"];
-          this.image = _data["image"];
-      }
-  }
-
-  static fromJS(data: any): ReadBrandDto {
-      data = typeof data === 'object' ? data : {};
-      let result = new ReadBrandDto();
-      result.init(data);
-      return result;
-  }
-
-  toJSON(data?: any) {
-      data = typeof data === 'object' ? data : {};
-      data["id"] = this.id;
-      data["name"] = this.name;
-      data["description"] = this.description;
-      data["point"] = this.point;
-      data["image"] = this.image;
-
-      return data;
-  }
-
-  clone(): ReadBrandDto {
-      const json = this.toJSON();
-      let result = new ReadBrandDto();
-      result.init(json);
-      return result;
-  }
-}
 
 /**
  * skin type

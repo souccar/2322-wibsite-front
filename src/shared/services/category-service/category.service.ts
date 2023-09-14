@@ -15,7 +15,7 @@ export class CategoryService {
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/categories'+'/'+id);
   }
-  insert(category:any)
+
   insert(category:any)
   {
     return this.http.post(this.baseUrl+'api/categories',category);
