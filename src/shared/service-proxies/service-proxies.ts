@@ -32,11 +32,7 @@ export class CreateUpdateCategoryDto implements ICreateUpdateCategoryDto {
           this.description = _data["description"];
           this.point = _data["point"];
           this.image = _data["image"];
-          // if (Array.isArray(_data["images"])) {
-          //     this.images = [] as any;
-          //     for (let item of _data["images"])
-          //         this.images.push(CreateCategoryImageDto.fromJS(item));
-          // }
+
       }
   }
 
@@ -53,12 +49,7 @@ export class CreateUpdateCategoryDto implements ICreateUpdateCategoryDto {
       data["description"] = this.description;
       data["point"] = this.point;
       data["image"] = this.image;
-      // data["parentCategoryId"] = this.parentCategoryId;
-      // if (Array.isArray(this.images)) {
-      //     data["images"] = [];
-      //     for (let item of this.images)
-      //         data["images"].push(item.toJSON());
-      // }
+
       return data;
   }
 
@@ -133,6 +124,7 @@ export class ReadCategoryDto implements IReadCategoryDto {
   }
 }
 
+
 /**
  * skin type
  */
@@ -145,6 +137,8 @@ export interface ICreateUpdateSkinTypeDto {
     name: string | undefined;
 
 
+
+
     constructor(data?: ICreateUpdateSkinTypeDto) {
         if (data) {
             for (var property in data) {
@@ -155,11 +149,14 @@ export interface ICreateUpdateSkinTypeDto {
     }
 
 
+
+
     init(_data?: any) {
         if (_data) {
             this.name = _data["name"];
         }
     }
+
 
     static fromJS(data: any): CreateUpdateSkinTypeDto {
         data = typeof data === 'object' ? data : {};
@@ -168,11 +165,13 @@ export interface ICreateUpdateSkinTypeDto {
         return result;
     }
 
+
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         return data;
     }
+
 
     clone(): CreateUpdateSkinTypeDto {
         const json = this.toJSON();
@@ -183,14 +182,18 @@ export interface ICreateUpdateSkinTypeDto {
   }
 
 
+
   export interface IReadSkinTypeDto {
     id:number;
     name: string | undefined;
   }
 
+
   export class ReadSkinTypeDto implements IReadSkinTypeDto {
     id:number;
     name: string | undefined;
+
+
 
 
     constructor(data?: IReadSkinTypeDto) {
@@ -203,12 +206,16 @@ export interface ICreateUpdateSkinTypeDto {
     }
 
 
+
+
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.id = _data["id"];
             this.name = _data["name"];
         }
     }
+
 
     static fromJS(data: any): ReadSkinTypeDto {
         data = typeof data === 'object' ? data : {};
@@ -217,12 +224,14 @@ export interface ICreateUpdateSkinTypeDto {
         return result;
     }
 
+
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
         return data;
     }
+
 
     clone(): ReadSkinTypeDto {
         const json = this.toJSON();
@@ -244,6 +253,8 @@ export interface ICreateUpdateSkinTypeDto {
     name: string | undefined;
 
 
+
+
     constructor(data?: ICreateUpdateBrandDto) {
         if (data) {
             for (var property in data) {
@@ -254,13 +265,17 @@ export interface ICreateUpdateSkinTypeDto {
     }
 
 
+
+
     init(_data?: any) {
         if (_data) {
+
 
             this.name = _data["name"];
 
         }
     }
+
 
     static fromJS(data: any): CreateUpdateBrandDto {
         data = typeof data === 'object' ? data : {};
@@ -269,12 +284,15 @@ export interface ICreateUpdateSkinTypeDto {
         return result;
     }
 
+
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
 
+
         return data;
     }
+
 
     clone(): CreateUpdateBrandDto {
         const json = this.toJSON();
@@ -290,9 +308,12 @@ export interface ICreateUpdateSkinTypeDto {
     name: string | undefined;
   }
 
+
   export class ReadBrandDto implements IReadBrandDto {
     id:number;
     name: string | undefined;
+
+
 
 
     constructor(data?: ReadBrandDto) {
@@ -305,12 +326,16 @@ export interface ICreateUpdateSkinTypeDto {
     }
 
 
+
+
     init(_data?: any) {
         if (_data) {
+            this.id = _data["id"];
             this.id = _data["id"];
             this.name = _data["name"];
         }
     }
+
 
     static fromJS(data: any): ReadBrandDto {
         data = typeof data === 'object' ? data : {};
@@ -319,12 +344,14 @@ export interface ICreateUpdateSkinTypeDto {
         return result;
     }
 
+
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
         return data;
     }
+
 
     clone(): ReadBrandDto {
         const json = this.toJSON();
@@ -553,7 +580,7 @@ export interface ICategoryForDropdownDto {
         title: string  ;
         description: string ;
         image:any;
-    
+
       }
       export class CreateUpdateNewsDto implements ICreateUpdateNewsDto {
         title: string ;
@@ -567,24 +594,24 @@ export interface ICategoryForDropdownDto {
                 }
             }
         }
-    
+
         init(_data?: any) {
             if (_data) {
-      
-                
+
+
                 this.title = _data["title"];
                 this.description = _data["description"];
                 this.image = _data["image"];
             }
         }
-      
+
         static fromJS(data: any): CreateUpdateNewsDto {
             data = typeof data === 'object' ? data : {};
             let result = new CreateUpdateNewsDto();
             result.init(data);
             return result;
         }
-      
+
         toJSON(data?: any) {
             data = typeof data === 'object' ? data : {};
             data["title"] = this.title;
@@ -592,7 +619,7 @@ export interface ICategoryForDropdownDto {
             data["image"] = this.image;
             return data;
         }
-      
+
         clone(): CreateUpdateNewsDto {
             const json = this.toJSON();
             let result = new CreateUpdateNewsDto();
@@ -600,21 +627,21 @@ export interface ICategoryForDropdownDto {
             return result;
         }
       }
-    
-    
+
+
       export interface IReadNewsDto {
         id:number;
         title: string ;
         description: string ;
         image: any;
       }
-      
+
       export class ReadNewsDto implements IReadNewsDto {
         id:number;
         title: string ;
         description: string ;
         image: any;
-      
+
         constructor(data?: ReadNewsDto) {
             if (data) {
                 for (var property in data) {
@@ -623,24 +650,24 @@ export interface ICategoryForDropdownDto {
                 }
             }
         }
-      
-      
+
+
         init(_data?: any) {
             if (_data) {
-                this.id = _data["id"]; 
+                this.id = _data["id"];
                 this.title = _data["title"];
                 this.description = _data["description"];
                 this.image = _data["image"];
             }
         }
-      
+
         static fromJS(data: any): ReadNewsDto {
             data = typeof data === 'object' ? data : {};
             let result = new ReadNewsDto();
             result.init(data);
             return result;
         }
-      
+
         toJSON(data?: any) {
             data = typeof data === 'object' ? data : {};
             data["id"] = this.id;
@@ -649,7 +676,7 @@ export interface ICategoryForDropdownDto {
             data["image"] = this.image;
             return data;
         }
-      
+
         clone(): ReadNewsDto {
             const json = this.toJSON();
             let result = new ReadNewsDto();

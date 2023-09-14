@@ -1,4 +1,4 @@
-<app-heading></app-heading> <br /><br /><br />
+<app-heading></app-heading><br /><br /><br />
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12">
     <div class="card-image auth-card">
@@ -125,12 +125,12 @@
         <div class="col-md-8 mb-4">
 
           <app-glide [settings]="{
-            gap: 0,
-            type: 'carousel',
-            peek: { before: 50, after: 50 },
-            perView: 3,
-            breakpoints: { '600': { perView: 1 }, '1000': { perView: 2 } }
-          }">
+          gap: 0,
+          type: 'carousel',
+          perView: 3,
+          hideNav: true,
+          breakpoints: { '600': { perView: 1 }, '1000': { perView: 2 } }
+        }">
             <div *ngFor="let item of carouselItems" class="glide__slide">
 
               <div class="card">
@@ -141,15 +141,12 @@
                 </div>
                 <div class="card-body text-primary text-center p-3">
                   <app-rating></app-rating>
-                  <h6 class="mb-4">MMT Shampo</h6>
-
+                  <h6 class="mb-4">{{item.title}}</h6>
 
                 </div>
-
-                  <footer>
-
-                    <button class="btn btn-primary btn-grad  m-2 w-80 position-absolute bottom-0 start-50 translate-middle-x">Read More</button>
-                  </footer>
+                <footer>
+                  <a type="button" href="product"class="btn btn-primary btn-grad  m-2 w-80 position-absolute bottom-0 start-50 translate-middle-x" >Read More</a>
+                </footer>
 
               </div>
 
@@ -157,5 +154,6 @@
           </app-glide>
 
         </div>
+
       </div>
 

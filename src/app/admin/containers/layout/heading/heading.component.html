@@ -4,7 +4,6 @@
       <span></span>
     </a>
     <ul class="navbar-nav">
-      <li class="nav-item"><a href="/app/production">admin</a></li>
       <li class="nav-item"><a href="javascript:;">Home</a></li>
       <li class="nav-item"><a href="javascript:;">Our Products</a></li>
       <li class="nav-item"><a href="javascript:;">Who We Are</a></li>
@@ -34,6 +33,20 @@
 
               </div>
             </li>
+                 <!-- 2 -->
+                 <li class="nav-item dropdown " id="menu-products">
+                  <a class="nav-link active" href="#">What’s New</a>
+                  <ul class=" dropdown-menu " id="dropdown-products">
+                    <div class=" row d-inline-flex justify-content-around text-nowrap">
+                      <li class="mt-2">
+                        <ul *ngFor="let n of news">
+                          <li class="p-1 m-2 "> <a class="icon-menu-item" href="#">{{n.title}}</a></li>
+
+                        </ul>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
             <!-- 2 -->
             <li class="nav-item dropdown " id="menu-products">
               <a class="nav-link active" href="#">Our Products</a>

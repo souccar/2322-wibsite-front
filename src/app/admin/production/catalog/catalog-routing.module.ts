@@ -49,7 +49,7 @@ const routes: Routes = [{
       component: BrandComponent,
       //data: { permission : 'Pages.Categories' },
       // canActivate: [AppRouteGuard]
-    },   
+    },
     {
       path: 'news',
       component: NewsComponent,
