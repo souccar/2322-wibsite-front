@@ -89,6 +89,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
         {
           backdrop: true,
           ignoreBackdropClick: true,
+          class: 'modal-right',
           initialState: {
             id: id,
           },

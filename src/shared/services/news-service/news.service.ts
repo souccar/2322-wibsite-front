@@ -18,13 +18,13 @@ export class NewsService {
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/news'+'/'+id);
   }
-  insert(brand:CreateUpdateNewsDto)
+  insert(news:any)
   {
-    return this.http.post(this.baseUrl+'api/news',brand);
+    return this.http.post(this.baseUrl+'api/news',news);
   }
-  edit(id:number,brand:CreateUpdateNewsDto)
+  edit(id:number,news:any)
   {
-     return this.http.post(this.baseUrl+'api/news'+'/'+id,brand);
+     return this.http.post(this.baseUrl+'api/news'+'/'+id,news);
   }
   delete(id:number)
   {

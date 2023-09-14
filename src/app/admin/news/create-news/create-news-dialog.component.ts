@@ -12,7 +12,8 @@ import { NewsService } from 'src/shared/services/news-service/news.service';
 })
 export class CreateNewsDialogComponent extends AppComponentBase implements OnInit {
 
-
+  files: File[] = [];
+  image:any;
   saving = false;
   news = new CreateUpdateNewsDto();
   @Output() onSave = new EventEmitter<any>();
@@ -24,12 +25,24 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
   }
   ngOnInit(): void {
   }
+  onSelect(event:any) {
+    this.image=event.addedFiles[0];
+    this.files.push(this.image);
+	}
+
+	onRemove(event:any) {
+		this.files.splice(this.files.indexOf(event), 1);
+	}
   save(): void {
     this.saving = true;
-    console.log(this.news)
+    const myFormData=new FormData();
+    myFormData.append("title",this.news.title);
+    myFormData.append("description",this.news.description);
+    myFormData.append("image",this.image);
+    
     this._newsService
       .insert(
-        this.news
+        myFormData
       )
       .pipe(
         finalize(() => {

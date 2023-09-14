@@ -21,8 +21,8 @@
 <div class="row">
 
   <div class="col-12 mb-4 data-table-rows">
-    <ngx-datatable [rows]="data" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" [headerHeight]="20"
-      [footerHeight]="100" #table [sorts]="[{ prop: 'title', dir: 'asc' }]" (select)="onSelect($event)"
+    <ngx-datatable [rows]="data" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" 
+      #table [sorts]="[{ prop: 'title', dir: 'asc' }]" (select)="onSelect($event)"
       [selected]="selected">
       <ngx-datatable-column [name]="('title')" prop="title" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>

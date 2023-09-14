@@ -550,15 +550,15 @@ export interface ICategoryForDropdownDto {
 
 
     export interface ICreateUpdateNewsDto {
-        title: string | undefined;
-        description: string | undefined;
-        // title: string | undefined;
+        title: string  ;
+        description: string ;
+        image:any;
     
       }
       export class CreateUpdateNewsDto implements ICreateUpdateNewsDto {
-        title: string | undefined;
-        description: string | undefined;
-      
+        title: string ;
+        description: string ;
+        image:any;
         constructor(data?: ICreateUpdateNewsDto) {
             if (data) {
                 for (var property in data) {
@@ -574,6 +574,7 @@ export interface ICategoryForDropdownDto {
                 
                 this.title = _data["title"];
                 this.description = _data["description"];
+                this.image = _data["image"];
             }
         }
       
@@ -588,7 +589,7 @@ export interface ICategoryForDropdownDto {
             data = typeof data === 'object' ? data : {};
             data["title"] = this.title;
             data["description"] = this.description;
-      
+            data["image"] = this.image;
             return data;
         }
       
@@ -603,15 +604,16 @@ export interface ICategoryForDropdownDto {
     
       export interface IReadNewsDto {
         id:number;
-        title: string | undefined;
-        description: string | undefined;
+        title: string ;
+        description: string ;
+        image: any;
       }
       
       export class ReadNewsDto implements IReadNewsDto {
         id:number;
-        title: string | undefined;
-        description: string | undefined;
-     
+        title: string ;
+        description: string ;
+        image: any;
       
         constructor(data?: ReadNewsDto) {
             if (data) {
@@ -628,6 +630,7 @@ export interface ICategoryForDropdownDto {
                 this.id = _data["id"]; 
                 this.title = _data["title"];
                 this.description = _data["description"];
+                this.image = _data["image"];
             }
         }
       
@@ -643,6 +646,7 @@ export interface ICategoryForDropdownDto {
             data["id"] = this.id;
             data["title"] = this.title;
             data["description"] = this.description;
+            data["image"] = this.image;
             return data;
         }
       
