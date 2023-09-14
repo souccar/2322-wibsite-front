@@ -44,9 +44,15 @@ const data: IMenuItem[] = [
             },
             {
               subs:[],
-              icon: 'simple-icon-user-female',
+              icon: 'simple-icon-bag',
               label: 'Brands',
               to: `${adminRoot}/production/catalog/brand`,
+            },  
+            {
+              subs:[],
+              icon: 'iconsminds-newspaper',
+              label: 'news',
+              to: `${adminRoot}/production/catalog/news`,
             },
 
           ],
