@@ -17,6 +17,7 @@ import { ListPageHeaderComponent } from './list-page-header/list-page-header.com
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { AdminHeadingComponent } from './admin-heading/admin-heading.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SharedModule } from 'src/shared/shared.module';
     TopnavComponent,
     HeadingComponent,
     ListPageHeaderComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    AdminHeadingComponent
   ],
   imports: [
     RouterModule,
@@ -48,7 +50,8 @@ import { SharedModule } from 'src/shared/shared.module';
     BreadcrumbComponent,
     HeadingComponent,
     ListPageHeaderComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    AdminHeadingComponent
 
   ]
 

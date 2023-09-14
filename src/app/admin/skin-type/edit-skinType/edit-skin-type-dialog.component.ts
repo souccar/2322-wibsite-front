@@ -12,10 +12,10 @@ export class EditSkinTypeDialogComponent  extends AppComponentBase    implements
   saving = false;
   skinType = new CreateUpdateSkinTypeDto();
   id: number;
-  
+
   @Output() onSave = new EventEmitter<any>();
-  
-  
+
+
   sizekeys = [];
   constructor(
     injector: Injector,
@@ -24,26 +24,25 @@ export class EditSkinTypeDialogComponent  extends AppComponentBase    implements
   ) {
     super(injector);
   }
-  
+
   ngOnInit(): void {
     this.initialSkinType();
   }
-  
+
   initialSkinType() {
     this._skinTypeService.getById(this.id).subscribe((result:any) => {
       this.skinType=result.result;
     });
   }
-  
+
   save(): void {
     this.saving = true;
-    console.log(this.skinType);
     this._skinTypeService.edit(this.id,this.skinType).subscribe(
       () => {
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();
-        
+
       },
       () => {
         this.saving = false;
@@ -51,6 +50,5 @@ export class EditSkinTypeDialogComponent  extends AppComponentBase    implements
     );
   }
 
-  
+
   }
-  

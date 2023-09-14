@@ -3,6 +3,7 @@ import {
   NO_ERRORS_SCHEMA,
   NgModule,
 } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -17,12 +18,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 
+
 @NgModule({
   declarations: [
     AbpModalHeaderComponent,
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
   ],
+
   imports: [
     RouterModule,
     TranslateModule.forRoot(),
@@ -37,6 +40,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxDropzoneModule,
+    NgxDatatableModule,
+    NgxDropzoneModule,
   ],
   exports: [
     RouterModule,
@@ -45,12 +50,15 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
+    NgxDropzoneModule,
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
   ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}
+
