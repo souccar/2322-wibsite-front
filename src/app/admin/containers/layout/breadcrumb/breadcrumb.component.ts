@@ -1,23 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 
 import menuItems, { IMenuItem } from '../../../constance/menu';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AppComponentBase } from 'src/shared/app-component-base';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.component.html',
 
 })
-export class BreadcrumbComponent {
-
+export class BreadcrumbComponent extends AppComponentBase {
   @Input() title = '';
-  menuItems: IMenuItem[] = menuItems;
+  menuItems: IMenuItem[]=menuItems;
 
   path = '';
   pathArr: string[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(injector:Injector,private router: Router, private activatedRoute: ActivatedRoute,private sidebarCom : SidebarComponent) {
+    super(injector);
+    //this.menuItems = sidebarCom.menuItems;
+    this.menuItems = [] = menuItems;
     this.router.events
     .pipe(
       filter((event) => event instanceof NavigationEnd),
@@ -37,11 +41,9 @@ export class BreadcrumbComponent {
     return '/' + this.path.split(sub)[0] + sub;
   }
 
-  getLabel(path: any): string {
+  getLabel(path:any): string {
     if (path === environment.adminRoot) {
-      // return 'menu.home';
-      return 'home';
-
+      return "app";
     }
 
     // step 0
@@ -78,8 +80,7 @@ export class BreadcrumbComponent {
       }
     }
 
-    if (foundedMenuItem) { return foundedMenuItem.label; } else { return ''; }
+    if (foundedMenuItem) { return (foundedMenuItem.label); } else { return ''; }
   }
-
 
 }

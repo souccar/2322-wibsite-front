@@ -12,6 +12,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductsComponent } from './products/products.component';
 import { CreateProductDialogComponent } from './products/create-product/create-product-dialog.component';
+// import { ContextMenuModule } from 'ngx-contextmenu';
 
 
 

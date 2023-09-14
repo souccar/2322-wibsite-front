@@ -13,6 +13,7 @@ import { LangService, Language } from 'src/shared/lang.service';
   styleUrls: ['./heading.component.scss']
 })
 export class HeadingComponent  {
+  @Input() title = '';
   searchKey = '';
   adminRoot = environment.adminRoot;
   showMobileMenu = false;

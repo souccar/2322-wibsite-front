@@ -7,6 +7,8 @@ import { CreateCategoryDialogComponent } from './create-category/create-category
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ReadCategoryDto } from 'src/shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs';
+import { EditCategoryDialogComponent } from './edit-category/edit-category-dialog.component';
+// import { ContextMenuComponent } from 'ngx-contextmenu';
 class PagedCategoriesRequestDto extends PagedRequestDto {
   keyword: string='';
   sort_Field: string='';
@@ -24,7 +26,8 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
   itemOptionsOrders = [{ label:"name", value: "name" },
-  { label: "description", value: "description" }];
+  { label: "description", value: "description" },
+  { label:"point", value: "point" }];
   itemsPerPage = 10;
   selectAllState = '';
   selected: ReadCategoryDto[] = [];
@@ -93,7 +96,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
         this.delete(item);
         break;
       case "edit":
-        this.showEditModal(item.id);
+        this.editModal(item.id);
         break;
       case "view":
         this.showViewModal(item.id);
@@ -102,6 +105,12 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
       default:
         break;
     }
+  }
+  deletebutton(id:number){
+    this._categoryService.delete(id).subscribe((responce:any)=>{
+      window.location.reload();
+    });
+
   }
   showViewModal(id:number)
 {
@@ -117,22 +126,22 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   // );
 
 }
-  showEditModal(id:number): void {
-    // let EditCategoryDialog = this._modalService.show(
-    //   EditCategoryDialogComponent,
-    //   {
-    //     backdrop: true,
-    //     ignoreBackdropClick: true,
-    //     class: 'modal-right'
-    //     ,
-    //     initialState: {
-    //       id: id,
-    //     },
-    //   }
-    // );
-    // EditCategoryDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
+editModal(id:number): void {
+  let editCategoryDialog: BsModalRef;
+  editCategoryDialog = this._modalService.show(
+      EditCategoryDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        class: 'modal-right',
+        initialState: {
+          id: id,
+        },
+      }
+    );
+    editCategoryDialog.content.onSave.subscribe(() => {
+      this.refresh();
+    });
 
 }
   // entity: ReadCategoryDto

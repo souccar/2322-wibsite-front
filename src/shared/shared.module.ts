@@ -51,6 +51,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     FormsModule,
     ReactiveFormsModule,
   ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}

@@ -32,11 +32,7 @@ export class CreateUpdateCategoryDto implements ICreateUpdateCategoryDto {
           this.description = _data["description"];
           this.point = _data["point"];
           this.image = _data["image"];
-          // if (Array.isArray(_data["images"])) {
-          //     this.images = [] as any;
-          //     for (let item of _data["images"])
-          //         this.images.push(CreateCategoryImageDto.fromJS(item));
-          // }
+
       }
   }
 
@@ -53,12 +49,7 @@ export class CreateUpdateCategoryDto implements ICreateUpdateCategoryDto {
       data["description"] = this.description;
       data["point"] = this.point;
       data["image"] = this.image;
-      // data["parentCategoryId"] = this.parentCategoryId;
-      // if (Array.isArray(this.images)) {
-      //     data["images"] = [];
-      //     for (let item of this.images)
-      //         data["images"].push(item.toJSON());
-      // }
+
       return data;
   }
 
