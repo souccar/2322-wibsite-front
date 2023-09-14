@@ -12,12 +12,14 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { ProductionModule } from './production/production.module';
 import { SkinTypeModule } from './skin-type/skin-type.module';
 import { BrandModule } from './brands/brand.module';
-
+import { NewsModule } from './news/news.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    
   
   ],
   imports: [
@@ -30,7 +32,8 @@ import { BrandModule } from './brands/brand.module';
     TranslateModule.forRoot(),
      AppRoutingModule,
      ProductionModule,
-     BrandModule
+     BrandModule,
+     NewsModule
 
   ],
   exports:[

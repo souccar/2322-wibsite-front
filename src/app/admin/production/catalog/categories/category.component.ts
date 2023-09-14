@@ -22,6 +22,7 @@ class PagedCategoriesRequestDto extends PagedRequestDto {
 })
 
 export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto>{
+export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto>{
   title = "Categories"
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
@@ -30,6 +31,8 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   { label:"point", value: "point" }];
   itemsPerPage = 10;
   selectAllState = '';
+  selected: ReadCategoryDto[] = [];
+   data: ReadCategoryDto[] = [];
   selected: ReadCategoryDto[] = [];
    data: ReadCategoryDto[] = [];
   currentPage = 1;
@@ -48,12 +51,15 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     private _categoryService:CategoryService)
   {
     super(injector);
+    super(injector);
     this.getAllCategory()
 
   }
 
   getAllCategory()
   {
+    this._categoryService.getAll().subscribe((response:any)=>{
+       this.data=response.result.data;
     this._categoryService.getAll().subscribe((response:any)=>{
        this.data=response.result.data;
     })
@@ -83,6 +89,16 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     } else {
       this.selectAllState = '';
     }
+    this.setSelectAllState();
+  }
+  setSelectAllState(): void {
+    if (this.selected.length === this.data.length) {
+      this.selectAllState = 'checked';
+    } else if (this.selected.length !== 0) {
+      this.selectAllState = 'indeterminate';
+    } else {
+      this.selectAllState = '';
+    }
   }
   changeDisplayMode(mode:any): void {
     this.displayMode = mode;
@@ -90,6 +106,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
+  onContextMenuClick(action: string, item: ReadCategoryDto): void {
   onContextMenuClick(action: string, item: ReadCategoryDto): void {
     switch (action) {
       case "delete":
