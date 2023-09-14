@@ -14,7 +14,7 @@ export class CreateBrandDialogComponent  extends AppComponentBase implements OnI
 
 
   saving = false;
-  skinType = new CreateUpdateBrandDto();
+  brand = new CreateUpdateBrandDto();
   @Output() onSave = new EventEmitter<any>();
   constructor(injector: Injector,
     public _brandService: BrandService,
@@ -30,10 +30,10 @@ export class CreateBrandDialogComponent  extends AppComponentBase implements OnI
 
   save(): void {
     this.saving = true;
-    console.log(this.skinType)
+    console.log(this.brand)
     this._brandService
       .insert(
-        this.skinType
+        this.brand
       )
       .pipe(
         finalize(() => {
