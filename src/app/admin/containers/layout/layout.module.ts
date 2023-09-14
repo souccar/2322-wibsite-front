@@ -38,6 +38,7 @@ import { SharedModule } from 'src/shared/shared.module';
     TooltipModule.forRoot(),
     SharedModule
 
+
   ],
   exports: [
     FooterComponent,

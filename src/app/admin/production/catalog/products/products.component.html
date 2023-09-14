@@ -1,52 +1,47 @@
 <app-list-page-header [title]="title" [itemOrder]="itemOrder"
   [displayMode]="displayMode" [itemOptionsPerPage]="[5,10,20]" [itemsPerPage]="itemsPerPage"
   [selectAllState]="selectAllState" (changeDisplayMode)="changeDisplayMode($event)" (addNewItem)="showAddNewModal()"
-  (deleteItem)="deleteItem()"  (selectAllChange)="selectAllChange($event)"
+  (deleteItem)="deleteItem()" [selectedCount]="selectedCount" (selectAllChange)="selectAllChange($event)"
   (itemsPerPageChange)="itemsPerPageChange($event)" (changeOrderBy)="changeOrderBy($event)"
   (searchKeyUp)="searchKeyUp($event)">
 </app-list-page-header>
-
+<!-- [itemOptionsOrders]="itemOptionsOrders" -->
 <context-menu #basicMenu>
-    <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
-        <i class="bi bi-pencil mr-1"></i> <span>{{"Edit" | translate}}</span>
-    </ng-template>
-    <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
-      <i class="bi bi-trash3  mr-1"></i><span>{{"Delete" | translate}}</span>
-    </ng-template>
-    <ng-template contextMenuItem let-item (execute)="onContextMenuClick('view',$event.item)">
-      <i class="bi bi-eye  mr-1"></i><span>{{"View" | translate}}</span>
-    </ng-template>
-    <ng-template contextMenuItem let-item (execute)="onContextMenuClick('news',$event.item)">
-      <i class="bi bi-newspaper  mr-1"></i><span>{{"Category News" | translate}}</span>
-    </ng-template>
-  </context-menu>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
+      <i class="bi bi-pencil mr-1"></i> <span>{{"Edit" | translate}}</span>
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
+    <i class="bi bi-trash3  mr-1"></i><span>{{"Delete" | translate}}</span>
+  </ng-template>
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('view',$event.item)">
+    <i class="bi bi-eye  mr-1"></i><span>{{"View" | translate}}</span>
+  </ng-template>
+</context-menu>
 <div class="row">
-
-  <div class="col-12 mb-4 data-table-rows">
+  <div class="col-12 mb-4 data-table-rows ">
     <ngx-datatable [rows]="data" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" [headerHeight]="20"
       [footerHeight]="100" #table [sorts]="[{ prop: 'title', dir: 'asc' }]" (select)="onSelect($event)"
       [selected]="selected">
-      <ngx-datatable-column [name]="('name')" prop="name" [flexGrow]="1">
+      <ngx-datatable-column [name]="('Name')" prop="name" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <a class="c-pointer">
-            <div [contextMenu]="basicMenu" [contextMenuSubject]="row">
+
+            <div [contextMenu]="basicMenu" [contextMenuSubject]="row"  data-bs-toggle="tooltip"
+            data-bs-placement="top" title="  {{ row.name }}" >
               {{ row.name }}
+
             </div>
           </a>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [name]="('point')" prop="point" [flexGrow]="1">
+      <ngx-datatable-column [name]="('Point')" prop="point" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template >
-          <div [contextMenu]="basicMenu" [contextMenuSubject]="row">
-            {{ row.point }}
-          </div>
+          {{row.point}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column [name]="('description')" prop="description" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template >
-          <div [contextMenu]="basicMenu" [contextMenuSubject]="row">
-            {{ row.description }}
-          </div>
+          {{row.description}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-footer *ngIf="true">
