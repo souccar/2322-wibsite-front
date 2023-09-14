@@ -40,7 +40,7 @@ export class EditNewsDialogComponent  implements OnInit {
 	}
   initialNews() {
     this._newsService.getById(this.id).subscribe((result:any) => {
-      this.news=result.result;
+      this.news=result.result[0];
       // this.test=result.result.imagePath;
       console.log(this.news);
 
