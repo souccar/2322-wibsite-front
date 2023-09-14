@@ -71,7 +71,8 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
     let params = new HttpParams().set('count', this.itemsPerPage) ;
    
     this._newsService.getAll(params).subscribe((responce:any)=>{
-      this.data=responce.result.data
+      this.data=responce.result
+      console.log(responce)
       
     });
   }
