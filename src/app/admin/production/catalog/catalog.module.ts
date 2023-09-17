@@ -12,6 +12,7 @@ import { SharedModule } from 'src/shared/shared.module';
 import { TranslateService } from '@ngx-translate/core';
 import { ProductsComponent } from './products/products.component';
 import { CreateProductDialogComponent } from './products/create-product/create-product-dialog.component';
+import { ViewCategoryDialogComponent } from './categories/view-category/view-category-dialog.component';
 
 
 
@@ -24,6 +25,7 @@ import { CreateProductDialogComponent } from './products/create-product/create-p
     CatalogComponent,
     ProductsComponent,
     CreateProductDialogComponent,
+    ViewCategoryDialogComponent,
   ],
   imports: [
     CommonModule,

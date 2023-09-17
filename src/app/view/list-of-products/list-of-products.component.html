@@ -119,9 +119,6 @@
 
       </div> -->
 
-
-
-
         <div class="col-md-8 mb-4">
 
           <app-glide [settings]="{
@@ -131,7 +128,7 @@
           hideNav: true,
           breakpoints: { '600': { perView: 1 }, '1000': { perView: 2 } }
         }">
-            <div *ngFor="let item of carouselItems" class="glide__slide">
+            <div *ngFor="let item of carouselItems;let i = index" class="glide__slide">
 
               <div class="card">
                 <div class="position-relative">
@@ -157,3 +154,4 @@
 
       </div>
 
+<app-footer></app-footer>

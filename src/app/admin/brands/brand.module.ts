@@ -5,6 +5,7 @@ import { LayoutModule } from '../containers/layout/layout.module';
 import { BrandComponent } from './brand.component';
 import { CreateBrandDialogComponent } from './create-brand/create-brand-dialog.component';
 import { EditBrandDialogComponent } from './edit-brand/edit-brand-dialog.component';
+import { BrandsRoutingModule } from './brands-routing.module';
 
 
 @NgModule({
@@ -17,8 +18,9 @@ import { EditBrandDialogComponent } from './edit-brand/edit-brand-dialog.compone
       CommonModule,
       SharedModule,
       LayoutModule,
+      BrandsRoutingModule
 
-      
+
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]})
 export class BrandModule { }

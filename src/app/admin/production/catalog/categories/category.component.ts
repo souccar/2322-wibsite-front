@@ -57,8 +57,9 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   getAllCategory()
   {
     this._categoryService.getAll().subscribe((response:any)=>{
+          console.log(response.result);
+       this.data=response.result;
 
-       this.data=response.result.data;
 
     })
   }

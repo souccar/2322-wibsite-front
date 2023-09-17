@@ -15,8 +15,8 @@ export class EditNewsDialogComponent  implements OnInit {
   image:any;
   test:string;
   @Output() onSave = new EventEmitter<any>();
-  
-  
+
+
   sizekeys = [];
   constructor(
     injector: Injector,
@@ -25,7 +25,7 @@ export class EditNewsDialogComponent  implements OnInit {
   ) {
     // super(injector);
   }
-  
+
   ngOnInit(): void {
     this.initialNews();
   }
@@ -46,20 +46,20 @@ export class EditNewsDialogComponent  implements OnInit {
 
     });
   }
-  
+
   save(): void {
     this.saving = true;
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
     myFormData.append("image",this.image);
-    
+    console.log(this.news)
     this._newsService.edit(this.id,myFormData).subscribe(
       () => {
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();
-        
+
       },
       () => {
         this.saving = false;

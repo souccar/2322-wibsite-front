@@ -5,9 +5,7 @@ import { LayoutModule } from '../containers/layout/layout.module';
 import { CreateNewsDialogComponent } from './create-news/create-news-dialog.component';
 import { EditNewsDialogComponent } from './edit-news/edit-news-dialog.component';
 import { NewsComponent } from './news.component';
-
-
-
+import { NewsRoutingModule } from './news-routing.module';
 @NgModule({
   declarations: [
     NewsComponent,
@@ -18,6 +16,7 @@ import { NewsComponent } from './news.component';
     CommonModule,
     SharedModule,
     LayoutModule,
+    NewsRoutingModule
 
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]

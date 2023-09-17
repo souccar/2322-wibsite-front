@@ -684,3 +684,66 @@ export interface ICategoryForDropdownDto {
             return result;
         }
       }
+
+
+      export interface IFileBaseDto {
+        fileName: string | undefined;
+        filePath: string | undefined;
+        fileSize: string | undefined;
+        fileType: string | undefined;
+        fileAsBase64: string | undefined;
+        fileAsByteArray: string | undefined;
+    }
+    export class FileBaseDto implements IFileBaseDto {
+      fileName: string ;
+      filePath: string ;
+      fileSize: string;
+      fileType: string;
+      fileAsBase64: string;
+      fileAsByteArray: string;
+
+      constructor(data?: IFileBaseDto) {
+          if (data) {
+              for (var property in data) {
+                  if (data.hasOwnProperty(property))
+                      (<any>this)[property] = (<any>data)[property];
+              }
+          }
+      }
+
+      init(_data?: any) {
+          if (_data) {
+              this.fileName = _data["fileName"];
+              this.filePath = _data["filePath"];
+              this.fileSize = _data["fileSize"];
+              this.fileType = _data["fileType"];
+              this.fileAsBase64 = _data["fileAsBase64"];
+              this.fileAsByteArray = _data["fileAsByteArray"];
+          }
+      }
+
+      static fromJS(data: any): FileBaseDto {
+          data = typeof data === 'object' ? data : {};
+          let result = new FileBaseDto();
+          result.init(data);
+          return result;
+      }
+
+      toJSON(data?: any) {
+          data = typeof data === 'object' ? data : {};
+          data["fileName"] = this.fileName;
+          data["filePath"] = this.filePath;
+          data["fileSize"] = this.fileSize;
+          data["fileType"] = this.fileType;
+          data["fileAsBase64"] = this.fileAsBase64;
+          data["fileAsByteArray"] = this.fileAsByteArray;
+          return data;
+      }
+
+      clone(): FileBaseDto {
+          const json = this.toJSON();
+          let result = new FileBaseDto();
+          result.init(json);
+          return result;
+      }
+  }

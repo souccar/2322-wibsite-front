@@ -25,8 +25,6 @@ implements OnInit {
   emptySrc = 'assets/img/upload.png';
   product = new CreateUpdateProductDto();
    categories : CategoryForDropdownDto[] = [];
-  // sizes :CreateProductSizeDto[]=[];
-  // size:CreateProductSizeDto= new CreateProductSizeDto();
   images: File[] = [];
   @Output() onSave = new EventEmitter<any>();
   @ViewChild("imageCategoryNews") imageCategoryNews : ElementRef;
@@ -35,9 +33,6 @@ implements OnInit {
     public _productService: ProductService,
     public _categoryService :CategoryService,
     public bsModalRef: BsModalRef,
-    // public _sizeService:ProductSizeServiceProxy,
-
-
   ) {
     super(injector);
   }
@@ -46,24 +41,20 @@ implements OnInit {
   ngOnInit(): void {
 
     this.product.images = [];
-    this.product.sizes = [];
-    this.initCategory();
+     this.initCategory();
 
 
   }
   initCategory()
   {
     this._categoryService.getAll().subscribe((response:any) => {
+       this.categories = response.result;
 
-       this.categories = response.result.data;
-       console.log( this.categories);
     });
 
   }
   save(): void {
     this.saving = true;
-    console.log("rrrrrrrr");
-    console.log(this.product);
     this._productService
     .insert(
         this.product
@@ -80,22 +71,6 @@ implements OnInit {
 
     });
   }
-
-
-
-  addSize(){
-    // let size = new CreateProductSizeDto();
-     let size;
-     this.product.sizes.push(size);
-  }
-
-  removeSize(i:number){
-    this.product.sizes.splice(i,1);
-  }
-
-
-
-
 	onSelect(event:any) {
     console.log(event);
 		this.images =  event.addedFiles;

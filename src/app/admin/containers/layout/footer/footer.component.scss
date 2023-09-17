@@ -1,0 +1,15 @@
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #757f9a 0%,
+    #d7dde8 51%,
+    #757f9a 100%
+  );
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  display: block;
+}

@@ -14,7 +14,7 @@ import { SharedModule } from 'src/shared/shared.module';
   declarations: [ProductionComponent],
   imports: [
     CommonModule,
-    CatalogModule,
+     CatalogModule,
       SharedModule,
     ProductionRoutingModule,
 

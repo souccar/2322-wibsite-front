@@ -1,6 +1,4 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-
-import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { RouterModule } from '@angular/router';
@@ -18,6 +16,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { AdminHeadingComponent } from './admin-heading/admin-heading.component';
+import { FooterComponent } from './footer/footer.component';
+import { AdminFooterComponent } from './admin-footer/admin-footer.component';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { AdminHeadingComponent } from './admin-heading/admin-heading.component';
     HeadingComponent,
     ListPageHeaderComponent,
     AdminHeaderComponent,
-    AdminHeadingComponent
+    AdminHeadingComponent,
+    AdminFooterComponent
   ],
   imports: [
     RouterModule,
@@ -51,7 +52,8 @@ import { AdminHeadingComponent } from './admin-heading/admin-heading.component';
     HeadingComponent,
     ListPageHeaderComponent,
     AdminHeaderComponent,
-    AdminHeadingComponent
+    AdminHeadingComponent,
+    AdminFooterComponent
 
   ]
 

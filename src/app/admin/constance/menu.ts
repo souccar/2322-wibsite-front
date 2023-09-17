@@ -35,72 +35,62 @@ const data: IMenuItem[] = [
               label: 'Categories',
               to: `${adminRoot}/production/catalog/category`,
             },
-            
-            {
-              subs:[],
-              icon: 'simple-icon-user-female',
-              label: 'Skin Types',
-              to: `${adminRoot}/production/catalog/skintype`,
-            },
-            {
-              subs:[],
-              icon: 'simple-icon-bag',
-              label: 'Brands',
-              to: `${adminRoot}/production/catalog/brand`,
-            },  
-            {
-              subs:[],
-              icon: 'iconsminds-newspaper',
-              label: 'news',
-              to: `${adminRoot}/production/catalog/news`,
-            },
 
           ],
         },
       ],
     },
-  // {
-  //   icon: 'iconsminds-air-balloon-1',
-  //   label: 'menu.vien',
-  //   to: `${adminRoot}/vien`,
+   //skinType
 
-  //   subs: [
-  //     {
-  //       subs:[],
-  //       icon: 'simple-icon-paper-plane',
-  //       label: 'menu.start',
-  //       to: `${adminRoot}/vien/start`,
-  //        roles: [UserRole.Admin],
-  //     },
+  {
+    icon: 'simple-icon-user-female',
+    label: 'Skin Types',
+    to: `${adminRoot}/SkinType`,
+    subs: [
+      {
+        subs:[],
+        icon: 'simple-icon-user-female',
+        label: 'Skin Types',
+        to: `${adminRoot}/SkinType/skin-type`,
 
-  //   ],
-  // },
-  // {
-  //   icon: 'iconsminds-three-arrow-fork',
-  //   label: 'menu.second-menu',
-  //   to: `${adminRoot}/second-menu`,
-  //    // roles: [UserRole.Editor],
-  //   subs: [
-  //     {
-  //       subs:[],
-  //       icon: 'simple-icon-paper-plane',
-  //       label: 'menu.second',
-  //       to: `${adminRoot}/second-menu/second`,
-  //     },
-  //   ],
-  // },
-  // {
-  //   icon: 'iconsminds-bucket',
-  //   label: 'menu.blank-page',
-  //   to: `${adminRoot}/blank-page`,
-  //   subs: []
-  // },
-  // {
-  //   icon: 'iconsminds-library',
-  //   label: 'menu.docs',
-  //   to: 'https://vien-docs.coloredstrategies.com/',
-  //   subs: [],
-  //   newWindow: true,
-  // },
+      },
+
+    ],
+  },
+
+   //Brand
+
+   {
+    icon: 'simple-icon-bag',
+    label: 'Brand',
+    to: `${adminRoot}/Brand`,
+    subs: [
+      {
+        subs:[],
+        icon: 'simple-icon-bag',
+        label: 'Brand',
+        to: `${adminRoot}/Brand/brand`,
+      },
+
+    ],
+  },
+
+   //News
+
+   {
+    icon: 'iconsminds-newspaper',
+    label: 'News',
+    to: `${adminRoot}/News`,
+    subs: [
+      {
+        subs:[],
+        icon: 'iconsminds-newspaper',
+        label: 'News',
+        to: `${adminRoot}/News/news`,
+      },
+
+    ],
+  },
+
 ];
 export default data;

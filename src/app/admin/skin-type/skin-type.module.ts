@@ -5,6 +5,7 @@ import { CreateSkinTypeDialogComponent } from './create-skinType/create-skin-typ
 import { SharedModule } from 'src/shared/shared.module';
 import { LayoutModule } from "../containers/layout/layout.module";
 import { EditSkinTypeDialogComponent } from './edit-skinType/edit-skin-type-dialog.component';
+import { SkinTypeRoutingModule } from './skin-type-routing.module';
 
 
 
@@ -19,8 +20,9 @@ import { EditSkinTypeDialogComponent } from './edit-skinType/edit-skin-type-dial
         CommonModule,
         SharedModule,
         LayoutModule,
- 
-        
+        SkinTypeRoutingModule
+
+
     ],
     schemas:[CUSTOM_ELEMENTS_SCHEMA]
 

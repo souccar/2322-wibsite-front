@@ -36,6 +36,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
 
   }
 	onSelect(event:any) {
+
     this.image=event.addedFiles[0];
     this.files.push(this.image);
 	}

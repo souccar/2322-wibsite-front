@@ -37,7 +37,8 @@ export class HeadingComponent  implements OnInit{
   getAllNews()
   {
      this._newsCategory.getAll().subscribe((response:any)=>{
-      this.news=response.result.data;
+      this.news=response.result;
+      console.log(response);
     })
   }
 
