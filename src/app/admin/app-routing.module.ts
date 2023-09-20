@@ -10,6 +10,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'production' },
 
       { path: 'production', loadChildren: () => import('../admin/production/production.module').then(m => m.ProductionModule) },
+      { path: 'design', loadChildren: () => import('./design/design.module').then(m => m.DesignModule) }
 
     ],
   },

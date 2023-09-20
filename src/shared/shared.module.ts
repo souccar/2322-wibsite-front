@@ -17,6 +17,7 @@ import { AbpValidationSummaryComponent } from './validations/abp-validation-summ
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgxDropzoneModule,
     NgxDatatableModule,
     NgxDropzoneModule,
+    TabsModule.forRoot(),
   ],
   exports: [
     RouterModule,
@@ -56,6 +58,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
+    TabsModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

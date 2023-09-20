@@ -1,0 +1,70 @@
+<form class="form-horizontal " autocomplete="off" #createPageModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateNewPage' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body modal-lg">
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="page.title">
+        {{ "Title" | translate }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="title" id="title" required  [(ngModel)]="page.title"
+          #titleModel="ngModel" #titleEl />
+        <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+      </div>
+    </div>
+    <div class="form-group row ">
+      <label class="col-md-3 col-form-label" for="page.description">
+        {{ "Description" | translate }}
+      </label>
+      <div class="col-md-9">
+        <textarea  type="text" class="form-control" name="description" id="description"
+          [(ngModel)]="page.description" #descriptionModel="ngModel" #descriptionEl >
+          </textarea>
+        <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+      </div>
+    </div>
+
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="page.image_title">
+        {{ "Image Title" | translate }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="image_title" id="image_title" required
+          [(ngModel)]="page.image_title" #image_titleModel="ngModel" #image_titleEl />
+        <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+      </div>
+    </div>
+
+    <div class="form-group row required">
+      <label class="col-md-3 col-form-label" for="page.image_description">
+        {{ "Image Description" | translate }}
+      </label>
+      <div class="col-md-9">
+        <input type="text" class="form-control" name="image_description" id="image_description" required
+          [(ngModel)]="page.image_description" #image_descriptionModel="ngModel" #image_descriptioncEl />
+        <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+      </div>
+    </div>
+
+          <!--Image-->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="image">
+                {{ "Image" | translate }}
+            </label>
+            <div class="col-md-9">
+              <div class="custom-dropzone" [multiple]="false"  ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+                <ngx-dropzone-label>
+                  <div>
+                    <h2>{{'Upload Image'|translate}}</h2>
+                  </div>
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                </ngx-dropzone-image-preview>
+              </div>
+          </div>
+        </div>
+
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createPageModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>

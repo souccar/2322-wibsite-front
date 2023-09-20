@@ -35,7 +35,7 @@ const data: IMenuItem[] = [
               label: 'Categories',
               to: `${adminRoot}/production/catalog/category`,
             },
-            
+
             {
               subs:[],
               icon: 'simple-icon-user-female',
@@ -47,7 +47,7 @@ const data: IMenuItem[] = [
               icon: 'simple-icon-bag',
               label: 'Brands',
               to: `${adminRoot}/production/catalog/brand`,
-            },  
+            },
             {
               subs:[],
               icon: 'iconsminds-newspaper',
@@ -59,48 +59,27 @@ const data: IMenuItem[] = [
         },
       ],
     },
-  // {
-  //   icon: 'iconsminds-air-balloon-1',
-  //   label: 'menu.vien',
-  //   to: `${adminRoot}/vien`,
 
-  //   subs: [
-  //     {
-  //       subs:[],
-  //       icon: 'simple-icon-paper-plane',
-  //       label: 'menu.start',
-  //       to: `${adminRoot}/vien/start`,
-  //        roles: [UserRole.Admin],
-  //     },
+        //Design
+        {
+          icon: 'simple-icon-picture',
+          label: 'Design',
+          to: `${adminRoot}/design`,
+          subs: [
+            {
+              subs:[],
+              icon: 'iconsminds-full-view-2',
+              label: 'Templates',
+              to: `${adminRoot}/design/template`,
+            },
+            {
+              subs:[],
+              icon: 'simple-icon-docs',
+              label: 'Pages',
+              to: `${adminRoot}/design/page`,
+            },
+          ],
+        },
 
-  //   ],
-  // },
-  // {
-  //   icon: 'iconsminds-three-arrow-fork',
-  //   label: 'menu.second-menu',
-  //   to: `${adminRoot}/second-menu`,
-  //    // roles: [UserRole.Editor],
-  //   subs: [
-  //     {
-  //       subs:[],
-  //       icon: 'simple-icon-paper-plane',
-  //       label: 'menu.second',
-  //       to: `${adminRoot}/second-menu/second`,
-  //     },
-  //   ],
-  // },
-  // {
-  //   icon: 'iconsminds-bucket',
-  //   label: 'menu.blank-page',
-  //   to: `${adminRoot}/blank-page`,
-  //   subs: []
-  // },
-  // {
-  //   icon: 'iconsminds-library',
-  //   label: 'menu.docs',
-  //   to: 'https://vien-docs.coloredstrategies.com/',
-  //   subs: [],
-  //   newWindow: true,
-  // },
 ];
 export default data;

@@ -13,14 +13,15 @@ import { ProductionModule } from './production/production.module';
 import { SkinTypeModule } from './skin-type/skin-type.module';
 import { BrandModule } from './brands/brand.module';
 import { NewsModule } from './news/news.module';
+import { DesignModule } from './design/design.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    
-  
+
+
   ],
   imports: [
      LayoutModule,
@@ -33,7 +34,8 @@ import { NewsModule } from './news/news.module';
      AppRoutingModule,
      ProductionModule,
      BrandModule,
-     NewsModule
+     NewsModule,
+     DesignModule
 
   ],
   exports:[
