@@ -58,14 +58,13 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
 
   getAllTemplates()
   {
-    this._templateService.getAll().subscribe((response:any)=>{
+    this._templateService.getTemplates().subscribe((response:any)=>{
       console.log(response);
        this.data=response.result;
        console.log(this.data);
 
     })
   }
-
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
