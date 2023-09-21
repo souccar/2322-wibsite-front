@@ -8,7 +8,7 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
 @Component({
   selector: 'app-create-brand-dialog',
   templateUrl: './create-brand-dialog.component.html',
- 
+
 })
 export class CreateBrandDialogComponent  extends AppComponentBase implements OnInit {
 
@@ -24,10 +24,6 @@ export class CreateBrandDialogComponent  extends AppComponentBase implements OnI
   }
   ngOnInit(): void {
   }
-
-
-
-
   save(): void {
     this.saving = true;
     console.log(this.brand)

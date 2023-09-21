@@ -823,6 +823,7 @@ export interface ICreateUpdateTemplateDto {
   description: string;
   imagePath: any;
   videoPath:any;
+  numberOfColumns:number;
   link_title: string;
   childTemplates:CreateUpdateChildTemplateDto []
 }
@@ -832,6 +833,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
   description: string;
   imagePath: any;
   videoPath:any;
+  numberOfColumns:number;
   link_title: string;
   childTemplates:CreateUpdateChildTemplateDto []
   constructor(data?: ICreateUpdateTemplateDto) {
@@ -851,6 +853,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
       this. link_title= _data["link_title"];
       this.imagePath = _data["imagePath"];
       this.videoPath = _data["videoPath"];
+      this.numberOfColumns = _data["numberOfColumns"];
     //   if (Array.isArray(_data["childrenTemplates"])) {
     //     this.childrenTemplates = [] as any;
     //     for (let item of _data["childrenTemplates"])
@@ -873,6 +876,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
     data["imagePath"] = this.imagePath;
     data["description"] = this.description;
     data["link_title"] = this.link_title;
+    data["numberOfColumns"] = this.numberOfColumns;
     if (Array.isArray(this.childTemplates)) {
       data["childTemplates"] = [];
       for (let item of this.childTemplates)
@@ -897,6 +901,7 @@ export interface IReadTemplateDto {
   description: string;
   imagePath: any;
   videoPath:any;
+  numberOfColumns:number;
   link_title: string;
   childTemplates:CreateUpdateChildTemplateDto []
 }
@@ -908,6 +913,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
   description: string;
   imagePath: any;
   videoPath:any;
+  numberOfColumns:number;
   link_title: string;
   childTemplates:CreateUpdateChildTemplateDto []
   constructor(data?: ReadTemplateDto) {
@@ -928,6 +934,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
       this.type = _data["type"];
       this.link_title = _data["link_title"];
       this.imagePath = _data["imagePath"];
+      this.numberOfColumns = _data["numberOfColumns"];
   //   if (Array.isArray(_data["childrenTemplates"])) {
   //     this.childrenTemplates = [] as any;
   //     for (let item of _data["childrenTemplates"])
@@ -952,6 +959,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
     data["imagePath"] = this.imagePath;
     data["type"] = this.type;
     data["link_title"] = this.link_title;
+    data["numberOfColumns"] = this.numberOfColumns;
     if (Array.isArray(this.childTemplates)) {
       data["childTemplates"] = [];
       for (let item of this.childTemplates)

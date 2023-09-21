@@ -8,11 +8,12 @@ import { NewsComponent } from './news.component';
 
 
 
+
 @NgModule({
   declarations: [
     NewsComponent,
     CreateNewsDialogComponent,
-    EditNewsDialogComponent
+    EditNewsDialogComponent,
   ],
   imports: [
     CommonModule,

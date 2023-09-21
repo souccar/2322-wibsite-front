@@ -9,7 +9,7 @@
         <button type="button" class="btn btn-primary btn-md mb-1" (click)="addTemplate()"><i
             class="iconsminds-add"></i> Add Template</button>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9 " style="width:100%;display: flex;justify-content: space-evenly;">
         <div *ngFor="let pt of pageTemplates ;  let i=index">
           <div class=" row m-3" >
             <div class="col-md-6">
@@ -21,7 +21,8 @@
             </div>
             <div  class="col-md-5">
               <input type="number" class="form-control" required name="pt.order{{i}}" [(ngModel)]="pt.order"
-                #pageTamplatesrModel="ngModel" #pageTamplatesEl>
+                #pageTamplatesrModel="ngModel" #pageTamplatesEl style="height:30px">
+
 
                 <!-- <abp-validation-summary [control]="sizeModel" [controlEl]="sizeEl"></abp-validation-summary> -->
             </div>
@@ -29,9 +30,11 @@
                 <button type="button" class="btn  btn-xs btn-outline-danger mb-1" (click)="removeTemplate(i)"><i
                   class="iconsminds-remove"> </i></button>
             </div>
+
           </div>
         </div>
       </div>
+
     </div>
 
 

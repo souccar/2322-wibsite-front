@@ -7,13 +7,13 @@
 </app-list-page-header>
 <!-- [itemOptionsOrders]="itemOptionsOrders" -->
 <context-menu #basicMenu>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event)">
       <i class="bi bi-pencil mr-1"></i> <span>{{"Edit" | translate}}</span>
   </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('delete',$event)">
     <i class="bi bi-trash3  mr-1"></i><span>{{"Delete" | translate}}</span>
   </ng-template>
-  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('view',$event.item)">
+  <ng-template contextMenuItem let-item (execute)="onContextMenuClick('view',$event)">
     <i class="bi bi-eye  mr-1"></i><span>{{"View" | translate}}</span>
   </ng-template>
 </context-menu>

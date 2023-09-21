@@ -5,6 +5,7 @@ import { ReadTemplateDto } from 'src/shared/service-proxies/service-proxies';
 import { CreateTemplateDialogComponent } from './create-template/create-template-dialog.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TemplateService } from 'src/shared/services/template/template.service';
+import { ViewTemplateDialogComponent } from './view-template/view-template-dialog.component';
 
 @Component({
   selector: 'app-template',
@@ -58,12 +59,38 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
 
   getAllTemplates()
   {
-    this._templateService.getTemplates().subscribe((response:any)=>{
-      console.log(response);
-       this.data=response.result;
-       console.log(this.data);
+    this._templateService.getAllTemplates().subscribe((response:any)=>{
+      console.log(response.result.data);
+       this.data=response.result.data;
+      //  console.log(this.data);
 
     })
+  }
+  ViewChildTemplate(id:number)
+  {
+    console.log(id);
+
+      this._modalService.show(
+        ViewTemplateDialogComponent,
+        {
+          backdrop: true,
+          ignoreBackdropClick: true,
+
+          initialState: {
+            id: id,
+          },
+        }
+      );
+
+
+  }
+  editModal(id:number)
+  {
+
+  }
+  deletebutton(id:number)
+  {
+
   }
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);

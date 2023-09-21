@@ -18,6 +18,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
+
 
 
 @NgModule({
@@ -29,6 +31,9 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 
   imports: [
     RouterModule,
+    ContextMenuModule.forRoot({
+      useBootstrap4: true,
+    }),
     TranslateModule.forRoot(),
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
@@ -58,7 +63,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsModule
+    TabsModule,
+    ContextMenuModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

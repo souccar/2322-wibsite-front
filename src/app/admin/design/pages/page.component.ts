@@ -6,6 +6,7 @@ import { CreatePageDialogComponent } from './create-page/create-page-dialog.comp
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PageService } from 'src/shared/services/page-service/page.service';
 import { AddPageTemplateDialogComponent } from './add-page-template/add-page-template-dialog.component';
+import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 
 @Component({
   selector: 'app-page',
@@ -37,7 +38,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   advancedFiltersVisible = false;
   loading = false;
   ColumnMode = ColumnMode;
-  // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
+  @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreatePageDialogComponent;
 
   constructor(
@@ -57,7 +58,10 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   editModal(id: number) {
 
   }
-  deletebutton(id: number) {
+  deletebutton(id:number){
+    this._pageService.delete(id).subscribe((responce:any)=>{
+      window.location.reload();
+    });
 
   }
   addTemplate(id: number) {

@@ -16,6 +16,7 @@ import { NewsModule } from './news/news.module';
 import { DesignModule } from './design/design.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,9 @@ import { DesignModule } from './design/design.module';
     NO_ERRORS_SCHEMA,
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers:[BsModalService,TranslateService]
+  providers:[BsModalService,TranslateService,
+
+]
 
 })
 export class AppModule { }

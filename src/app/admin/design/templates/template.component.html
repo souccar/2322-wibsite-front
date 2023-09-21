@@ -6,7 +6,7 @@
   (searchKeyUp)="searchKeyUp($event)">
 </app-list-page-header>
 <!-- [itemOptionsOrders]="itemOptionsOrders" -->
-<context-menu #basicMenu>
+<!-- <context-menu #basicMenu>
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('edit',$event.item)">
       <i class="bi bi-pencil mr-1"></i> <span>{{"Edit" | translate}}</span>
   </ng-template>
@@ -16,7 +16,7 @@
   <ng-template contextMenuItem let-item (execute)="onContextMenuClick('view',$event.item)">
     <i class="bi bi-eye  mr-1"></i><span>{{"View" | translate}}</span>
   </ng-template>
-</context-menu>
+</context-menu> -->
 <div class="row">
   <div class="col-12 mb-4 data-table-rows ">
     <ngx-datatable [rows]="data" [columnMode]="ColumnMode.flex" [limit]="itemsPerPage" [headerHeight]="20"
@@ -48,6 +48,19 @@
       <ngx-datatable-column [name]="('Description')" prop="description" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template >
           {{row.description}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [name]="('Action')" prop="action" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty" (click)="ViewChildTemplate(row.id)">
+            <i class="simple-icon-eye"></i>
+          </button>
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty" (click)="editModal(row.id)">
+            <i class="simple-icon-pencil"></i>
+          </button>
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty"(click)="deletebutton(row.id)">
+            <i class="simple-icon-trash"></i>
+          </button>
         </ng-template>
       </ngx-datatable-column>
 

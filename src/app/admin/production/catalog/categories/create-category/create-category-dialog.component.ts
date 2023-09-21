@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, OnInit, Output, ViewChild } from '@angular/core';
+import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
@@ -22,6 +23,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
   constructor(injector: Injector,
    public _categoryService: CategoryService,
     public bsModalRef: BsModalRef,
+
   ) {
     super(injector);
   }
@@ -50,6 +52,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
     myFormData.append("point",this.category.point.toString());
     myFormData.append("description",this.category.description);
     myFormData.append("image",this.image);
+    console.log(this.category)
     this._categoryService
         .insert(
           myFormData
@@ -67,8 +70,6 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
         });
 
   }
-
-
 
 
 }

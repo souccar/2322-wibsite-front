@@ -15,6 +15,10 @@ export class TemplateService {
   {
     return this.http.get(this.baseUrl+'api/getTemplates',{params});
   }
+  getAllTemplates(params?:HttpParams)
+  {
+    return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
+  }
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/templates'+'/'+id);
   }

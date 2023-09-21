@@ -9,6 +9,9 @@ import { SharedModule } from 'src/shared/shared.module';
 import { LayoutModule } from '../containers/layout/layout.module';
 import { CreateTemplateDialogComponent } from './templates/create-template/create-template-dialog.component';
 import { AddPageTemplateDialogComponent } from './pages/add-page-template/add-page-template-dialog.component';
+import { ViewTemplateDialogComponent } from './templates/view-template/view-template-dialog.component';
+import { ComponentsCarouselModule } from '../components/carousel/components.carousel.module';
+
 
 
 
@@ -20,13 +23,17 @@ import { AddPageTemplateDialogComponent } from './pages/add-page-template/add-pa
     CreatePageDialogComponent,
     CreateTemplateDialogComponent,
     AddPageTemplateDialogComponent,
+    ViewTemplateDialogComponent,
 
   ],
   imports: [
+
     CommonModule,
     DesignRoutingModule,
     SharedModule,
-    LayoutModule
+    LayoutModule,
+    ComponentsCarouselModule,
+
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

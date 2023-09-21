@@ -38,8 +38,8 @@ export class AbpValidationSummaryComponent extends AppComponentBase implements O
   ];
   validationErrors = <AbpValidationError[]>this.defaultValidationErrors;
 
-  @Input() control!: AbstractControl;
-  @Input() controlEl!: ElementRef;
+  @Input() control: any;
+  @Input() controlEl: any;
 
   constructor(injector: Injector, public _renderer: Renderer2) {
     super(injector);
@@ -75,10 +75,10 @@ export class AbpValidationSummaryComponent extends AppComponentBase implements O
     if (this.controlEl) {
       this._renderer.addClass(this.controlEl, 'is-invalid');
     }
-   return '';
-    // const propertyValue = this.control.errors[error.name][error.propertyKey];
-    // return !!propertyValue
-    //   ?(error.localizationKey, propertyValue)
-    //   : (error.localizationKey);
+
+    const propertyValue = this.control.errors[error.name][error.propertyKey];
+    return !!propertyValue
+      ? (error.localizationKey, propertyValue)
+      : (error.localizationKey);
   }
 }

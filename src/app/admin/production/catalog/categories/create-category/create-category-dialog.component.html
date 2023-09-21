@@ -32,7 +32,7 @@
             {{ "Point" | translate }}
           </label>
           <div class="col-md-9">
-            <input type="text" class="form-control" name="point" id="point" required
+            <input type="number" class="form-control" name="point" id="point" required
               [(ngModel)]="category.point" #pointModel="ngModel" #pointEl   />
 
             <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
@@ -56,6 +56,7 @@
           </div>
       </div>
     </div>
+
   </div>
   <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createCategoryModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>

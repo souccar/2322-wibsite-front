@@ -25,6 +25,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@nicky-lenaers/ngx-scroll-to": "^14.0.0",
+    "@perfectmemory/ngx-contextmenu": "^7.0.0",
     "@swimlane/ngx-datatable": "^17.0.0",
     "@types/glidejs__glide": "^3.6.1",
     "angular-moment": "^1.3.0",

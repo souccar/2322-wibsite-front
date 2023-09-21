@@ -8,6 +8,9 @@ import { CategoryService } from 'src/shared/services/category-service/category.s
 import { ReadCategoryDto } from 'src/shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs';
 import { EditCategoryDialogComponent } from './edit-category/edit-category-dialog.component';
+import { ViewCategoryDialogComponent } from './view-category/view-category-dialog.component';
+import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
+
 // import { ContextMenuComponent } from 'ngx-contextmenu';
 class PagedCategoriesRequestDto extends PagedRequestDto {
   keyword: string='';
@@ -42,7 +45,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   advancedFiltersVisible = false;
   loading = false;
   ColumnMode = ColumnMode;
-  // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent | undefined;
+  @ViewChild('basicMenu') public basicMenu: ContextMenuComponent ;
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
@@ -58,7 +61,9 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   {
     this._categoryService.getAll().subscribe((response:any)=>{
 
-       this.data=response.result.data;
+      console.log(response)
+
+       this.data=response.result;
 
     })
   }
@@ -150,6 +155,19 @@ editModal(id:number): void {
       this.refresh();
     });
 
+}
+viewModal(id:number)
+{
+  this._modalService.show(
+    ViewCategoryDialogComponent,
+    {
+      backdrop: true,
+      ignoreBackdropClick: true,
+      initialState: {
+        id: id,
+      },
+    }
+  );
 }
   // entity: ReadCategoryDto
   protected delete(entity:any): void {

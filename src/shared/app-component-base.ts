@@ -1,14 +1,6 @@
 import { Injector, ElementRef, Renderer2 } from '@angular/core';
 import { AppConsts } from '../../src/shared/AppConsts';
-// import {
-//     LocalizationService,
-//     PermissionCheckerService,
-//     FeatureCheckerService,
-//     NotifyService,
-//     SettingService,
-//     MessageService,
-//     AbpMultiTenancyService
-// } from 'abp-ng2-module';
+
 
 // import { AppSessionService } from '@shared/session/app-session.service';
 
@@ -16,7 +8,7 @@ export abstract class AppComponentBase {
 
     localizationSourceName = AppConsts.localization.defaultLocalizationSourceName;
 
-    // localization: LocalizationService;
+
     // permission: PermissionCheckerService;
     // feature: FeatureCheckerService;
     // notify: NotifyService;

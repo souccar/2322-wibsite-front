@@ -10,6 +10,7 @@
   ></abp-modal-header>
   <div class="modal-body modal-lg">
     <tabset>
+      <!-- parent Template -->
       <tab class="m-3" heading="{{ 'Template' | translate }}">
         <div class="form-group row ">
           <label class="col-md-3 col-form-label" for="template.type">
@@ -111,19 +112,19 @@
         </div>
           <!-- number Columns -->
           <div class="form-group row "*ngIf="template.type==2 ">
-            <label class="col-md-3 col-form-label" for="template.number_columns">
+            <label class="col-md-3 col-form-label" for="template.numberOfColumns">
               {{ "Number Columns" | translate }}
             </label>
             <div class="col-md-9">
               <input
                 type="text"
                 class="form-control"
-                name="template.number_columns"
-                id="template.number_columns"
+                name="template.numberOfColumns"
+                id="template.numberOfColumns"
 
-                [(ngModel)]="template.link_title"
-                #number_columnsModel="ngModel"
-                #number_columnsEl
+                [(ngModel)]="template.numberOfColumns"
+                #numberOfColumnsModel="ngModel"
+                #numberOfColumnsEl
               />
               <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
             </div>
@@ -294,6 +295,7 @@
         <a  class="btn btn-primary" (click)="saveChild()">save child</a>
 
       </tab>
+
     </tabset>
   </div>
 

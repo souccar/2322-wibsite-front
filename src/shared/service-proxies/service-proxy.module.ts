@@ -3,11 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateService } from '@ngx-translate/core';
 import { SidebarComponent } from 'src/app/admin/containers/layout/sidebar/sidebar.component';
-
-
-
-
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [],
   imports: [
@@ -16,7 +12,8 @@ import { SidebarComponent } from 'src/app/admin/containers/layout/sidebar/sideba
   providers:[
     BsModalService,
     TranslateService,
-    SidebarComponent
+    SidebarComponent,
+    // { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
 
     ]
 })

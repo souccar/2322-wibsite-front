@@ -7,6 +7,8 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { finalize } from 'rxjs';
+import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
+
 
 @Component({
   selector: 'app-products',
@@ -42,7 +44,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
   loading = false;
 
   ColumnMode = ColumnMode;
-  // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
+  @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreateProductDialogComponent;
 
   constructor(
@@ -182,7 +184,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
   }
 
 
-  onContextMenuClick(action: string, item: ReadProductDto): void {
+  onContextMenuClick(action: string, item: any): void {
     switch (action) {
       case "delete":
         this.delete(item);
