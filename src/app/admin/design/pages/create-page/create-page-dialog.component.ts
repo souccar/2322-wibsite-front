@@ -79,7 +79,3 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
 
 }
 
-export class image{
-
-
-}

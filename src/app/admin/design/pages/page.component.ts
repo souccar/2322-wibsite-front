@@ -4,6 +4,8 @@ import { PagedListingComponentBase, PagedRequestDto } from 'src/shared/paged-lis
 import { ReadPageDto } from 'src/shared/service-proxies/service-proxies';
 import { CreatePageDialogComponent } from './create-page/create-page-dialog.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PageService } from 'src/shared/services/page-service/page.service';
+import { AddPageTemplateDialogComponent } from './add-page-template/add-page-template-dialog.component';
 
 @Component({
   selector: 'app-page',
@@ -14,7 +16,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
   title = "Pages"
   displayMode = 'list';
-  itemOrder = { label:("title"), value: "title" };
+  itemOrder = { label: ("title"), value: "title" };
   itemOptionsOrders = [
     { label: ("Slug"), value: "slug" },
     { label: ("Description"), value: "desc" },
@@ -33,29 +35,58 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   selectedCount = 0;
   isActive: boolean | null = true;
   advancedFiltersVisible = false;
-
-  //
   loading = false;
-
   ColumnMode = ColumnMode;
   // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreatePageDialogComponent;
 
   constructor(
     injector: Injector,
-    // private _pageService:PageSer,
+    private _pageService: PageService,
     private _modalService: BsModalService,
-    ) {
+  ) {
     super(injector);
 
   }
 
   override ngOnInit(): void {
-
-    this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
+    this.getAllPages();
+    // this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
   }
 
+  editModal(id: number) {
 
+  }
+  deletebutton(id: number) {
+
+  }
+  addTemplate(id: number) {
+
+    let addTemplateDialog: BsModalRef;
+    addTemplateDialog = this._modalService.show(
+      AddPageTemplateDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        // class: 'modal-right',
+        initialState: {
+          id: id,
+        },
+
+      }
+    );
+    addTemplateDialog.content.onSave.subscribe(() => {
+      // window.location.reload();
+    });
+  }
+
+  getAllPages() {
+    this._pageService.getAllPages().subscribe((response: any) => {
+      this.data = response.result.data;
+
+
+    })
+  }
 
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
@@ -65,7 +96,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
   }
 
-  changeDisplayMode(mode:any): void {
+  changeDisplayMode(mode: any): void {
     this.displayMode = mode;
   }
 
@@ -85,27 +116,26 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     });
   }
 
-  showEditModal(id:number): void {
-      // let EditProductDialog = this._modalService.show(
-      //   EditProductDialogComponent,
-      //   {
-      //     backdrop: true,
-      //     ignoreBackdropClick: true,
-      //     class: 'modal-right'
-      //     ,
-      //     initialState: {
-      //       id: id,
-      //     },
-      //   }
-      // );
-      // EditProductDialog.content.onSave.subscribe((respone) => {
-      //   this.refresh();
-      // });
+  showEditModal(id: number): void {
+    // let EditProductDialog = this._modalService.show(
+    //   EditProductDialogComponent,
+    //   {
+    //     backdrop: true,
+    //     ignoreBackdropClick: true,
+    //     class: 'modal-right'
+    //     ,
+    //     initialState: {
+    //       id: id,
+    //     },
+    //   }
+    // );
+    // EditProductDialog.content.onSave.subscribe((respone) => {
+    //   this.refresh();
+    // });
 
   }
 
-  ViewDetail(id:number): void
-  {
+  ViewDetail(id: number): void {
     // this._modalService.show(
     //   ViewProductDialogComponent,
     //   {
@@ -172,7 +202,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     this.list(request, this.pageNumber, () => { });
   }
 
-  searchKeyUp(event:any): void {
+  searchKeyUp(event: any): void {
     const val = event.target.value.toLowerCase().trim();
     this.loadData(this.itemsPerPage, 1, val, this.itemOrder.value);
   }
@@ -221,7 +251,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   //   }
   // }
 
-  selectAllChange($event:any): void {
+  selectAllChange($event: any): void {
     if ($event.target.checked) {
       this.selected = [...this.data];
     } else {
@@ -260,11 +290,11 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     //   });
   }
 
-  setPage($event:any){
+  setPage($event: any) {
     this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
   }
 
-  onSort(event:any) {
+  onSort(event: any) {
     this.loading = true;
     const isDesc = event.newValue === 'desc' ? true : false;
     this.loadData(
@@ -273,9 +303,9 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       this.search,
       event?.column.prop,
       isDesc
-      );
+    );
 
-      this.loading = false;
+    this.loading = false;
 
   }
 }

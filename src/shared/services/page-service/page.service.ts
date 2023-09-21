@@ -11,9 +11,9 @@ export class PageService {
 
   constructor(private http:HttpClient) { }
 
-  getAll(params?:HttpParams)
+  getAllPages(params?:HttpParams)
   {
-    return this.http.get(this.baseUrl+'api/pages',{params});
+    return this.http.get(this.baseUrl+'api/getAllPages',{params});
   }
   insert(pages:any)
   {

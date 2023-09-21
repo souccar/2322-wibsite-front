@@ -11,7 +11,7 @@ export class TemplateService {
 
   constructor(private http:HttpClient) { }
 
-  getAll(params?:HttpParams)
+  getTemplates(params?:HttpParams)
   {
     return this.http.get(this.baseUrl+'api/getTemplates',{params});
   }

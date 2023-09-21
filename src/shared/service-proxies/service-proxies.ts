@@ -995,7 +995,7 @@ export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateD
   link_title: string;
   parentTemplateId:number
 
-  constructor(data?: ICreateUpdateTemplateDto) {
+  constructor(data?: ICreateUpdateChildTemplateDto) {
     if (data) {
       for (var property in data) {
         if (data.hasOwnProperty(property))
@@ -1017,9 +1017,9 @@ export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateD
     }
   }
 
-  static fromJS(data: any): CreateUpdateTemplateDto {
+  static fromJS(data: any): CreateUpdateChildTemplateDto {
     data = typeof data === 'object' ? data : {};
-    let result = new CreateUpdateTemplateDto();
+    let result = new CreateUpdateChildTemplateDto();
     result.init(data);
     return result;
   }
@@ -1036,9 +1036,9 @@ export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateD
     return data;
   }
 
-  clone(): CreateUpdateTemplateDto {
+  clone(): CreateUpdateChildTemplateDto {
     const json = this.toJSON();
-    let result = new CreateUpdateTemplateDto();
+    let result = new CreateUpdateChildTemplateDto();
     result.init(json);
     return result;
   }
@@ -1065,7 +1065,7 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
   videoPath:any;
   link_title: string;
   parentTemplateId:number
-  childrenTemplates:CreateUpdateTemplateDto []
+
   constructor(data?: ReadTemplateDto) {
     if (data) {
       for (var property in data) {
@@ -1089,9 +1089,9 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
     }
   }
 
-  static fromJS(data: any): ReadTemplateDto {
+  static fromJS(data: any): ReadChildTemplateDto {
     data = typeof data === 'object' ? data : {};
-    let result = new ReadTemplateDto();
+    let result = new ReadChildTemplateDto();
     result.init(data);
     return result;
   }
@@ -1110,10 +1110,137 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
     return data;
   }
 
-  clone(): ReadTemplateDto {
+  clone(): ReadChildTemplateDto {
     const json = this.toJSON();
-    let result = new ReadTemplateDto();
+    let result = new ReadChildTemplateDto();
     result.init(json);
     return result;
   }
 }
+
+
+
+/**
+* page template
+*/
+
+export interface ICreateUpdatePageTemplateDto {
+pageId:number;
+templateId:number;
+order:number;
+page_slug:string;
+}
+export class CreateUpdatePageTemplateDto implements ICreateUpdatePageTemplateDto {
+  pageId:number;
+  templateId:number;
+  order:number;
+  page_slug:string;
+
+  constructor(data?: ICreateUpdatePageTemplateDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+  init(_data?: any) {
+    if (_data) {
+      this.pageId = _data["pageId"];
+      this.templateId = _data["templateId"];
+      this.order = _data["order"];
+      this. page_slug= _data["page_slug"];
+
+
+    }
+  }
+
+  static fromJS(data: any): CreateUpdatePageTemplateDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new CreateUpdatePageTemplateDto();
+    result.init(data);
+    return result;
+  }
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["pageId"] = this.pageId;
+    data["templateId"] = this.templateId;
+    data["order"] = this.order;
+    data["page_slug"] = this.page_slug;
+
+
+    return data;
+  }
+
+  clone(): CreateUpdatePageTemplateDto {
+    const json = this.toJSON();
+    let result = new CreateUpdatePageTemplateDto();
+    result.init(json);
+    return result;
+  }
+}
+
+
+export interface IReadPageTemplateDto {
+  id:number;
+  pageId:number;
+  templateId:number;
+  order:number;
+  page_slug:string;
+}
+
+export class ReadPageTemplateDto implements IReadPageTemplateDto {
+  id:number;
+  pageId:number;
+  templateId:number;
+  order:number;
+  page_slug:string;
+  constructor(data?: ReadPageTemplateDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+
+  init(_data?: any) {
+    if (_data) {
+      this.id = _data["id"];
+      this.pageId = _data["pageId"];
+      this.templateId = _data["templateId"];
+      this.order = _data["order"];
+      this.page_slug = _data["page_slug"];
+
+    }
+  }
+
+  static fromJS(data: any): ReadPageTemplateDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new ReadPageTemplateDto();
+    result.init(data);
+    return result;
+  }
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["id"] = this.id;
+    data["pageId"] = this.pageId;
+    data["templateId"] = this.templateId;
+    data["order"] = this.order;
+    data["page_slug"] = this.page_slug;
+
+    return data;
+  }
+
+  clone(): ReadPageTemplateDto {
+    const json = this.toJSON();
+    let result = new ReadPageTemplateDto();
+    result.init(json);
+    return result;
+  }
+}
+

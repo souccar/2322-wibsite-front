@@ -8,6 +8,7 @@ import { CreatePageDialogComponent } from './pages/create-page/create-page-dialo
 import { SharedModule } from 'src/shared/shared.module';
 import { LayoutModule } from '../containers/layout/layout.module';
 import { CreateTemplateDialogComponent } from './templates/create-template/create-template-dialog.component';
+import { AddPageTemplateDialogComponent } from './pages/add-page-template/add-page-template-dialog.component';
 
 
 
@@ -18,6 +19,7 @@ import { CreateTemplateDialogComponent } from './templates/create-template/creat
     TemplateComponent,
     CreatePageDialogComponent,
     CreateTemplateDialogComponent,
+    AddPageTemplateDialogComponent,
 
   ],
   imports: [
