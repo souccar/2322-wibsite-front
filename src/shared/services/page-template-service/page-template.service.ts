@@ -15,11 +15,13 @@ export class PageTemplateService {
   {
     // return this.http.get(this.baseUrl+'api/getPages',{params});
   }
-  insert(pages:any)
+  insert(pages:any )
   {
     console.log( "insert api");
     console.log(pages);
-    return this.http.post(this.baseUrl+'api/pageTemplates',pages);
+    return this.http.post(this.baseUrl+'api/pageTemplates',pages,{headers:{
+      "Content-Type": "application/json"
+  }} );
 
   }
   edit(id:number,pages:any)

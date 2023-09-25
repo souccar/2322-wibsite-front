@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateChildTemplateDto, CreateUpdateTemplateDto } from 'src/shared/service-proxies/service-proxies';
+import { PageService } from 'src/shared/services/page-service/page.service';
 import { TemplateService } from 'src/shared/services/template/template.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
   childTemplate = new CreateUpdateChildTemplateDto();
   parentFiles: File[] = [];
   childeFiles: File[] = [];
+  slugs :any=[]
   tempChild:CreateUpdateChildTemplateDto[]=[];
   imageParent:any;
   imageChild:any;
@@ -24,6 +26,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
   constructor(
     injector: Injector,
     public _templateService: TemplateService,
+    private _pageService:PageService,
     public bsModalRef: BsModalRef,
 
 
@@ -34,6 +37,14 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
 
 
   ngOnInit(): void {
+    this.initSlug();
+  }
+  initSlug(){
+
+    this._pageService.getSlugs().subscribe((res:any)=>{
+      console.log(res.result)
+      this.slugs=res.result;
+    })
   }
   onSelectParent(event:any) {
     this.imageParent=event.addedFiles[0];

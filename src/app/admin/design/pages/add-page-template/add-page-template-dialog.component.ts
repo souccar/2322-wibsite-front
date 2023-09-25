@@ -34,16 +34,18 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
 
   ngOnInit(): void {
     this.pageTemplates = []
+    this.data.pageTemplates = [];
     this.initTamplats();
   }
 
   addTemplate() {
-    let template = new CreateUpdatePageTemplateDto();
-    console.log(template);
+    let pageTemplate = new CreateUpdatePageTemplateDto();
 
-    template.pageId = this.id;
+    pageTemplate.pageId = this.id;
 
-    this.pageTemplates.push(template);
+    this.pageTemplates.push(pageTemplate);
+
+
 
   }
 
@@ -59,25 +61,18 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
     });
   }
 
-  test: Data = new Data();
+  data: Data = new Data();
 
   save(): void {
     this.saving = true;
 
-    console.log(this.pageTemplates);
 
-    this.test.pageTemplates = [{
-      order:2,
-      pageId:
-        3,
-      templateId
-        :
-        16
-    }];
+    this.data.pageTemplates = this.pageTemplates;
+
 
     this._pageTemplateService
       .insert(
-        this.test
+        this.data
       )
       .pipe(
         finalize(() => {
@@ -85,7 +80,7 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
+
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();
@@ -101,7 +96,7 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
 }
 
 export class Data {
-  pageTemplates: any[];
+  pageTemplates: CreateUpdatePageTemplateDto[];
 }
 
 

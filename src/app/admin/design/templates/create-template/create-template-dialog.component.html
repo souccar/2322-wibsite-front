@@ -12,7 +12,8 @@
     <tabset>
       <!-- parent Template -->
       <tab class="m-3" heading="{{ 'Template' | translate }}">
-        <div class="form-group row ">
+        <!-- Type -->
+        <div class="form-group row">
           <label class="col-md-3 col-form-label" for="template.type">
             {{ "Type" | translate }}
           </label>
@@ -20,7 +21,7 @@
             <select
               class="form-control"
               aria-label="Type"
-               id="template.type"
+              id="template.type"
               name="template.type"
               #TypeEl
               [(ngModel)]="template.type"
@@ -35,7 +36,7 @@
           </div>
         </div>
         <!-- title -->
-        <div class="form-group row ">
+        <div class="form-group row">
           <label class="col-md-3 col-form-label" for="template.title">
             {{ "Title" | translate }}
           </label>
@@ -53,8 +54,31 @@
             <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
           </div>
         </div>
-         <!-- description -->
-        <div class="form-group row "*ngIf="template.type!=2">
+        <!-- Slug -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.page_slug">
+            {{ "Slug" | translate }}
+          </label>
+          <div class="col-md-9">
+            <select
+              class="form-control"
+              aria-label="Type"
+              id="template.page_slug"
+              name="template.page_slug"
+              #TypeEl
+              [(ngModel)]="template.page_slug"
+              required
+            >
+
+              <option *ngFor="let s of slugs;let i=index" [value]="s.slug">{{s.title}} </option>
+
+
+            </select>
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- description -->
+        <div class="form-group row" *ngIf="template.type != 2">
           <label class="col-md-3 col-form-label" for="template.description">
             {{ "Description" | translate }}
           </label>
@@ -73,7 +97,7 @@
           </div>
         </div>
         <!-- video -->
-        <div class="form-group row " *ngIf="template.type==3">
+        <div class="form-group row" *ngIf="template.type == 3">
           <label class="col-md-3 col-form-label" for="template.videoPath">
             {{ "Video Path" | translate }}
           </label>
@@ -83,7 +107,6 @@
               class="form-control"
               name="template.videoPath"
               id="template.videoPath"
-
               [(ngModel)]="template.videoPath"
               #videoPathModel="ngModel"
               #videoPathEl
@@ -92,7 +115,10 @@
           </div>
         </div>
         <!-- Link title -->
-        <div class="form-group row "*ngIf="template.type!=2 && template.type!=3 && template.type!=1">
+        <div
+          class="form-group row"
+          *ngIf="template.type != 2 && template.type != 3 && template.type != 1"
+        >
           <label class="col-md-3 col-form-label" for="template.link_title">
             {{ "Link Title" | translate }}
           </label>
@@ -102,7 +128,6 @@
               class="form-control"
               name="template.link_title"
               id="template.link_title"
-
               [(ngModel)]="template.link_title"
               #link_titleModel="ngModel"
               #link_titleEl
@@ -110,27 +135,29 @@
             <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
           </div>
         </div>
-          <!-- number Columns -->
-          <div class="form-group row "*ngIf="template.type==2 ">
-            <label class="col-md-3 col-form-label" for="template.numberOfColumns">
-              {{ "Number Columns" | translate }}
-            </label>
-            <div class="col-md-9">
-              <input
-                type="text"
-                class="form-control"
-                name="template.numberOfColumns"
-                id="template.numberOfColumns"
-
-                [(ngModel)]="template.numberOfColumns"
-                #numberOfColumnsModel="ngModel"
-                #numberOfColumnsEl
-              />
-              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
-            </div>
+        <!-- number Columns -->
+        <div class="form-group row" *ngIf="template.type == 2 || template.type == 1   ">
+          <label class="col-md-3 col-form-label" for="template.numberOfColumns">
+            {{ "Number Of Columns" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="template.numberOfColumns"
+              id="template.numberOfColumns"
+              [(ngModel)]="template.numberOfColumns"
+              #numberOfColumnsModel="ngModel"
+              #numberOfColumnsEl
+            />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
           </div>
+        </div>
         <!--Image-->
-        <div class="form-group row" *ngIf="template.type!=2 && template.type!=3 && template.type!=1">
+        <div
+          class="form-group row"
+          *ngIf="template.type != 2 && template.type != 3 && template.type != 1"
+        >
           <label class="col-md-3 col-form-label" for="image">
             {{ "Image" | translate }}
           </label>
@@ -159,17 +186,21 @@
           </div>
         </div>
         <abp-modal-footer
-        [cancelDisabled]="saving"
-        [saveDisabled]="!createTemplateModal.form.valid || saving"
-        (onCancelClick)="bsModalRef.hide()"
-      ></abp-modal-footer>
+          [cancelDisabled]="saving"
+          [saveDisabled]="!createTemplateModal.form.valid || saving"
+          (onCancelClick)="bsModalRef.hide()"
+        ></abp-modal-footer>
       </tab>
 
       <!-- child Template -->
 
-      <tab *ngIf="template.type==1 || template.type==2" class="m-3" heading="{{ 'Child Template' | translate }}">
-      <!-- Type -->
-        <div class="form-group row ">
+      <tab
+        *ngIf="template.type == 1 || template.type == 2"
+        class="m-3"
+        heading="{{ 'Child Template' | translate }}"
+      >
+        <!-- Type -->
+        <div class="form-group row">
           <label class="col-md-3 col-form-label" for="childTemplate.type">
             {{ "Type" | translate }}
           </label>
@@ -188,8 +219,8 @@
             <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
           </div>
         </div>
-     <!-- Title -->
-        <div class="form-group row ">
+        <!-- Title -->
+        <div class="form-group row">
           <label class="col-md-3 col-form-label" for="childTemplate.title">
             {{ "Title" | translate }}
           </label>
@@ -199,7 +230,6 @@
               class="form-control"
               name="childTemplate.title"
               id="childTemplate.title"
-
               [(ngModel)]="childTemplate.title"
               #titleModel="ngModel"
               #titleEl
@@ -207,9 +237,36 @@
             <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
           </div>
         </div>
+        <!-- Slug -->
+        <div class="form-group row" *ngIf="childTemplate.type == 0">
+          <label class="col-md-3 col-form-label" for="childTemplate.page_slug">
+            {{ "Slug" | translate }}
+          </label>
+          <div class="col-md-9">
+
+            <select
+            class="form-control"
+            aria-label="Type"
+            id="childTemplate.page_slug"
+            name="childTemplate.page_slug"
+            #childTemplateEl
+            [(ngModel)]="childTemplate.page_slug"
+            required
+          >
+
+            <option *ngFor="let s of slugs;let i=index" [value]="s.slug">{{s.title}} </option>
+
+
+          </select>
+            <!-- <abp-validation-summary [control]="page_slugModel" [controlEl]="page_slugEl"></abp-validation-summary> -->
+          </div>
+        </div>
         <!-- Description -->
         <div class="form-group row">
-          <label class="col-md-3 col-form-label" for="childTemplate.description">
+          <label
+            class="col-md-3 col-form-label"
+            for="childTemplate.description"
+          >
             {{ "Description" | translate }}
           </label>
           <div class="col-md-9">
@@ -227,7 +284,10 @@
           </div>
         </div>
         <!-- video -->
-        <div class="form-group row "  *ngIf="childTemplate.type!=0 && childTemplate.type!=1">
+        <div
+          class="form-group row"
+          *ngIf="childTemplate.type != 0 && childTemplate.type != 1"
+        >
           <label class="col-md-3 col-form-label" for="childTemplate.videoPath">
             {{ "Video Path" | translate }}
           </label>
@@ -237,7 +297,6 @@
               class="form-control"
               name="childTemplate.videoPath"
               id="childTemplate.videoPath"
-
               [(ngModel)]="childTemplate.videoPath"
               #videoPathModel="ngModel"
               #videoPathEl
@@ -246,7 +305,7 @@
           </div>
         </div>
         <!-- link title -->
-        <div class="form-group row " *ngIf="childTemplate.type==0">
+        <div class="form-group row" *ngIf="childTemplate.type == 0">
           <label class="col-md-3 col-form-label" for="childTemplate.link_title">
             {{ "Link Title" | translate }}
           </label>
@@ -292,12 +351,9 @@
             </div>
           </div>
         </div>
-        <a  class="btn btn-primary" (click)="saveChild()">save child</a>
 
+        <a class="btn btn-primary" (click)="saveChild()">save child</a>
       </tab>
-
     </tabset>
   </div>
-
-
 </form>

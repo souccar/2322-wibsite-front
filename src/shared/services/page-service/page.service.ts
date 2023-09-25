@@ -15,6 +15,9 @@ export class PageService {
   {
     return this.http.get(this.baseUrl+'api/getAllPages',{params});
   }
+  getSlugs(){
+    return this.http.get(this.baseUrl+'api/getPages');
+  }
   insert(pages:any)
   {
     return this.http.post(this.baseUrl+'api/pages',pages);

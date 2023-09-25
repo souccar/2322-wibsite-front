@@ -826,6 +826,7 @@ export interface ICreateUpdateTemplateDto {
   numberOfColumns:number;
   link_title: string;
   childTemplates:CreateUpdateChildTemplateDto []
+  page_slug:string;
 }
 export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
   type: number;
@@ -835,6 +836,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
   videoPath:any;
   numberOfColumns:number;
   link_title: string;
+  page_slug:string;
   childTemplates:CreateUpdateChildTemplateDto []
   constructor(data?: ICreateUpdateTemplateDto) {
     if (data) {
@@ -853,7 +855,8 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
       this. link_title= _data["link_title"];
       this.imagePath = _data["imagePath"];
       this.videoPath = _data["videoPath"];
-      this.numberOfColumns = _data["numberOfColumns"];
+      this.numberOfColumns  = _data["numberOfColumns"];
+      this.page_slug  = _data["page_slug"];
     //   if (Array.isArray(_data["childrenTemplates"])) {
     //     this.childrenTemplates = [] as any;
     //     for (let item of _data["childrenTemplates"])
@@ -876,6 +879,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
     data["imagePath"] = this.imagePath;
     data["description"] = this.description;
     data["link_title"] = this.link_title;
+    data["page_slug"] = this.page_slug;
     data["numberOfColumns"] = this.numberOfColumns;
     if (Array.isArray(this.childTemplates)) {
       data["childTemplates"] = [];
@@ -904,6 +908,7 @@ export interface IReadTemplateDto {
   numberOfColumns:number;
   link_title: string;
   childTemplates:CreateUpdateChildTemplateDto []
+  page_slug:string;
 }
 
 export class ReadTemplateDto implements IReadTemplateDto {
@@ -915,6 +920,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
   videoPath:any;
   numberOfColumns:number;
   link_title: string;
+  page_slug:string;
   childTemplates:CreateUpdateChildTemplateDto []
   constructor(data?: ReadTemplateDto) {
     if (data) {
@@ -935,6 +941,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
       this.link_title = _data["link_title"];
       this.imagePath = _data["imagePath"];
       this.numberOfColumns = _data["numberOfColumns"];
+      this.page_slug = _data["page_slug"];
   //   if (Array.isArray(_data["childrenTemplates"])) {
   //     this.childrenTemplates = [] as any;
   //     for (let item of _data["childrenTemplates"])
@@ -960,6 +967,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
     data["type"] = this.type;
     data["link_title"] = this.link_title;
     data["numberOfColumns"] = this.numberOfColumns;
+    data["page_slug"] = this.page_slug;
     if (Array.isArray(this.childTemplates)) {
       data["childTemplates"] = [];
       for (let item of this.childTemplates)
@@ -991,7 +999,8 @@ export interface ICreateUpdateChildTemplateDto {
   imagePath: any;
   videoPath:any;
   link_title: string;
-  parentTemplateId:number
+  parentTemplateId:number;
+  page_slug:string;
 
 }
 export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateDto {
@@ -1001,7 +1010,8 @@ export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateD
   imagePath: any;
   videoPath:any;
   link_title: string;
-  parentTemplateId:number
+  parentTemplateId:number;
+  page_slug:string;
 
   constructor(data?: ICreateUpdateChildTemplateDto) {
     if (data) {
@@ -1021,6 +1031,7 @@ export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateD
       this.imagePath = _data["imagePath"];
       this.videoPath = _data["videoPath"];
       this.parentTemplateId = _data["parentTemplateId"];
+      this. page_slug = _data["page_slug"];
 
     }
   }
@@ -1040,6 +1051,7 @@ export class CreateUpdateChildTemplateDto implements ICreateUpdateChildTemplateD
     data["description"] = this.description;
     data["link_title"] = this.link_title;
     data["parentTemplateId"] = this.parentTemplateId;
+    data["page_slug"] = this.page_slug;
 
     return data;
   }
@@ -1061,7 +1073,8 @@ export interface IReadChildTemplateDto {
   imagePath: any;
   videoPath:any;
   link_title: string;
-  parentTemplateId:number
+  parentTemplateId:number;
+  page_slug:string;
 }
 
 export class ReadChildTemplateDto implements IReadChildTemplateDto {
@@ -1072,7 +1085,9 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
   imagePath: any;
   videoPath:any;
   link_title: string;
-  parentTemplateId:number
+  parentTemplateId:number;
+  page_slug:string;
+
 
   constructor(data?: ReadTemplateDto) {
     if (data) {
@@ -1093,6 +1108,7 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
       this.link_title = _data["link_title"];
       this.imagePath = _data["imagePath"];
       this.parentTemplateId = _data["parentTemplateId"];
+      this.page_slug = _data["page_slug"];
 
     }
   }
@@ -1113,6 +1129,7 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
     data["type"] = this.type;
     data["link_title"] = this.link_title;
     data["parentTemplateId"] = this.parentTemplateId;
+    data["page_slug"] = this.page_slug;
 
 
     return data;
@@ -1136,13 +1153,13 @@ export interface ICreateUpdatePageTemplateDto {
 pageId:number;
 templateId:number;
 order:number;
-page_slug:string;
+//
 }
 export class CreateUpdatePageTemplateDto implements ICreateUpdatePageTemplateDto {
   pageId:number;
   templateId:number;
   order:number;
-  page_slug:string;
+  // page_slug:string;
 
   constructor(data?: ICreateUpdatePageTemplateDto) {
     if (data) {
@@ -1158,7 +1175,7 @@ export class CreateUpdatePageTemplateDto implements ICreateUpdatePageTemplateDto
       this.pageId = _data["pageId"];
       this.templateId = _data["templateId"];
       this.order = _data["order"];
-      this. page_slug= _data["page_slug"];
+      // this. page_slug= _data["page_slug"];
 
 
     }
@@ -1176,7 +1193,7 @@ export class CreateUpdatePageTemplateDto implements ICreateUpdatePageTemplateDto
     data["pageId"] = this.pageId;
     data["templateId"] = this.templateId;
     data["order"] = this.order;
-    data["page_slug"] = this.page_slug;
+    // data["page_slug"] = this.page_slug;
 
 
     return data;

@@ -86,7 +86,9 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
   getAllPages() {
     this._pageService.getAllPages().subscribe((response: any) => {
+      console.log("itit")
       this.data = response.result.data;
+      console.log( this.data )
 
 
     })

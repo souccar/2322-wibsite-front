@@ -9,9 +9,11 @@
         <button type="button" class="btn btn-primary btn-md mb-1" (click)="addTemplate()"><i
             class="iconsminds-add"></i> Add Template</button>
       </div>
-      <div class="col-md-9 " style="width:100%;display: flex;justify-content: space-evenly;">
+      <div class="col-md-9 ">
         <div *ngFor="let pt of pageTemplates ;  let i=index">
+
           <div class=" row m-3" >
+
             <div class="col-md-6">
               <select  #templateIdEl  #templateIdModel="ngModel" name="pt.templateId{{i}}" required [(ngModel)]="pt.templateId" class="form-control">
                 <option *ngFor="let t of tamplates;let i=index" [value]="t.id">{{t.title}} </option>
@@ -32,6 +34,9 @@
             </div>
 
           </div>
+
+
+
         </div>
       </div>
 
