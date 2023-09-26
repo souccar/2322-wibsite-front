@@ -16,15 +16,13 @@ const MAX_SIZE: number = 1048576;
 export class CreateProductDialogComponent extends AppComponentBase
 
 implements OnInit {
-  saving = false;
-  files: File[] = [];
-  product = new CreateUpdateProductDto();
+   saving = false;
+   files: File[] = [];
+   product = new CreateUpdateProductDto();
    categories : CategoryForDropdownDto[] = [];
    brands:BrandForDropdownDto[]=[];
    skinType:SkinTypeForDropdownDto[]=[];
-  // sizes :CreateProductSizeDto[]=[];
-  // size:CreateProductSizeDto= new CreateProductSizeDto();
-  images:any;
+   images:any;
   @Output() onSave = new EventEmitter<any>();
   @ViewChild("imageCategoryNews") imageCategoryNews : ElementRef;
   constructor(
@@ -34,8 +32,6 @@ implements OnInit {
     public _brandService:BrandService,
     public _skinTypeServices:SkinTypeService,
     public bsModalRef: BsModalRef,
-    // public _sizeService:ProductSizeServiceProxy,
-
 
   ) {
     super(injector);
@@ -45,7 +41,6 @@ implements OnInit {
   ngOnInit(): void {
 
     this.product.images = [];
-    this.product.sizes = [];
     this.initCategory();
     this.initBrand();
     this.initSkinType()
@@ -78,9 +73,18 @@ implements OnInit {
   }
   save(): void {
     this.saving = true;
+    this.product.images=this.files;
+    // const myFormData=new FormData();
+    // myFormData.append("name",this.product.name);
+    // myFormData.append("point",this.product.point.toString());
+    // myFormData.append("categoryId",this.product.categoryId.toString());
+    // myFormData.append("brandId",this.product.brandId.toString());
+    // myFormData.append("skinTypeId",this.product.skinTypeId.toString());
+    // myFormData.append("images", this.product.images.toString())
     this._productService
+
     .insert(
-        this.product
+      this.product
         )
     .pipe(
         finalize(() => {
@@ -88,7 +92,6 @@ implements OnInit {
         })
     )
     .subscribe((response) => {
-      console.log(response);
       // this.notify.info(this.l('SavedSuccessfully'));
       this.bsModalRef.hide();
       this.onSave.emit();
@@ -96,32 +99,14 @@ implements OnInit {
     });
   }
 
-
-
-  addSize(){
-    // let size = new CreateProductSizeDto();
-     let size;
-     this.product.sizes.push(size);
-  }
-
-  removeSize(i:number){
-    this.product.sizes.splice(i,1);
-  }
-
-
-
-
-
-
-
   onSelect(event:any) {
-    this.images=event.addedFiles;
+    // this.images=event.addedFiles;
     for(var i=0;i<event.addedFiles.length;i++)
     {
-      this.images=event.addedFiles[i];
-
+      this.images.push(event.addedFiles[i]);
     }
-    this.files.push(this.images);
+    this.files=this.images;
+
 	}
 
 	onRemove(event:any) {
@@ -130,3 +115,4 @@ implements OnInit {
 
 
 }
+

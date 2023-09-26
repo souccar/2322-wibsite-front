@@ -66,7 +66,7 @@ export interface IReadCategoryDto {
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
-  image: any;
+  imagePath: any;
 }
 
 export class ReadCategoryDto implements IReadCategoryDto {
@@ -75,7 +75,7 @@ export class ReadCategoryDto implements IReadCategoryDto {
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
-  image: any;
+  imagePath: any;
 
 
   constructor(data?: ReadBrandDto) {
@@ -94,7 +94,7 @@ export class ReadCategoryDto implements IReadCategoryDto {
       this.name = _data["name"];
       this.description = _data["description"];
       this.point = _data["point"];
-      this.image = _data["image"];
+      this.imagePath = _data["imagePath"];
     }
   }
 
@@ -111,7 +111,7 @@ export class ReadCategoryDto implements IReadCategoryDto {
     data["name"] = this.name;
     data["description"] = this.description;
     data["point"] = this.point;
-    data["image"] = this.image;
+    data["imagePath"] = this.imagePath;
 
     return data;
   }
@@ -549,31 +549,31 @@ export class CreateUpdateProductDto implements ICreateUpdateProductDto {
     return result;
   }
 
-  toJSON(data?: any) {
-    data = typeof data === 'object' ? data : {};
-    data["name"] = this.name;
-    data["description"] = this.description;
-    data["point"] = this.point;
-    data["categoryId"] = this.categoryId;
-    data["brandId"] = this.brandId;
-    data["skinTypeId"] = this.skinTypeId;
-    if (Array.isArray(this.images)) {
-      data["images"] = [];
-      for (let item of this.images)
-        data["images"].push(item.toJSON());
-    }
-    if (Array.isArray(this.sizes)) {
-      data["sizes"] = [];
-      for (let item of this.sizes)
-        data["sizes"].push(item.toJSON());
-    }
-    return data;
-  }
+  // toJSON(data?: any) {
+  //   data = typeof data === 'object' ? data : {};
+  //   data["name"] = this.name;
+  //   data["description"] = this.description;
+  //   data["point"] = this.point;
+  //   data["categoryId"] = this.categoryId;
+  //   data["brandId"] = this.brandId;
+  //   data["skinTypeId"] = this.skinTypeId;
+  //   if (Array.isArray(this.images)) {
+  //     data["images"] = [];
+  //     for (let item of this.images)
+  //       data["images"].push(item.toJSON());
+  //   }
+  //   if (Array.isArray(this.sizes)) {
+  //     data["sizes"] = [];
+  //     for (let item of this.sizes)
+  //       data["sizes"].push(item.toJSON());
+  //   }
+  //   return data;
+  // }
 
   clone(): CreateUpdateCategoryDto {
-    const json = this.toJSON();
+    // const json = this.toJSON();
     let result = new CreateUpdateCategoryDto();
-    result.init(json);
+    // result.init(json);
     return result;
   }
 }

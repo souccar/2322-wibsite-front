@@ -9,6 +9,7 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
 import { finalize } from 'rxjs';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { EditProductDialogComponent } from './edit-product/edit-product-dialog.component';
+import { ViewProductDialogComponent } from './view-product/view-product-dialog.component';
 
 
 @Component({
@@ -147,6 +148,20 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
 
 deletebutton(id:number)
 {
+
+}
+viewModal(id:number)
+{
+  this._modalService.show(
+    ViewProductDialogComponent,
+    {
+      backdrop: true,
+      ignoreBackdropClick: true,
+      initialState: {
+        id: id,
+      },
+    }
+  );
 
 }
   protected delete(entity: ReadProductDto): void {
