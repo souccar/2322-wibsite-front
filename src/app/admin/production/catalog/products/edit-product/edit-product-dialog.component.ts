@@ -33,7 +33,9 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
   }
 
   ngOnInit(): void {
-
+    this. initCategory();
+    this.initBrand();
+    this.initSkinType();
     this.initialProduct();
   }
 
@@ -42,10 +44,15 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
   initialProduct(){
     this._productService.getById(this.id)
     .subscribe((result: any) => {
+
       console.log(result)
       this.product = result.result;
+      this.product.categoryId=result.result.category.id;
+      this.product.brandId=result.result.brand.id;
+      this.product.skinTypeId=result.result.skinType.id;
       this.image=result.result.imagePath;
     });
+    console.log(this.product);
   }
   initCategory()
   {

@@ -12,14 +12,10 @@ const MAX_SIZE: number = 1048576;
 })
 export class CreateCategoryDialogComponent extends AppComponentBase implements OnInit {
   files: File[] = [];
-  image:any;
+  images:any[]=[];
   saving = false;
   category = new CreateUpdateCategoryDto();
   @Output() onSave = new EventEmitter<any>();
-  imageSrc: any='assets/img/upload.png';
-  emptySrc = 'assets/img/upload.png';
-  // parentCategories: CategoryForDropdownDto[] = [];
-
   constructor(injector: Injector,
    public _categoryService: CategoryService,
     public bsModalRef: BsModalRef,
@@ -37,9 +33,15 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
 
 
   }
-	onSelect(event:any) {
-    this.image=event.addedFiles[0];
-    this.files.push(this.image);
+
+  onSelect(event:any) {
+    this.images=event.addedFiles;
+    this.files=this.images;
+     const file=new FormData();
+     file.append("images",this.images.toString());
+    // this._PageService.uploadImage(file).subscribe((response:any)=>{
+    //  this.page.imagePath=response
+    // })
 	}
 
 	onRemove(event:any) {
@@ -51,7 +53,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
     myFormData.append("name",this.category.name);
     myFormData.append("point",this.category.point.toString());
     myFormData.append("description",this.category.description);
-    myFormData.append("image",this.image);
+    // myFormData.append("image",this.image);
     console.log(this.category)
     this._categoryService
         .insert(

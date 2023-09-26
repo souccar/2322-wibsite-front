@@ -26,4 +26,5 @@ export class ProductService {
   {
      return this.http.post(this.baseUrl+'api/products'+'/'+id,product);
   }
+
 }
