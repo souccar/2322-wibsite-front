@@ -14,6 +14,7 @@ import { ProductsComponent } from './products/products.component';
 import { CreateProductDialogComponent } from './products/create-product/create-product-dialog.component';
 import { ViewCategoryDialogComponent } from './categories/view-category/view-category-dialog.component';
 import { ContextMenuService } from '@perfectmemory/ngx-contextmenu';
+import { EditProductDialogComponent } from './products/edit-product/edit-product-dialog.component';
 
 
 
@@ -27,6 +28,7 @@ import { ContextMenuService } from '@perfectmemory/ngx-contextmenu';
     ProductsComponent,
     CreateProductDialogComponent,
     ViewCategoryDialogComponent,
+    EditProductDialogComponent,
   ],
   imports: [
     CommonModule,

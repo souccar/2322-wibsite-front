@@ -2,9 +2,11 @@ import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChil
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
-import { CategoryForDropdownDto, CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
+import { BrandForDropdownDto, CategoryForDropdownDto, CreateUpdateProductDto, SkinTypeForDropdownDto } from 'src/shared/service-proxies/service-proxies';
+import { BrandService } from 'src/shared/services/brand-service/brand.service';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
+import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
 const MAX_SIZE: number = 1048576;
 @Component({
   selector: 'app-create-product-dialog',
@@ -18,6 +20,8 @@ implements OnInit {
   files: File[] = [];
   product = new CreateUpdateProductDto();
    categories : CategoryForDropdownDto[] = [];
+   brands:BrandForDropdownDto[]=[];
+   skinType:SkinTypeForDropdownDto[]=[];
   // sizes :CreateProductSizeDto[]=[];
   // size:CreateProductSizeDto= new CreateProductSizeDto();
   images:any;
@@ -27,6 +31,8 @@ implements OnInit {
     injector: Injector,
     public _productService: ProductService,
     public _categoryService :CategoryService,
+    public _brandService:BrandService,
+    public _skinTypeServices:SkinTypeService,
     public bsModalRef: BsModalRef,
     // public _sizeService:ProductSizeServiceProxy,
 
@@ -41,6 +47,8 @@ implements OnInit {
     this.product.images = [];
     this.product.sizes = [];
     this.initCategory();
+    this.initBrand();
+    this.initSkinType()
 
 
   }
@@ -52,9 +60,24 @@ implements OnInit {
     });
 
   }
+  initBrand()
+  {
+    this._brandService.getAll().subscribe((response:any)=>{
+
+        this.brands=response.result.data
+
+    })
+  }
+  initSkinType()
+  {
+    this._skinTypeServices.getAll().subscribe((response:any)=>{
+
+        this.skinType=response.result.data
+
+    })
+  }
   save(): void {
     this.saving = true;
-    console.log(this.product);
     this._productService
     .insert(
         this.product
@@ -64,7 +87,8 @@ implements OnInit {
         this.saving = false;
         })
     )
-    .subscribe(() => {
+    .subscribe((response) => {
+      console.log(response);
       // this.notify.info(this.l('SavedSuccessfully'));
       this.bsModalRef.hide();
       this.onSave.emit();

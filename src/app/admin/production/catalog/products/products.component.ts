@@ -8,6 +8,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { finalize } from 'rxjs';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
+import { EditProductDialogComponent } from './edit-product/edit-product-dialog.component';
 
 
 @Component({
@@ -125,9 +126,29 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
     // );
 
   }
+  editModal(id:number)
+  {
+    let editProductDialog: BsModalRef;
+    editProductDialog = this._modalService.show(
+        EditProductDialogComponent,
+        {
+          backdrop: true,
+          ignoreBackdropClick: true,
+          class: 'modal-right',
+          initialState: {
+            id: id,
+          },
+        }
+      );
+      editProductDialog.content.onSave.subscribe(() => {
+        this.refresh();
+      });
+  }
 
+deletebutton(id:number)
+{
 
-
+}
   protected delete(entity: ReadProductDto): void {
     // abp.message.confirm(
     //   this.l('ProductDeleteWarningMessage', this.selected.length, 'Products'),

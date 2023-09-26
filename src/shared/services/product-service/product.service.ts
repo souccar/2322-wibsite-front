@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,12 @@ export class ProductService {
   {
     console.log(product);
     return this.http.post(this.baseUrl+'api/products',product);
+  }
+  getById(id:number):any{
+    return this.http.get(this.baseUrl+'api/products'+'/'+id);
+  }
+  edit(id:number,product:CreateUpdateProductDto)
+  {
+     return this.http.post(this.baseUrl+'api/products'+'/'+id,product);
   }
 }

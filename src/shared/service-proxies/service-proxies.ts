@@ -242,6 +242,67 @@ export class ReadSkinTypeDto implements IReadSkinTypeDto {
 }
 
 /**
+*
+SkinType For Dropdown
+*/
+
+
+export class SkinTypeForDropdownDto implements ISkinTypeForDropdownDto {
+  id: number;
+  name: string | undefined;
+  // parentCategory: CategoryForDropdownDto;
+  readonly fullName: string | undefined;
+
+  constructor(data?: ISkinTypeForDropdownDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+  init(_data?: any) {
+    if (_data) {
+      this.id = _data["id"];
+      this.name = _data["name"];
+      // this.parentCategory = _data["parentCategory"] ? CategoryForDropdownDto.fromJS(_data["parentCategory"]) : <any>undefined;
+      (<any>this).fullName = _data["fullName"];
+    }
+  }
+
+  static fromJS(data: any): SkinTypeForDropdownDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new SkinTypeForDropdownDto();
+    result.init(data);
+    return result;
+  }
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["id"] = this.id;
+    data["name"] = this.name;
+    // data["parentCategory"] = this.parentCategory ? this.parentCategory.toJSON() : <any>undefined;
+    data["fullName"] = this.fullName;
+    return data;
+  }
+
+  clone(): SkinTypeForDropdownDto {
+    const json = this.toJSON();
+    let result = new SkinTypeForDropdownDto();
+    result.init(json);
+    return result;
+  }
+}
+
+export interface ISkinTypeForDropdownDto {
+  id: number;
+  name: string | undefined;
+  // parentCategory: CategoryForDropdownDto;
+  fullName: string | undefined;
+}
+
+/**
 * Brands
 */
 
@@ -361,6 +422,67 @@ export class ReadBrandDto implements IReadBrandDto {
   }
 }
 
+/**
+*
+Brand For Dropdown
+*/
+
+
+export class BrandForDropdownDto implements IBrandForDropdownDto {
+  id: number;
+  name: string | undefined;
+  // parentCategory: CategoryForDropdownDto;
+  readonly fullName: string | undefined;
+
+  constructor(data?: IBrandForDropdownDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+  init(_data?: any) {
+    if (_data) {
+      this.id = _data["id"];
+      this.name = _data["name"];
+      // this.parentCategory = _data["parentCategory"] ? CategoryForDropdownDto.fromJS(_data["parentCategory"]) : <any>undefined;
+      (<any>this).fullName = _data["fullName"];
+    }
+  }
+
+  static fromJS(data: any): BrandForDropdownDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new BrandForDropdownDto();
+    result.init(data);
+    return result;
+  }
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["id"] = this.id;
+    data["name"] = this.name;
+    // data["parentCategory"] = this.parentCategory ? this.parentCategory.toJSON() : <any>undefined;
+    data["fullName"] = this.fullName;
+    return data;
+  }
+
+  clone(): BrandForDropdownDto {
+    const json = this.toJSON();
+    let result = new BrandForDropdownDto();
+    result.init(json);
+    return result;
+  }
+}
+
+export interface IBrandForDropdownDto {
+  id: number;
+  name: string | undefined;
+  // parentCategory: CategoryForDropdownDto;
+  fullName: string | undefined;
+}
+
 
 /**
 * Products
@@ -371,6 +493,8 @@ export interface ICreateUpdateProductDto {
   description: string | undefined;
   point: number;
   categoryId: number | undefined;
+  brandId: number | undefined;
+  skinTypeId: number | undefined;
   images: any[];
   sizes: any[];
 }
@@ -379,6 +503,8 @@ export class CreateUpdateProductDto implements ICreateUpdateProductDto {
   description: string | undefined;
   point: number;
   categoryId: number | undefined;
+  brandId: number | undefined;
+  skinTypeId: number | undefined;
   images: any[];
   sizes: any[];
   // images: CreateProductImageDto[] | undefined;
@@ -401,6 +527,8 @@ export class CreateUpdateProductDto implements ICreateUpdateProductDto {
       this.description = _data["description"];
       this.point = _data["point"];
       this.categoryId = _data["categoryId"];
+      this.brandId = _data["brandId"];
+      this.skinTypeId = _data["skinTypeId"];
       if (Array.isArray(_data["images"])) {
         this.images = [] as any;
         for (let item of _data["images"])
@@ -427,6 +555,8 @@ export class CreateUpdateProductDto implements ICreateUpdateProductDto {
     data["description"] = this.description;
     data["point"] = this.point;
     data["categoryId"] = this.categoryId;
+    data["brandId"] = this.brandId;
+    data["skinTypeId"] = this.skinTypeId;
     if (Array.isArray(this.images)) {
       data["images"] = [];
       for (let item of this.images)
