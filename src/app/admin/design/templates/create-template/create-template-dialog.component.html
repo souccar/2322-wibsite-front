@@ -27,10 +27,12 @@
               [(ngModel)]="template.type"
               required
             >
-              <option value="0" selected>Default</option>
-              <option value="1">Slider</option>
-              <option value="2">Cards</option>
-              <option value="3">Video</option>
+
+
+              <option disabled [value]="0" selected>Default</option>
+              <option [value]="1">Slider</option>
+              <option [value]="2">Cards</option>
+              <option [value]="3">Video</option>
             </select>
             <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
           </div>
@@ -70,6 +72,7 @@
               required
             >
 
+            
               <option *ngFor="let s of slugs;let i=index" [value]="s.slug">{{s.title}} </option>
 
 

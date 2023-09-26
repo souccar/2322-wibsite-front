@@ -1,49 +1,74 @@
-<form class="form-horizontal " autocomplete="off" #createPageTemplateModal="ngForm" (ngSubmit)="save()">
-  <abp-modal-header [title]="'Create New Page Template' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
-  <div class="modal-body modal-lg">
-    <div class="form-group row required ">
-      <label class="col-md-3 col-form-label" for="pageTemplate">
-        {{ " Page Template" | translate }}
-      </label>
-      <div class="col-md-9">
-        <button type="button" class="btn btn-primary btn-md mb-1" (click)="addTemplate()"><i
-            class="iconsminds-add"></i> Add Template</button>
-      </div>
-      <div class="col-md-9 ">
-        <div *ngFor="let pt of pageTemplates ;  let i=index">
-
-          <div class=" row m-3" >
-
-            <div class="col-md-6">
-              <select  #templateIdEl  #templateIdModel="ngModel" name="pt.templateId{{i}}" required [(ngModel)]="pt.templateId" class="form-control">
-                <option *ngFor="let t of tamplates;let i=index" [value]="t.id">{{t.title}} </option>
-
-              </select>
-              <!-- <abp-validation-summary [control]="templateIdModel" [controlEl]="templateIdEl"></abp-validation-summary> -->
-            </div>
-            <div  class="col-md-5">
-              <input type="number" class="form-control" required name="pt.order{{i}}" [(ngModel)]="pt.order"
-                #pageTamplatesrModel="ngModel" #pageTamplatesEl style="height:30px">
-
-
-                <!-- <abp-validation-summary [control]="sizeModel" [controlEl]="sizeEl"></abp-validation-summary> -->
-            </div>
-            <div  class="col-md-1">
-                <button type="button" class="btn  btn-xs btn-outline-danger mb-1" (click)="removeTemplate(i)"><i
-                  class="iconsminds-remove"> </i></button>
-            </div>
-
+<form class="form-horizontal  " autocomplete="off" #createPageTemplateModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'Add New Page Template' | translate"
+    (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <tabset>
+    <tab class="m-3" heading="{{ 'Template' | translate }}">
+      <div class="modal-body modal-lg ">
+        <div class=" row  ">
+          <div class="col-md-9">
+            <button type="button" class="btn btn-primary btn-md mb-1" (click)="addTemplate()"><i
+                class="iconsminds-add"></i>
+                Add Template</button>
           </div>
+          <div class="form-group row required  ">
+          <div class="col-md-9 ">
+            <div class=" row m-3" *ngIf='addTemplatebuttonClicked'>
+              <div class="col-md-7"> <label>
+                  {{ " Page Template" | translate }}
+                </label>
+              </div>
+              <div class="col-md-4">
+                <div> <label>
+                    {{ " Order" | translate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let pt of pageTemplates ;  let i=index">
+              <div class=" row m-3">
+                <div class="col-md-7">
+                  <select #templateIdEl #templateIdModel="ngModel" name="pt.templateId{{i}}" required
+                    [(ngModel)]="pt.templateId" class="form-control">
+                    <option *ngFor="let t of tamplates;let i=index" [value]="t.id">{{t.title}} </option>
+                  </select>
+                  <!-- <abp-validation-summary [control]="templateIdModel" [controlEl]="templateIdEl"></abp-validation-summary> -->
+                </div>
+                <div class="col-md-4">
+                  <input type="number" class="form-control" required name="pt.order{{i}}" [(ngModel)]="pt.order"
+                    #pageTamplatesrModel="ngModel" #pageTamplatesEl style="height:30px">
+                  <!-- <abp-validation-summary [control]="sizeModel" [controlEl]="sizeEl"></abp-validation-summary> -->
+                </div>
+                <div class="col-md-1">
+                  <button type="button" class="btn  btn-xs btn-outline-danger mb-1" (click)="removeTemplate(i)"><i
+                      class="iconsminds-remove"> </i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+  
+  
+      </div>
+    </tab>
+    <tab class="m-3" heading="{{ 'Previous templates' | translate }}">   <div class="form-group row ">
+      <!-- <label class="col-form-label" for="previousTamplates">
+        {{ "Previous templates" | translate }}
+      </label> -->
+      <div *ngFor="let pt of previousTamplates ;  let i=index">
 
-
-
+        <div class="row">
+          
+          <div class="col-md-9">
+            <input type="text" class="form-control " name="previousTamplates" id="previousTamplates"
+              [value]="pt.templateName +' (Order = '+pt.order+')'" [readonly]="!editable" />
+          </div>
         </div>
       </div>
-
     </div>
-
-
-  </div>
+  </tab>
+   
+  </tabset>
   <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createPageTemplateModal.form.valid || saving"
     (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
 </form>

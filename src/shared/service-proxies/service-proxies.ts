@@ -1269,3 +1269,14 @@ export class ReadPageTemplateDto implements IReadPageTemplateDto {
   }
 }
 
+
+
+
+////previousTamplates
+
+export class PreviousTamplatesDto{
+  id:any;
+  templateName:any;
+  order:any;
+}
+

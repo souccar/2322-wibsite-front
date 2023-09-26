@@ -61,11 +61,11 @@ const data: IMenuItem[] = [
     },
 
         //Design
-        {
-          icon: 'simple-icon-picture',
-          label: 'Design',
-          to: `${adminRoot}/design`,
-          subs: [
+    {
+      icon: 'simple-icon-picture',
+      label: 'Design',
+      to: `${adminRoot}/design`,
+      subs: [
             {
               subs:[],
               icon: 'iconsminds-full-view-2',
@@ -78,8 +78,8 @@ const data: IMenuItem[] = [
               label: 'Pages',
               to: `${adminRoot}/design/page`,
             },
-          ],
-        },
+      ],
+    },
 
 ];
 export default data;

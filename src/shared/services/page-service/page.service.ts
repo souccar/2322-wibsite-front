@@ -16,7 +16,7 @@ export class PageService {
     return this.http.get(this.baseUrl+'api/getAllPages',{params});
   }
   getSlugs(){
-    return this.http.get(this.baseUrl+'api/getPages');
+    return this.http.get(this.baseUrl+'api/getPagesForDrobdown');
   }
   insert(pages:any)
   {
@@ -36,5 +36,9 @@ export class PageService {
     console.log(file)
     return  this.http.post(this.baseUrl+'api/uploadPageImage',file,{responseType: 'text'});
 
+  }
+
+  getTemplateForPage(pageId:number){
+    return this.http.get(this.baseUrl+'api/getAssociatedTemplates'+'/'+pageId);
   }
 }
