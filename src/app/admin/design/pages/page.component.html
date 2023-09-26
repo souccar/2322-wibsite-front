@@ -32,6 +32,15 @@
           </a>
         </ng-template>
       </ngx-datatable-column>
+      <ngx-datatable-column [name]="('slug')" prop="slug" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <a class="c-pointer">
+            <div [contextMenu]="basicMenu" [contextMenuSubject]="row">
+              {{ row.slug }}
+            </div>
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column [name]="('Description')" prop="description" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template >
           {{row.description}}
