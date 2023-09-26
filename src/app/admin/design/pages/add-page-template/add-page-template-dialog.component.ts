@@ -4,7 +4,8 @@ import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChil
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
-import { CreateUpdatePageTemplateDto, CreateUpdateTemplateDto, ReadTemplateDto } from 'src/shared/service-proxies/service-proxies';
+import { CreateUpdatePageTemplateDto, CreateUpdateTemplateDto, PreviousTamplatesDto, ReadTemplateDto } from 'src/shared/service-proxies/service-proxies';
+import { PageService } from 'src/shared/services/page-service/page.service';
 
 @Component({
   selector: 'app-add-page-template-dialog',
@@ -16,15 +17,19 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
   saving = false;
   pageTamplate = new CreateUpdatePageTemplateDto();
   pageTemplates: CreateUpdatePageTemplateDto[] = [];
+  previousTamplates: PreviousTamplatesDto[]=[]
   tamplates: ReadTemplateDto[] = [];
   image: any;
   imagePath = '';
+  editable: true;
+  addTemplatebuttonClicked=false;
   @Output() onSave = new EventEmitter<any>();
   @ViewChild("imageCategoryNews") imageCategoryNews: ElementRef;
   constructor(
     injector: Injector,
     public _pageTemplateService: PageTemplateService,
     public _templateService: TemplateService,
+    public _pageService: PageService,
     public bsModalRef: BsModalRef,
     // public _sizeService:ProductSizeServiceProxy,
   ) {
@@ -36,19 +41,25 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
     this.pageTemplates = []
     this.data.pageTemplates = [];
     this.initTamplats();
+    this. getTemplateForPage(this.id);
   }
 
   addTemplate() {
+    this.addTemplatebuttonClicked=true
     let pageTemplate = new CreateUpdatePageTemplateDto();
 
     pageTemplate.pageId = this.id;
 
     this.pageTemplates.push(pageTemplate);
-
-
-
   }
 
+
+  getTemplateForPage(id:number){
+    this._pageService.getTemplateForPage(id).subscribe((res:any)=>{
+      this.previousTamplates=res.result
+      console.log(this.previousTamplates);
+    })
+  }
   removeTemplate(i: number) {
     this.pageTemplates.splice(i, 1);
 

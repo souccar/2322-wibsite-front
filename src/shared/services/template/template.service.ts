@@ -13,7 +13,7 @@ export class TemplateService {
 
   getTemplates(params?:HttpParams)
   {
-    return this.http.get(this.baseUrl+'api/getTemplates',{params});
+    return this.http.get(this.baseUrl+'api/getTemplatesForDrobdown',{params});
   }
   getAllTemplates(params?:HttpParams)
   {
