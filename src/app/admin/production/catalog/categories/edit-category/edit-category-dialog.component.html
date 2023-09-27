@@ -10,7 +10,7 @@
             <input type="text" class="form-control" name="name" id="name" required
               [(ngModel)]="category.name" #nameModel="ngModel" #nameEl   />
 
-            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
               [(ngModel)]="category.description" #descriptionModel="ngModel" #descriptionEl >
               </textarea>
 
-            <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+            <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -35,7 +35,7 @@
             <input type="text" class="form-control" name="point" id="point" required
               [(ngModel)]="category.point" #pointModel="ngModel" #pointEl   />
 
-            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
           </div>
         </div>
 
@@ -45,15 +45,9 @@
             {{ "Image" | translate }}
         </label>
         <div class="col-md-9">
-          <div class="custom-dropzone" [multiple]="false"  ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-            <ngx-dropzone-label>
-              <div>
-                <h2>{{'Upload Image'|translate}}</h2>
-              </div>
-            </ngx-dropzone-label>
+          <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+           <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
 
-            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let im of image" [file]="im" [removable]="true" (removed)="onRemove(im)">
-              <h1>{{im}}</h1>
             </ngx-dropzone-image-preview>
           </div>
       </div>
