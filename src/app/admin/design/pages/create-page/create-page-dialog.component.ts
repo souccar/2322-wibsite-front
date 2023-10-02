@@ -31,11 +31,6 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
 
 
   ngOnInit(): void {
-
-
-
-
-
   }
   onSelect(event:any) {
     this.image=event.addedFiles[0];

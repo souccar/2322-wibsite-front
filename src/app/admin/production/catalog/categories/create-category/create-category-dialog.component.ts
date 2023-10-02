@@ -16,10 +16,6 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
   saving = false;
   category = new CreateUpdateCategoryDto();
   @Output() onSave = new EventEmitter<any>();
-  imageSrc: any='assets/img/upload.png';
-  emptySrc = 'assets/img/upload.png';
-  // parentCategories: CategoryForDropdownDto[] = [];
-
   constructor(injector: Injector,
    public _categoryService: CategoryService,
     public bsModalRef: BsModalRef,
@@ -31,15 +27,14 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
 
   }
 
-  uploadfile(event:Event)
-  {
-    this.category.image=(event.target as HTMLInputElement )?.files?.[0];
-
-
-  }
-	onSelect(event:any) {
+  onSelect(event:any) {
     this.image=event.addedFiles[0];
     this.files.push(this.image);
+    //  const file=new FormData();
+    //  file.append("images",this.images.toString());
+    // this._PageService.uploadImage(file).subscribe((response:any)=>{
+    //  this.page.imagePath=response
+    // })
 	}
 
 	onRemove(event:any) {

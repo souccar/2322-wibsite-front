@@ -79,7 +79,7 @@
             <h2>Select Image</h2>
           </div>
         </ngx-dropzone-label>
-        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"  *ngFor="let im of images " [removable]="true" [file]="im"(removed)="onRemove(im)">
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"  *ngFor="let im of files " [removable]="true" [file]="im"(removed)="onRemove(im)">
 
         </ngx-dropzone-image-preview>
       </div>

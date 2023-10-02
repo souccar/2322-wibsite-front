@@ -20,9 +20,9 @@ export class CategoryService {
   {
     return this.http.post(this.baseUrl+'api/categories',category);
   }
-  edit(id:number,skinType:CreateUpdateCategoryDto)
+  edit(id:number,category:any)
   {
-     return this.http.post(this.baseUrl+'api/categories'+'/'+id,skinType);
+     return this.http.post(this.baseUrl+'api/categories'+'/'+id,category);
   }
   delete(id:number)
   {
