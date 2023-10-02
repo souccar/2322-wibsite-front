@@ -49,6 +49,7 @@ import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
     NgxDatatableModule,
     NgxDropzoneModule,
     TabsModule.forRoot(),
+    
   ],
   exports: [
     RouterModule,

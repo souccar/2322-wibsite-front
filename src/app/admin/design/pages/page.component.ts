@@ -7,6 +7,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PageService } from 'src/shared/services/page-service/page.service';
 import { AddPageTemplateDialogComponent } from './add-page-template/add-page-template-dialog.component';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
+import { EditPageDialogComponent } from './edit-page/edit-page-dialog.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-page',
@@ -59,7 +61,9 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
   }
   deletebutton(id:number){
+   
     this._pageService.delete(id).subscribe((responce:any)=>{
+     
       window.location.reload();
     });
 
@@ -85,7 +89,10 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   }
 
   getAllPages() {
-    this._pageService.getAllPages().subscribe((response: any) => {
+    let params = new HttpParams().set('count', this.itemsPerPage) ;
+   
+  
+    this._pageService.getAllPages(params).subscribe((response: any) => {
       console.log("itit")
       this.data = response.result.data;
       console.log( this.data )
@@ -107,8 +114,8 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   }
 
   showAddNewModal(): void {
-    let createOrEditProductDialog: BsModalRef;
-    createOrEditProductDialog = this._modalService.show(
+    let createOrEditPageDialog: BsModalRef;
+    createOrEditPageDialog = this._modalService.show(
       CreatePageDialogComponent,
       {
         backdrop: true,
@@ -117,33 +124,33 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
       }
     );
-    createOrEditProductDialog.content.onSave.subscribe(() => {
+    createOrEditPageDialog.content.onSave.subscribe(() => {
       this.refresh();
     });
   }
 
   showEditModal(id: number): void {
-    // let EditProductDialog = this._modalService.show(
-    //   EditProductDialogComponent,
-    //   {
-    //     backdrop: true,
-    //     ignoreBackdropClick: true,
-    //     class: 'modal-right'
-    //     ,
-    //     initialState: {
-    //       id: id,
-    //     },
-    //   }
-    // );
-    // EditProductDialog.content.onSave.subscribe((respone) => {
-    //   this.refresh();
-    // });
+    let EditPageDialog = this._modalService.show(
+      EditPageDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        // class: 'modal-right'
+        // ,
+        initialState: {
+          id: id,
+        },
+      }
+    );
+    EditPageDialog.content.onSave.subscribe((respone) => {
+      this.refresh();
+    });
 
   }
 
   ViewDetail(id: number): void {
     // this._modalService.show(
-    //   ViewProductDialogComponent,
+    //   ViewPageDialogComponent,
     //   {
     //     backdrop: true,
     //     ignoreBackdropClick: true,
@@ -160,11 +167,11 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
   protected delete(entity: ReadPageDto): void {
     // abp.message.confirm(
-    //   this.l('ProductDeleteWarningMessage', this.selected.length, 'Products'),
+    //   this.l('PageDeleteWarningMessage', this.selected.length, 'Pages'),
     //   undefined,
     //   (result: boolean) => {
     //     if (result) {
-    //       this._productService.delete(entity.id).subscribe(() => {
+    //       this._PageService.delete(entity.id).subscribe(() => {
     //         abp.notify.success(this.l('SuccessfullyDeleted'));
     //         this.refresh();
     //       });
@@ -179,12 +186,12 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     // }
     // else {
     //   abp.message.confirm(
-    //     this.l('ProductDeleteWarningMessage', this.selected.length, 'Products'),
+    //     this.l('PageDeleteWarningMessage', this.selected.length, 'Pages'),
     //     undefined,
     //     (result: boolean) => {
     //       if (result) {
     //         this.selected.forEach(element => {
-    //           this._productService.delete(element.id).subscribe(() => {
+    //           this._PageService.delete(element.id).subscribe(() => {
     //             abp.notify.success(this.l('SuccessfullyDeleted'));
     //             this.refresh();
     //           });
@@ -279,7 +286,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   ): void {
     // request.keyword = this.search;
 
-    // this._productService
+    // this._PageService
     // .getAll()
     //   .pipe(
     //     finalize(() => {

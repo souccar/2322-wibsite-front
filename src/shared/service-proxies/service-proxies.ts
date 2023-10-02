@@ -583,6 +583,7 @@ export interface IReadProductDto {
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
+  category:{id:number ,name:string};
   images: any[];
 }
 
@@ -591,6 +592,7 @@ export class ReadProductDto implements IReadProductDto {
   name: string | undefined;
   description: string | undefined;
   point: number;
+  category:{id:number ,name:string};
   // parentCategoryId: number | undefined;
   images: any[];
 
@@ -611,6 +613,8 @@ export class ReadProductDto implements IReadProductDto {
       this.name = _data["name"];
       this.description = _data["description"];
       this.point = _data["point"];
+      this.category = _data["category"];
+    
       // this.image = _data["image"];
     }
   }
@@ -628,6 +632,7 @@ export class ReadProductDto implements IReadProductDto {
     data["name"] = this.name;
     data["description"] = this.description;
     data["point"] = this.point;
+    data["category"] = this.category;
     // data["image"] = this.image;
 
     return data;
@@ -1015,6 +1020,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
     data["link_title"] = this.link_title;
     data["page_slug"] = this.page_slug;
     data["numberOfColumns"] = this.numberOfColumns;
+    data["videoPath"] = this.videoPath;
     if (Array.isArray(this.childTemplates)) {
       data["childTemplates"] = [];
       for (let item of this.childTemplates)
@@ -1223,7 +1229,7 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
   page_slug:string;
 
 
-  constructor(data?: ReadTemplateDto) {
+  constructor(data?: ReadChildTemplateDto) {
     if (data) {
       for (var property in data) {
         if (data.hasOwnProperty(property))

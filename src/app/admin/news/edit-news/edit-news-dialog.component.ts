@@ -27,6 +27,7 @@ export class EditNewsDialogComponent  implements OnInit {
   }
   
   ngOnInit(): void {
+    
     this.initialNews();
   }
 
@@ -40,9 +41,9 @@ export class EditNewsDialogComponent  implements OnInit {
 	}
   initialNews() {
     this._newsService.getById(this.id).subscribe((result:any) => {
-      this.news=result.result[0];
+      this.news=result.result;
       // this.test=result.result.imagePath;
-      console.log(this.news);
+    
 
     });
   }
