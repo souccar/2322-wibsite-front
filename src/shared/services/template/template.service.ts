@@ -19,7 +19,7 @@ export class TemplateService {
   {
     return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
   }
-  getById(params?:HttpParams):any{
+  getById(params?:HttpParams){
     return this.http.get(this.baseUrl+'api/getWithChildren',{params});
   }
   insert(templates:any)

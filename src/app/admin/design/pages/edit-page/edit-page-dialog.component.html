@@ -46,7 +46,7 @@
         </div>
       </div>
           <!--Image-->
-       <div  class="form-group row"  >
+       <div   *ngIf="loaded" class="form-group row"  >
           <label class="col-md-3 col-form-label" for="image">
             {{ "Image" | translate }}
           </label>

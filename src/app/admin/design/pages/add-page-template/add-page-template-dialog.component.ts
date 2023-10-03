@@ -41,7 +41,7 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
     this.pageTemplates = []
     this.data.pageTemplates = [];
     this.initTamplats();
-    this. getTemplateForPage(this.id);
+    // this. getTemplateForPage(this.id);
   }
 
   addTemplate() {

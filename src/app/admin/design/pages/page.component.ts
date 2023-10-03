@@ -13,7 +13,7 @@ import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  
 })
 export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
@@ -93,9 +93,8 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
    
   
     this._pageService.getAllPages(params).subscribe((response: any) => {
-      console.log("itit")
       this.data = response.result.data;
-      console.log( this.data )
+  
 
 
     })

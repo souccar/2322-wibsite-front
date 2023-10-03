@@ -18,9 +18,9 @@ export class PageService {
   getSlugs(){
     return this.http.get(this.baseUrl+'api/getPagesForDrobdown');
   }
-  getById(id:number,params?:HttpParams)
+  getById(id:number)
   {
-    return this.http.get(this.baseUrl+'api/getForEdit'+'/'+id,{params});
+    return this.http.get(this.baseUrl+'api/getForEdit'+'/'+id);
   }
   insert(pages:any)
   {

@@ -176,15 +176,24 @@
             {{ "Video" | translate }}
           </label>
           <div class="col-md-9">
-            <!-- <youtube-player #vidoe videoId="XqZsoesa55w"></youtube-player> -->
-  
-            <iframe width="100%" height="100%" [src]="url">
-            </iframe>
+           
+              <input  [readonly]="!editable" type="text" class="form-control" name="template.videoPath" id="template.videoPath"
+                [(ngModel)]="template.videoPath" #videoPathModel="ngModel" #videoPathEl  data-bs-toggle="tooltip"
+                data-bs-placement="top" title="  {{ template.videoPath }}"/>
+              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+           
           </div>
         </div>
       
       </tab>
-
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
       <!-- child Template -->
 
       <tab
@@ -193,7 +202,7 @@
         heading="{{ 'Child Template' | translate }}"
       >
   
-      <ng-container *ngFor="let childs of template.childTemplates">
+      <ng-container *ngFor="let childs of template.child_templates">
         <!-- Type -->
         <div class="form-group row">
           <label class="col-md-3 col-form-label" for="childs.type">
@@ -301,26 +310,7 @@
             <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
           </div>
         </div>
-        <!-- video -->
-        <!-- <div
-          class="form-group row"
-          *ngIf="childs.type != 0 && childs.type != 1"
-        >
-          <label class="col-md-3 col-form-label" for="childs.videoPath">
-            {{ "Video Path" | translate }}
-          </label>
-          <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="childs.videoPath"
-              id="childs.videoPath"
-              [(ngModel)]="childs.videoPath"
-              #videoPathModel="ngModel"
-              #videoPathEl
-            />
-          </div>
-        </div> -->
+      
         <!-- link title -->
         <div class="form-group row" *ngIf="childs.type == 0">
           <label class="col-md-3 col-form-label" for="childs.link_title">
@@ -348,6 +338,28 @@
           <div class="col-md-9">
             <img src="{{baseUrl+childs.imagePath}}" alt="{{childs.description}} "
             style="width: 100%; height:100%;">
+          </div>
+        </div>
+          <!-- video -->
+          <div
+          class="form-group row"
+          *ngIf="childs.type != 0 && childs.type != 1"
+        >
+          <label class="col-md-3 col-form-label" for="childs.videoPath">
+            {{ "Video Path" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="childs.videoPath"
+              id="childs.videoPath"
+              [(ngModel)]="childs.videoPath"
+              #videoPathModel="ngModel"
+              #videoPathEl
+              data-bs-toggle="tooltip"
+                data-bs-placement="top" title="  {{ childs.videoPath }}"
+            />
           </div>
         </div>
       </ng-container>

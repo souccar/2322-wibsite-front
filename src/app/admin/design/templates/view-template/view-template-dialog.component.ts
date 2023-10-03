@@ -22,12 +22,12 @@ export class ViewTemplateDialogComponent implements OnInit  {
   id: number;
   editable: true;
   saving: boolean;
-  url: any;
+
   constructor(private _templateService: TemplateService,
     private _pageService:PageService,
     public bsModalRef: BsModalRef,
     private renderer: Renderer2,
-    private sanitizer:DomSanitizer
+
 
    ) { }
   
@@ -35,7 +35,7 @@ export class ViewTemplateDialogComponent implements OnInit  {
   ngOnInit(): void {
 
  
-    this.template.childTemplates=[]
+
     this.initTemplate();
     this.initSlug();
 
@@ -45,13 +45,6 @@ export class ViewTemplateDialogComponent implements OnInit  {
     let params = new HttpParams().set('id', this.id) ;
     this._templateService.getById(params).subscribe((res:any)=>{
       this.template=res.result;
-      this.template.childTemplates=res.result.child_templates;
-      console.log( this.template);
-     
-      this.videoId = this.template.videoPath.split("=")[1];
-      this.videoPath="https://www.youtube.com/embed/"+this.videoId ;
-      this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoPath);
-      console.log(this.videoPath);
 
     })
   }
@@ -60,16 +53,7 @@ export class ViewTemplateDialogComponent implements OnInit  {
       this.slugs=res.result;
     })
   }
-  displayChildTemplate()
-  {
 
-    // this._templateService.getIncluding(this.id).subscribe((result) => {
-
-    //   this.data = result;
-
-
-    // });
-  }
 
   save(): void {
     this.saving = true;

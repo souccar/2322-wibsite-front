@@ -16,6 +16,7 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
   id: number;
   page = new CreateUpdatePageDto();
   saving: boolean;
+  loaded=false;
   @Output() onSave = new EventEmitter<any>();
   ngOnInit(): void {
     this.initPage();
@@ -29,9 +30,9 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
   }
   initPage() {
     this._PageService.getById(this.id).subscribe((res:any) => {
-      console.log(res);
-      this.page=res.result;
 
+      this.page=res.result;
+      this.loaded=true;
     })
   }
 

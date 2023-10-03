@@ -66,7 +66,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
    
 
     this._templateService.getAllTemplates(params).subscribe((response:any)=>{
-      console.log(response.result.data);
+  
        this.data=response.result.data;
       //  console.log(this.data);
 
@@ -108,7 +108,6 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   deletebutton(id:number)
   {
     this._templateService.delete(id).subscribe((rec)=>{
-      console.log(rec)
       window.location.reload();
     })
   }

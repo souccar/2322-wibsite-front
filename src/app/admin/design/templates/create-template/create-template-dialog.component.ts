@@ -81,7 +81,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
 
   save(): void {
     this.saving = true;
-    this.template.childTemplates=this.tempChild;
+    this.template.child_templates=this.tempChild;
     console.log(this.template)
     this._templateService
     .insert(
