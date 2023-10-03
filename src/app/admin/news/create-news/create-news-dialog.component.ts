@@ -27,7 +27,9 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
   }
   onSelect(event:any) {
     this.image=event.addedFiles[0];
+
     this.files.push(this.image);
+    console.log( this.image);
 	}
 
 	onRemove(event:any) {

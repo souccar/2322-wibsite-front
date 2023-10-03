@@ -11,6 +11,9 @@ import { CreateTemplateDialogComponent } from './templates/create-template/creat
 import { AddPageTemplateDialogComponent } from './pages/add-page-template/add-page-template-dialog.component';
 import { ViewTemplateDialogComponent } from './templates/view-template/view-template-dialog.component';
 import { ComponentsCarouselModule } from '../components/carousel/components.carousel.module';
+import { EditTemplateDialogComponent } from './templates/edit-template/edit-template-dialog.component';
+import { EditPageDialogComponent } from './pages/edit-page/edit-page-dialog.component';
+import { ViewPageDialogComponent } from './pages/view-page/view-page-dialog.component';
 
 
 
@@ -24,6 +27,9 @@ import { ComponentsCarouselModule } from '../components/carousel/components.caro
     CreateTemplateDialogComponent,
     AddPageTemplateDialogComponent,
     ViewTemplateDialogComponent,
+    EditTemplateDialogComponent,
+    EditPageDialogComponent,
+    ViewPageDialogComponent,
 
   ],
   imports: [

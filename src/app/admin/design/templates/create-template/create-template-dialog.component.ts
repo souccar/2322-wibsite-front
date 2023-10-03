@@ -13,6 +13,7 @@ import { TemplateService } from 'src/shared/services/template/template.service';
 })
 export class CreateTemplateDialogComponent extends AppComponentBase implements OnInit {
   saving = false;
+  
   template = new CreateUpdateTemplateDto();
   childTemplate = new CreateUpdateChildTemplateDto();
   parentFiles: File[] = [];
@@ -28,9 +29,6 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
     public _templateService: TemplateService,
     private _pageService:PageService,
     public bsModalRef: BsModalRef,
-
-
-
   ) {
     super(injector);
   }
@@ -83,7 +81,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
 
   save(): void {
     this.saving = true;
-    this.template.childTemplates=this.tempChild;
+    this.template.child_templates=this.tempChild;
     console.log(this.template)
     this._templateService
     .insert(

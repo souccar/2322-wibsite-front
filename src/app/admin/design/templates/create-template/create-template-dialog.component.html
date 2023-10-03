@@ -54,6 +54,25 @@
             <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
           </div>
         </div>
+        <!-- description -->
+        <div class="form-group row" *ngIf="template.type != 2">
+            <label class="col-md-3 col-form-label" for="template.description">
+              {{ "Description" | translate }}
+            </label>
+            <div class="col-md-9">
+              <textarea
+                type="text"
+                class="form-control"
+                name="template.description"
+                id="template.description"
+                [(ngModel)]="template.description"
+                #descriptionModel="ngModel"
+                #descriptionEl
+              >
+              </textarea>
+              <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+            </div>
+        </div>
         <!-- Slug -->
         <div class="form-group row">
           <label class="col-md-3 col-form-label" for="template.page_slug">
@@ -78,25 +97,7 @@
             <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
           </div>
         </div>
-        <!-- description -->
-        <div class="form-group row" *ngIf="template.type != 2">
-          <label class="col-md-3 col-form-label" for="template.description">
-            {{ "Description" | translate }}
-          </label>
-          <div class="col-md-9">
-            <textarea
-              type="text"
-              class="form-control"
-              name="template.description"
-              id="template.description"
-              [(ngModel)]="template.description"
-              #descriptionModel="ngModel"
-              #descriptionEl
-            >
-            </textarea>
-            <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
-          </div>
-        </div>
+      
         <!-- video -->
         <div class="form-group row" *ngIf="template.type == 3">
           <label class="col-md-3 col-form-label" for="template.videoPath">

@@ -15,7 +15,8 @@ export class NewsService {
   {
     return this.http.get(this.baseUrl+'api/news',{params});
   }
-  getById(id:number):any{
+  getById(id:number):any{ 
+    console.log(id);
     return this.http.get(this.baseUrl+'api/news'+'/'+id);
   }
   insert(news:any)

@@ -1,0 +1,235 @@
+<form class="form-horizontal" autocomplete="off" #createTemplateModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'Edit Template' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body modal-lg">
+    <tabset>
+      <!-- parent Template -->
+      <tab class="m-3" heading="{{ 'Template' | translate }}">
+        <!-- Type -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.type">
+            {{ "Type" | translate }}
+          </label>
+          <div class="col-md-9">
+            <select class="form-control" aria-label="Type" id="template.type" name="template.type" #TypeEl
+              [(ngModel)]="template.type" required>
+              <option value="0">Default</option>
+              <option value="1">Slider</option>
+              <option value="2">Cards</option>
+              <option value="3">Video</option>
+            </select>
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- title -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.title">
+            {{ "Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="template.title" id="template.title" required
+              [(ngModel)]="template.title" #titleModel="ngModel" #titleEl />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- description -->
+        <div class="form-group row" *ngIf="template.type != 2">
+          <label class="col-md-3 col-form-label" for="template.description">
+            {{ "Description" | translate }}
+          </label>
+          <div class="col-md-9">
+            <textarea type="text" class="form-control" name="template.description" id="template.description"
+              [(ngModel)]="template.description" #descriptionModel="ngModel" #descriptionEl>
+              </textarea>
+            <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- Slug -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.page_slug">
+            {{ "Slug" | translate }}
+          </label>
+          <div class="col-md-9">
+            <select class="form-control" aria-label="Type" id="template.page_slug" name="template.page_slug" #TypeEl
+              [(ngModel)]="template.page_slug" required>
+
+
+              <option *ngFor="let s of slugs;let i=index" [value]="s.slug">{{s.title}} </option>
+
+
+            </select>
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+
+        <!-- Link title -->
+        <div class="form-group row" *ngIf="template.type != 2 && template.type != 3 && template.type != 1">
+          <label class="col-md-3 col-form-label" for="template.link_title">
+            {{ "Link Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="template.link_title" id="template.link_title"
+              [(ngModel)]="template.link_title" #link_titleModel="ngModel" #link_titleEl />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- number Columns -->
+        <div class="form-group row" *ngIf="template.type == 2 || template.type == 1   ">
+          <label class="col-md-3 col-form-label" for="template.numberOfColumns">
+            {{ "Number Of Columns" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="template.numberOfColumns" id="template.numberOfColumns"
+              [(ngModel)]="template.numberOfColumns" #numberOfColumnsModel="ngModel" #numberOfColumnsEl />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!--Image-->
+        <div class="form-group row" *ngIf="template.type != 2 && template.type != 3 && template.type != 1">
+          <label class="col-md-3 col-form-label" for="image">
+            {{ "Image" | translate }}
+          </label>
+          <div class="col-md-9">
+            <div class="custom-dropzone" [multiple]="false" ngx-dropzone [accept]="'image/*'"
+              (change)="onSelectParent($event)">
+              <ngx-dropzone-label>
+                <div>
+                  <h2>{{ "Upload Image" | translate }}</h2>
+                </div>
+              </ngx-dropzone-label>
+              <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of parentFiles" [file]="f"
+                [removable]="true" (removed)="onRemoveParent(f)">
+              </ngx-dropzone-image-preview>
+            </div>
+          </div>
+        </div>
+        
+        <!-- video -->
+        <div class="form-group row" *ngIf="template.type == 3">
+          <label class="col-md-3 col-form-label" for="template.videoPath">
+            {{ "Video Path" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="template.videoPath" id="template.videoPath"
+              [(ngModel)]="template.videoPath" #videoPathModel="ngModel" #videoPathEl />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+      
+        <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createTemplateModal.form.valid || saving"
+          (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+      </tab>
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- child Template -->
+
+      <tab *ngIf="template.type == 1 || template.type == 2" class="m-3" heading="{{ 'Child Template' | translate }}">
+        <div *ngFor="let childTemplate of template.child_templates ">
+          <!-- Type -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="childTemplate.type">
+              {{ "Type" | translate }}
+            </label>
+            <div class="col-md-9">
+              <select class="form-control" aria-label="Type" id="childTemplate" name="childTemplate" #TypeEl
+                [(ngModel)]="childTemplate.type">
+                <option value="0">slider Child</option>
+                <option value="1">card Child</option>
+              </select>
+              <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+            </div>
+          </div>
+          <!-- Title -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="childTemplate.title">
+              {{ "Title" | translate }}
+            </label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="childTemplate.title" id="childTemplate.title"
+                [(ngModel)]="childTemplate.title" #titleModel="ngModel" #titleEl />
+              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+            </div>
+          </div>
+          <!-- Slug -->
+          <div class="form-group row" *ngIf="childTemplate.type == 0">
+            <label class="col-md-3 col-form-label" for="childTemplate.page_slug">
+              {{ "Slug" | translate }}
+            </label>
+            <div class="col-md-9">
+
+              <select class="form-control" aria-label="Type" id="childTemplate.page_slug" name="childTemplate.page_slug"
+                #childTemplateEl [(ngModel)]="childTemplate.page_slug" required>
+
+                <option *ngFor="let s of slugs;let i=index" [value]="s.slug">{{s.title}} </option>
+
+
+              </select>
+              <!-- <abp-validation-summary [control]="page_slugModel" [controlEl]="page_slugEl"></abp-validation-summary> -->
+            </div>
+          </div>
+          <!-- Description -->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="childTemplate.description">
+              {{ "Description" | translate }}
+            </label>
+            <div class="col-md-9">
+              <textarea type="text" class="form-control" name="childTemplate.description" id="childTemplate.description"
+                [(ngModel)]="childTemplate.description" #descriptionModel="ngModel" #descriptionEl>
+            </textarea>
+              <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+            </div>
+          </div>
+          <!-- video -->
+          <div class="form-group row" *ngIf="childTemplate.type != 0 && childTemplate.type != 1">
+            <label class="col-md-3 col-form-label" for="childTemplate.videoPath">
+              {{ "Video Path" | translate }}
+            </label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="childTemplate.videoPath" id="childTemplate.videoPath"
+                [(ngModel)]="childTemplate.videoPath" #videoPathModel="ngModel" #videoPathEl />
+              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+            </div>
+          </div>
+          
+          <!-- link title -->
+          <div class="form-group row" *ngIf="childTemplate.type == 0">
+            <label class="col-md-3 col-form-label" for="childTemplate.link_title">
+              {{ "Link Title" | translate }}
+            </label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="childTemplate.link_title" id="childTemplate.link_title"
+                [(ngModel)]="childTemplate.link_title" #link_titleModel="ngModel" #link_titleEl />
+              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+            </div>
+          </div>
+          <!--Image-->
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="image">
+              {{ "Image" | translate }}
+            </label>
+            <div class="col-md-9">
+              <div class="custom-dropzone" [multiple]="false" ngx-dropzone [accept]="'image/*'"
+                (change)="onSelectChild($event)">
+                <ngx-dropzone-label>
+                  <div>
+                    <h2>{{ "Upload Image" | translate }}</h2>
+                  </div>
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of childeFiles" [file]="f"
+                  [removable]="true" (removed)="onRemoveChild(f)">
+                </ngx-dropzone-image-preview>
+              </div>
+            </div>
+          </div>
+
+          <a class="btn btn-primary" (click)="saveChild()">save child</a>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</form>

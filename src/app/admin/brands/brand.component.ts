@@ -23,7 +23,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
     // throw new Error('Method not implemented.');
   }
 
-  title = "Skin Type"
+  title = "Brand"
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
   itemOptionsOrders = [{ label:"name", value: "name" },];

@@ -35,20 +35,13 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
     this.initialCategory();
 
   }
-
-
-
   initialCategory() {
     this._categoryService.getById(this.id)
       .subscribe((result: any) => {
         this.category = result.result;
         this.base64 = result.result.base64;
-        console.log(this.base64);
         this.image = result.result.imagePath;
         this.tempImage = this.image.split("/");
-        console.log(this.tempImage[1]);
-        // this.pathImage=this.image.substr(0,22);
-        // console.log(this.pathImage);
         this.initImage();
       });
 
@@ -57,11 +50,8 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
   initImage() {
     const imageName = this.tempImage[1];
     const imageBlob = this.dataURItoBlob_new(this.base64);
-    console.log(imageBlob);
     const imageFile = new File([imageBlob], imageName, { type: "image/jpg" });
-    console.log(imageFile)
     this.files.push(imageFile);
-    console.log(this.files);
   }
   dataURItoBlob_new(dataURI) {
     var byteString;

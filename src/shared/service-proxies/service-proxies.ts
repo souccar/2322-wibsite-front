@@ -583,6 +583,7 @@ export interface IReadProductDto {
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
+  category:{id:number ,name:string};
   images: any[];
 }
 
@@ -591,6 +592,7 @@ export class ReadProductDto implements IReadProductDto {
   name: string | undefined;
   description: string | undefined;
   point: number;
+  category:{id:number ,name:string};
   // parentCategoryId: number | undefined;
   images: any[];
 
@@ -611,6 +613,8 @@ export class ReadProductDto implements IReadProductDto {
       this.name = _data["name"];
       this.description = _data["description"];
       this.point = _data["point"];
+      this.category = _data["category"];
+    
       // this.image = _data["image"];
     }
   }
@@ -628,6 +632,7 @@ export class ReadProductDto implements IReadProductDto {
     data["name"] = this.name;
     data["description"] = this.description;
     data["point"] = this.point;
+    data["category"] = this.category;
     // data["image"] = this.image;
 
     return data;
@@ -885,6 +890,7 @@ export interface IReadPageDto {
   imagePath: any;
   image_title: string;
   image_description: string;
+  sulg:string;
 }
 
 export class ReadPageDto implements IReadPageDto {
@@ -894,6 +900,7 @@ export class ReadPageDto implements IReadPageDto {
   imagePath: any;
   image_title: string;
   image_description: string;
+  sulg:string;
   constructor(data?: ReadPageDto) {
     if (data) {
       for (var property in data) {
@@ -912,6 +919,7 @@ export class ReadPageDto implements IReadPageDto {
       this.imagePath = _data["imagePath"];
       this.image_title = _data["image_title"];
       this.image_description = _data["image_description"];
+      this.sulg = _data["sulg"];
     }
   }
 
@@ -930,6 +938,7 @@ export class ReadPageDto implements IReadPageDto {
     data["imagePath"] = this.imagePath;
     data["image_title"] = this.image_title;
     data["image_description"] = this.image_description;
+    data["sulg"] = this.sulg;
     return data;
   }
 
@@ -955,7 +964,7 @@ export interface ICreateUpdateTemplateDto {
   videoPath:any;
   numberOfColumns:number;
   link_title: string;
-  childTemplates:CreateUpdateChildTemplateDto []
+  child_templates:CreateUpdateChildTemplateDto []
   page_slug:string;
 }
 export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
@@ -967,7 +976,7 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
   numberOfColumns:number;
   link_title: string;
   page_slug:string;
-  childTemplates:CreateUpdateChildTemplateDto []
+  child_templates:CreateUpdateChildTemplateDto []
   constructor(data?: ICreateUpdateTemplateDto) {
     if (data) {
       for (var property in data) {
@@ -987,6 +996,8 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
       this.videoPath = _data["videoPath"];
       this.numberOfColumns  = _data["numberOfColumns"];
       this.page_slug  = _data["page_slug"];
+
+
     //   if (Array.isArray(_data["childrenTemplates"])) {
     //     this.childrenTemplates = [] as any;
     //     for (let item of _data["childrenTemplates"])
@@ -1011,10 +1022,11 @@ export class CreateUpdateTemplateDto implements ICreateUpdateTemplateDto {
     data["link_title"] = this.link_title;
     data["page_slug"] = this.page_slug;
     data["numberOfColumns"] = this.numberOfColumns;
-    if (Array.isArray(this.childTemplates)) {
-      data["childTemplates"] = [];
-      for (let item of this.childTemplates)
-          data["childTemplates"].push(item.toJSON());
+    data["videoPath"] = this.videoPath;
+    if (Array.isArray(this.child_templates)) {
+      data["child_templates"] = [];
+      for (let item of this.child_templates)
+          data["child_templates"].push(item.toJSON());
   }
     return data;
   }
@@ -1037,7 +1049,7 @@ export interface IReadTemplateDto {
   videoPath:any;
   numberOfColumns:number;
   link_title: string;
-  childTemplates:CreateUpdateChildTemplateDto []
+  child_templates:CreateUpdateChildTemplateDto []
   page_slug:string;
 }
 
@@ -1051,7 +1063,7 @@ export class ReadTemplateDto implements IReadTemplateDto {
   numberOfColumns:number;
   link_title: string;
   page_slug:string;
-  childTemplates:CreateUpdateChildTemplateDto []
+  child_templates:CreateUpdateChildTemplateDto []
   constructor(data?: ReadTemplateDto) {
     if (data) {
       for (var property in data) {
@@ -1072,11 +1084,11 @@ export class ReadTemplateDto implements IReadTemplateDto {
       this.imagePath = _data["imagePath"];
       this.numberOfColumns = _data["numberOfColumns"];
       this.page_slug = _data["page_slug"];
-  //   if (Array.isArray(_data["childrenTemplates"])) {
-  //     this.childrenTemplates = [] as any;
-  //     for (let item of _data["childrenTemplates"])
-  //         this.childrenTemplates.push(CreateUpdateChildTemplateDto.fromJS(item));
-  // }
+    if (Array.isArray(_data["child_templates"])) {
+      this.child_templates = [] as any;
+      for (let item of _data["child_templates"])
+          this.child_templates.push(CreateUpdateChildTemplateDto.fromJS(item));
+  }
 
     }
   }
@@ -1098,10 +1110,10 @@ export class ReadTemplateDto implements IReadTemplateDto {
     data["link_title"] = this.link_title;
     data["numberOfColumns"] = this.numberOfColumns;
     data["page_slug"] = this.page_slug;
-    if (Array.isArray(this.childTemplates)) {
-      data["childTemplates"] = [];
-      for (let item of this.childTemplates)
-          data["childTemplates"].push(item.toJSON());
+    if (Array.isArray(this.child_templates)) {
+      data["child_templates"] = [];
+      for (let item of this.child_templates)
+          data["child_templates"].push(item.toJSON());
   }
 
     return data;
@@ -1219,7 +1231,7 @@ export class ReadChildTemplateDto implements IReadChildTemplateDto {
   page_slug:string;
 
 
-  constructor(data?: ReadTemplateDto) {
+  constructor(data?: ReadChildTemplateDto) {
     if (data) {
       for (var property in data) {
         if (data.hasOwnProperty(property))

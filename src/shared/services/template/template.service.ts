@@ -19,11 +19,12 @@ export class TemplateService {
   {
     return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
   }
-  getById(id:number):any{
-    return this.http.get(this.baseUrl+'api/templates'+'/'+id);
+  getById(params?:HttpParams){
+    return this.http.get(this.baseUrl+'api/getWithChildren',{params});
   }
   insert(templates:any)
   {
+    console.log(templates)
     return this.http.post(this.baseUrl+'api/templates',templates,{headers:{
       "Content-Type": "application/json"
   }});

@@ -6,11 +6,13 @@ import { CreateTemplateDialogComponent } from './create-template/create-template
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TemplateService } from 'src/shared/services/template/template.service';
 import { ViewTemplateDialogComponent } from './view-template/view-template-dialog.component';
+import {  EditTemplateDialogComponent } from './edit-template/edit-template-dialog.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss']
+
 })
 export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto> {
 
@@ -59,8 +61,12 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
 
   getAllTemplates()
   {
-    this._templateService.getAllTemplates().subscribe((response:any)=>{
-      console.log(response.result.data);
+
+    let params = new HttpParams().set('count', this.itemsPerPage) ;
+   
+
+    this._templateService.getAllTemplates(params).subscribe((response:any)=>{
+  
        this.data=response.result.data;
       //  console.log(this.data);
 
@@ -68,7 +74,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   }
   ViewChildTemplate(id:number)
   {
-    console.log(id);
+   
 
       this._modalService.show(
         ViewTemplateDialogComponent,
@@ -86,11 +92,24 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   }
   editModal(id:number)
   {
+    this._modalService.show(
+      EditTemplateDialogComponent ,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+
+        initialState: {
+          id: id,
+        },
+      }
+    );
 
   }
   deletebutton(id:number)
   {
-
+    this._templateService.delete(id).subscribe((rec)=>{
+      window.location.reload();
+    })
   }
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);

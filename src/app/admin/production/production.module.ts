@@ -15,7 +15,7 @@ import { SharedModule } from 'src/shared/shared.module';
   imports: [
     CommonModule,
     CatalogModule,
-      SharedModule,
+    SharedModule,
     ProductionRoutingModule,
 
 
