@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
@@ -25,6 +25,21 @@ export class ProductService {
   edit(id:number,product:CreateUpdateProductDto)
   {
      return this.http.post(this.baseUrl+'api/products'+'/'+id,product);
+  }
+
+  getByCategory(params:HttpParams)
+  {
+     return this.http.get(this.baseUrl+'api/productsByCategoryId',{params});
+  }
+
+  getByBrand(params:HttpParams)
+  {
+     return this.http.get(this.baseUrl+'api/productsByBrandId',{params});
+  }
+
+  getBySkinType(params:HttpParams)
+  {
+     return this.http.get(this.baseUrl+'api/productsBySkinTypeId',{params});
   }
 
 }

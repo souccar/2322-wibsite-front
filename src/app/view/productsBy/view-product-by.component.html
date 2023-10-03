@@ -1,0 +1,114 @@
+<app-heading></app-heading><br /><br /><br />
+
+<br />
+<hr class="text-primary" />
+<div class="row">
+    <div class="col-lg-3 col-md-12 col-sm-12 m-3 text-center">
+        <h1 class=" text-primary">The Products</h1>
+    </div>
+</div>
+
+<br />
+<hr class="text-primary" />
+<div class="row">
+    <!-- <div class="col-md-8 mb-4"> -->
+
+        <!-- <app-glide [settings]="{
+    gap: 0,
+    type: 'carousel',
+    perView: 3,
+    hideNav: true,
+    breakpoints: { '600': { perView: 1 }, '1000': { perView: 2 } }
+  }"> -->
+            <!-- <div *ngFor="let item of products" class="col-md-6 mb-4 glide__slide">
+
+                <div class="card">
+                    <div class="position-relative">
+                        <img class="card-img-top" [src]="baseUrl+item.images[0]" alt="Card image cap">
+                        <span *ngFor="let badge of badges"
+                            class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{badge}}</span>
+                    </div>
+                    <div class="card-body text-primary text-center p-4">
+                        <app-rating></app-rating>
+                        <h6 class="mb-4">{{item.name}}</h6>
+                    </div>
+                    <footer>
+                        <a type="button" href="product"
+                            class="btn btn-primary btn-grad  m-2 w-80 position-absolute bottom-0 start-50 translate-middle-x">Read
+                            More</a>
+                    </footer>
+
+                </div>
+
+            </div> -->
+        <!-- </app-glide> -->
+
+    </div>
+<!-- </div> -->
+
+
+<!-- <div id="carouselCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner" style="overflow: visible;">
+      <div class="carousel-item active" *ngFor="let item of products" >
+        <img  [src]="baseUrl+item.images[0].imagePath" class=" w-100 homeImage " alt="...">
+        <div class=" d-none d-md-block image-text">
+          <p class="text-primary h2">{{item.name}}</p>
+            <p class="text-primary mb-0">{{item.description}}</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> -->
+
+
+  <!-- <div class="card-group">
+    <div *ngFor="let item of products" class="card gap: 50px;">
+      <img [src]="baseUrl+item.images[0]" class="card-img-top" alt="...">
+      <div class="card-body">
+        <app-rating></app-rating>
+        <h5 class="card-title">{{item.name}}</h5>
+        <p class="card-text">{{item.description}}</p>
+      </div>
+  </div> -->
+
+  <div class="container">
+    <div class="row">
+        <div *ngFor="let item of products" class="col-md-6 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image">
+                        <img class="pic-1" [src]="baseUrl+item.images[0]">
+                        <img class="pic-2" [src]="baseUrl+item.images[0]">
+                    </a>
+                     <!-- <span *ngFor="let badge of badges" class="product-sale-label">sale!</span> -->
+                    <ul class="social">
+                        <li *ngFor="let badge of badges"><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                    </ul>
+                    <br>
+                    
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">{{item.name}}</a></h3>
+                    <footer>
+                      <a type="button" href="product"
+                          class="btn btn-primary btn-grad  m-2 w-80    ">Read
+                          More</a>
+                  </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

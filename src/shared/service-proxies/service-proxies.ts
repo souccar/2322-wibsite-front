@@ -592,10 +592,10 @@ export class ReadProductDto implements IReadProductDto {
   description: string | undefined;
   point: number;
   // parentCategoryId: number | undefined;
-  images: any[];
+  images: any[] = [];
 
 
-  constructor(data?: ReadBrandDto) {
+  constructor(data?: ReadProductDto) {
     if (data) {
       for (var property in data) {
         if (data.hasOwnProperty(property))
@@ -615,9 +615,9 @@ export class ReadProductDto implements IReadProductDto {
     }
   }
 
-  static fromJS(data: any): ReadBrandDto {
+  static fromJS(data: any): ReadProductDto {
     data = typeof data === 'object' ? data : {};
-    let result = new ReadBrandDto();
+    let result = new ReadProductDto();
     result.init(data);
     return result;
   }
@@ -633,9 +633,9 @@ export class ReadProductDto implements IReadProductDto {
     return data;
   }
 
-  clone(): ReadBrandDto {
+  clone(): ReadProductDto {
     const json = this.toJSON();
-    let result = new ReadBrandDto();
+    let result = new ReadProductDto();
     result.init(json);
     return result;
   }

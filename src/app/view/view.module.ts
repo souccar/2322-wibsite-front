@@ -9,22 +9,27 @@ import { FormsModule } from '@angular/forms';
 import { BasicComponentModule } from '../admin/components/basic-component.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ViewProductByComponent } from './productsBy/view-product-by.component';
+import { CommonModule } from '@angular/common';
+import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
 @NgModule({
   declarations: [
      HomeComponent,
+     ViewProductByComponent,
 
   ],
   imports: [
     ViewRoutingModule,
     // SharedModule,
     FormsModule,
+    CommonModule,    
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
     TranslateModule,
     LayoutModule,
     BasicComponentModule,
+    // ComponentsCarouselModule,
     // TranslateModule.forRoot(),
-
   ],
   schemas:[
     NO_ERRORS_SCHEMA
