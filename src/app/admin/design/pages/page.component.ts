@@ -64,7 +64,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
    
     this._pageService.delete(id).subscribe((responce:any)=>{
      
-      window.location.reload();
+      this.getAllPages();
     });
 
   }
@@ -76,7 +76,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        // class: 'modal-right',
+        // class: 'modal-lg',
         initialState: {
           id: id,
         },
@@ -84,7 +84,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       }
     );
     addTemplateDialog.content.onSave.subscribe(() => {
-      // window.location.reload();
+      this.getAllPages();
     });
   }
 

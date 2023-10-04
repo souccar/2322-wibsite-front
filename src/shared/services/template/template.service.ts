@@ -24,9 +24,9 @@ export class TemplateService {
   }
   insert(templates:any)
   {
-    console.log(templates)
     return this.http.post(this.baseUrl+'api/templates',templates,{headers:{
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+   
   }});
   }
   edit(id:number,templates:any)

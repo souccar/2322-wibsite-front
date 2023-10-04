@@ -78,7 +78,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
   }
   deletebutton(id:number){
     this._newsService.delete(id).subscribe((responce:any)=>{
-      window.location.reload();
+      this.getAllNews()
     });
   
   }
@@ -97,7 +97,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
         }
       );
       editNewsDialog.content.onSave.subscribe(() => {
-        window.location.reload();
+        this.getAllNews()
       });
   
     }
@@ -233,7 +233,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
       }
     );
     createOrEditNewsDialog.content.onSave.subscribe(() => {
-      window.location.reload();
+      this.getAllNews();
     });
   }
   // item: ReadNewsDto

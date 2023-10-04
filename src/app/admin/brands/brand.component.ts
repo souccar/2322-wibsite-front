@@ -80,7 +80,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
   }
   deletebutton(id:number){
     this._brandService.delete(id).subscribe((responce:any)=>{
-      window.location.reload();
+      this.getAllBrand();
     });
   
   }
@@ -98,7 +98,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
         }
       );
       editBrandDialog.content.onSave.subscribe(() => {
-        window.location.reload();
+        this.getAllBrand();
       });
   
     }
@@ -234,7 +234,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
       }
     );
     createOrEditBrandDialog.content.onSave.subscribe(() => {
-      window.location.reload();
+     this.getAllBrand();
     });
   }
   // item: ReadBrandDto
