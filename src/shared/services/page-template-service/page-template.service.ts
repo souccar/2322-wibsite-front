@@ -17,8 +17,7 @@ export class PageTemplateService {
   }
   insert(pages:any )
   {
-    console.log( "insert api");
-    console.log(pages);
+
     return this.http.post(this.baseUrl+'api/pageTemplates',pages,{headers:{
       "Content-Type": "application/json"
   }} );

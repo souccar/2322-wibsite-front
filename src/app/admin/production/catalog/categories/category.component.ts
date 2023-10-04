@@ -120,7 +120,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   }
   deletebutton(id:number){
     this._categoryService.delete(id).subscribe((responce:any)=>{
-      window.location.reload();
+      this.getAllCategory()
     });
 
   }

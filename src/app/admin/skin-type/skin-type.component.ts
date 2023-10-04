@@ -59,7 +59,7 @@ export class SkinTypeComponent implements OnInit {
 
   deletebutton(id:number){
     this._skinTypeService.delete(id).subscribe((responce:any)=>{
-      window.location.reload();
+      this.getAllSkinType()
     });
   
   }
@@ -169,7 +169,7 @@ export class SkinTypeComponent implements OnInit {
       }
     );
     editSkinTypeDialog.content.onSave.subscribe(() => {
-      window.location.reload();
+      this.getAllSkinType()
     });
 
 }
@@ -200,7 +200,7 @@ export class SkinTypeComponent implements OnInit {
       }
     );
     createOrEditSkinTypeDialog.content.onSave.subscribe(() => {
-      window.location.reload();
+      this.getAllSkinType()
     });
   }
   // item: ReadSkinTypeDto

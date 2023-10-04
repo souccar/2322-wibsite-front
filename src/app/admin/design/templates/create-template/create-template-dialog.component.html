@@ -76,7 +76,7 @@
         <!-- Slug -->
         <div class="form-group row">
           <label class="col-md-3 col-form-label" for="template.page_slug">
-            {{ "Slug" | translate }}
+            {{ "Page" | translate }}
           </label>
           <div class="col-md-9">
             <select
@@ -194,6 +194,16 @@
         ></abp-modal-footer>
       </tab>
 
+
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
+      <!-- //////////////////////// -->
       <!-- child Template -->
 
       <tab
@@ -202,7 +212,7 @@
         heading="{{ 'Child Template' | translate }}"
       >
         <!-- Type -->
-        <div class="form-group row">
+        <!-- <div class="form-group row">
           <label class="col-md-3 col-form-label" for="childTemplate.type">
             {{ "Type" | translate }}
           </label>
@@ -218,9 +228,8 @@
               <option value="0">slider Child</option>
               <option value="1">card Child</option>
             </select>
-            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
           </div>
-        </div>
+        </div> -->
         <!-- Title -->
         <div class="form-group row">
           <label class="col-md-3 col-form-label" for="childTemplate.title">
@@ -242,7 +251,7 @@
         <!-- Slug -->
         <div class="form-group row" *ngIf="childTemplate.type == 0">
           <label class="col-md-3 col-form-label" for="childTemplate.page_slug">
-            {{ "Slug" | translate }}
+            {{ "Page" | translate }}
           </label>
           <div class="col-md-9">
 
