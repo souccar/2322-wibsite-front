@@ -148,6 +148,9 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
 
 deletebutton(id:number)
 {
+  this._productService.delete(id).subscribe((responce:any)=>{
+    window.location.reload();
+  });
 
 }
 viewModal(id:number)

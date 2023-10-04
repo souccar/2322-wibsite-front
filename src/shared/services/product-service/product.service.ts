@@ -22,9 +22,18 @@ export class ProductService {
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/products'+'/'+id);
   }
-  edit(id:number,product:CreateUpdateProductDto)
+  edit(id:number,product:any)
   {
      return this.http.post(this.baseUrl+'api/products'+'/'+id,product);
+  }
+  delete(id:number)
+  {
+    return this.http.delete(this.baseUrl+'api/products'+'/'+id);
+  }
+  uploadImage(file:any)
+  {
+    return  this.http.post(this.baseUrl+'api/uploadProductImages',file);
+
   }
 
 }

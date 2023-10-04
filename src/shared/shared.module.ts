@@ -19,6 +19,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
+import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
 
 
 
@@ -49,6 +50,7 @@ import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
     NgxDatatableModule,
     NgxDropzoneModule,
     TabsModule.forRoot(),
+    ComponentsCarouselModule
   ],
   exports: [
     RouterModule,
@@ -64,7 +66,8 @@ import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
     FormsModule,
     ReactiveFormsModule,
     TabsModule,
-    ContextMenuModule
+    ContextMenuModule,
+    ComponentsCarouselModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

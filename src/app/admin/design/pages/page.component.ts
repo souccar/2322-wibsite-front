@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PageService } from 'src/shared/services/page-service/page.service';
 import { AddPageTemplateDialogComponent } from './add-page-template/add-page-template-dialog.component';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
+import { ViewPageDialogComponent } from './view-page/view-page-dialog.component';
 
 @Component({
   selector: 'app-page',
@@ -83,7 +84,19 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       // window.location.reload();
     });
   }
-
+  viewPage(id:number)
+  {
+    this._modalService.show(
+      ViewPageDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        initialState: {
+          id: id,
+        },
+      }
+    );
+  }
   getAllPages() {
     this._pageService.getAllPages().subscribe((response: any) => {
       console.log("itit")
