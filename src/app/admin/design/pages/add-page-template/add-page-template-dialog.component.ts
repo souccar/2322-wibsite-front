@@ -21,7 +21,6 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
   previousTamplates: PreviousTamplatesDto[] = []
   tamplates: ReadTemplateDto[] = [];
   image: any;
-  imagePath = '';
   editable: true;
   dataLoaded = false;
   @Output() onSave = new EventEmitter<any>();
@@ -33,7 +32,6 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
     public _templateService: TemplateService,
     public _pageService: PageService,
     public bsModalRef: BsModalRef,
-    // public _sizeService:ProductSizeServiceProxy,
   ) {
     super(injector);
   }
@@ -89,9 +87,6 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
       this.data.pageTemplates.push(this.defultTemplate)
     if (this.pageTemplates.length > 0)
       this.data.pageTemplates.concat(this.pageTemplates)
-    console.log(this.data)
-
-
     this._pageTemplateService
       .insert(
         this.data

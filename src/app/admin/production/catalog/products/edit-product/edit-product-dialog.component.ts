@@ -101,7 +101,7 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
     })
     this.product.images = this.imagePaths;
     this._productService.edit(this.id, this.product).subscribe((response) => {
-
+      this.bsModalRef.hide();
     })
 
   }

@@ -38,7 +38,6 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
      const file=new FormData();
      file.append("image",this.image);
     this._PageService.uploadImage(file).subscribe((response:any)=>{
-      console.log(response);
      this.page.imagePath=response
     })
 	}
@@ -48,7 +47,7 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
 	}
 
   save(): void {
-    console.log(this.page);
+    console.log(this.page)
     this.saving = true;
 
     this._PageService

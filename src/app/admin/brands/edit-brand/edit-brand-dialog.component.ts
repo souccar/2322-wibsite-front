@@ -33,7 +33,6 @@ export class EditBrandDialogComponent extends AppComponentBase  implements OnIni
 
   save(): void {
     this.saving = true;
-    console.log(this.brand);
     this._brandService.edit(this.id,this.brand).subscribe(
       () => {
         // this.notify.info(this.l('SavedSuccessfully'));

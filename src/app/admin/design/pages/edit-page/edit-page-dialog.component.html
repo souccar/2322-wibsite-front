@@ -8,7 +8,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="title" id="title" required  [(ngModel)]="page.title"
             #titleModel="ngModel" #titleEl />
-          <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          <abp-validation-summary [control]="titleModel" [controlEl]="titleEl"></abp-validation-summary>
         </div>
       </div>
       <div class="form-group row required">
@@ -19,7 +19,7 @@
           <textarea  type="text" class="form-control" name="description" id="description"
             [(ngModel)]="page.description" #descriptionModel="ngModel" #descriptionEl required >
             </textarea>
-          <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+          <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary>
         </div>
       </div>
 
@@ -31,7 +31,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="image_title" id="image_title"
             [(ngModel)]="page.image_title" #image_titleModel="ngModel" #image_titleEl />
-          <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+          <abp-validation-summary [control]="image_titleModel" [controlEl]="image_titleEl"></abp-validation-summary>
         </div>
       </div>
 
@@ -42,7 +42,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="image_description" id="image_description"
             [(ngModel)]="page.image_description" #image_descriptionModel="ngModel" #image_descriptioncEl />
-          <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+          <abp-validation-summary [control]="image_descriptionModel" [controlEl]="image_descriptioncEl"></abp-validation-summary>
         </div>
       </div>
          <!--Image-->

@@ -15,16 +15,16 @@
             <div class=" mb-2 col-md-8">
               <select #templateIdEl #templateIdModel="ngModel" name="defultTemplate" required
                 [(ngModel)]="defultTemplate.templateId" class="form-control">
-        
+
                 <option *ngFor="let t of tamplates;let i=index" [value]="t.id">{{t.title}} </option>
               </select>
-              <!-- <abp-validation-summary [control]="templateIdModel" [controlEl]="templateIdEl"></abp-validation-summary> -->
+              <abp-validation-summary [control]="templateIdModel" [controlEl]="templateIdEl"></abp-validation-summary>
             </div>
             <div class=" mb-2  col-md-3 ">
               <input type="number" class="form-control" required name="pt.order{{defultTemplate}}"
                 [(ngModel)]="defultTemplate.order" #pageTamplatesrModel="ngModel" #pageTamplatesEl placeholder="Order"
                 style="height:30px">
-              <!-- <abp-validation-summary [control]="sizeModel" [controlEl]="sizeEl"></abp-validation-summary> -->
+              <abp-validation-summary [control]="pageTamplatesrModel" [controlEl]="pageTamplatesEl"></abp-validation-summary>
             </div>
             <div class=" mb-2 col-md-1">
               <button type="button" class="btn  btn-xs btn-outline-danger mb-1"(click)="removedefultTemplate()"
@@ -32,9 +32,9 @@
             </div>
           </div>
           </div>
-        
+
           <div class="col-md-11  form-group">
-           
+
 
               <ng-container *ngFor="let pt of pageTemplates ;  let i=index">
                 <div class=" row mb-2">
@@ -44,12 +44,12 @@
 
                       <option *ngFor="let t of tamplates;let i=index" [value]="t.id">{{t.title}} </option>
                     </select>
-                    <!-- <abp-validation-summary [control]="templateIdModel" [controlEl]="templateIdEl"></abp-validation-summary> -->
+                    <abp-validation-summary [control]="templateIdModel" [controlEl]="templateIdEl"></abp-validation-summary>
                   </div>
                   <div class="col-md-3">
                     <input type="number" class="form-control" required name="pt.order{{i}}" [(ngModel)]="pt.order"
                       #pageTamplatesrModel="ngModel" #pageTamplatesEl placeholder="Order" style="height:30px">
-                    <!-- <abp-validation-summary [control]="sizeModel" [controlEl]="sizeEl"></abp-validation-summary> -->
+                    <abp-validation-summary [control]="pageTamplatesrModel" [controlEl]="pageTamplatesEl"></abp-validation-summary>
                   </div>
                   <div class="col-md-1">
                     <button type="button" class="btn  btn-xs btn-outline-danger " (click)="removeTemplate(i)"><i

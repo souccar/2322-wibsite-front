@@ -61,18 +61,20 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
 
     return new Blob([ia], { type: mimeString });
   }
-  onSelect(event: any) {
-    this.image = event.addedFiles[0];
+  onSelect(event:any) {
+    this.image=event.addedFiles[0];
     this.files.push(this.image);
-    this._PageService.uploadImage(this.files).subscribe((response:any)=>{
-      this.page.imagePath=response;
+     const file=new FormData();
+     file.append("image",this.image);
+    this._PageService.uploadImage(file).subscribe((response:any)=>{
+      console.log(response);
+     this.page.imagePath=response
     })
+	}
 
-  }
-
-  onRemove(event: any) {
-    this.files.splice(this.files.indexOf(event), 1);
-  }
+	onRemove(event:any) {
+		this.files.splice(this.files.indexOf(event), 1);
+	}
   save(): void {
     this.saving = true;
 
