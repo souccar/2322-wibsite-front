@@ -1,5 +1,5 @@
 <form class="form-horizontal " autocomplete="off" #createProductModal="ngForm" (ngSubmit)="save()">
-  <abp-modal-header [title]="'CreateNewProduct' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <abp-modal-header [title]="'Edit Product' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
   <div class="modal-body modal-lg">
     <div class="form-group row required">
       <label class="col-md-3 col-form-label" for="product.name">
@@ -8,7 +8,7 @@
       <div class="col-md-9">
         <input type="text" class="form-control" name="name" id="name" required  [(ngModel)]="product.name"
           #nameModel="ngModel" #nameEl />
-        <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
+        <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
       </div>
     </div>
 
@@ -19,7 +19,7 @@
       <div class="col-md-9">
         <input type="number" class="form-control" name="point" id="point" required
           [(ngModel)]="product.point" #pointModel="ngModel" #pointEl />
-        <abp-validation-summary [control]="pointModel" [controlEl]="pointEl"></abp-validation-summary>
+        <!-- <abp-validation-summary [control]="pointModel" [controlEl]="pointEl"></abp-validation-summary> -->
       </div>
     </div>
     <div class="form-group row required">
@@ -30,7 +30,7 @@
         <select class="form-control" aria-label="Category" #categoryModel="ngModel" required name="categoryId" [(ngModel)]="product.categoryId" #categoryIdEl>
           <option *ngFor="let item of categories" value={{item.id}}>{{item.name}}</option>
         </select>
-        <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary>
+        <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
       </div>
     </div>
     <div class="form-group row required">
@@ -41,7 +41,7 @@
         <select class="form-control" aria-label="Brand" required  #brandModel="ngModel" [(ngModel)]="product.brandId"name="brandId" #brandIdEl>
           <option *ngFor="let item of brands" value={{item.id}}>{{item.name}}</option>
         </select>
-        <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary>
+        <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
       </div>
     </div>
     <div class="form-group row required">
@@ -52,7 +52,7 @@
         <select class="form-control" aria-label="SkinType" required #skinTypeModel="ngModel" [(ngModel)]="product.skinTypeId" name="brandId" #brandIdEl>
           <option *ngFor="let item of skinType" value={{item.id}}>{{item.name}}</option>
         </select>
-        <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary>
+        <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
       </div>
     </div>
     <div class="form-group row required">
@@ -63,32 +63,40 @@
         <textarea  type="text" required class="form-control" name="description" id="description"
           [(ngModel)]="product.description" #descriptionModel="ngModel" #descriptionEl >
           </textarea>
-        <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary>
+        <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
       </div>
     </div>
       <!--Image-->
-      <div class="form-group row">
+      <div class="form-group row my-image">
         <label class="col-md-3 col-form-label" for="imageCategoryNews">
             {{ "Image" | translate }}
         </label>
-        <div class="col-md-9">
-          <div class="upload-img">
-         <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-        <ngx-dropzone-label>
-          <div>
-            <h2>Select Image</h2>
-          </div>
-        </ngx-dropzone-label>
-        <!-- <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"  *ngFor="let im of images " [removable]="true" [file]="im"(removed)="onRemove(im)">
+        <!-- <perfect-scrollbar  style="max-width:max-content; max-height: 125;" [config]="{useBothWheelAxes: false, suppressScrollX: false, suppressScrollY: true }"> -->
+        <div class=" col-md-9 background-image d-flex flex-row flex-nowrap overflow-auto">
+          <div  *ngFor="let im of product.images" class=" force-overflow">
+            <img class="m-1 relative" [src]="baseUrl+im.imagePath"  width="200"  height="105px"  >
+            <!-- <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+              <div *ngFor="let f of imageModel.files">
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview"  [file]="f" [removable]="true" (removed)="onRemove(f)">
+                </ngx-dropzone-image-preview>
+              </div>
 
-        </ngx-dropzone-image-preview> -->
-      </div>
+            </div> -->
+        </div>
+        </div>
+      <!-- </perfect-scrollbar> -->
 
-      </div>
-      </div>
+    </div>
+    <div class=" position-relative ">
+    <div class=" mt-2 position-absolute top-50 start-50 translate-middle" role="group" aria-label="Third group">
+      <button type="button" class="file-upload-button btn btn-primary "><i class="iconsminds-upload-1">
+        <input type="file"  (change)="onFileSelect($event)">
+      </i></button>
+    </div>
     </div>
 
   </div>
-  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createProductModal.form.valid || saving"
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createProductModal.form.valid || saving
+ "
     (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
 </form>

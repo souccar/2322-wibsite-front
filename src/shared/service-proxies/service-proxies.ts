@@ -900,7 +900,7 @@ export class ReadPageDto implements IReadPageDto {
   imagePath: any;
   image_title: string;
   image_description: string;
-  sulg:string;
+  slug:string;
   constructor(data?: ReadPageDto) {
     if (data) {
       for (var property in data) {
