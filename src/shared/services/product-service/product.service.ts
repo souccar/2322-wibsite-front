@@ -20,7 +20,7 @@ export class ProductService {
     return this.http.post(this.baseUrl+'api/products',product);
   }
   getById(id:number):any{
-   
+
     return this.http.get(this.baseUrl+'api/products'+'/'+id);
   }
   edit(id:number,product:any)
@@ -34,6 +34,11 @@ export class ProductService {
   uploadImage(file:any)
   {
     return  this.http.post(this.baseUrl+'api/uploadProductImages',file);
+
+  }
+  removeImage(id:number)
+  {
+    return  this.http.delete(this.baseUrl+'api/removeProductImages'+'/'+id);
 
   }
 

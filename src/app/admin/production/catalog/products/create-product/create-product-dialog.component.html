@@ -22,34 +22,34 @@
         <abp-validation-summary [control]="pointModel" [controlEl]="pointEl"></abp-validation-summary>
       </div>
     </div>
-    <div class="form-group row required">
+    <div class="form-group row ">
       <label class="col-md-3 col-form-label" for="product.category">
         {{ "Category" | translate }}
       </label>
       <div class="col-md-9 ">
-        <select class="form-control" aria-label="Category" #categoryModel="ngModel" required name="categoryId" [(ngModel)]="product.categoryId" #categoryIdEl>
+        <select class="form-control" aria-label="Category" #categoryModel="ngModel"  name="categoryId" [(ngModel)]="product.categoryId" #categoryIdEl>
           <option *ngFor="let item of categories" value={{item.id}}>{{item.name}}</option>
         </select>
         <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary>
       </div>
     </div>
-    <div class="form-group row required">
+    <div class="form-group row ">
       <label class="col-md-3 col-form-label" for="product.brand">
         {{ "Brand" | translate }}
       </label>
       <div class="col-md-9 ">
-        <select class="form-control" aria-label="Brand" required  #brandModel="ngModel" [(ngModel)]="product.brandId"name="brandId" #brandIdEl>
+        <select class="form-control" aria-label="Brand"   #brandModel="ngModel" [(ngModel)]="product.brandId"name="brandId" #brandIdEl>
           <option *ngFor="let item of brands" value={{item.id}}>{{item.name}}</option>
         </select>
         <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary>
       </div>
     </div>
-    <div class="form-group row required">
+    <div class="form-group row ">
       <label class="col-md-3 col-form-label" for="product.skinType">
         {{ "Skin Type" | translate }}
       </label>
       <div class="col-md-9 ">
-        <select class="form-control" aria-label="SkinType" required #skinTypeModel="ngModel" [(ngModel)]="product.skinTypeId" name="brandId" #brandIdEl>
+        <select class="form-control" aria-label="SkinType"  #skinTypeModel="ngModel" [(ngModel)]="product.skinTypeId" name="brandId" #brandIdEl>
           <option *ngFor="let item of skinType" value={{item.id}}>{{item.name}}</option>
         </select>
         <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary>

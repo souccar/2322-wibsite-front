@@ -17,6 +17,11 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
   page = new CreateUpdatePageDto();
   saving: boolean;
   loaded=false;
+  files: File[] = [];
+  image: any;
+  tempImage: string[];
+  pathImage: any;
+  base64: any;
   @Output() onSave = new EventEmitter<any>();
   ngOnInit(): void {
     this.initPage();
@@ -29,13 +34,45 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
     super(injector);
   }
   initPage() {
-    this._PageService.getById(this.id).subscribe((res:any) => {
-
-      this.page=res.result;
+    this._PageService.getById(this.id).subscribe((result:any) => {
+       console.log(result)
+      this.page=result.result;
+      this.base64 = result.result.base64;
+      this.image = result.result.imagePath;
+      this.tempImage = this.image.split("/");
+      this.initImage();
       this.loaded=true;
     })
   }
+  initImage() {
+    const imageName = this.tempImage[1];
+    const imageBlob = this.dataURItoBlob_new(this.base64);
+    const imageFile = new File([imageBlob], imageName, { type: "image/jpg" });
+    this.files.push(imageFile);
+  }
+  dataURItoBlob_new(dataURI) {
+    var byteString;
+    byteString = atob(dataURI);
+    var mimeString = dataURI;
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
 
+    return new Blob([ia], { type: mimeString });
+  }
+  onSelect(event: any) {
+    this.image = event.addedFiles[0];
+    this.files.push(this.image);
+    this._PageService.uploadImage(this.files).subscribe((response:any)=>{
+      this.page.imagePath=response;
+    })
+
+  }
+
+  onRemove(event: any) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
   save(): void {
     this.saving = true;
 

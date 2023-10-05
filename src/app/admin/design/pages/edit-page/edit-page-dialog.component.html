@@ -22,8 +22,8 @@
           <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
         </div>
       </div>
-  
-  
+
+
       <div class="form-group row ">
         <label class="col-md-3 col-form-label" for="page.image_title">
           {{ "Image Title" | translate }}
@@ -34,7 +34,7 @@
           <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
         </div>
       </div>
-  
+
       <div class="form-group row ">
         <label class="col-md-3 col-form-label" for="page.image_description">
           {{ "Image Description" | translate }}
@@ -45,17 +45,20 @@
           <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
         </div>
       </div>
-          <!--Image-->
-       <div   *ngIf="loaded" class="form-group row"  >
-          <label class="col-md-3 col-form-label" for="image">
-            {{ "Image" | translate }}
+         <!--Image-->
+         <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="imageCategoryNews">
+              {{ "Image" | translate }}
           </label>
           <div class="col-md-9">
-              <img src="{{baseUrl+page.imagePath}}" alt="{{page.description}} "  style="width: 100%; height:100%;">
-          </div>
+            <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+             <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+
+              </ngx-dropzone-image-preview>
+            </div>
         </div>
+      </div>
     </div>
     <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!EditPageModal.form.valid || saving"
       (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
   </form>
-  
