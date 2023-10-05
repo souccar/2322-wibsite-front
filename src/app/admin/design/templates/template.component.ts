@@ -6,17 +6,19 @@ import { CreateTemplateDialogComponent } from './create-template/create-template
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TemplateService } from 'src/shared/services/template/template.service';
 import { ViewTemplateDialogComponent } from './view-template/view-template-dialog.component';
+import { EditTemplateDialogComponent } from './edit-template/edit-template-dialog.component';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss']
+
 })
 export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto> {
 
   title = "Template"
   displayMode = 'list';
-  itemOrder = { label:("title"), value: "title" };
+  itemOrder = { label: ("title"), value: "title" };
   itemOptionsOrders = [
     { label: ("Type"), value: "type" },
     { label: ("Description"), value: "description" },
@@ -45,52 +47,69 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
 
   constructor(
     injector: Injector,
-    private _templateService:TemplateService,
+    private _templateService: TemplateService,
     private _modalService: BsModalService,
-    ) {
+  ) {
     super(injector);
 
   }
 
   override ngOnInit(): void {
-     this.getAllTemplates()
+    this.getAllTemplates()
     this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
   }
 
-  getAllTemplates()
-  {
-    this._templateService.getAllTemplates().subscribe((response:any)=>{
-      console.log(response.result.data);
-       this.data=response.result.data;
-      //  console.log(this.data);
+  getAllTemplates() {
+
+    let params = new HttpParams().set('count', this.itemsPerPage);
+
+
+    this._templateService.getAllTemplates(params).subscribe((response: any) => {
+
+      this.data = response.result.data;
+       console.log(this.data);
 
     })
   }
-  ViewChildTemplate(id:number)
-  {
-    console.log(id);
-
-      this._modalService.show(
-        ViewTemplateDialogComponent,
-        {
-          backdrop: true,
-          ignoreBackdropClick: true,
-
-          initialState: {
-            id: id,
-          },
-        }
-      );
+  ViewChildTemplate(id: number) {
 
 
-  }
-  editModal(id:number)
-  {
+    this._modalService.show(
+      ViewTemplateDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+
+        initialState: {
+          id: id,
+        },
+      }
+    );
+
 
   }
-  deletebutton(id:number)
-  {
+  editModal(id: number) {
+    let editNewsDialog: BsModalRef;
+    editNewsDialog = this._modalService.show(
+      EditTemplateDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        class:"modal-xl",
+        initialState: {
+          id: id,
+        },
+      }
+    );
+    editNewsDialog.content.onSave.subscribe(() => {
+      this.getAllTemplates();
+    });
 
+  }
+  deletebutton(id: number) {
+    this._templateService.delete(id).subscribe((rec) => {
+      this.getAllTemplates()
+    })
   }
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
@@ -100,7 +119,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
     this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
   }
 
-  changeDisplayMode(mode:any): void {
+  changeDisplayMode(mode: any): void {
     this.displayMode = mode;
   }
 
@@ -116,31 +135,30 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
       }
     );
     createOrEditProductDialog.content.onSave.subscribe(() => {
-      this.refresh();
+      this.getAllTemplates();
     });
   }
 
-  showEditModal(id:number): void {
-      // let EditProductDialog = this._modalService.show(
-      //   EditProductDialogComponent,
-      //   {
-      //     backdrop: true,
-      //     ignoreBackdropClick: true,
-      //     class: 'modal-right'
-      //     ,
-      //     initialState: {
-      //       id: id,
-      //     },
-      //   }
-      // );
-      // EditProductDialog.content.onSave.subscribe((respone) => {
-      //   this.refresh();
-      // });
+  showEditModal(id: number): void {
+    // let EditProductDialog = this._modalService.show(
+    //   EditProductDialogComponent,
+    //   {
+    //     backdrop: true,
+    //     ignoreBackdropClick: true,
+    //     class: 'modal-right'
+    //     ,
+    //     initialState: {
+    //       id: id,
+    //     },
+    //   }
+    // );
+    // EditProductDialog.content.onSave.subscribe((respone) => {
+    //   this.refresh();
+    // });
 
   }
 
-  ViewDetail(id:number): void
-  {
+  ViewDetail(id: number): void {
     // this._modalService.show(
     //   ViewProductDialogComponent,
     //   {
@@ -207,7 +225,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
     this.list(request, this.pageNumber, () => { });
   }
 
-  searchKeyUp(event:any): void {
+  searchKeyUp(event: any): void {
     const val = event.target.value.toLowerCase().trim();
     this.loadData(this.itemsPerPage, 1, val, this.itemOrder.value);
   }
@@ -256,7 +274,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   //   }
   // }
 
-  selectAllChange($event:any): void {
+  selectAllChange($event: any): void {
     if ($event.target.checked) {
       this.selected = [...this.data];
     } else {
@@ -295,11 +313,11 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
     //   });
   }
 
-  setPage($event:any){
+  setPage($event: any) {
     this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
   }
 
-  onSort(event:any) {
+  onSort(event: any) {
     this.loading = true;
     const isDesc = event.newValue === 'desc' ? true : false;
     this.loadData(
@@ -308,9 +326,9 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
       this.search,
       event?.column.prop,
       isDesc
-      );
+    );
 
-      this.loading = false;
+    this.loading = false;
 
   }
 }

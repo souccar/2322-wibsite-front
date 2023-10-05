@@ -13,10 +13,10 @@ import { LangService, Language } from 'src/shared/lang.service';
 export class HomeComponent implements OnInit, OnDestroy {
   inputAlignDirectionRTL= "rtl";
   inputAlignDirectionLTL = "ltr";
-title='THERES SCIENCE TO SENSITIVE SKIN';
-   src="../../../../assets/img/homePage/01-INGREDIENTS_CETAPHIL_HEADER.jpg";
- description="Cetaphil cleansers and moisturizers are backed by scientific research";
- link='The Science of Sensitive Skin';
+  title='THERES SCIENCE TO SENSITIVE SKIN';
+  src="../../../../assets/img/homePage/01-INGREDIENTS_CETAPHIL_HEADER.jpg";
+  description="Cetaphil cleansers and moisturizers are backed by scientific research";
+  link='The Science of Sensitive Skin';
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService) {}
 
   showMobileMenu = false;

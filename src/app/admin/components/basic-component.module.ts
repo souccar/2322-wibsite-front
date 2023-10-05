@@ -13,6 +13,7 @@ import { ListOfProductsComponent } from './list-of-products/list-of-products.com
 import { BasicRoutingModule } from './basic-routing.module';
 import { LayoutModule } from '../containers/layout/layout.module';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     ProductComponent,
     RatingComponent,
     ListOfProductsComponent,
+    SliderComponent,
 
   ],
   imports: [
@@ -39,6 +41,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     MainImageComponent,
     ProductComponent,
     RatingComponent,
+    SliderComponent
 
 
 

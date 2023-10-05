@@ -20,6 +20,7 @@ export class ProductService {
     return this.http.post(this.baseUrl+'api/products',product);
   }
   getById(id:number):any{
+   
     return this.http.get(this.baseUrl+'api/products'+'/'+id);
   }
   edit(id:number,product:any)

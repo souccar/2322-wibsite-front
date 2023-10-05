@@ -12,9 +12,12 @@ import { SharedModule } from 'src/shared/shared.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.module';
+
 @NgModule({
   declarations: [
     AppComponent,
+   
+   
 
 
   ],

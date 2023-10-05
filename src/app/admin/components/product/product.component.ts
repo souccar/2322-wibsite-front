@@ -1,5 +1,6 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
-import { Direction } from '@glidejs/glide/components/direction';
+import { Component, Input, ViewChild, ElementRef, Injector } from '@angular/core';
+import { ReadProductDto } from 'src/shared/service-proxies/service-proxies';
+import { ProductService } from 'src/shared/services/product-service/product.service';
 
 @Component({
   selector: 'product',
@@ -8,21 +9,32 @@ import { Direction } from '@glidejs/glide/components/direction';
 })
 
 
-export class ProductComponent {
+export class ProductComponent   {
+  dataLoaded=false;
+  product:ReadProductDto;
   myThumbnail="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg";
   myFullresImage="https://wittlock.github.io/ngx-image-zoom/assets/fullres.jpg";
   max:number=5;
   isReadyOnly:boolean=true;
   rate = 4;
   rateReadonly = 5;
-  constructor() {
+  constructor(
+    injector: Injector,
+    private _productService: ProductService,
+    ) {
+      this.getProductById(1);
+    }
+ 
 
-  }
-  // @Input() title='';
-  // @Input() src='';
-  // @Input() description='';
-  // @Input() link='';
-  // @Input() dir:any ;
+
+    getProductById(id:any)
+    {
+      this._productService.getById(id).subscribe((responce:any)=>{
+     console.log(responce);
+     this.product=responce.result;
+     this.dataLoaded=true;
+      });
+    }
   setting = {
     gap: 0,
     type: 'carousel',

@@ -15,16 +15,18 @@ import { PageService } from 'src/shared/services/page-service/page.service';
 export class AddPageTemplateDialogComponent extends AppComponentBase implements OnInit {
   id: number;
   saving = false;
-  pageTamplate = new CreateUpdatePageTemplateDto();
+  defultTemplate = new CreateUpdatePageTemplateDto();
+  defultTemplateRemove = false;
   pageTemplates: CreateUpdatePageTemplateDto[] = [];
-  previousTamplates: PreviousTamplatesDto[]=[]
+  previousTamplates: PreviousTamplatesDto[] = []
   tamplates: ReadTemplateDto[] = [];
   image: any;
   imagePath = '';
   editable: true;
-  addTemplatebuttonClicked=false;
+  dataLoaded = false;
   @Output() onSave = new EventEmitter<any>();
   @ViewChild("imageCategoryNews") imageCategoryNews: ElementRef;
+  @ViewChild('defultTemplateView') private defultTemplateView: ElementRef;
   constructor(
     injector: Injector,
     public _pageTemplateService: PageTemplateService,
@@ -40,29 +42,35 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
   ngOnInit(): void {
     this.pageTemplates = []
     this.data.pageTemplates = [];
+    this.defultTemplate.pageId = this.id
     this.initTamplats();
-    this. getTemplateForPage(this.id);
+    this.getTemplateForPage(this.id);
+
   }
 
   addTemplate() {
-    this.addTemplatebuttonClicked=true
+
     let pageTemplate = new CreateUpdatePageTemplateDto();
 
     pageTemplate.pageId = this.id;
 
     this.pageTemplates.push(pageTemplate);
   }
+  getTemplateForPage(id: number) {
 
+    this._pageService.getTemplateForPage(id).subscribe((res: any) => {
+      this.previousTamplates = res.result;
+      this.dataLoaded = true
 
-  getTemplateForPage(id:number){
-    this._pageService.getTemplateForPage(id).subscribe((res:any)=>{
-      this.previousTamplates=res.result
-      console.log(this.previousTamplates);
     })
   }
   removeTemplate(i: number) {
     this.pageTemplates.splice(i, 1);
-
+  }
+  removedefultTemplate() {
+    this.defultTemplateRemove = true;
+    this.defultTemplate = new CreateUpdatePageTemplateDto();
+    this.defultTemplateView.nativeElement.remove();
   }
 
   initTamplats() {
@@ -77,8 +85,11 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
   save(): void {
     this.saving = true;
 
-
-    this.data.pageTemplates = this.pageTemplates;
+    if (this.defultTemplate.pageId != 0)
+      this.data.pageTemplates.push(this.defultTemplate)
+    if (this.pageTemplates.length > 0)
+      this.data.pageTemplates.concat(this.pageTemplates)
+    console.log(this.data)
 
 
     this._pageTemplateService

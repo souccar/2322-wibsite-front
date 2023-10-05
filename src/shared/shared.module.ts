@@ -19,7 +19,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
-import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
+import { SummaryPipe } from 'src/app/pipes/summary.pipe';
 
 
 
@@ -28,6 +28,7 @@ import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/comp
     AbpModalHeaderComponent,
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
+    SummaryPipe
   ],
 
   imports: [
@@ -67,7 +68,7 @@ import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/comp
     ReactiveFormsModule,
     TabsModule,
     ContextMenuModule,
-    ComponentsCarouselModule
+    SummaryPipe
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,92 +1,368 @@
 
-<abp-modal-header
-[title]="'View Child Template' | translate"
-(onCloseClick)="bsModalRef.hide()"
-></abp-modal-header>
-<div class="modal-body my-custom-scrollbar" >
+  <abp-modal-header
+    [title]="'CreateNewTemplate' | translate"
+    (onCloseClick)="bsModalRef.hide()"
+  ></abp-modal-header>
 
-  <div class="form-group row ">
-    <label class="col-md-3 col-form-label" for="type">
-      {{ "Type" | translate }}
-    </label>
-    <div class="col-md-9">
-      <ng-container *ngIf="data.type==0">
-      <input
-        type="text"
-        class="form-control"
-        name="type"
-        id="type"
-        value="slider Child"
-        [readonly]="!editable"
-      />
-    </ng-container>
-   <ng-container *ngIf="data.type==1">
-      <input
-        type="text"
-        class="form-control"
-        name="type"
-        id="type"
-       value="card Child"
-        [readonly]="!editable"
-      />
-    </ng-container>
-    </div>
+  <div class="modal-body modal-lg">
+    <tabset>
+      <!-- parent Template -->
+      <tab class="m-3" heading="{{ 'Template' | translate }}">
+        <!-- Type -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.type">
+            {{ "Type" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input *ngIf="template.type==0"
+            type="text"
+            multiple 
+            class="form-control"
+            name="template.type"
+            id="template.type"
+            value="Default" 
+            [readonly]="!editable"
+          >
+            <input *ngIf="template.type==1"
+            type="text"
+            multiple 
+            class="form-control"
+            name="template.type"
+            id="template.type"
+            value="Slider" 
+            [readonly]="!editable"
+          >
+            <input *ngIf="template.type==2"
+            type="text"
+            multiple 
+            class="form-control"
+            name="template.type"
+            id="template.type"
+            value="Cards" 
+            [readonly]="!editable"
+          >
+            <input *ngIf="template.type==3"
+            type="text"
+            multiple 
+            class="form-control"
+            name="template.type"
+            id="template.type"
+            value="Video" 
+            [readonly]="!editable"
+          >
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- title -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.title">
+            {{ "Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="template.title"
+              id="template.title"
+              required
+              [(ngModel)]="template.title"
+              #titleModel="ngModel"
+              #titleEl
+              [readonly]="!editable"
+            />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- description -->
+        <div class="form-group row" *ngIf="template.type != 2">
+            <label class="col-md-3 col-form-label" for="template.description">
+              {{ "Description" | translate }}
+            </label>
+            <div class="col-md-9">
+              <textarea
+                type="text"
+                class="form-control"
+                name="template.description"
+                id="template.description"
+                [(ngModel)]="template.description"
+                #descriptionModel="ngModel"
+                #descriptionEl
+                [readonly]="!editable"
+              >
+              </textarea>
+              <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+            </div>
+        </div>
+        <!-- Slug -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="template.page_slug">
+            {{ "Page" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+            type="text"
+            class="form-control"
+            name="template.page_slug"
+            id="template.page_slug"
+            required
+            [(ngModel)]="template.page_slug"
+            #page_slugModel="ngModel"
+            #page_slugEl
+            [readonly]="!editable"
+          />
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+      
+    
+        <!-- Link title -->
+        <div
+          class="form-group row"
+          *ngIf="template.type != 2 && template.type != 3 && template.type != 1"
+        >
+          <label class="col-md-3 col-form-label" for="template.link_title">
+            {{ "Link Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="template.link_title"
+              id="template.link_title"
+              [(ngModel)]="template.link_title"
+              #link_titleModel="ngModel"
+              #link_titleEl
+              [readonly]="!editable"
+            />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- number Columns -->
+        <div class="form-group row" *ngIf="template.type == 2 || template.type == 1   ">
+          <label class="col-md-3 col-form-label" for="template.numberOfColumns">
+            {{ "Number Of Columns" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="template.numberOfColumns"
+              id="template.numberOfColumns"
+              [(ngModel)]="template.numberOfColumns"
+              #numberOfColumnsModel="ngModel"
+              #numberOfColumnsEl
+              [readonly]="!editable"
+            />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!--Image-->
+        <div 
+          class="form-group row"
+          *ngIf="template.type != 2 && template.type != 3 && template.type != 1 && template.imagePath"
+        >
+          <label class="col-md-3 col-form-label" for="image">
+            {{ "Image" | translate }}
+          </label>
+          <div class="col-md-9">
+            
+              <img src="{{baseUrl+template.imagePath}}" alt="{{template.description}}"  style="width: 100%; height:100%;">
+        
+          </div>
+        </div>
+        <!-- video -->
+        <div class="form-group row" *ngIf="template.type == 3">
+          <label class="col-md-3 col-form-label" for="template.videoPath">
+            {{ "Video" | translate }}
+          </label>
+          <div class="col-md-9">
+           
+              <input  [readonly]="!editable" type="text" class="form-control" name="template.videoPath" id="template.videoPath"
+                [(ngModel)]="template.videoPath" #videoPathModel="ngModel" #videoPathEl  data-bs-toggle="tooltip"
+                data-bs-placement="top" title="  {{ template.videoPath }}"/>
+              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+           
+          </div>
+        </div>
+      
+      </tab>
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- //////////////////////////////////////// -->
+      <!-- child Template -->
+
+      <tab
+        *ngIf="template.type == 1 || template.type == 2"
+        class="m-3"
+        heading="{{ 'Child Template' | translate }}"
+      >
+  
+      <ng-container *ngFor="let childs of template.child_templates">
+        <!-- Type -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="childs.type">
+            {{ "Type" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input *ngIf="childs.type==0"
+            type="text"
+            multiple 
+            class="form-control"
+            name="childs.type"
+            id="childs.type"
+            value="Default" 
+            [readonly]="!editable"
+          >
+            <input *ngIf="childs.type==1"
+            type="text"
+            multiple 
+            class="form-control"
+            name="childs.type"
+            id="childs.type"
+            value="Slider" 
+            [readonly]="!editable"
+          >
+            <input *ngIf="childs.type==2"
+            type="text"
+            multiple 
+            class="form-control"
+            name="childs.type"
+            id="childs.type"
+            value="Cards" 
+            [readonly]="!editable"
+          >
+            <input *ngIf="childs.type==3"
+            type="text"
+            multiple 
+            class="form-control"
+            name="childs.type"
+            id="childs.type"
+            value="Video" 
+            [readonly]="!editable"
+          >
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- Title -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="childs.title">
+            {{ "Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="childs.title"
+              id="childs.title"
+              [(ngModel)]="childs.title"
+              #titleModel="ngModel"
+              #titleEl
+              [readonly]="!editable"
+            />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- Slug -->
+        <div class="form-group row" *ngIf="childs.type == 0">
+          <label class="col-md-3 col-form-label" for="template.childs.page_slug">
+            {{ "Page" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+            type="text"
+            class="form-control"
+            name="childs.page_slug"
+            id="childs.page_slug"
+            required
+            [(ngModel)]="childs.page_slug"
+            #page_slugModel="ngModel"
+            #page_slugEl
+            [readonly]="!editable"
+          />
+            <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- Description -->
+        <div class="form-group row">
+          <label
+            class="col-md-3 col-form-label"
+            for="childs.description"
+          >
+            {{ "Description" | translate }}
+          </label>
+          <div class="col-md-9">
+            <textarea
+              type="text"
+              class="form-control"
+              name="childs.description"
+              id="childs.description"
+              [(ngModel)]="childs.description"
+              #descriptionModel="ngModel"
+              #descriptionEl
+              [readonly]="!editable"
+            >
+            </textarea>
+            <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
+          </div>
+        </div>
+      
+        <!-- link title -->
+        <div class="form-group row" *ngIf="childs.type == 0">
+          <label class="col-md-3 col-form-label" for="childs.link_title">
+            {{ "Link Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="childs.link_title"
+              id="childs.link_title"
+              [(ngModel)]="childs.link_title"
+              #link_titleModel="ngModel"
+              #link_titleEl
+              [readonly]="!editable"
+            />
+            <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          </div>
+        </div>
+        <!-- Image-->
+        <div class="form-group row" *ngIf="childs.imagePath">
+          <label class="col-md-3 col-form-label" for="childs.imagePath">
+            {{ "Image" | translate }}
+          </label>
+          <div class="col-md-9">
+            <img src="{{baseUrl+childs.imagePath}}" alt="{{childs.description}} "
+            style="width: 100%; height:100%;">
+          </div>
+        </div>
+          <!-- video -->
+          <div
+          class="form-group row"
+          *ngIf="childs.type != 0 && childs.type != 1"
+        >
+          <label class="col-md-3 col-form-label" for="childs.videoPath">
+            {{ "Video Path" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              class="form-control"
+              name="childs.videoPath"
+              id="childs.videoPath"
+              [(ngModel)]="childs.videoPath"
+              #videoPathModel="ngModel"
+              #videoPathEl
+              data-bs-toggle="tooltip"
+                data-bs-placement="top" title="  {{ childs.videoPath }}"
+            />
+          </div>
+        </div>
+      </ng-container>
+      </tab>
+    </tabset>
   </div>
-<div class="form-group row ">
-  <label class="col-md-3 col-form-label" for="title">
-    {{ "title" | translate }}
-  </label>
-  <div class="col-md-9">
-    <input
-      type="text"
-      class="form-control"
-      name="title"
-      id="title"
-      [value]="data.title"
-      [readonly]="!editable"
-    />
-  </div>
-</div>
-    <div class="form-group row ">
-      <label class="col-md-3 col-form-label" for="description">
-        {{ "description" | translate }}
-      </label>
-      <div class="col-md-9">
-        <input
-          type="text"
-          class="form-control"
-          name="description"
-          id="description"
-          [value]="data.description"
-          [readonly]="!editable"
-        />
-      </div>
-    </div>
-    <div class="form-group row ">
-      <label class="col-md-3 col-form-label" for="link_title">
-        {{ "link_title" | translate }}
-      </label>
-      <div class="col-md-9">
-        <input
-          type="text"
-          class="form-control"
-          name="link_title"
-          id="link_title"
-          [value]="data.link_title"
-          [readonly]="!editable"
-        />
-      </div>
-    </div>
-
-    <div class="form-group row ">
-      <label class="col-md-3 col-form-label" for="image">
-        {{ "Image" | translate }}
-      </label>
-      <div class="col-md-9">
-          <img src="../../../../../assets/img/homePage/01-INGREDIENTS_CETAPHIL_HEADER.jpg" width="200"  height="200"  >
-      </div>
-    </div>
-
-
-</div>
-
