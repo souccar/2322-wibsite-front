@@ -17,12 +17,6 @@ import { EditBrandDialogComponent } from './edit-brand/edit-brand-dialog.compone
 })
 
 export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  implements OnInit {
-
-
-  protected override list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
-    // throw new Error('Method not implemented.');
-  }
-
   title = "Brand"
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
@@ -30,10 +24,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
   itemsPerPage = 10;
   selectAllState = '';
   selected: ReadBrandDto[] = [];
-
   data: ReadBrandDto[] = [];
- 
-
   currentPage = 1;
   search = '';
   totalItem = 0;
@@ -61,28 +52,28 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
     private _modalService: BsModalService,
     private _brandService:BrandService)
   {
-   
+
     super(injector);
   }
   override ngOnInit(): void {
     this.getAllBrand()
-    // this.loadData(this.itemsPerPage, 1, this.search);
+
   }
 
   getAllBrand()
   {
     let params = new HttpParams().set('count', this.itemsPerPage) ;
-   
+
     this._brandService.getAll(params).subscribe((responce:any)=>{
       this.data=responce.result.data
-      
+
     });
   }
   deletebutton(id:number){
     this._brandService.delete(id).subscribe((responce:any)=>{
       this.getAllBrand();
     });
-  
+
   }
 
   editModal(id:number): void {
@@ -100,7 +91,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
       editBrandDialog.content.onSave.subscribe(() => {
         this.getAllBrand();
       });
-  
+
     }
 
 
@@ -134,25 +125,6 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
       this.selectAllState = '';
     }
   }
-  // protected list(
-  //   request: PagedBrandRequestDto,
-   
-  //   finishedCallback: Function
-  // ): void {
-  //   request.keyword = this.search;
-
-  //   this._brandService
-  //    .getAll()
-  //     .pipe(
-  //       finalize(() => {
-  //         finishedCallback();
-  //       })
-  //     )
-  //     .subscribe((result :any) => {
-  //       this.data = result.data;
-  //       // this.setSelectAllState();
-  //     });
-  // }
 
 
   changeOrderBy(item: any): void {
@@ -168,60 +140,14 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
         this.editModal(item.id);
         break;
       case "view":
-        this.showViewModal(item.id);
+
        break;
 
       default:
         break;
     }
   }
-  showViewModal(id:number)
-{
-  //  this._modalService.show(
-  //   ViewBrandDialogComponent,
-  //   {
-  //     backdrop: true,
-  //     ignoreBackdropClick: true,
-  //     initialState: {
-  //       id: id,
-  //     },
-  //   }
-  // );
 
-}
-  showEditModal(id:number): void {
-    // let EditBrandDialog = this._modalService.show(
-    //   EditBrandDialogComponent,
-    //   {
-    //     backdrop: true,
-    //     ignoreBackdropClick: true,
-    //     class: 'modal-right'
-    //     ,
-    //     initialState: {
-    //       id: id,
-    //     },
-    //   }
-    // );
-    // EditBrandDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
-
-}
-  // entity: ReadBrandDto
-  protected delete(entity:any): void {
-    // abp.message.confirm(
-    //   this.l('BrandDeleteWarningMessage', this.selected.length, 'Categories'),
-    //   undefined,
-    //   (result: boolean) => {
-    //     if (result) {
-    //       this._BrandService.delete(entity.id).subscribe(() => {
-    //         abp.notify.success(this.l('SuccessfullyDeleted'));
-    //         this.refresh();
-    //       });
-    //     }
-    //   }
-    // );
-  }
   showAddNewModal(): void {
     let createOrEditBrandDialog: BsModalRef;
     createOrEditBrandDialog = this._modalService.show(
@@ -237,7 +163,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
      this.getAllBrand();
     });
   }
-  // item: ReadBrandDto
+
   onSelect(item: any): void {
     // if (this.isSelected(item)) {
     //   this.selected = this.selected.filter(x => x.id !== item.id);
@@ -280,7 +206,14 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
     request.sort_Desc = sort_Desc;
     request.skipCount = (currentPage - 1) * pageSize;
     request.maxResultCount = this.itemsPerPage;
-    // this.list(request, () => { });
+  }
+  protected override delete(entity: ReadBrandDto): void {
+    throw new Error('Method not implemented.');
+  }
+
+
+  protected override list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
+    // throw new Error('Method not implemented.');
   }
 }
 

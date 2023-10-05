@@ -19,14 +19,12 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
   files: File[] = [];
   image: any;
   tempImage: string[];
-  pathImage: any;
   base64: any;
   @Output() onSave = new EventEmitter<any>();
   constructor(
     injector: Injector,
     public bsModalRef: BsModalRef,
     public _categoryService: CategoryService) {
-
     super(injector);
   }
 
@@ -67,8 +65,6 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
 
   save(): void {
     this.saving = true;
-
-    console.log(this.category);
     const myFormData = new FormData();
     myFormData.append("name", this.category.name);
     myFormData.append("point", this.category.point.toString());
@@ -89,7 +85,6 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
   onSelect(event: any) {
     this.image = event.addedFiles[0];
     this.files.push(this.image);
-    console.log(this.files);
   }
 
   onRemove(event: any) {

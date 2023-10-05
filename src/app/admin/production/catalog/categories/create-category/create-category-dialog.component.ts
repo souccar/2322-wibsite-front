@@ -30,11 +30,6 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
   onSelect(event:any) {
     this.image=event.addedFiles[0];
     this.files.push(this.image);
-    //  const file=new FormData();
-    //  file.append("images",this.images.toString());
-    // this._PageService.uploadImage(file).subscribe((response:any)=>{
-    //  this.page.imagePath=response
-    // })
 	}
 
 	onRemove(event:any) {
@@ -47,7 +42,6 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
     myFormData.append("point",this.category.point.toString());
     myFormData.append("description",this.category.description);
     myFormData.append("image",this.image);
-    console.log(this.category)
     this._categoryService
         .insert(
           myFormData
@@ -58,7 +52,6 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
             })
         )
         .subscribe((responce) => {
-          console.log(responce);
         //  this.notify.info('SavedSuccessfully');
           this.bsModalRef.hide();
           this.onSave.emit();

@@ -19,19 +19,13 @@ export class ViewCategoryDialogComponent implements OnInit {
    ) { }
 
   ngOnInit(): void {
-
     this.displayCategory();
-
-
   }
   displayCategory()
   {
-
     this._categoryService.getById(this.id).subscribe((result) => {
 
       this.data = result.result;
-      console.log(this.data);
-
 
     });
   }

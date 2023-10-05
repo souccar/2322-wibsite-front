@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateNewsDto } from 'src/shared/service-proxies/service-proxies';
 import { NewsService } from 'src/shared/services/news-service/news.service';
 
@@ -7,7 +8,7 @@ import { NewsService } from 'src/shared/services/news-service/news.service';
   selector: 'app-edit-news-dialog',
   templateUrl: './edit-news-dialog.component.html',
 })
-export class EditNewsDialogComponent  implements OnInit {
+export class EditNewsDialogComponent  extends AppComponentBase implements OnInit {
   saving = false;
   news = new CreateUpdateNewsDto();
   id: number;
@@ -18,20 +19,16 @@ export class EditNewsDialogComponent  implements OnInit {
   pathImage: any;
   base64: any;
   @Output() onSave = new EventEmitter<any>();
-  
-
-  
-  sizekeys = [];
   constructor(
     injector: Injector,
     public _newsService: NewsService,
     public bsModalRef: BsModalRef,
   ) {
-    // super(injector);
+    super(injector);
   }
-  
+
   ngOnInit(): void {
-    
+
     this.initialNews();
   }
 
@@ -43,7 +40,7 @@ export class EditNewsDialogComponent  implements OnInit {
       this.image = result.result.imagePath;
       this.tempImage = this.image.split("/");
       this.initImage();
-    
+
 
     });
   }
@@ -67,7 +64,6 @@ export class EditNewsDialogComponent  implements OnInit {
   onSelect(event: any) {
     this.image = event.addedFiles[0];
     this.files.push(this.image);
-    console.log(this.files);
   }
 
   onRemove(event: any) {
@@ -79,13 +75,13 @@ export class EditNewsDialogComponent  implements OnInit {
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
     myFormData.append("image",this.image);
-    
+
     this._newsService.edit(this.id,myFormData).subscribe(
       () => {
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();
-        
+
       },
       () => {
         this.saving = false;

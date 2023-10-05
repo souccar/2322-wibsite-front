@@ -7,7 +7,6 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
-const MAX_SIZE: number = 1048576;
 @Component({
   selector: 'app-create-product-dialog',
   templateUrl: './create-product-dialog.component.html',

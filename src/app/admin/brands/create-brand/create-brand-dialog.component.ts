@@ -11,8 +11,6 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
 
 })
 export class CreateBrandDialogComponent  extends AppComponentBase implements OnInit {
-
-
   saving = false;
   brand = new CreateUpdateBrandDto();
   @Output() onSave = new EventEmitter<any>();
@@ -26,7 +24,6 @@ export class CreateBrandDialogComponent  extends AppComponentBase implements OnI
   }
   save(): void {
     this.saving = true;
-    console.log(this.brand)
     this._brandService
       .insert(
         this.brand
@@ -37,7 +34,6 @@ export class CreateBrandDialogComponent  extends AppComponentBase implements OnI
         })
       )
       .subscribe((responce) => {
-        console.log(responce);
         //  this.notify.info('SavedSuccessfully');
         this.bsModalRef.hide();
         this.onSave.emit();

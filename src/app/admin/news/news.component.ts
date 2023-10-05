@@ -58,7 +58,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
     private _modalService: BsModalService,
     private _newsService:NewsService)
   {
-   
+
     super(injector);
   }
   override ngOnInit(): void {
@@ -69,18 +69,18 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
   getAllNews()
   {
     let params = new HttpParams().set('count', this.itemsPerPage) ;
-   
+
     this._newsService.getAll(params).subscribe((responce:any)=>{
       this.data=responce.result
       console.log(responce)
-      
+
     });
   }
   deletebutton(id:number){
     this._newsService.delete(id).subscribe((responce:any)=>{
       this.getAllNews()
     });
-  
+
   }
 
   editModal(id:number): void {
@@ -99,7 +99,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
       editNewsDialog.content.onSave.subscribe(() => {
         this.getAllNews()
       });
-  
+
     }
 
 
@@ -135,7 +135,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
   }
   // protected list(
   //   request: PagedNewsRequestDto,
-   
+
   //   finishedCallback: Function
   // ): void {
   //   request.keyword = this.search;
