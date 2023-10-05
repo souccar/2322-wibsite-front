@@ -21,6 +21,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
 import { SummaryPipe } from 'src/app/pipes/summary.pipe';
 import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -34,6 +35,7 @@ import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/comp
 
   imports: [
     RouterModule,
+    CommonModule,
     ContextMenuModule.forRoot({
       useBootstrap4: true,
     }),

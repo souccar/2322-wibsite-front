@@ -17,11 +17,12 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
   page = new CreateUpdatePageDto();
   saving: boolean;
   loaded=false;
-  files: File[] = [];
   image: any;
+  base64: any;
+  files: File[] = [];
   tempImage: string[];
   pathImage: any;
-  base64: any;
+
   @Output() onSave = new EventEmitter<any>();
   ngOnInit(): void {
     this.initPage();

@@ -95,7 +95,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class:"modal-xl",
+        class:"modal-lg",
         initialState: {
           id: id,
         },

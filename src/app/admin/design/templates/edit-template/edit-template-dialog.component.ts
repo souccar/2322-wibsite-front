@@ -28,6 +28,10 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
   videoId = "";
   videoPath = "";
   url: any;
+  files: File[] = [];
+  tempImage: string[];
+  image: any;
+  base64: any;
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
@@ -40,17 +44,23 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
     super(injector);
   }
   ngOnInit(): void {
- 
+
     this.initSlug()
     this.initTemplate();
   }
 
   initTemplate() {
     let params = new HttpParams().set('id', this.id);
+       console.log(this.id)
 
-    this._templateService.getById(params).subscribe((res: any) => {
-      this.template = res.result;
-   
+    this._templateService.getById(params).subscribe((result: any) => {
+      this.template = result.result;
+      console.log(result.result);
+      this.base64 = result.result.base64;
+      this.image = result.result.imagePath;
+      this.tempImage = this.image.split("/");
+      this.initImage();
+
     })
   }
   initSlug() {
@@ -59,13 +69,32 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
       this.slugs = res.result;
     })
   }
+  initImage() {
+    const imageName = this.tempImage[1];
+    const imageBlob = this.dataURItoBlob_new(this.base64);
+    const imageFile = new File([imageBlob], imageName, { type: "image/jpg" });
+    this.parentFiles.push(imageFile);
+  }
+  dataURItoBlob_new(dataURI) {
+    var byteString;
+    byteString = atob(dataURI);
+    var mimeString = dataURI;
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], { type: mimeString });
+  }
   onSelectParent(event: any) {
     this.imageParent = event.addedFiles[0];
     this.parentFiles.push(this.imageParent);
     const file = new FormData();
     file.append("image", this.imageParent);
     this._templateService.uploadImage(file).subscribe((response: any) => {
+
       this.template.imagePath = response
+      console.log(this.template.imagePath)
     })
   }
   onSelectChild(event: any) {
@@ -97,7 +126,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
     this.template.child_templates = this.tempChild;
     console.log(this.template)
     this._templateService
-      .insert(
+      .edit(this.id,
         this.template
       )
       .pipe(
@@ -105,7 +134,8 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
           this.saving = false;
         })
       )
-      .subscribe(() => {
+      .subscribe((result) => {
+        console.log(result);
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();

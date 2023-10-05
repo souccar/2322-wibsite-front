@@ -59,6 +59,8 @@
               </ng-container >
             </div>
         </div>
+        <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createPageTemplateModal.form.valid || saving"
+        (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
       </div>
     </tab>
     <tab class="m-3" heading="{{ 'Previous templates' | translate }}">
@@ -85,6 +87,5 @@
     </tab>
 
   </tabset>
-  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createPageTemplateModal.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+
 </form>

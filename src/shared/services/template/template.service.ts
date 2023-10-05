@@ -19,14 +19,14 @@ export class TemplateService {
   {
     return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
   }
-  getById(params?:HttpParams){
+  getById(params:HttpParams){
     return this.http.get(this.baseUrl+'api/getWithChildren',{params});
   }
   insert(templates:any)
   {
     return this.http.post(this.baseUrl+'api/templates',templates,{headers:{
       "Content-Type": "application/json",
-   
+
   }});
   }
   edit(id:number,templates:any)
@@ -39,8 +39,6 @@ export class TemplateService {
   }
   uploadImage(file:any)
   {
-
-    console.log(file)
     return  this.http.post(this.baseUrl+'api/uploadTemplateImage',file,{responseType: 'text'});
 
   }
