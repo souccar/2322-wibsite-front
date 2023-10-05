@@ -9,11 +9,12 @@ import { AddPageTemplateDialogComponent } from './add-page-template/add-page-tem
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { EditPageDialogComponent } from './edit-page/edit-page-dialog.component';
 import { HttpParams } from '@angular/common/http';
+import { ViewPageDialogComponent } from './view-page/view-page-dialog.component';
 
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
-  
+
 })
 export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
@@ -61,9 +62,9 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
   }
   deletebutton(id:number){
-   
+
     this._pageService.delete(id).subscribe((responce:any)=>{
-     
+
       this.getAllPages();
     });
 
@@ -102,11 +103,11 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   }
   getAllPages() {
     let params = new HttpParams().set('count', this.itemsPerPage) ;
-   
-  
+
+
     this._pageService.getAllPages(params).subscribe((response: any) => {
       this.data = response.result.data;
-  
+
 
 
     })

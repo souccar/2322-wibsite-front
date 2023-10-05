@@ -16,8 +16,8 @@ import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.mod
 @NgModule({
   declarations: [
     AppComponent,
-   
-   
+
+
 
 
   ],
@@ -25,7 +25,7 @@ import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.mod
     BrowserModule,
     AppRoutingModule,
     // ViewModule,
-    LayoutModule,
+    // LayoutModule,
     CommonModule,
     HttpClientModule ,
     BrowserAnimationsModule,

@@ -20,6 +20,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
 import { SummaryPipe } from 'src/app/pipes/summary.pipe';
+import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
 
 
 

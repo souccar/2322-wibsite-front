@@ -614,7 +614,7 @@ export class ReadProductDto implements IReadProductDto {
       this.description = _data["description"];
       this.point = _data["point"];
       this.category = _data["category"];
-    
+
       // this.image = _data["image"];
     }
   }
@@ -890,7 +890,7 @@ export interface IReadPageDto {
   imagePath: any;
   image_title: string;
   image_description: string;
-  sulg:string;
+  slug:string;
 }
 
 export class ReadPageDto implements IReadPageDto {
@@ -919,7 +919,7 @@ export class ReadPageDto implements IReadPageDto {
       this.imagePath = _data["imagePath"];
       this.image_title = _data["image_title"];
       this.image_description = _data["image_description"];
-      this.sulg = _data["sulg"];
+      this.slug = _data["sulg"];
     }
   }
 
@@ -938,7 +938,7 @@ export class ReadPageDto implements IReadPageDto {
     data["imagePath"] = this.imagePath;
     data["image_title"] = this.image_title;
     data["image_description"] = this.image_description;
-    data["sulg"] = this.sulg;
+    data["sulg"] = this.slug;
     return data;
   }
 

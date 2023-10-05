@@ -39,10 +39,6 @@ export class PageService {
     return  this.http.post(this.baseUrl+'api/uploadPageImage',file,{responseType: 'text'});
 
   }
-  getById(id:number)
-  {
-    return this.http.get(this.baseUrl+'api/getForEdit/'+id);
-  }
 
   getTemplateForPage(pageId:number){
     return this.http.get(this.baseUrl+'api/getAssociatedTemplates'+'/'+pageId);
