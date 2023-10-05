@@ -28,4 +28,5 @@ export class CategoryService {
   {
     return this.http.delete(this.baseUrl+'api/categories'+'/'+id);
   }
+
 }

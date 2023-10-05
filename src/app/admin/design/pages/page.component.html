@@ -57,6 +57,9 @@
           <button id="button-basic" type="button"  id="delete" class="header-icon btn btn-empty" (click)="deletebutton(row.id)">
             <i class="simple-icon-trash"></i>
           </button>
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty" (click)="viewPage(row.id)">
+            <i class="simple-icon-eye"></i>
+          </button>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-footer *ngIf="true">

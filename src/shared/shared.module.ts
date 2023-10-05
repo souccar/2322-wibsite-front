@@ -51,7 +51,7 @@ import { SummaryPipe } from 'src/app/pipes/summary.pipe';
     NgxDatatableModule,
     NgxDropzoneModule,
     TabsModule.forRoot(),
-    
+    ComponentsCarouselModule
   ],
   exports: [
     RouterModule,

@@ -87,7 +87,19 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       this.getAllPages();
     });
   }
-
+  viewPage(id:number)
+  {
+    this._modalService.show(
+      ViewPageDialogComponent,
+      {
+        backdrop: true,
+        ignoreBackdropClick: true,
+        initialState: {
+          id: id,
+        },
+      }
+    );
+  }
   getAllPages() {
     let params = new HttpParams().set('count', this.itemsPerPage) ;
    
