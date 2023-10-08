@@ -12,7 +12,7 @@ const MAX_SIZE: number = 1048576;
 })
 export class CreateCategoryDialogComponent extends AppComponentBase implements OnInit {
   files: File[] = [];
-  images:any[]=[];
+  image:any;
   saving = false;
   category = new CreateUpdateCategoryDto();
   @Output() onSave = new EventEmitter<any>();
@@ -27,21 +27,9 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
 
   }
 
-  uploadfile(event:Event)
-  {
-    this.category.image=(event.target as HTMLInputElement )?.files?.[0];
-
-
-  }
-
   onSelect(event:any) {
-    this.images=event.addedFiles;
-    this.files=this.images;
-     const file=new FormData();
-     file.append("images",this.images.toString());
-    // this._PageService.uploadImage(file).subscribe((response:any)=>{
-    //  this.page.imagePath=response
-    // })
+    this.image=event.addedFiles[0];
+    this.files.push(this.image);
 	}
 
 	onRemove(event:any) {
@@ -53,8 +41,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
     myFormData.append("name",this.category.name);
     myFormData.append("point",this.category.point.toString());
     myFormData.append("description",this.category.description);
-    // myFormData.append("image",this.image);
-    console.log(this.category)
+    myFormData.append("image",this.image);
     this._categoryService
         .insert(
           myFormData
@@ -65,7 +52,6 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
             })
         )
         .subscribe((responce) => {
-          console.log(responce);
         //  this.notify.info('SavedSuccessfully');
           this.bsModalRef.hide();
           this.onSave.emit();

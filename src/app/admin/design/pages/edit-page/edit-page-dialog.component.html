@@ -1,0 +1,64 @@
+<form class="form-horizontal " autocomplete="off" #EditPageModal="ngForm" (ngSubmit)="save()">
+    <abp-modal-header [title]="'Edit Page' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body modal-lg">
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="page.title">
+          {{ "Title" | translate }}
+        </label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="title" id="title" required  [(ngModel)]="page.title"
+            #titleModel="ngModel" #titleEl />
+          <abp-validation-summary [control]="titleModel" [controlEl]="titleEl"></abp-validation-summary>
+        </div>
+      </div>
+      <div class="form-group row required">
+        <label class="col-md-3 col-form-label" for="page.description">
+          {{ "Description" | translate }}
+        </label>
+        <div class="col-md-9">
+          <textarea  type="text" class="form-control" name="description" id="description"
+            [(ngModel)]="page.description" #descriptionModel="ngModel" #descriptionEl required >
+            </textarea>
+          <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary>
+        </div>
+      </div>
+
+
+      <div class="form-group row ">
+        <label class="col-md-3 col-form-label" for="page.image_title">
+          {{ "Image Title" | translate }}
+        </label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="image_title" id="image_title"
+            [(ngModel)]="page.image_title" #image_titleModel="ngModel" #image_titleEl />
+          <abp-validation-summary [control]="image_titleModel" [controlEl]="image_titleEl"></abp-validation-summary>
+        </div>
+      </div>
+
+      <div class="form-group row ">
+        <label class="col-md-3 col-form-label" for="page.image_description">
+          {{ "Image Description" | translate }}
+        </label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="image_description" id="image_description"
+            [(ngModel)]="page.image_description" #image_descriptionModel="ngModel" #image_descriptioncEl />
+          <abp-validation-summary [control]="image_descriptionModel" [controlEl]="image_descriptioncEl"></abp-validation-summary>
+        </div>
+      </div>
+         <!--Image-->
+         <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="imageCategoryNews">
+              {{ "Image" | translate }}
+          </label>
+          <div class="col-md-9">
+            <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+             <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+
+              </ngx-dropzone-image-preview>
+            </div>
+        </div>
+      </div>
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!EditPageModal.form.valid || saving"
+      (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+  </form>
