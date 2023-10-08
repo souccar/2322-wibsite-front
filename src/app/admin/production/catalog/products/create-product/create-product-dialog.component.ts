@@ -7,7 +7,6 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
-const MAX_SIZE: number = 1048576;
 @Component({
   selector: 'app-create-product-dialog',
   templateUrl: './create-product-dialog.component.html',
@@ -16,13 +15,14 @@ const MAX_SIZE: number = 1048576;
 export class CreateProductDialogComponent extends AppComponentBase
 
 implements OnInit {
+  IsUploaded:boolean=false;
    saving = false;
    files: File[] = [];
    product = new CreateUpdateProductDto();
    categories : CategoryForDropdownDto[] = [];
    brands:BrandForDropdownDto[]=[];
    skinType:SkinTypeForDropdownDto[]=[];
-   images:any;
+   images:any[]=[];
   @Output() onSave = new EventEmitter<any>();
   @ViewChild("imageCategoryNews") imageCategoryNews : ElementRef;
   constructor(
@@ -39,13 +39,10 @@ implements OnInit {
 
 
   ngOnInit(): void {
-
     this.product.images = [];
     this.initCategory();
     this.initBrand();
     this.initSkinType()
-
-
   }
   initCategory()
   {
@@ -72,45 +69,50 @@ implements OnInit {
     })
   }
   save(): void {
+
     this.saving = true;
-    this.product.images=this.files;
-    // const myFormData=new FormData();
-    // myFormData.append("name",this.product.name);
-    // myFormData.append("point",this.product.point.toString());
-    // myFormData.append("categoryId",this.product.categoryId.toString());
-    // myFormData.append("brandId",this.product.brandId.toString());
-    // myFormData.append("skinTypeId",this.product.skinTypeId.toString());
-    // myFormData.append("images", this.product.images.toString())
-    this._productService
+    if(this.IsUploaded && this.saving){
+      console.log(this.product)
+      this._productService
+      .insert(
+        this.product
+          )
+      .pipe(
+          finalize(() => {
+          this.saving = false;
+          })
+      )
+      .subscribe((response) => {
+        // this.notify.info(this.l('SavedSuccessfully'));
+        this.bsModalRef.hide();
+        this.onSave.emit();
 
-    .insert(
-      this.product
-        )
-    .pipe(
-        finalize(() => {
-        this.saving = false;
-        })
-    )
-    .subscribe((response) => {
-      // this.notify.info(this.l('SavedSuccessfully'));
-      this.bsModalRef.hide();
-      this.onSave.emit();
+      });
+    }
+    else{
+      this.saving = false;
 
-    });
+    }
   }
 
-  onSelect(event:any) {
-    // this.images=event.addedFiles;
-    for(var i=0;i<event.addedFiles.length;i++)
+   onSelect(event:any) {
+     this.images=event.addedFiles;
+     const file=new FormData();
+     for(var i=0;i<event.addedFiles.length;i++)
     {
-      this.images.push(event.addedFiles[i]);
+      file.append("image"+[i],event.addedFiles[i]);
     }
-    this.files=this.images;
+     setTimeout(() => {
+      this._productService.uploadImage(file).subscribe((response:any)=>{
+        this.product.images=response;
+        this.IsUploaded = true;
+      })
+     });
+
 
 	}
-
 	onRemove(event:any) {
-		this.files.splice(this.files.indexOf(event), 1);
+		this.images.splice(this.files.indexOf(event), 1);
 	}
 
 

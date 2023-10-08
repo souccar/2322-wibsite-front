@@ -1,16 +1,23 @@
 <app-heading></app-heading> <br /><br /><br />
 
-        <div class="card mb-4 ">
-            <div class="card-body ">
-              <div class="row">
-                <div class="col-md-6 col-lg-5 mt-2">
-              <app-glide-thumbs class="image" [images]="detailImages" [settingsImages]="{
+<div class="container">
+<div class="row">
+  <div class="col-lg-12 mb-5  ">
+   
+
+<div class="card  mb-4 " >
+  <div class="card-body ">
+    <div class="row" >
+      <div class="col-md-6 col-lg-5 mt-2">
+        <app-glide-thumbs  class="image" [images]="detailImages" [settingsImages]="{
                 bound: true,
                 rewind: false,
                 focusAt: 0,
                 startAt: 0,
                 gap: 5,
-                perView: 1
+                perView: 1,
+                
+              
 
               }" [thumbs]="detailThumbs" [settingsThumbs]="{
                 bound: true,
@@ -25,31 +32,27 @@
                   '420' : { perView: 3 }
                 }
               }"></app-glide-thumbs>
-            </div>
-            <div class="col-md-4 col-lg-6 m-4">
-              <h2 class="text-primary">REDNESS RELIEVING DAILY FACIAL MOISTURIZER SPF 20</h2>
+      </div>
+      <div class="col-md-4 col-lg-6 m-4 ">
+        <h2 class="text-primary">{{product.name}}</h2>
 
-              <app-rating></app-rating>
+        <app-rating></app-rating>
+      <br/>
+      <br/>
 
-              <p><strong>Skin type: For redness-prone, sensitive skin</strong></p>
-              <p class="mb-3">Neutral tinted moisturizer for redness-prone, sensitive skin that hydrates skin, helps to even skin tone, and reduce the appearance of redness.</p>
-             <ul>
-               <li>Specially formulated with allantoin, licorice extract and caffeine to soothe redness while antioxidant rich vitamin E defends against surface free radicals</li>
-               <li>Provides 100% Mineral Based SPF 20 broad spectrum UVA/UVB protection</li>
-               <li>Neutral tint helps to neutralize the appearance of redness</li>
-               <li>Dermatologist tested and clinically proven to be gentle on sensitive skin</li>
-             </ul>
+        <p *ngIf="dataLoaded"><strong>Category: {{product.category.name}} </strong></p>
+        <p *ngIf="dataLoaded"><strong>Brand:  </strong></p>
+        <p *ngIf="dataLoaded"><strong>skin type: </strong></p>
+        <p *ngIf="dataLoaded" class="mb-3">{{product.description}}</p>
+    
 
-             </div>
-        </div>
-
-
+      </div>
     </div>
+
+
   </div>
-    <div class="col-12 col-md-6 col-lg-6 col-xl-6 m-4">
+</div>
+</div>
+</div>
 
-     </div>
-
-
-
-
+</div>

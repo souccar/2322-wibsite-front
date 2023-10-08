@@ -11,7 +11,6 @@ import { NewsService } from 'src/shared/services/news-service/news.service';
 
 })
 export class CreateNewsDialogComponent extends AppComponentBase implements OnInit {
-
   files: File[] = [];
   image:any;
   saving = false;
@@ -39,7 +38,7 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
     myFormData.append("image",this.image);
-    
+
     this._newsService
       .insert(
         myFormData

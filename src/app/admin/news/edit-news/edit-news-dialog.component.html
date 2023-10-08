@@ -8,7 +8,7 @@
         <div class="col-md-9">
           <input type="text" class="form-control" name="title" id="title" required [(ngModel)]="news.title"
             #titleModel="ngModel" #titleEl />
-          <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+          <abp-validation-summary [control]="titleModel" [controlEl]="titleEl"></abp-validation-summary>
         </div>
       </div>
 
@@ -20,29 +20,22 @@
         <input type="text" class="form-control" name="description" id="description"
           [(ngModel)]="news.description" #descriptionModel="ngModel" #descriptioneEl   />
 
-        <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+        <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptioneEl"></abp-validation-summary>
       </div>
     </div>
-    <div class="form-group row required">
-      <label class="col-md-3 col-form-label" for="image">
+    <div class="form-group row">
+      <label class="col-md-3 col-form-label" for="imageNews">
           {{ "Image" | translate }}
       </label>
       <div class="col-md-9">
-        <div class="custom-dropzone" [multiple]="false"  ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-          <ngx-dropzone-label>
-            <div>
-              <h2>{{'Upload Image'|translate}}</h2>
-            </div>
-          </ngx-dropzone-label>
-          <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-
+        <div class="custom-dropzone"  ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+         <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" [multiple]="false" (removed)="onRemove(f)">
           </ngx-dropzone-image-preview>
-
         </div>
     </div>
-         <!-- <img src="http://127.0.0.1:8000/NewsImages/uuuuuuuu1059251_screenshot%20(1).png  " alt="daa">  -->
   </div>
-    </div>
+  </div>
+
     <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!editTitleModal.form.valid || saving"
       (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
   </form>

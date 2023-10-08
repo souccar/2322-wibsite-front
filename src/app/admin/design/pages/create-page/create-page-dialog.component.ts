@@ -47,6 +47,7 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
 	}
 
   save(): void {
+    console.log(this.page)
     this.saving = true;
 
     this._PageService

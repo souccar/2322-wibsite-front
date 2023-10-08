@@ -34,7 +34,7 @@
                     <h2>{{'Upload Image'|translate}}</h2>
                   </div>
                 </ngx-dropzone-label>
-                <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-image-preview   [multiple]="false"  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
                 </ngx-dropzone-image-preview>
               </div>
           </div>

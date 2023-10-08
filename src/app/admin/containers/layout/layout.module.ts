@@ -51,7 +51,8 @@ import { AdminHeadingComponent } from './admin-heading/admin-heading.component';
     HeadingComponent,
     ListPageHeaderComponent,
     AdminHeaderComponent,
-    AdminHeadingComponent
+    AdminHeadingComponent,
+    PerfectScrollbarModule,
 
   ]
 
