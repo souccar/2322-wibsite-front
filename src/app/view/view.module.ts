@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { BasicComponentModule } from '../admin/components/basic-component.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-
+import { ViewFooterComponent } from './view-footer/view-footer.component';
+import { AboutComponent } from './about/about.component';
+import { ViewNewsComponent } from './view-news/view-news.component';
 @NgModule({
   declarations: [
      HomeComponent,
-     ContactUsComponent,
- 
+     ViewFooterComponent,
+     AboutComponent,
+     ViewNewsComponent
   ],
   imports: [
     ViewRoutingModule,
