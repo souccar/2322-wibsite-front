@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { RouterModule, Routes } from '@angular/router';
 import { MainImageComponent } from '../admin/components/main-image/main-image.component';
 import { ProductComponent } from '../admin/components/product/product.component';
+import { AboutComponent } from './about/about.component';
+import { ViewNewsComponent } from './view-news/view-news.component';
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
 let routes: Routes = [
@@ -16,10 +18,14 @@ let routes: Routes = [
     path: 'app',
     loadChildren: () => import('../admin/app.module').then((m) => m.AppModule),
   },
-  // {
-  //   path:'product',
-  //   component:ProductComponent
-  // }
+  {
+    path:'about',
+    component:AboutComponent
+  },
+  {
+    path:'news',
+    component:ViewNewsComponent
+  }
 
 ];
 
