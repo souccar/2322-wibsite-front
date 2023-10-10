@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
+import { CreateUpdateProductDto, ReadProductDto } from 'src/shared/service-proxies/service-proxies';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 
 @Component({
@@ -70,7 +70,7 @@ export class ListOfProductsComponent implements OnInit{
   ];
   isloading:boolean=false;
   baseUrl=environment.baseUrl;
-  products:CreateUpdateProductDto[]=[]
+  products:ReadProductDto[]=[]
   constructor(private _productService:ProductService){}
   ngOnInit(): void {
     this.getProducts()
@@ -79,11 +79,24 @@ export class ListOfProductsComponent implements OnInit{
 
   getProducts()
   {
-    this._productService.getAll().subscribe((response:any)=>{
 
-      this.products=response.result.data;
-      this.isloading=true;
-      console.log(response.result.data)
+    this._productService.getAll().subscribe((response:any)=>{
+      response.result.data.forEach(element => {
+         const product=new ReadProductDto();
+         product.id=element.id;
+         product.name=element.name;
+         product.category=element.category;
+         product.skinType=element.skinType;
+         product.brand=element.brand;
+         product.images=element.product_images;
+         this.products.push(product)
+
+      });
+      console.log(this.products)
+
+      // this.products=response.result.data;
+      // this.isloading=true;
+      // console.log(response.result.data)
     })
 
   }

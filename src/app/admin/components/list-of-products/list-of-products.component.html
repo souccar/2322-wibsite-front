@@ -134,20 +134,20 @@
             <div *ngFor="let product of products" class="glide__slide">
 
               <div class="card">
-                <div class="position-relative" *ngFor="let im of product.images">
-                  <!-- <h1>{{}}</h1> -->
-                  <img class="card-img-top"src="{{baseUrl+im.imagePath}}" alt="Card image cap">
-                  <!-- <span *ngFor="let badge of item.badges"
-                    class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{badge}}</span> -->
+                <div class="position-relative" >
+                  <img class="card-img-top"src="{{baseUrl+product.images[0].imagePath}}" alt="Card image cap">
+                  <span class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.skinType?.name}}</span>
+                  <span class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.brand?.name}}</span>
+                  <span class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.category?.name}}</span>
                 </div>
                 <div class="card-body text-primary text-center p-3">
 
                   <h6 class="mb-4">{{product.name}}</h6>
 
                 </div>
-                <!-- <footer>
+                <footer>
                   <a type="button" href="product"class="btn btn-primary btn-grad  m-2 w-80 position-absolute bottom-0 start-50 translate-middle-x" >Read More</a>
-                </footer> -->
+                </footer>
 
               </div>
 

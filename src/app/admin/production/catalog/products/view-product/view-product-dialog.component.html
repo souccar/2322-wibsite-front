@@ -62,16 +62,16 @@
                 data-bs-ride="carousel"
               >
                 <div class="carousel-inner">
-                  <div *ngFor="let pro of data.product_images; let index = index">
+                  <div *ngFor="let pro of data.images; let index = index">
                     <div class="carousel-item active" *ngIf="index == 0">
                       <img
-                        src="{{ baseUrl + data.product_images[0].imagePath }}"
+                        src="{{ baseUrl + data.images[0].imagePath }}"
                         class="d-block w-100"
                         alt="..."
                       />
                     </div>
                   </div>
-                  <div *ngFor="let pro of data.product_images; let index = index">
+                  <div *ngFor="let pro of data.images; let index = index">
                     <div class="carousel-item" *ngIf="index > 0">
                       <img
                         src="{{ baseUrl + pro.imagePath }}"

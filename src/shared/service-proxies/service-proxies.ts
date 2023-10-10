@@ -582,9 +582,10 @@ export interface IReadProductDto {
   name: string | undefined;
   description: string | undefined;
   point: number;
-  // parentCategoryId: number | undefined;
   category:{id:number ,name:string};
-  product_images: any[];
+  skinType:{id:number ,name:string};
+  brand:{id:number ,name:string};
+  images: any[];
 }
 
 export class ReadProductDto implements IReadProductDto {
@@ -593,8 +594,9 @@ export class ReadProductDto implements IReadProductDto {
   description: string | undefined;
   point: number;
   category:{id:number ,name:string};
-  // parentCategoryId: number | undefined;
-  product_images: any[];
+  skinType:{id:number ,name:string};
+  brand:{id:number ,name:string};
+  images: any[];
 
 
   constructor(data?: ReadProductDto) {
