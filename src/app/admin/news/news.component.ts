@@ -62,6 +62,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
     super(injector);
   }
   override ngOnInit(): void {
+   
     this.getAllNews()
     // this.loadData(this.itemsPerPage, 1, this.search);
   }

@@ -584,7 +584,7 @@ export interface IReadProductDto {
   point: number;
   // parentCategoryId: number | undefined;
   category:{id:number ,name:string};
-  images: any[];
+  product_images: any[];
 }
 
 export class ReadProductDto implements IReadProductDto {
@@ -594,10 +594,10 @@ export class ReadProductDto implements IReadProductDto {
   point: number;
   category:{id:number ,name:string};
   // parentCategoryId: number | undefined;
-  images: any[];
+  product_images: any[];
 
 
-  constructor(data?: ReadBrandDto) {
+  constructor(data?: ReadProductDto) {
     if (data) {
       for (var property in data) {
         if (data.hasOwnProperty(property))
@@ -619,9 +619,9 @@ export class ReadProductDto implements IReadProductDto {
     }
   }
 
-  static fromJS(data: any): ReadBrandDto {
+  static fromJS(data: any): ReadProductDto {
     data = typeof data === 'object' ? data : {};
-    let result = new ReadBrandDto();
+    let result = new ReadProductDto();
     result.init(data);
     return result;
   }
@@ -638,9 +638,9 @@ export class ReadProductDto implements IReadProductDto {
     return data;
   }
 
-  clone(): ReadBrandDto {
+  clone(): ReadProductDto {
     const json = this.toJSON();
-    let result = new ReadBrandDto();
+    let result = new ReadProductDto();
     result.init(json);
     return result;
   }
@@ -768,14 +768,14 @@ export interface IReadNewsDto {
   id: number;
   title: string;
   description: string;
-  image: any;
+  imagePath: any;
 }
 
 export class ReadNewsDto implements IReadNewsDto {
   id: number;
   title: string;
   description: string;
-  image: any;
+  imagePath: any;
 
   constructor(data?: ReadNewsDto) {
     if (data) {
@@ -792,7 +792,7 @@ export class ReadNewsDto implements IReadNewsDto {
       this.id = _data["id"];
       this.title = _data["title"];
       this.description = _data["description"];
-      this.image = _data["image"];
+      this.imagePath = _data["imagePath"];
     }
   }
 
@@ -808,7 +808,7 @@ export class ReadNewsDto implements IReadNewsDto {
     data["id"] = this.id;
     data["title"] = this.title;
     data["description"] = this.description;
-    data["image"] = this.image;
+    data["imagePath"] = this.imagePath;
     return data;
   }
 

@@ -66,7 +66,6 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
 
     this._brandService.getAll(params).subscribe((responce:any)=>{
       this.data=responce.result.data
-
     });
   }
   deletebutton(id:number){

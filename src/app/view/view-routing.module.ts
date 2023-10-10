@@ -7,6 +7,8 @@ import { ProductComponent } from '../admin/components/product/product.component'
 import { AboutComponent } from './about/about.component';
 import { ViewNewsComponent } from './view-news/view-news.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NewsComponent } from './what-is-news/news.component';
+
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
 let routes: Routes = [
@@ -17,6 +19,7 @@ let routes: Routes = [
   },
 
    { path: 'contactUs', component: ContactUsComponent },
+   { path: 'GetNews/:id', component: NewsComponent },
 
 
   {

@@ -13,7 +13,12 @@ export class NewsService {
 
   getAll(params?:HttpParams)
   {
+    
     return this.http.get(this.baseUrl+'api/news',{params});
+  }
+  getlastNews(){
+   
+    return this.http.get(this.baseUrl+'api/lastNews');
   }
   getById(id:number):any{ 
     console.log(id);

@@ -53,7 +53,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   {
     super(injector);
 
-    this.getAllCategory()
+    this.getAllCategory();
 
   }
 
@@ -152,7 +152,7 @@ editModal(id:number): void {
       }
     );
     editCategoryDialog.content.onSave.subscribe(() => {
-      this.refresh();
+      this.getAllCategory();
     });
 
 }
@@ -195,9 +195,9 @@ viewModal(id:number)
 
       }
     );
-    // createOrEditCategoryDialog.content.onSave.subscribe(() => {
-    //   this.refresh();
-    // });
+    createOrEditCategoryDialog.content.onSave.subscribe(() => {
+      this.getAllCategory();
+    });
   }
   // item: ReadCategoryDto
   onSelect(item: any): void {
