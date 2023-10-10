@@ -10,11 +10,14 @@ import { BasicComponentModule } from '../admin/components/basic-component.module
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NewsComponent } from './what-is-news/news.component';
+import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
 
 @NgModule({
   declarations: [
      HomeComponent,
      ContactUsComponent,
+     NewsComponent,
  
   ],
   imports: [
@@ -26,6 +29,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     TranslateModule,
     LayoutModule,
     BasicComponentModule,
+    ComponentsCarouselModule,
+  
     // TranslateModule.forRoot(),
 
   ],

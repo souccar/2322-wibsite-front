@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainImageComponent } from '../admin/components/main-image/main-image.component';
 import { ProductComponent } from '../admin/components/product/product.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NewsComponent } from './what-is-news/news.component';
 
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
@@ -16,6 +17,7 @@ let routes: Routes = [
   },
    
    { path: 'contactUs', component: ContactUsComponent },
+   { path: 'GetNews/:id', component: NewsComponent },
 
   
   {
