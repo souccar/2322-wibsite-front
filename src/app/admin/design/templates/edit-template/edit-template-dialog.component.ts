@@ -8,9 +8,12 @@ import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateChildTemplateDto, CreateUpdateTemplateDto } from 'src/shared/service-proxies/service-proxies';
 import { PageService } from 'src/shared/services/page-service/page.service';
 import { TemplateService } from 'src/shared/services/template/template.service';
+
   @Component({
   selector: 'app-edit-teamplate-dialog',
-  templateUrl: './edit-template-dialog.component.html',
+  templateUrl: './edit-template-dialog.component.html', 
+  styleUrls: ['./edit-template-dialog.component.scss']
+
 
 })
 export class EditTemplateDialogComponent extends AppComponentBase implements OnInit {
@@ -32,6 +35,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
   tempImage: string[];
   image: any;
   base64: any;
+  imageRemoved=false;
   @Output() onSave = new EventEmitter<any>();
 
   constructor(
@@ -51,15 +55,13 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
 
   initTemplate() {
     let params = new HttpParams().set('id', this.id);
-       console.log(this.id)
-
+    console.log(params)
     this._templateService.getById(params).subscribe((result: any) => {
       this.template = result.result;
-      console.log(result.result);
-      this.base64 = result.result.base64;
-      this.image = result.result.imagePath;
-      this.tempImage = this.image.split("/");
-      this.initImage();
+      
+
+    
+  
 
     })
   }
@@ -94,7 +96,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
     this._templateService.uploadImage(file).subscribe((response: any) => {
 
       this.template.imagePath = response
-      console.log(this.template.imagePath)
+  
     })
   }
   onSelectChild(event: any) {
@@ -115,12 +117,23 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
     this.childeFiles.splice(this.childeFiles.indexOf(event), 1);
   }
 
-  saveChild() {
-    this.tempChild.push(this.childTemplate)
+  saveChild(childTemplate:CreateUpdateChildTemplateDto) {
+    this.tempChild.push(childTemplate);
     this.childTemplate = new CreateUpdateChildTemplateDto();
-    this.childeFiles = []
+    console.log(this.childTemplate)
+  
   }
+  onRemove() {
+    this.imageRemoved=true;
+  }
+  onFileSelect(event: any,i:any) {
+    const file=new FormData();
+    file.append("image",event.target.files[0]);
+   this._templateService.uploadImage(file).subscribe((response:any)=>{
+    this.template.child_templates[i].imagePath=response 
+  })
 
+  }
   save(): void {
     this.saving = true;
     this.template.child_templates = this.tempChild;
@@ -135,7 +148,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
         })
       )
       .subscribe((result) => {
-        console.log(result);
+        console.log(result)
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();

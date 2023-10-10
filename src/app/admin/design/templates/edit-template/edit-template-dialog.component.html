@@ -129,9 +129,9 @@
       <!-- child Template -->
 
       <tab *ngIf="template.type == 1 || template.type == 2" class="m-3" heading="{{ 'Child Template' | translate }}">
-        <div *ngFor="let childTemplate of template.child_templates ">
-          <!-- Type -->
-          <div class="form-group row">
+        <div *ngFor="let childTemplate of template.child_templates ; let i=index">
+  
+          <!-- <div class="form-group row">
             <label class="col-md-3 col-form-label" for="childTemplate.type">
               {{ "Type" | translate }}
             </label>
@@ -141,9 +141,8 @@
                 <option value="0">slider Child</option>
                 <option value="1">card Child</option>
               </select>
-              <!-- <abp-validation-summary [control]="categoryModel" [controlEl]="categoryIdEl"></abp-validation-summary> -->
             </div>
-          </div>
+          </div> -->
           <!-- Title -->
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="childTemplate.title">
@@ -156,7 +155,7 @@
             </div>
           </div>
           <!-- Slug -->
-          <div class="form-group row" *ngIf="childTemplate.type == 0">
+          <div class="form-group row" >
             <label class="col-md-3 col-form-label" for="childTemplate.page_slug">
               {{ "Page" | translate }}
             </label>
@@ -172,6 +171,23 @@
               <!-- <abp-validation-summary [control]="page_slugModel" [controlEl]="page_slugEl"></abp-validation-summary> -->
             </div>
           </div>
+          <div class="form-group row" >
+            <label class="col-md-3 col-form-label" for="childTemplate.link_title">
+              {{ "Link Title" | translate }}
+            </label>
+            <div class="col-md-9">
+              <input
+                type="text"
+                class="form-control"
+                name="childTemplate.link_title"
+                id="childTemplate.link_title"
+                [(ngModel)]="childTemplate.link_title"
+                #link_titleModel="ngModel"
+                #link_titleEl
+              />
+              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
+            </div>
+          </div>
           <!-- Description -->
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="childTemplate.description">
@@ -185,49 +201,63 @@
             </div>
           </div>
           <!-- video -->
-          <div class="form-group row" *ngIf="childTemplate.type != 0 && childTemplate.type != 1">
+          <!-- <div class="form-group row" *ngIf="childTemplate.type != 0 && childTemplate.type != 1">
             <label class="col-md-3 col-form-label" for="childTemplate.videoPath">
               {{ "Video Path" | translate }}
             </label>
             <div class="col-md-9">
               <input type="text" class="form-control" name="childTemplate.videoPath" id="childTemplate.videoPath"
                 [(ngModel)]="childTemplate.videoPath" #videoPathModel="ngModel" #videoPathEl />
-              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
             </div>
-          </div>
+          </div> -->
           
-          <!-- link title -->
-          <div class="form-group row" *ngIf="childTemplate.type == 0">
-            <label class="col-md-3 col-form-label" for="childTemplate.link_title">
-              {{ "Link Title" | translate }}
-            </label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" name="childTemplate.link_title" id="childTemplate.link_title"
-                [(ngModel)]="childTemplate.link_title" #link_titleModel="ngModel" #link_titleEl />
-              <!-- <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary> -->
-            </div>
-          </div>
+       
           <!--Image-->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="image">
+         
+          <div class="form-group row my-image">
+            <label class="col-md-3 col-form-label" for="imageCategoryNews">
               {{ "Image" | translate }}
             </label>
-            <div class="col-md-9">
-              <div class="custom-dropzone" [multiple]="false" ngx-dropzone [accept]="'image/*'"
-                (change)="onSelectChild($event)">
-                <ngx-dropzone-label>
-                  <div>
-                    <h2>{{ "Upload Image" | translate }}</h2>
-                  </div>
-                </ngx-dropzone-label>
-                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of childeFiles" [file]="f"
-                  [removable]="true" (removed)="onRemoveChild(f)">
-                </ngx-dropzone-image-preview>
+            <div
+              class="col-md-9 background-image d-flex flex-row flex-nowrap overflow-auto"
+            >
+              <div  class="force-overflow">
+                <img *ngIf="!imageRemoved"
+                  class="m-1 relative"
+                  [src]="baseUrl + childTemplate.imagePath"
+                  width="200"
+                  height="105px"
+                />
+                <img *ngIf="imageRemoved"
+                class="m-1 relative"
+                src="../../../../../assets/img/defult/upload.png"
+                width="200"
+                height="105px"
+              />
+                <button
+                  type="button"
+                  class=" btn btn-primary"
+                  (click)="onRemove()"
+                >
+                  <i class="simple-icon-trash"> </i>
+                </button>
               </div>
             </div>
           </div>
-
-          <a class="btn btn-primary" (click)="saveChild()">save child</a>
+          <div class="position-relative">
+            <div
+              class="mt-2 position-absolute top-50 start-50 translate-middle"
+              role="group"
+              aria-label="Third group"
+            >
+              <button type="button" class="file-upload-button btn btn-primary">
+                <i class="iconsminds-upload-1">
+                  <input type="file" (change)="onFileSelect($event,i)" />
+                </i>
+              </button>
+            </div>
+          </div>
+          <a class="btn btn-primary" (click)="saveChild(childTemplate)">save child</a>
         </div>
       </tab>
     </tabset>

@@ -38,7 +38,8 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
     myFormData.append("image",this.image);
-
+    
+    console.log(this.news)
     this._newsService
       .insert(
         myFormData
