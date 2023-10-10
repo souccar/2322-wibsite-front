@@ -582,7 +582,8 @@ export interface IReadProductDto {
   name: string | undefined;
   description: string | undefined;
   point: number;
-  // parentCategoryId: number | undefined;
+  skin_type:{id:number ,name:string};
+  brand:{id:number ,name:string};
   category:{id:number ,name:string};
   product_images: any[];
 }
@@ -595,6 +596,8 @@ export class ReadProductDto implements IReadProductDto {
   category:{id:number ,name:string};
   // parentCategoryId: number | undefined;
   product_images: any[];
+  skin_type:{id:number ,name:string};
+  brand:{id:number ,name:string}
 
 
   constructor(data?: ReadProductDto) {
@@ -614,7 +617,9 @@ export class ReadProductDto implements IReadProductDto {
       this.description = _data["description"];
       this.point = _data["point"];
       this.category = _data["category"];
-
+      this.skin_type = _data["skin_type"];
+      this.brand = _data["brand"];
+   
       // this.image = _data["image"];
     }
   }
@@ -633,6 +638,8 @@ export class ReadProductDto implements IReadProductDto {
     data["description"] = this.description;
     data["point"] = this.point;
     data["category"] = this.category;
+    data["brand"] = this.brand;
+    data["skin_type"] = this.skin_type;
     // data["image"] = this.image;
 
     return data;
@@ -1421,4 +1428,126 @@ export class PreviousTamplatesDto{
   templateName:any;
   order:any;
 }
+
+// contact-us
+
+
+export interface ICreateUpdateContactDto {
+  name:string;
+  email:string;
+  message:string;
+  //
+  }
+  export class CreateUpdateContactDto implements ICreateUpdateContactDto {
+    name:string;
+    email:string;
+    message:string;
+  
+    constructor(data?: ICreateUpdateContactDto) {
+      if (data) {
+        for (var property in data) {
+          if (data.hasOwnProperty(property))
+            (<any>this)[property] = (<any>data)[property];
+        }
+      }
+    }
+  
+    init(_data?: any) {
+      if (_data) {
+        this.name = _data["name"];
+        this.email = _data["email"];
+        this.message = _data["message"];
+        // this. page_slug= _data["page_slug"];
+  
+  
+      }
+    }
+  
+    static fromJS(data: any): CreateUpdateContactDto {
+      data = typeof data === 'object' ? data : {};
+      let result = new CreateUpdateContactDto();
+      result.init(data);
+      return result;
+    }
+  
+    toJSON(data?: any) {
+      data = typeof data === 'object' ? data : {};
+      data["name"] = this.name;
+      data["email"] = this.email;
+      data["message"] = this.message;
+      // data["page_slug"] = this.page_slug;
+  
+  
+      return data;
+    }
+  
+    clone(): CreateUpdateContactDto {
+      const json = this.toJSON();
+      let result = new CreateUpdateContactDto();
+      result.init(json);
+      return result;
+    }
+  }
+  
+  
+  export interface IReadContactDto {
+    id:number;
+    name:string;
+    email:string;
+    message:string;
+  
+  }
+  
+  export class ReadContactDto implements IReadContactDto {
+    id:number;
+    name:string;
+    email:string;
+    message:string;
+    constructor(data?: ReadContactDto) {
+      if (data) {
+        for (var property in data) {
+          if (data.hasOwnProperty(property))
+            (<any>this)[property] = (<any>data)[property];
+        }
+      }
+    }
+  
+  
+    init(_data?: any) {
+      if (_data) {
+        this.id = _data["id"];
+        this.name = _data["name"];
+        this.email = _data["email"];
+        this.message = _data["message"];
+       
+  
+      }
+    }
+  
+    static fromJS(data: any): ReadContactDto {
+      data = typeof data === 'object' ? data : {};
+      let result = new ReadContactDto();
+      result.init(data);
+      return result;
+    }
+  
+    toJSON(data?: any) {
+      data = typeof data === 'object' ? data : {};
+      data["id"] = this.id;
+      data["name"] = this.name;
+      data["email"] = this.email;
+      data["message"] = this.message;
+     
+  
+      return data;
+    }
+  
+    clone(): ReadContactDto {
+      const json = this.toJSON();
+      let result = new ReadContactDto();
+      result.init(json);
+      return result;
+    }
+  }
+  
 

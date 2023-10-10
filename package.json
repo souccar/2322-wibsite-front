@@ -36,6 +36,7 @@
     "ngx-pagination": "^5.0.0",
     "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-scrollbar": "^13.0.3",
+    "ngx-toastr": "^17.0.2",
     "resolve-url-loader": "^5.0.0",
     "rxjs": "~7.8.0",
     "sass-loader": "^13.3.2",

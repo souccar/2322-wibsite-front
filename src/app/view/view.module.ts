@@ -15,8 +15,7 @@ import { ComponentsCarouselModule } from '../admin/components/carousel/component
 import { ViewFooterComponent } from './view-footer/view-footer.component';
 import { AboutComponent } from './about/about.component';
 import { ViewNewsComponent } from './view-news/view-news.component';
-import { NewsComponent } from './what-is-news/news.component';
-import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
+
 
 @NgModule({
   declarations: [
@@ -26,10 +25,7 @@ import { ComponentsCarouselModule } from '../admin/components/carousel/component
      ViewFooterComponent,
      ContactUsComponent,
      AboutComponent,
-     NewsComponent,
      ViewNewsComponent
-
-     NewsComponent,
  
   ],
   imports: [
