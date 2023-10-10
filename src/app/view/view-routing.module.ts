@@ -17,14 +17,14 @@ let routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
-   
+
    { path: 'contactUs', component: ContactUsComponent },
    { path: 'GetNews/:id', component: NewsComponent },
 
-  
+
   {
-    path: 'app',
-    loadChildren: () => import('../admin/app.module').then((m) => m.AppModule),
+    path: 'admin',
+    loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path:'about',

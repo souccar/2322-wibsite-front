@@ -10,7 +10,7 @@
             <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a></li>
             <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
             <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-            <li class="nav-item"><a href="app/production">Admin</a></li>
+            <li class="nav-item"><a href="admin/production">Admin</a></li>
 
 
         </ul>
@@ -30,7 +30,7 @@
                         </li>
                         <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
                         <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-                        <li class="nav-item"><a href="app/production">Admin</a></li>
+                        <li class="nav-item"><a href="admin/production">Admin</a></li>
 
                     </ul>
                     <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
@@ -39,7 +39,7 @@
                 </div>
             </nav>
         </ngx-headroom>
-   
+
 
         <div class="content-container" id="home">
 
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">
-                            
+
                             <img alt="hero" style="height:75%; width: 100%;  border-radius: 16px;"
                                 src="../../../assets/img/homePage/302995889005_3.jpg" />
 
@@ -80,15 +80,15 @@
                     <div class="row" *ngIf="glideDataLoad">
                         <div class="col-12 p-0">
                             <div class="home-carousel text-center">
-                                
+
                                 <!-- <h1>Our latest Product</h1> -->
                                 <app-glide [settings]="slideSettings">
                                     <div class=" mb-3" *ngFor="let product of products">
                                             <div class="position-relative">
                                               <img  class="card-img" src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
                                             </div>
-                                       
-                                           
+
+
                                     </div>
                                 </app-glide>
                             </div>
@@ -128,7 +128,7 @@
                                     class="feature-image-right feature-image-charts position-relative semi-rounded" />
                             </div>
                         </div>
-                
+
                         <div *ngIf="i%2==1" class="row feature-row">
                             <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
                                   <img  style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-        
+
 
             <div class="section">
                 <div class="container" id="about">
@@ -155,11 +155,11 @@
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
                             <h1>About Us</h1>
                             <p>
-                                AHC started in 1999 in Seoul, South Korea as a professional skincare line catering to private aesthetic spas and dermatological clinics. 
+                                AHC started in 1999 in Seoul, South Korea as a professional skincare line catering to private aesthetic spas and dermatological clinics.
                                 <br>
                                 <br>
-                                These spas and clinics are known to provide best-in-class 
-                                advanced skincare treatments and are sought after by highly discerning clientele. 
+                                These spas and clinics are known to provide best-in-class
+                                advanced skincare treatments and are sought after by highly discerning clientele.
                             </p>
                         </div>
                     </div>
@@ -175,17 +175,17 @@
                     </div>
                     <div class="contact-section">
                     <div class="container">
-                        <form #overLineForm="ngForm" novalidate > 
+                        <form #overLineForm="ngForm" novalidate >
                             <div class=" row d-flex justify-content-center ">
 
-                             
+
                                 <div class="col-6">
                                     <label class="form-group has-float-label">
                                         <input class="form-control" required ngModel #name="ngModel" name="name"/>
                                         <span>Your name</span>
                                         <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
                                     </label>
-                                    
+
                                     <label class="form-group has-float-label">
                                         <input class="form-control" required ngModel #email2="ngModel" name="email2"/>
                                         <span>Email</span>
@@ -197,23 +197,23 @@
                                     <textarea class="form-control" aria-label="With textarea"></textarea>
                                   </div>
                                   <div class="d-flex justify-content-center mt-5">
-        
+
                                       <button type="button" class="btn btn-primary "><i class="simple-icon-paper-plane me-1" ></i>  Send Message</button>
                                   </div>
                                 </div>
-                                  
+
                             </div>
-                        
+
                         </form>
                     </div>
                 </div>
             </div>
 
-      
 
-    
 
-        
+
+
+
 
             <div class="section footer mb-0">
                 <div class="container">

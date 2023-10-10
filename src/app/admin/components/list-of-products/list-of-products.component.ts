@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
+import { ProductService } from 'src/shared/services/product-service/product.service';
 
 @Component({
   selector: 'app-list-of-products',
   templateUrl: './list-of-products.component.html',
   styleUrls: ['./list-of-products.component.scss']
 })
-export class ListOfProductsComponent {
+export class ListOfProductsComponent implements OnInit{
   carouselItems:any[]=[
   {
     id: 'carousel-0',
@@ -65,4 +68,23 @@ export class ListOfProductsComponent {
       content: 'Sunscreen MMT'
     }
   ];
+  isloading:boolean=false;
+  baseUrl=environment.baseUrl;
+  products:CreateUpdateProductDto[]=[]
+  constructor(private _productService:ProductService){}
+  ngOnInit(): void {
+    this.getProducts()
+
+  }
+
+  getProducts()
+  {
+    this._productService.getAll().subscribe((response:any)=>{
+
+      this.products=response.result.data;
+      this.isloading=true;
+      console.log(response.result.data)
+    })
+
+  }
 }
