@@ -4,22 +4,22 @@ import { LayoutModule } from './containers/layout/layout.module';
 import { SharedModule } from 'src/shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AppRoutingModule } from '../admin/app-routing.module';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ProductionModule } from './production/production.module';
 import { SkinTypeModule } from './skin-type/skin-type.module';
 import { BrandModule } from './brands/brand.module';
 import { NewsModule } from './news/news.module';
 import { DesignModule } from './design/design.module';
+import { AdminComponent } from './admin.component';
+import { AdminRoutingModule } from './admin-routing.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+
+    AdminComponent,
 
 
 
@@ -32,7 +32,7 @@ import { DesignModule } from './design/design.module';
     HttpClientModule,
     HttpClientModule,
     TranslateModule.forRoot(),
-     AppRoutingModule,
+    AdminRoutingModule,
      ProductionModule,
      BrandModule,
      NewsModule,
@@ -51,4 +51,4 @@ import { DesignModule } from './design/design.module';
 ]
 
 })
-export class AppModule { }
+export class AdminModule { }
