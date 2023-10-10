@@ -12,11 +12,23 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewsComponent } from './what-is-news/news.component';
 import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
+import { ViewFooterComponent } from './view-footer/view-footer.component';
+import { AboutComponent } from './about/about.component';
+import { ViewNewsComponent } from './view-news/view-news.component';
+import { NewsComponent } from './what-is-news/news.component';
+import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
 
 @NgModule({
   declarations: [
      HomeComponent,
      ContactUsComponent,
+     NewsComponent,
+     ViewFooterComponent,
+     ContactUsComponent,
+     AboutComponent,
+     NewsComponent,
+     ViewNewsComponent
+
      NewsComponent,
  
   ],

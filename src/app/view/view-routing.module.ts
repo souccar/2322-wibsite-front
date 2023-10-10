@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { RouterModule, Routes } from '@angular/router';
 import { MainImageComponent } from '../admin/components/main-image/main-image.component';
 import { ProductComponent } from '../admin/components/product/product.component';
+import { AboutComponent } from './about/about.component';
+import { ViewNewsComponent } from './view-news/view-news.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewsComponent } from './what-is-news/news.component';
 
@@ -24,7 +26,14 @@ let routes: Routes = [
     path: 'app',
     loadChildren: () => import('../admin/app.module').then((m) => m.AppModule),
   },
- 
+  {
+    path:'about',
+    component:AboutComponent
+  },
+  {
+    path:'news',
+    component:ViewNewsComponent
+  }
 
 ];
 
