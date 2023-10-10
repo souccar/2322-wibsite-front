@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CreateUpdateProductDto } from 'src/shared/service-proxies/service-proxies';
@@ -10,9 +10,10 @@ export class ProductService {
 
   constructor(private http:HttpClient) { }
   baseUrl=environment.baseUrl;
-  getAll()
+  getAll(params?:HttpParams)
   {
-    return this.http.get(this.baseUrl+'api/products');
+    
+    return this.http.get(this.baseUrl+'api/products',{params});
   }
   insert(product:any)
   {

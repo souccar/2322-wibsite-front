@@ -20,18 +20,21 @@ export class TemplateService {
     return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
   }
   getById(params:HttpParams){
+   
     return this.http.get(this.baseUrl+'api/getWithChildren',{params});
   }
-  insert(templates:any)
+  insert(template:any)
   {
-    return this.http.post(this.baseUrl+'api/templates',templates,{headers:{
+    console.log(template)
+    return this.http.post(this.baseUrl+'api/templates',template,{headers:{
       "Content-Type": "application/json",
 
   }});
   }
-  edit(id:number,templates:any)
-  {
-     return this.http.post(this.baseUrl+'api/templates'+'/'+id,templates);
+  edit(id:number,template:any)
+  {  console.log(id)
+    console.log(template)
+     return this.http.post(this.baseUrl+'api/templates'+'/'+id,template);
   }
   delete(id:number)
   {

@@ -27,7 +27,8 @@ export class HeadingComponent  implements OnInit{
 
 
   constructor(private router: Router,private modalService: BsModalService,private sidebarService: SidebarService,
-    private langService: LangService,private _newsCategory:NewsService){
+    private langService: LangService,
+    private _newsService:NewsService){
     this.currentLanguage = this.langService.languageShorthand;
   }
   ngOnInit(): void {
@@ -36,9 +37,17 @@ export class HeadingComponent  implements OnInit{
 
   getAllNews()
   {
-     this._newsCategory.getAll().subscribe((response:any)=>{
-      this.news=response.result.data;
+     this._newsService.getlastNews().subscribe((response:any)=>{
+      this.news=response.result;
     })
+  }
+  getProuductByBrand(){
+    
+  }
+
+  navigateByNewsId(id:any){
+    console.log(id);
+    this.router.navigate(['/GetNews', id,]);
   }
 
   mobileMenuButtonClick = (

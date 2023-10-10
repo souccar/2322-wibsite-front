@@ -137,7 +137,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       }
     );
     createOrEditPageDialog.content.onSave.subscribe(() => {
-      this.refresh();
+     this.getAllPages()
     });
   }
 

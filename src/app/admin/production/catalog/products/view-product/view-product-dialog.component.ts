@@ -27,7 +27,7 @@ export class ViewProductDialogComponent implements OnInit {
   {
     this._productService.getById(this.id).subscribe((result) => {
       this.data = result.result;
-      console.log(this.data.images);
+    
     });
   }
 

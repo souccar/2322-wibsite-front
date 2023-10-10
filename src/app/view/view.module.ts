@@ -9,15 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { BasicComponentModule } from '../admin/components/basic-component.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ViewFooterComponent } from './view-footer/view-footer.component';
-import { AboutComponent } from './about/about.component';
-import { ViewNewsComponent } from './view-news/view-news.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { NewsComponent } from './what-is-news/news.component';
+import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
+
 @NgModule({
   declarations: [
      HomeComponent,
-     ViewFooterComponent,
-     AboutComponent,
-     ViewNewsComponent
+     ContactUsComponent,
+     NewsComponent,
+ 
   ],
   imports: [
     ViewRoutingModule,
@@ -28,6 +29,8 @@ import { ViewNewsComponent } from './view-news/view-news.component';
     TranslateModule,
     LayoutModule,
     BasicComponentModule,
+    ComponentsCarouselModule,
+  
     // TranslateModule.forRoot(),
 
   ],

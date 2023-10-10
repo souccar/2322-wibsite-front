@@ -49,9 +49,7 @@ import { CommonModule } from '@angular/common';
     PaginationModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    NgxDatatableModule,
     NgxDropzoneModule,
-    NgxDatatableModule,
     NgxDropzoneModule,
     TabsModule.forRoot(),
     ComponentsCarouselModule
@@ -63,7 +61,7 @@ import { CommonModule } from '@angular/common';
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
-    NgxDropzoneModule,
+    
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,
