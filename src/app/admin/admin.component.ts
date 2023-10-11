@@ -3,11 +3,10 @@ import { ISidebar, SidebarService } from './containers/layout/sidebar/sidebar.se
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-app',
-  templateUrl: './app.component.html',
-
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AdminComponent implements OnInit, OnDestroy {
   sidebar: ISidebar={
     containerClassnames:'',
     menuClickCount:0,

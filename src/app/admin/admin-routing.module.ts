@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from '../admin/app.component';
+import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: AdminComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'production' },
 
@@ -14,11 +14,11 @@ const routes: Routes = [
 
     ],
   },
-  
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AdminRoutingModule { }
