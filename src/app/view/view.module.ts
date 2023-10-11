@@ -42,6 +42,7 @@ import { ViewNewsComponent } from './view-news/view-news.component';
     // TranslateModule.forRoot(),
 
   ],
+  exports:[ViewFooterComponent],
   schemas:[
     NO_ERRORS_SCHEMA
   ],
