@@ -16,6 +16,7 @@ import { ViewFooterComponent } from './view-footer/view-footer.component';
 import { AboutComponent } from './about/about.component';
 import { ViewNewsComponent } from './view-news/view-news.component';
 
+
 @NgModule({
   declarations: [
      HomeComponent,
@@ -24,9 +25,7 @@ import { ViewNewsComponent } from './view-news/view-news.component';
      ViewFooterComponent,
      ContactUsComponent,
      AboutComponent,
-     NewsComponent,
      ViewNewsComponent
-
  
   ],
   imports: [
@@ -43,6 +42,7 @@ import { ViewNewsComponent } from './view-news/view-news.component';
     // TranslateModule.forRoot(),
 
   ],
+  exports:[ViewFooterComponent],
   schemas:[
     NO_ERRORS_SCHEMA
   ],

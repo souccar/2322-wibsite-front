@@ -7,11 +7,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ViewModule } from './view/view.module';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/shared/shared.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.module';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,15 @@ import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.mod
     TranslateModule.forRoot(),
     ServiceProxyModule,
     // SharedModule
+    ToastrModule.forRoot(),
 
   ],
-  providers:[BsModalService,TranslateService],
-  bootstrap: [AppComponent],
+  providers:[BsModalService,TranslateService,
+  provideAnimations(), // required animations providers
+  provideToastr(),],
+  bootstrap: [AppComponent,
+   
+],
   schemas:[NO_ERRORS_SCHEMA]
 
 })
