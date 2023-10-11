@@ -41,6 +41,7 @@
         </ngx-headroom>
 
 
+
         <div class="content-container" id="home">
 
             <div class="section home">
@@ -71,33 +72,36 @@
                         </div>
                         <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">
 
+
                             <img alt="hero" style="height:75%; width: 100%;  border-radius: 16px;"
                                 src="../../../assets/img/homePage/302995889005_3.jpg" />
 
                         </div>
                     </div>
 
-                    <!-- <div class="row" *ngIf="glideDataLoad">
+                    <div class="row">
                         <div class="col-12 p-0">
-                            <div class="home-carousel text-center">
-
-
+                            <div class="home-carousel">
                                 <app-glide [settings]="slideSettings">
-                                    <div class=" mb-3" *ngFor="let product of products">
-                                            <div class="position-relative">
-                                              <img  class="card-img" src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
+                                    <div class="card" *ngFor="let f of slideItems">
+                                        <div class="card-body text-center">
+                                            <div>
+                                                <i class="{{f.icon+ ' large-icon'}}"></i>
+                                                <h5 class="mb-3 font-weight-semibold">{{f.title}}</h5>
                                             </div>
-
-
+                                            <div>
+                                                <p class="detail-text">{{f.detail}}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </app-glide>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
 
                     <div class="row">
-                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button"
-                            (click)="scrollTo('#News')">
+                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button" (click)="scrollTo('#News')">
                             <i class="simple-icon-arrow-down"></i>
                         </a>
                     </div>
@@ -124,20 +128,20 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative">
-                                <img  style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
+                                <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
                                     class="feature-image-right feature-image-charts position-relative semi-rounded" />
                             </div>
                         </div>
 
                         <div *ngIf="i%2==1" class="row feature-row">
                             <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
-                                  <img  style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
+                                <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
                                     class="feature-image-right feature-image-charts position-relative semi-rounded" />
                             </div>
                             <div
                                 class="col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2">
                                 <div class="feature-text-container">
-                                  <h2>{{n.title}}</h2>
+                                    <h2>{{n.title}}</h2>
                                     <p>{{n.description}}</p>
                                 </div>
                             </div>
@@ -147,7 +151,45 @@
                 </div>
             </div>
 
+            <div class="section">
+                <div class="container" id="about">
+                    <div class="row" *ngIf="glideDataLoad">
+                        <div class="col-12 p-0 text-center">
+                            <h1>Our Products</h1>
+                            <div class="home-carousel">
+                                <app-glide [settings]="slideSettings">
+                                    <div class="card " *ngFor="let product of products">
+                                        <div class="  position-relative">
+                                            <img class="card-img" style="height: 100%; width: 100%;"
+                                                src="{{baseUrl+product.product_images[0].imagePath}}"
+                                                alt="Card image cap">
+                                            <span
+                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category.name}}</span>
+                                            <span
+                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
+                                            <span
+                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
 
+                                        </div>
+
+                                        <div class="card-body">
+                                            <a routerLink="./">
+                                                <p class="list-item-heading mb-4">{{'cards.cake-text-2' | translate}}
+                                                </p>
+                                            </a>
+                                            <footer>
+                                                <p class="text-muted text-small mb-0 font-weight-light">09.04.2020</p>
+                                            </footer>
+                                        </div>
+
+                                    </div>
+                                </app-glide>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
             <div class="section">
                 <div class="container" id="about">
@@ -155,7 +197,8 @@
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
                             <h1>About Us</h1>
                             <p>
-                                AHC started in 1999 in Seoul, South Korea as a professional skincare line catering to private aesthetic spas and dermatological clinics.
+                                AHC started in 1999 in Seoul, South Korea as a professional skincare line catering to
+                                private aesthetic spas and dermatological clinics.
                                 <br>
                                 <br>
                                 These spas and clinics are known to provide best-in-class
@@ -169,75 +212,83 @@
             <div class="section background">
                 <div class="container" id="Contact">
                     <div class="section-content text-center">
-                        <h1 class="section-header">Get in  Touch with us</h1>
+                        <h1 class="section-header">Get in Touch with us</h1>
                         <p>Please use the information below to get in touch.
                             We look forward to hearing from you with any questions or queries you may have.</p>
                     </div>
                     <div class="contact-section">
-                    <div class="container">
-                        <form #overLineForm="ngForm" novalidate >
-                            <div class=" row d-flex justify-content-center ">
+                        <div class="container">
+                            <form #overLineForm="ngForm" novalidate>
+                                <div class=" row d-flex justify-content-center ">
 
 
-                                <div class="col-6">
-                                    <label class="form-group has-float-label">
-                                        <input class="form-control" required ngModel #name="ngModel" name="name"/>
-                                        <span>Your name</span>
-                                        <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
-                                    </label>
+                                    <div class="col-6">
+                                        <label class="form-group has-float-label">
+                                            <input class="form-control" required ngModel #name="ngModel"
+                                                [(ngModel)]="contactUs.name" name="name" />
+                                            <span>Your name</span>
+                                            <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
+                                                Value is required!</div>
+                                        </label>
 
-                                    <label class="form-group has-float-label">
-                                        <input class="form-control" required ngModel #email2="ngModel" name="email2"/>
-                                        <span>Email</span>
-                                        <div *ngIf="!email2.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
-                                      </label>
-                                    <div class="input-group-prepend has-float-label">
-                                      <!-- <span class="input-group-text text-muted">Write To Us</span> -->
-                                      <span>Message</span>
-                                    <textarea class="form-control" aria-label="With textarea"></textarea>
-                                  </div>
-                                  <div class="d-flex justify-content-center mt-5">
+                                        <label class="form-group has-float-label">
+                                            <input class="form-control" required ngModel #email2="ngModel"
+                                                [(ngModel)]="contactUs.email" name="email2" />
+                                            <span>Email</span>
+                                            <div *ngIf="!email2.valid && overLineForm.submitted"
+                                                class="invalid-tooltip">Value is required!</div>
+                                        </label>
+                                        <div class="input-group-prepend has-float-label">
+                                            <!-- <span class="input-group-text text-muted">Write To Us</span> -->
+                                            <span>Message</span>
+                                            <textarea class="form-control" aria-label="With textarea" ngModel
+                                                #message="ngModel" name="message"
+                                                [(ngModel)]="contactUs.message"></textarea>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-5">
 
-                                      <button type="button" class="btn btn-primary "><i class="simple-icon-paper-plane me-1" ></i>  Send Message</button>
-                                  </div>
+                                            <button type="button" class="btn btn-primary " (click)="save()"><i
+                                                    class="simple-icon-paper-plane me-1"></i> Send Message</button>
+                                        </div>
+                                    </div>
+
                                 </div>
 
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="section footer mb-0">
+                    <div class="container">
+                        <div class="row footer-row">
+                            <div class="col-12 text-right">
+                                <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
+                                    (click)="scrollTo('#home')" href="javascript:;"><i
+                                        class="simple-icon-arrow-up"></i></a>
                             </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-            <div class="section footer mb-0">
-                <div class="container">
-                    <div class="row footer-row">
-                        <div class="col-12 text-right">
-                            <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
-                                (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
+                            <div class="col-12 text-center footer-content">
+                                <a (click)="scrollTo('#home')" href="javascript:;">
+                                    <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 text-center footer-content">
-                            <a (click)="scrollTo('#home')" href="javascript:;">
-                                <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
-                            </a>
+                    </div>
+                    <div class="container copyright pt-5 pb-5">
+                        <div class="row">
+                            <div class="col-12"></div>
+                            <div class="col-12 text-center">
+                                <p class="mb-0">2020 © ColoredStrategies</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="container copyright pt-5 pb-5">
-                    <div class="row">
-                        <div class="col-12"></div>
-                        <div class="col-12 text-center">
-                            <p class="mb-0">2020 © ColoredStrategies</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
