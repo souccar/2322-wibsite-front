@@ -28,7 +28,7 @@ import { ListOfProductsComponent } from './list-of-products/list-of-products.com
      AboutComponent,
      ViewNewsComponent,
      ListOfProductsComponent
- 
+
   ],
   imports: [
     ViewRoutingModule,
@@ -40,10 +40,11 @@ import { ListOfProductsComponent } from './list-of-products/list-of-products.com
     LayoutModule,
     BasicComponentModule,
     ComponentsCarouselModule,
-  
+
     // TranslateModule.forRoot(),
 
   ],
+  exports:[ViewFooterComponent],
   schemas:[
     NO_ERRORS_SCHEMA
   ],

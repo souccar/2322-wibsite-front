@@ -150,12 +150,36 @@
 
                 </div>
             </div>
+            <div class="section background">
+                <div class="container" id="apps">
+                    <div class="row">
+                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
+                            <h1>Prouducts</h1>
+                            <p class="section-text">
+                             We all have different skin.<br>We all have different routines and live in different environments.
+                                    <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row screenshots">
+                        <div class="col-12 text-center mb-4">
+                            <tabset class="nav nav-tabs justify-content-center">
+                                <tab *ngFor="let app of Prouduct" [heading]="app.title" class="card-body pt-0">
+                                    <a [routerLink]="app.path">
+                                        <img [alt]="app.title" [src]="app.img" class="app-image" />
+                                    </a>
+                                </tab>
+                            </tabset>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="section">
                 <div class="container" id="about">
                     <div class="row" *ngIf="glideDataLoad">
                         <div class="col-12 p-0 text-center">
-                            <h1>Our Products</h1>
+                            <h1>Recommended products</h1>
                             <div class="home-carousel">
                                 <app-glide [settings]="slideSettings">
                                     <div class="card " *ngFor="let product of products">
@@ -168,18 +192,18 @@
                                             <span
                                                 class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
                                             <span
-                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
+                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand.name}}</span>
 
                                         </div>
 
                                         <div class="card-body">
                                             <a routerLink="./">
-                                                <p class="list-item-heading mb-4">{{'cards.cake-text-2' | translate}}
+                                                <p class="list-item-heading fw-bold mb-4">{{product.name}}
                                                 </p>
                                             </a>
-                                            <footer>
-                                                <p class="text-muted text-small mb-0 font-weight-light">09.04.2020</p>
-                                            </footer>
+
+                                                <p class="text-muted text-small mb-0 font-weight-light">{{product.description}}</p>
+
                                         </div>
 
                                     </div>
@@ -190,6 +214,8 @@
 
                 </div>
             </div>
+            <!-- <app-about></app-about> -->
+            <!-- <app-contact-us></app-contact-us> -->
 
             <div class="section">
                 <div class="container" id="about">
@@ -258,12 +284,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
 
                 <div class="section footer mb-0">
                     <div class="container">

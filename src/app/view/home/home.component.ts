@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 
 
 })
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       1200: { perView: 3 },
     },
   };
+
 
   slideItems = [
     {
@@ -98,7 +100,23 @@ export class HomeComponent implements OnInit, OnDestroy {
         'Custom Bootstrap 4 xxs & xxl classes delivers better experiences for smaller and larger screens.',
     },
   ];
-
+  Prouduct = [
+    {
+      title: 'Category',
+      path: `${this.adminRoot}/applications/survey`,
+      img: '/assets/img/landing-page/applications/survey.jpg',
+    },
+    {
+      title: 'Skin Type',
+      path: `${this.adminRoot}/applications/chat`,
+      img: '/assets/img/landing-page/applications/chat.jpg',
+    },
+    {
+      title: 'Brand',
+      path: `${this.adminRoot}/applications/todo`,
+      img: '/assets/img/landing-page/applications/todo.jpg',
+    },
+  ];
 
 
   getProduct() {
