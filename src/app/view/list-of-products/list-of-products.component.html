@@ -41,7 +41,7 @@
         </h2>
         <div *ngFor="let category of categories"id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
-            {{category.name}}
+            <a type="button"   (click)="getProductsByCategory(category.id)" >{{category.name}}</a>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
         </h2>
         <div *ngFor="let brand of brands" id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
-           {{brand.name}}
+            <a type="button"   (click)="getProductsByBrand(brand.id)" >{{brand.name}}</a>
           </div>
         </div>
       </div>
@@ -65,16 +65,12 @@
         </h2>
         <div *ngFor="let skinType of skinTypes" id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
-            {{skinType.name}}
+            <a type="button"   (click)="getProductsBySkinType(skinType.id)" >{{skinType.name}}</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
-
-
         <div class="col-md-8 mb-4" *ngIf="isloading">
 
           <app-glide [settings]="{
@@ -88,7 +84,7 @@
 
               <div class="card">
                 <div class="position-relative" >
-                  <img class="card-img-top"src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
+                  <img class="card-img-top"src="{{baseUrl+product.product_images[0]}}" alt="Card image cap">
                   <span class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.skin_type?.name}}</span>
                   <span class="badge badge-pill badge-secondary position-absolute badge-top-left-2">*{{product.brand?.name}}</span>
                   <span class="badge badge-pill badge-info position-absolute badge-top-left-3">{{product.category?.name}}</span>

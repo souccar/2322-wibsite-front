@@ -12,7 +12,7 @@ export class ProductService {
   baseUrl=environment.baseUrl;
   getAll(params?:HttpParams)
   {
-    
+
     return this.http.get(this.baseUrl+'api/products',{params});
   }
   insert(product:any)
@@ -42,5 +42,20 @@ export class ProductService {
     return  this.http.delete(this.baseUrl+'api/removeProductImages'+'/'+id);
 
   }
+  getByCategory(params:HttpParams)
+  {
+     return this.http.get(this.baseUrl+'api/productsByCategoryId',{params});
+  }
+
+  getByBrand(params:HttpParams)
+  {
+     return this.http.get(this.baseUrl+'api/productsByBrandId',{params});
+  }
+
+  getBySkinType(params:HttpParams)
+  {
+     return this.http.get(this.baseUrl+'api/productsBySkinTypeId',{params});
+  }
+
 
 }

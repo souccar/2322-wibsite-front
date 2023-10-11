@@ -585,8 +585,7 @@ export interface IReadProductDto {
   skin_type:{id:number ,name:string};
   brand:{id:number ,name:string};
   category:{id:number ,name:string};
-  skinType:{id:number ,name:string};
-  images: any[];
+  product_images: any[];
 }
 
 export class ReadProductDto implements IReadProductDto {

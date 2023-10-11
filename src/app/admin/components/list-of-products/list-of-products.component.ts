@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CreateUpdateProductDto, ReadProductDto } from 'src/shared/service-proxies/service-proxies';
+import { CreateUpdateProductDto, ReadBrandDto, ReadCategoryDto, ReadProductDto, ReadSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
+import { BrandService } from 'src/shared/services/brand-service/brand.service';
+import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
+import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
 
 @Component({
   selector: 'app-list-of-products',
@@ -70,10 +73,19 @@ export class ListOfProductsComponent implements OnInit{
   ];
   isloading:boolean=false;
   baseUrl=environment.baseUrl;
-  products:ReadProductDto[]=[]
-  constructor(private _productService:ProductService){}
+  products:ReadProductDto[]=[];
+  skinTypes:ReadSkinTypeDto[]=[];
+  brands:ReadBrandDto[]=[];
+  categories:ReadCategoryDto[]=[];
+  constructor(private _productService:ProductService,
+    private _skinTypeService:SkinTypeService,
+    private _categoryService:CategoryService,
+    private _brandService:BrandService){}
   ngOnInit(): void {
-    this.getProducts()
+    this.getProducts();
+    this.getSkinType();
+    this.getBrand();
+    this.getCategory();
 
   }
 
@@ -81,23 +93,59 @@ export class ListOfProductsComponent implements OnInit{
   {
 
     this._productService.getAll().subscribe((response:any)=>{
-      response.result.data.forEach(element => {
-         const product=new ReadProductDto();
-         product.id=element.id;
-         product.name=element.name;
-         product.category=element.category;
-         product.skinType=element.skinType;
-         product.brand=element.brand;
-         product.images=element.product_images;
-         this.products.push(product)
+      // response.result.data.forEach(element => {
+      //    const product=new ReadProductDto();
+      //    product.id=element.id;
+      //    product.name=element.name;
+      //    product.category=element.category;
+      //    product.skinType=element.skinType;
+      //    product.brand=element.brand;
+      //    product.images=element.product_images;
+      //    this.products.push(product)
 
-      });
-      console.log(this.products)
+      // });
 
-      // this.products=response.result.data;
-      // this.isloading=true;
-      // console.log(response.result.data)
+      this.products=response.result.data;
+      this.isloading=true;
+
+
     })
+
+  }
+  getSkinType()
+  {
+    this._skinTypeService.getAll().subscribe((response:any)=>{
+
+      this.skinTypes=response.result.data;
+      console.log(this.skinTypes)
+
+
+    })
+
+
+  }
+  getBrand()
+  {
+    this._brandService.getAll().subscribe((response:any)=>{
+
+      this.brands=response.result.data;
+      console.log(this.brands)
+
+
+    })
+
+
+  }
+  getCategory()
+  {
+    this._categoryService.getAll().subscribe((response:any)=>{
+
+      this.categories=response.result;
+      console.log(this.categories)
+
+
+    })
+
 
   }
 }
