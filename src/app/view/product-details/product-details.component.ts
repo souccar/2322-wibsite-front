@@ -1,15 +1,13 @@
-import { Component, Input, ViewChild, ElementRef, Injector } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { ReadProductDto } from 'src/shared/service-proxies/service-proxies';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 
 @Component({
-  selector: 'product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.scss']
 })
-
-
-export class ProductComponent   {
+export class ProductDetailsComponent {
   dataLoaded=false;
   product:ReadProductDto;
   myThumbnail="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg";
@@ -24,7 +22,7 @@ export class ProductComponent   {
     ) {
       this.getProductById(1);
     }
- 
+
 
 
     getProductById(id:any)
@@ -151,3 +149,5 @@ export interface ICarouselItem {
   category: string;
   badges: string[];
 }
+
+

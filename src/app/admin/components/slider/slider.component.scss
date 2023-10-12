@@ -1,10 +1,10 @@
 .slide {
-   
+
     height: 50vh;
     overflow: hidden;
     position: relative;
     background-color: #000;
-    border-radius: 16px;
+    // border-radius: 16px;
   }
 
   .slide > div {
@@ -27,7 +27,7 @@
   .slide > div:nth-child(5) {
     animation-delay: 12s;
   }
-  
+
   @keyframes slide {
     10% {
       opacity: 1;

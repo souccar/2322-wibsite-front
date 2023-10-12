@@ -7,10 +7,10 @@
             <!-- (click)="scrollTo('#features')" -->
             <li class="nav-item"><a href="javascript:;">Home</a></li>
             <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a></li>
+            <li class="nav-item"><a [routerLink]="['/viewProducts']">Our Prouducts</a></li>
             <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
             <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-            <li class="nav-item"><a href="admin/production">Admin</a></li>
+            <li class="nav-item"><a  [routerLink]="['/admin/production']">Admin</a></li>
 
 
         </ul>
@@ -207,7 +207,6 @@
                     <div class="row" *ngIf="glideDataLoad">
                         <div class="col-12 p-0 text-center">
                             <h1>Recommended products</h1>
-                            <h1>Recommended products</h1>
                             <div class="home-carousel">
                                 <app-glide [settings]="slideSettings">
                                     <div class="card " *ngFor="let product of products">
@@ -221,7 +220,7 @@
                                                 class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
                                             <span
                                                 class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand.name}}</span>
-                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand.name}}</span>
+
 
                                         </div>
 

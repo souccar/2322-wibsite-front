@@ -16,6 +16,13 @@ import { ViewFooterComponent } from './view-footer/view-footer.component';
 import { AboutComponent } from './about/about.component';
 import { ViewNewsComponent } from './view-news/view-news.component';
 import { ListOfProductsComponent } from './list-of-products/list-of-products.component';
+import { MainImageComponent } from './main-image/main-image.component';
+import { AccordionOfProductComponent } from './accordion-of-product/accordion-of-product.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ViewProductsComponent } from './view-products/view-products.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -27,7 +34,11 @@ import { ListOfProductsComponent } from './list-of-products/list-of-products.com
      ContactUsComponent,
      AboutComponent,
      ViewNewsComponent,
-     ListOfProductsComponent
+     ListOfProductsComponent,
+     MainImageComponent,
+     AccordionOfProductComponent,
+     ViewProductsComponent,
+     ProductDetailsComponent
 
   ],
   imports: [
@@ -40,8 +51,10 @@ import { ListOfProductsComponent } from './list-of-products/list-of-products.com
     LayoutModule,
     BasicComponentModule,
     ComponentsCarouselModule,
+    MatTreeModule,
+     MatButtonModule,
+     MatIconModule
 
-    // TranslateModule.forRoot(),
 
   ],
   exports:[ViewFooterComponent],
