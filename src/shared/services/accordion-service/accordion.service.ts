@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BrandService } from 'src/shared/services/brand-service/brand.service';
-import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
-import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
-import { Component, OnInit } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { ReadBrandDto, ReadCategoryDto, ReadProductDto, ReadSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class AccordionService implements OnInit{
+export class AccordionService {
   skinTypes:ReadSkinTypeDto[]=[];
   brands:ReadBrandDto[]=[];
   categories:ReadCategoryDto[]=[];
@@ -19,16 +15,9 @@ export class AccordionService implements OnInit{
   product: ReadProductDto = new ReadProductDto();
   type:string;
   id:number;
-  isloading:boolean=false;
-  constructor(private _productService:ProductService,
-    private _skinTypeService:SkinTypeService,
-    private _categoryService:CategoryService,
-    private _brandService:BrandService) { }
-  ngOnInit(): void {
-    this.getBrand();
-    this.getCategory();
-    this.getSkinType();
-  }
+  isFiltering:boolean=false;
+  constructor(private _productService:ProductService) { }
+
 
   getProductsByCategory(categoryId){
     let params = new HttpParams().set('categoryId', categoryId);
@@ -49,7 +38,7 @@ export class AccordionService implements OnInit{
         });
         this.products.push(this.product);
       });
-      this.isloading=true;
+      this.isFiltering=true;
     });
   }
 
@@ -73,7 +62,7 @@ export class AccordionService implements OnInit{
         });
         this.products.push(this.product);
       });
-      this.isloading=true;
+      this.isFiltering=true;
     });
 
   }
@@ -97,30 +86,9 @@ export class AccordionService implements OnInit{
         });
         this.products.push(this.product);
       });
-      this.isloading=true;
+      this.isFiltering=true;
     });
   }
-  getSkinType()
-  {
-    this._skinTypeService.getAll().subscribe((response:any)=>{
-      this.skinTypes=response.result.data;
-      console.log(this.skinTypes)
-    })
-  }
-  getBrand()
-  {
-    this._brandService.getAll().subscribe((response:any)=>{
-      this.brands=response.result.data;
-      console.log(this.brands)
-    })
-  }
-  getCategory()
-  {
-    this._categoryService.getAll().subscribe((response:any)=>{
-      this.categories=response.result;
-      console.log(this.categories)
-    })
 
 
-  }
 }

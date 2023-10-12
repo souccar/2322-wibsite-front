@@ -1,9 +1,10 @@
 <div class="row mb-2">
+  <ng-container *ngIf="_accordionService.isFiltering">
   <div
     class="col-xs-6 col-lg-3 col-12 mb-4"
     *ngFor="let product of _accordionService.products"
   >
-    <div class="card">
+    <div class="card " >
       <div class="position-relative">
         <img
           class="card-img-top"
@@ -29,7 +30,7 @@
       <div class="card-body">
         <a routerLink="./">
           <p class="list-item-heading mb-4">
-            {{ "cards.cake-text-2" | translate }}
+            {{ _accordionService.product.name | translate }}
           </p>
         </a>
         <footer>
@@ -40,4 +41,49 @@
       </div>
     </div>
   </div>
+</ng-container>
+  <!-- filtered list  -->
+  <ng-container *ngIf="!_accordionService.isFiltering">
+   <div
+    class="col-xs-6 col-lg-3 col-12 mb-4"
+    *ngFor="let product of products"
+  >
+    <div class="card ">
+      <div class="position-relative">
+        <img
+          class="card-img-top"
+          src="{{baseUrl + product.product_images[0].imagePath}}"
+          alt="Card image cap"
+        />
+        <span
+          class="badge badge-pill badge-theme-1 position-absolute badge-top-left"
+          *ngIf="product.skin_type?.name != null"
+          >{{ product.skin_type?.name }}</span
+        >
+        <span
+          class="badge badge-pill badge-secondary position-absolute badge-top-left-2"
+          *ngIf="product.brand?.name != null"
+          >{{ product.brand?.name }}</span
+        >
+        <span
+          class="badge badge-pill badge-light position-absolute badge-top-left-3"
+          *ngIf="product.category?.name != null"
+          >{{product.category?.name }}</span
+        >
+      </div>
+      <div class="card-body">
+        <a routerLink="./">
+          <p class="list-item-heading mb-4">
+            {{product.name | translate }}
+          </p>
+        </a>
+        <footer>
+         <button class="btn btn-grad"
+         [routerLink]="['/product-details',_accordionService.product.id]"
+         >ReadMore</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+  </ng-container>
 </div>
