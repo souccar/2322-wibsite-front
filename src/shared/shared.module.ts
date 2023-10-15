@@ -22,6 +22,7 @@ import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
 import { SummaryPipe } from 'src/app/pipes/summary.pipe';
 import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
 import { CommonModule } from '@angular/common';
+import { ComponentsPlayerModule } from 'src/app/admin/components/player/components.player.module';
 
 
 
@@ -52,7 +53,8 @@ import { CommonModule } from '@angular/common';
     NgxDropzoneModule,
     NgxDropzoneModule,
     TabsModule.forRoot(),
-    ComponentsCarouselModule
+    ComponentsCarouselModule,
+    ComponentsPlayerModule
   ],
   exports: [
     RouterModule,
@@ -61,7 +63,7 @@ import { CommonModule } from '@angular/common';
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
-    
+    ComponentsPlayerModule,
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,

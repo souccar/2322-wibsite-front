@@ -14,6 +14,7 @@ import { BasicRoutingModule } from './basic-routing.module';
 import { LayoutModule } from '../containers/layout/layout.module';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { SliderComponent } from './slider/slider.component';
+import { ComponentsPlayerModule } from './player/components.player.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SliderComponent } from './slider/slider.component';
     ComponentsCarouselModule,
     FormsModule,
     TranslateModule.forRoot(),
-    AccordionModule
+    AccordionModule,
+    
 
   ],
   exports:[

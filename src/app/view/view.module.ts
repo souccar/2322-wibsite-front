@@ -15,6 +15,7 @@ import { ComponentsCarouselModule } from '../admin/components/carousel/component
 import { ViewFooterComponent } from './view-footer/view-footer.component';
 import { AboutComponent } from './about/about.component';
 import { ViewNewsComponent } from './view-news/view-news.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 @NgModule({
@@ -30,10 +31,11 @@ import { ViewNewsComponent } from './view-news/view-news.component';
   ],
   imports: [
     ViewRoutingModule,
-    // SharedModule,
+    SharedModule,
     FormsModule,
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
+    PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
     BasicComponentModule,

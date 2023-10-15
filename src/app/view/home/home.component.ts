@@ -6,11 +6,12 @@ import { environment } from 'src/environments/environment';
 import { LangService, Language } from 'src/shared/lang.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { HttpParams } from '@angular/common/http';
-import { ReadNewsDto, ReadProductDto } from 'src/shared/service-proxies/service-proxies';
+import { ReadCategoryDto, ReadNewsDto, ReadProductDto } from 'src/shared/service-proxies/service-proxies';
 import { NewsService } from 'src/shared/services/news-service/news.service';
 import { CreateUpdateContactDto } from './../../../shared/service-proxies/service-proxies';
 import { ContactUsService } from 'src/shared/services/contact-us/contact-us.service';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from 'src/shared/services/category-service/category.service';
 
 @Component({
   selector: 'app-home',
@@ -21,32 +22,40 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  baseUrl=environment.baseUrl;
+  categoriesLoaded=false
   products: ReadProductDto[] = [];
+  categories: ReadCategoryDto[]=[];
   news: ReadNewsDto[] = [];
   contactUs=new CreateUpdateContactDto();
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService,
     private _productService: ProductService,
     private _newsService:NewsService,
     private _contactUsService:ContactUsService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private _categoryService:CategoryService) { }
+    ngOnInit(): void {
+      this.renderer.addClass(document.body, 'no-footer');
+      this.getProduct();
+      this.getLastNews();
+      this. getCategories();
+    }
 
   showMobileMenu = false;
   glideDataLoad = false;
-
-  baseUrl = environment.baseUrl;
   adminRoot = environment.adminRoot;
 
   slideSettings = {
     type: 'carousel',
     gap: 30,
-    perView: 4,
+    perView: 3,
     hideNav: true,
     peek: { before: 10, after: 10 },
     breakpoints: {
       600: { perView: 1 },
       992: { perView: 2 },
-      1200: { perView: 3 },
-    },
+      1200: { perView: 3 }, },
+   
   };
 
 
@@ -100,24 +109,50 @@ export class HomeComponent implements OnInit, OnDestroy {
         'Custom Bootstrap 4 xxs & xxl classes delivers better experiences for smaller and larger screens.',
     },
   ];
-  Prouduct = [
-    {
-      title: 'Category',
-      path: `${this.adminRoot}/applications/survey`,
-      img: '/assets/img/landing-page/applications/survey.jpg',
-    },
-    {
-      title: 'Skin Type',
-      path: `${this.adminRoot}/applications/chat`,
-      img: '/assets/img/landing-page/applications/chat.jpg',
-    },
-    {
-      title: 'Brand',
-      path: `${this.adminRoot}/applications/todo`,
-      img: '/assets/img/landing-page/applications/todo.jpg',
-    },
-  ];
+ 
+  data: IKnowledgeBase[] = data;
 
+  contactData=[{
+    DepartmentName:'Sales Department',
+    telephone:'+ (963) 11 543 4200 / Ext. 1624',
+    fax:'+ (963) 11 543  4217',
+    email:'sales@ahc-me.net',
+    icon:'simple-icon-basket-loaded'
+ 
+  },
+  {
+    DepartmentName:'Marketing Department',
+    telephone:'+ (963) 11 543 4200 Ext. 1626',
+    fax:'+ (963) 11 543 4217',
+    email:'marketing@ahc-me.net',
+    icon:'simple-icon-credit-card'
+ 
+    
+  },{
+    DepartmentName:'Business Development Department',
+    telephone:'+ (963) 11 543 4200  Ext. 1625',
+    fax:'+ (963) 11 5434217',
+    email:'bd@ahc-me.net',
+    icon:'simple-icon-briefcase'
+ 
+    
+  },{
+    DepartmentName:'General inquiries',
+    telephone:'+ (963) 11 543 4200Ext. 1622',
+    fax:'+ (963) 11 543 4217',
+    email:'info@ahc-me.net',
+    icon:'simple-icon-globe-alt'
+ 
+    
+  }]
+  getCategories(){
+    this._categoryService.getAll().subscribe((responce:any)=>{
+      this.categoriesLoaded=true
+      this.categories=responce.result
+      console.log(this.categories)
+    })
+
+  }
 
   getProduct() {
 
@@ -126,16 +161,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.products = responce.result.data;
       this.glideDataLoad = true;
-      console.log(this.products)
+     
     });
 
   }
   getLastNews(){
-    // let params = new HttpParams().set('count', 10);
+    
     this._newsService.getlastNews().subscribe((responce: any) => {
 
       this.news = responce.result;
-      console.log(responce)
+     
     });
   }
   save(){
@@ -149,11 +184,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.contactUs=new CreateUpdateContactDto()
   }
 
-  ngOnInit(): void {
-    this.renderer.addClass(document.body, 'no-footer');
-    this.getProduct();
-    this.getLastNews();
-  }
+
   ngOnDestroy(): void {
     this.renderer.removeClass(document.body, 'no-footer');
   }
@@ -201,3 +232,192 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.scrollToService.scrollTo(config);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+export interface IKnowledgeBase {
+  title: string;
+  icon: string;
+  detail: string;
+  subtitles: IKnowledgeBaseSubTitle[];
+}
+export interface IKnowledgeBaseSubTitle {
+  title: string;
+  link: string;
+}
+
+const data: IKnowledgeBase[] = [
+  {
+    title: 'USING VIEN',
+    icon: 'iconsminds-director ',
+    detail: 'Systems thinking correlation, social impact; when revolutionary fully ethical life bandwidth and thought partnership.',
+    subtitles: [
+      {
+        title: 'Getting Started',
+        link: '#'
+      },
+      {
+        title: 'Game Changing Features',
+        link: '#'
+      },
+      {
+        title: 'Structure',
+        link: '#'
+      },
+      {
+        title: 'Adding Content',
+        link: '#'
+      },
+      {
+        title: 'Gulp & Package.json',
+        link: '#'
+      },
+      {
+        title: 'Codebase',
+        link: '#'
+      },
+      {
+        title: 'Styles and Themes',
+        link: '#'
+      },
+      {
+        title: 'Fonts',
+        link: '#'
+      },
+      {
+        title: 'Plugins',
+        link: '#'
+      },
+      {
+        title: 'Changelog',
+        link: '#'
+      }
+    ]
+  },
+  {
+    title: 'SECURITY',
+    icon: 'iconsminds-security-settings ',
+    detail: 'Tellus a sem condimentum, vitae convallis sapien feugiat. Aenean non nibh nec nunc aliquam iaculis. Ut quis suscipit nunc. Duis at lectus a est aliquam venenatis vitae eget arcu.',
+    subtitles: [
+      {
+        title: 'Securing Your Account',
+        link: '#'
+      },
+      {
+        title: 'Privacy',
+        link: '#'
+      },
+      {
+        title: 'Spam',
+        link: '#'
+      },
+      {
+        title: 'Sensitive Content',
+        link: '#'
+      },
+      {
+        title: 'Abuse',
+        link: '#'
+      },
+      {
+        title: 'Blocking Users',
+        link: '#'
+      },
+      {
+        title: 'Reporting',
+        link: '#'
+      }
+    ]
+  },
+  {
+    title: 'ACCOUNT',
+    icon: 'iconsminds-male',
+    detail: 'Squid single-origincoffeenulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beerlaborewes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butchervice lomo.',
+    subtitles: [
+      {
+        title: 'Login and Register',
+        link: '#'
+      },
+      {
+        title: 'Password Reset',
+        link: '#'
+      },
+      {
+        title: 'Devices',
+        link: '#'
+      },
+      {
+        title: 'Integrations',
+        link: '#'
+      },
+      {
+        title: 'Notifications',
+        link: '#'
+      },
+      {
+        title: 'Messages',
+        link: '#'
+      },
+      {
+        title: 'Blocking Users',
+        link: '#'
+      },
+      {
+        title: 'Following Users',
+        link: '#'
+      },
+      {
+        title: 'Login',
+        link: '#'
+      },
+      {
+        title: 'Content Filters',
+        link: '#'
+      }
+    ]
+  },
+  {
+    title: 'POLICIES',
+    icon: 'iconsminds-newspaper',
+    detail: 'Duis at lectus a est aliquam venenatis vitae eget arcu. Sed egestas felis eget convallis maximus. Curabitur maximus.',
+    subtitles: [
+      {
+        title: 'About',
+        link: '#'
+      },
+      {
+        title: 'Policies',
+        link: '#'
+      },
+      {
+        title: 'Privacy',
+        link: '#'
+      },
+      {
+        title: 'Ad Choices',
+        link: '#'
+      },
+      {
+        title: 'Researches and Experiments',
+        link: '#'
+      },
+      {
+        title: 'General Guidelines',
+        link: '#'
+      },
+      {
+        title: 'Cookies',
+        link: '#'
+      }
+    ]
+  }
+];
+export default data;
