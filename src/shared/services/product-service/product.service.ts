@@ -10,10 +10,12 @@ export class ProductService {
 
   constructor(private http:HttpClient) { }
   baseUrl=environment.baseUrl;
-  getAll(params?:HttpParams)
+  getAll( params?:HttpParams)
   {
 
     return this.http.get(this.baseUrl+'api/products',{params});
+
+
   }
   insert(product:any)
   {

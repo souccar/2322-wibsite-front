@@ -16,6 +16,7 @@ export class AccordionService {
   type:string;
   id:number;
   isFiltering:boolean=false;
+
   constructor(private _productService:ProductService) { }
 
 

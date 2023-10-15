@@ -122,12 +122,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   getProduct() {
 
     let params = new HttpParams().set('count', 10);
-    this._productService.getAll(params).subscribe((responce: any) => {
+    // this._productService.getAll(params).subscribe((responce: any) => {
 
-      this.products = responce.result.data;
-      this.glideDataLoad = true;
-      console.log(this.products)
-    });
+    //   this.products = responce.result.data;
+    //   this.glideDataLoad = true;
+    //   console.log(this.products)
+    // });
 
   }
   getLastNews(){

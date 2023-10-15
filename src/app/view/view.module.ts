@@ -23,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -53,7 +53,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ComponentsCarouselModule,
     MatTreeModule,
      MatButtonModule,
-     MatIconModule
+     MatIconModule,
+     PaginationModule
 
 
   ],
