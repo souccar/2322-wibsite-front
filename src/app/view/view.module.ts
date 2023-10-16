@@ -43,10 +43,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
   ],
   imports: [
     ViewRoutingModule,
-    // SharedModule,
+    SharedModule,
     FormsModule,
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
+    PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
     BasicComponentModule,

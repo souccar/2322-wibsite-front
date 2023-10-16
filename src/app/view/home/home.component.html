@@ -53,23 +53,20 @@
                                     style="height: 75%; width: 100%; border-radius: 16px;"
                                     src="../../../assets/img/homePage/302995889005_3.jpg" /> -->
 
-                                    <app-slider></app-slider>
+                                <app-slider first="../../../assets/img/NEWS/t.jpg"
+                                    second="../../../assets/img/NEWS/u.jpg" third="../../../assets/img/NEWS/y.jpg"
+                                    fourth="../../../assets/img/NEWS/r.jpg"
+                                    fifth="../../../assets/img/NEWS/e.jpg"></app-slider>
                             </a>
                         </div>
 
-                        <div class="col-12 col-xl-4 col-lg-5 col-md-6">
-                            <div class="home-text">
-                                <div class="display-1">MAGIC IS IN <br />THE DETAILS</div>
-                                <p class="white mb-5">
-                                    Vien is the combination of good design, quality code and attention for
-                                    details.<br />
-                                    <br />
-                                    We used same design language for components, layouts, apps
-                                    and other parts of the template. <br />
-                                    <br />
-                                    Hope you enjoy it!
-                                </p>
 
+                        <div class="col-12    mt-5 d-none d-md-block">
+                            <app-slider first="../../../../assets/img/slider/mmt.jpg"
+                                second="../../../../assets/img/slider/persun.jpg"
+                                third="../../../../assets/img/homePageImage/age-sport.jpg"
+                                fourth="../../../../assets/img/homePageImage/Presun-Oil.jpg"
+                                fifth="../../../../assets/img/homePageImage/2.jpg"></app-slider>
                             </div>
                         </div>
                         <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">
@@ -82,18 +79,17 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row my-5" *ngIf="categoriesLoaded">
                         <div class="col-12 p-0">
                             <div class="home-carousel">
                                 <app-glide [settings]="slideSettings">
-                                    <div class="card" *ngFor="let f of slideItems">
-                                        <div class="card-body text-center">
-                                            <div>
-                                                <i class="{{f.icon+ ' large-icon'}}"></i>
-                                                <h5 class="mb-3 font-weight-semibold">{{f.title}}</h5>
-                                            </div>
-                                            <div>
-                                                <p class="detail-text">{{f.detail}}</p>
+                                    <div class="card" *ngFor="let category of categories">
+                                        <div class="card-body">
+                                            <div class="text-center">
+                                                <img alt="Profile" src="{{baseUrl+category.imagePath}}"
+                                                    class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail">
+                                                <p class="list-item-heading fw-bold mb-1">{{category.name}}</p>
+                                                <p class="mb-4 text-muted ">{{category.description}} hi hh hi h hi hi ih ih ih ih ih ih ih ih ih ih hi hh hi h hi hi ih ih ih ih ih ih ih ih ih ih</p>
                                             </div>
                                         </div>
                                     </div>
@@ -154,56 +150,126 @@
                 </div>
             </div>
             <div class="section background">
-                <div class="container" id="apps">
+                <div class="container" id="Prouducts">
                     <div class="row">
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
                             <h1>Prouducts</h1>
                             <p class="section-text">
-                             We all have different skin.<br>We all have different routines and live in different environments.
-                                    <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
+                                We all have different skin.<br>We all have different routines and live in different
+                                environments.
+                                <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
                             </p>
                         </div>
                     </div>
                     <div class="row screenshots">
-                        <div class="col-12 text-center mb-4">
-                            <tabset class="nav nav-tabs justify-content-center">
-                                <tab *ngFor="let app of Prouduct" [heading]="app.title" class="card-body pt-0">
-                                    <a [routerLink]="app.path">
-                                        <img [alt]="app.title" [src]="app.img" class="app-image" />
+                        <div class="row" *ngIf="glideDataLoad">
+                            <div class=" card col-xl-3 col-lg-4 col-12 col-sm-6 mb-4"
+                                *ngFor="let product of products; let i=index">
+
+                                <div class="  position-relative">
+                                    <a class="d-flex" routerLink="/">
+                                    <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
+                                        src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
                                     </a>
-                                </tab>
-                            </tabset>
+                                        <span
+                                        class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
+                                    <span
+                                        class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
+                                    <span
+                                        class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
+
+                                </div>
+                                <div class="card-body text-center">
+                                    <a routerLink="./">
+                                        <p class="list-item-heading fw-bold mb-4">{{product.name}}
+                                        </p>
+                                    </a>
+
+                                    <p class="text-muted text-small mb-0 font-weight-light">
+                                        {{product.description}}</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <pagination class="justify-content-center" [totalItems]="30"
+                                    [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                                </pagination>
+                            </div>
+                            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                                <i class='simple-icon-arrow-right'></i>
+                            </ng-template>
+                            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                                <i class='simple-icon-arrow-left'></i>
+                            </ng-template>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="section background">
-                <div class="container" id="apps">
+                <div class="container" id="Prouducts">
                     <div class="row">
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
                             <h1>Prouducts</h1>
                             <p class="section-text">
-                             We all have different skin.<br>We all have different routines and live in different environments.
-                                    <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
+                                We all have different skin.<br>We all have different routines and live in different
+                                environments.
+                                <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
                             </p>
                         </div>
                     </div>
                     <div class="row screenshots">
-                        <div class="col-12 text-center mb-4">
-                            <tabset class="nav nav-tabs justify-content-center">
-                                <tab *ngFor="let app of Prouduct" [heading]="app.title" class="card-body pt-0">
-                                    <a [routerLink]="app.path">
-                                        <img [alt]="app.title" [src]="app.img" class="app-image" />
+                        <div class="row" *ngIf="glideDataLoad">
+                            <div class=" card col-xl-3 col-lg-4 col-12 col-sm-6 mb-4"
+                                *ngFor="let product of products; let i=index">
+
+                                <div class="  position-relative">
+                                    <a class="d-flex" routerLink="/">
+                                    <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
+                                        src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
                                     </a>
-                                </tab>
-                            </tabset>
+                                        <span
+                                        class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
+                                    <span
+                                        class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
+                                    <span
+                                        class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
+
+                                </div>
+                                <div class="card-body text-center">
+                                    <a routerLink="./">
+                                        <p class="list-item-heading fw-bold mb-4">{{product.name}}
+                                        </p>
+                                    </a>
+
+                                    <p class="text-muted text-small mb-0 font-weight-light">
+                                        {{product.description}}</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-12">
+                                <pagination class="justify-content-center" [totalItems]="30"
+                                    [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                                </pagination>
+                            </div>
+                            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                                <i class='simple-icon-arrow-right'></i>
+                            </ng-template>
+                            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                                <i class='simple-icon-arrow-left'></i>
+                            </ng-template>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <div class="section">
-                <div class="container" id="about">
+                <div class="container">
                     <div class="row" *ngIf="glideDataLoad">
                         <div class="col-12 p-0 text-center">
                             <h1>Recommended products</h1>
@@ -211,15 +277,16 @@
                                 <app-glide [settings]="slideSettings">
                                     <div class="card " *ngFor="let product of products">
                                         <div class="  position-relative">
-                                            <img class="card-img" style="height: 100%; width: 100%;"
+                                            <img class="card-img pt-4"
+                                                style="height: 100%; width: 100%; object-fit:contain  ;"
                                                 src="{{baseUrl+product.product_images[0].imagePath}}"
                                                 alt="Card image cap">
                                             <span
-                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category.name}}</span>
+                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
                                             <span
-                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
+                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
                                             <span
-                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand.name}}</span>
+                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
 
 
                                         </div>
@@ -230,6 +297,10 @@
                                                 <p class="list-item-heading fw-bold mb-4">{{product.name}}
                                                 </p>
                                             </a>
+
+                                            <p class="text-muted text-small mb-0 font-weight-light">
+                                                {{product.description}}</p>
+
 
                                                 <p class="text-muted text-small mb-0 font-weight-light">{{product.description}}</p>
 
@@ -243,8 +314,9 @@
 
                 </div>
             </div>
-            <!-- <app-about></app-about> -->
+            <!--  -->
             <!-- <app-contact-us></app-contact-us> -->
+
 
             <!-- <app-about></app-about> -->
             <!-- <app-contact-us></app-contact-us> -->
@@ -253,27 +325,67 @@
                 <div class="container" id="about">
                     <div class="row mb-5">
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                            <h1>About Us</h1>
-                            <p>
-                                AHC started in 1999 in Seoul, South Korea as a professional skincare line catering to
-                                private aesthetic spas and dermatological clinics.
-                                <br>
-                                <br>
-                                These spas and clinics are known to provide best-in-class
-                                advanced skincare treatments and are sought after by highly discerning clientele.
-                            </p>
+                            <a routerLink="/about">
+                                <h1>About Us</h1>
+                            </a>
+
                         </div>
                     </div>
+
+
+                    <app-about></app-about>
+                    <!-- <div class="row d-flex justify-content-center">
+                        <div class="col-md-4 col-sm-12   mb-4">
+                            <a routerLink="./" class="card">
+                                <div class="card-body text-center" style="max-height: 10rem; ">
+                                    <img src="../../../assets/img/logos/mmt1-removebg-preview.png">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4   col-sm-12  mb-4">
+                            <a routerLink="./" class="card">
+                                <div class="card-body text-center" style="max-height: 10rem; ">
+                                    <img src="../../../assets/img/logos/mmt_care-removebg-preview.png">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4  col-sm-12  mb-4">
+                            <a routerLink="./" class="card">
+                                <div class="card-body text-center" style="max-height: 10rem; ">
+                                    <img src="../../../assets/img/logos/presun-removebg-preview.png" class=" pb-2">
+                                </div>
+                            </a>
+                        </div>
+                    </div> -->
                 </div>
-                <img class="components-image mb-5 pb-5" src="../../../assets/img/slider/mmt.jpg">
+
             </div>
+            <div class="section">
+                <div class="container text-center ">
+                    <h1> Recommended By Dermatologists, Loved By The Skin</h1>
+
+                    <app-player class="video-js side-bar-video " style="height: 70vh;" [options]="{
+                      preload: 'auto',
+                      controls: true,
+                      sources: [{src: 'https://cdn.shopify.com/s/files/1/0243/7342/8329/files/AHC_Brand_Film_New_Full_Eng_Smaller.mp4',
+                      type: 'video/mp4'}]}">
+                    </app-player>
+                </div>
+            </div>
+
+
+
+
             <div class="section background">
                 <div class="container" id="Contact">
+
                     <div class="section-content text-center">
                         <h1 class="section-header">Get in Touch with us</h1>
                         <p>Please use the information below to get in touch.
                             We look forward to hearing from you with any questions or queries you may have.</p>
                     </div>
+
+
                     <div class="contact-section">
                         <div class="container">
                             <form #overLineForm="ngForm" novalidate>
@@ -315,33 +427,78 @@
                             </form>
                         </div>
                     </div>
+                    <div class=" text-center mt-5">
+
+                        <div class="row equal-height-container">
+                            <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <i [class]="item.icon+ ' large-icon'"></i>
+                                            <h5 class="mb-0  color-theme-1 mb-4">{{item.DepartmentName}}</h5>
+                                        </div>
+                                        <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                                            <label class="p-2"><i
+                                                    class="iconsminds-old-telephone  text-primary  me-2"></i>{{item.telephone}}</label>
+                                            <label class="p-2" for="SalesDepartmentFax"><i
+                                                    class="iconsminds-fax  text-primary me-2"></i>{{item.fax}}</label>
+                                            <a class="p-2" href="javascript:;"> <i
+                                                    class="iconsminds-envelope text-primary me-2"></i>{{item.email}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <i class="iconsminds-information large-icon"></i>
+                                            <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
+                                        </div>
+                                        <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                                            <div class="d-flex  justify-content-center">
+                                                <a href="javascript:;"><i
+                                                        class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
-                <div class="section footer mb-0">
-                    <div class="container">
-                        <div class="row footer-row">
-                            <div class="col-12 text-right">
-                                <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
-                                    (click)="scrollTo('#home')" href="javascript:;"><i
-                                        class="simple-icon-arrow-up"></i></a>
-                            </div>
-                            <div class="col-12 text-center footer-content">
-                                <a (click)="scrollTo('#home')" href="javascript:;">
-                                    <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
-                                </a>
-                            </div>
+
+            </div>
+
+
+            <div class="section footer ">
+                <div class="container">
+                    <div class="row footer-row">
+                        <div class="col-12 text-right">
+                            <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
+                                (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
                         </div>
-                    </div>
-                    <div class="container copyright pt-5 pb-5">
-                        <div class="row">
-                            <div class="col-12"></div>
-                            <div class="col-12 text-center">
-                                <p class="mb-0">2020 © ColoredStrategies</p>
-                            </div>
+                        <div class="col-12 text-center footer-content">
+                            <a (click)="scrollTo('#home')" href="javascript:;">
+                                <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
+                            </a>
                         </div>
                     </div>
                 </div>
+                <div class="container copyright pt-5 pb-5">
+                    <div class="row">
+                        <div class="col-12"></div>
+                        <div class="col-12 text-center">
+                            <p class="">2020 © ColoredStrategies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
     </div>
-</div>

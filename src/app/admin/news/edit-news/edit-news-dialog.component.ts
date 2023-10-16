@@ -37,8 +37,8 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     this._newsService.getById(this.id).subscribe((result:any) => {
       this.news=result.result;
       this.base64 = result.result.base64;
-      this.image = result.result.imagePath;
-      this.tempImage = this.image.split("/");
+      // this.image = result.result.imagePath;
+      this.tempImage = result.result.imagePath.split("/");
       this.initImage();
 
 
@@ -74,18 +74,14 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
-    myFormData.append("image",this.image);
+    if(this.image!=undefined)
+      myFormData.append("image",this.image);
+    this._newsService.edit(this.id,myFormData).subscribe((response)=>{
+      console.log(response);
+      this.bsModalRef.hide();
+      this.onSave.emit();
 
-    this._newsService.edit(this.id,myFormData).subscribe(
-      () => {
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
+    })
 
-      },
-      () => {
-        this.saving = false;
-      }
-    );
   }
 }
