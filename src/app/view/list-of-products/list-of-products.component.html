@@ -1,43 +1,148 @@
-<div class="row mb-2">
-  <div
-    class="col-xs-6 col-lg-3 col-12 mb-4"
-    *ngFor="let product of _accordionService.products"
-  >
-    <div class="card">
-      <div class="position-relative">
-        <img
-          class="card-img-top"
-          src="{{ _accordionService.baseUrl + product.product_images[0] }}"
-          alt="Card image cap"
-        />
-        <span
-          class="badge badge-pill badge-theme-1 position-absolute badge-top-left"
-          *ngIf="_accordionService.product.skin_type?.name != null"
-          >{{ _accordionService.product.skin_type?.name }}</span
-        >
-        <span
-          class="badge badge-pill badge-secondary position-absolute badge-top-left-2"
-          *ngIf="_accordionService.product.brand?.name != null"
-          >{{ _accordionService.product.brand?.name }}</span
-        >
-        <span
-          class="badge badge-pill badge-light position-absolute badge-top-left-3"
-          *ngIf="_accordionService.product.category?.name != null"
-          >{{ _accordionService.product.category?.name }}</span
-        >
-      </div>
-      <div class="card-body">
-        <a routerLink="./">
-          <p class="list-item-heading mb-4">
-            {{ "cards.cake-text-2" | translate }}
-          </p>
-        </a>
-        <footer>
-         <button class="btn btn-grad"
-         [routerLink]="['/product-details',_accordionService.product.id]"
-         >ReadMore</button>
-        </footer>
-      </div>
+<div class="row mt-4 mb-2 mx-2">
+
+
+  <!-- filtered list  -->
+    <div class="col-xs-6 col-lg-4 col-md-6 col-12 mb-4" *ngFor="let product of products">
+    <div class="card flex-row listing-card-container  align-items-center" style="min-height: 12rem;">
+        <div class="w-40 position-relative ">
+            <a [routerLink]="['/product-details',product.id]">
+                <img class="card-img-left "
+                style="width:75%; max-height: 9rem; object-fit: contain;"
+                src="{{ baseUrl + product.product_images[0].imagePath }}" alt="Card image cap">
+                <span
+      class="badge badge-pill badge-theme-1 position-absolute badge-top-left"
+      *ngIf="product.skin_type?.name != null"
+      >{{ product.skin_type?.name }}</span
+    >
+    <span
+      class="badge badge-pill badge-secondary position-absolute badge-top-left-2"
+      *ngIf="product.brand?.name != null"
+      >{{ product.brand?.name }}</span
+    >
+    <span
+      class="badge badge-pill badge-light position-absolute badge-top-left-3"
+      *ngIf="product.category?.name != null"
+      >{{ product.category?.name }}</span
+    >
+            </a>
+        </div>
+        <div class="w-60 d-flex align-items-center">
+            <div class="card-body">
+                <a [routerLink]=" '/pages/blog/blog-detail'">
+                    <h5 class="mb-3 listing-heading" ellipsis>{{product.name}}</h5>
+                </a>
+                <p class="listing-desc text-muted" ellipsis>{{product.description}}
+                </p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+    <!-- <div class="col-xs-6 col-lg-3 col-12 mb-4" *ngFor="let product of products">
+      <div class="card">
+        <div class="position-relative">
+          <img
+            class="card-img-top"
+            src="{{ baseUrl + product.product_images[0].imagePath }}"
+            alt="Card image cap"
+          />
+          <span
+            class="badge badge-pill badge-theme-1 position-absolute badge-top-left"
+            *ngIf="product.skin_type?.name != null"
+            >{{ product.skin_type?.name }}</span
+          >
+          <span
+            class="badge badge-pill badge-secondary position-absolute badge-top-left-2"
+            *ngIf="product.brand?.name != null"
+            >{{ product.brand?.name }}</span
+          >
+          <span
+            class="badge badge-pill badge-light position-absolute badge-top-left-3"
+            *ngIf="product.category?.name != null"
+            >{{ product.category?.name }}</span
+          >
+        </div>
+        <div class="card-body">
+          <a routerLink="./">
+            <p class="list-item-heading mb-4">
+              {{ product.name | translate }}
+            </p>
+          </a>
+          <footer>
+            <button
+              class="btn btn-grad"
+              [routerLink]="['/product-details', _accordionService.product.id]"
+            >
+              ReadMore
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div> -->
+</div>
+
+<!-- <pagination
+[totalItems]="totalItems"
+[itemsPerPage]="itemsPerPage"
+[rotate]="true"
+[maxSize]="5"
+[(ngModel)]="currentPage"
+(pageChanged)="pageChanged($event)"
+class="justify-content-center"
+[customNextTemplate]="nextTemplate"
+[customPreviousTemplate]="prevTemplate"
+>
+</pagination> -->
+
+
+
+  <!-- <ng-container  *ngIf="!isLoading; else elseBlock">
+
+    </ng-container>
+
+ <ng-template   #elseBlock> -->
+
+
+<!-- <div>
+  Mohammad
+</div>
+
+ </ng-template> -->
+
+
+
+
+
+
+
+
+<ng-template
+  #nextTemplate
+  let-disabled="disabled"
+  let-currentPage="currentPage"
+>
+  <i class="simple-icon-arrow-right"></i>
+</ng-template>
+
+<ng-template
+  #prevTemplate
+  let-disabled="disabled"
+  let-currentPage="currentPage"
+>
+  <i class="simple-icon-arrow-left"></i>
+</ng-template>
+
+<ng-template
+  #lastTemplate
+  let-disabled="disabled"
+  let-currentPage="currentPage"
+>
+  <i class="simple-icon-control-end"></i>
+</ng-template>
+
+<ng-template
+  #firstTemplate
+  let-disabled="disabled"
+  let-currentPage="currentPage"
+>
+  <i class="simple-icon-control-start"></i>
+</ng-template>

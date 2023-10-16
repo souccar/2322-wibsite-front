@@ -23,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -43,17 +43,19 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   ],
   imports: [
     ViewRoutingModule,
-    // SharedModule,
+    SharedModule,
     FormsModule,
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
+    PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
     BasicComponentModule,
     ComponentsCarouselModule,
     MatTreeModule,
      MatButtonModule,
-     MatIconModule
+     MatIconModule,
+     PaginationModule
 
 
   ],
