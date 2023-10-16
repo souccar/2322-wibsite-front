@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _newsService:NewsService,
     private _contactUsService:ContactUsService,
     private toastr: ToastrService,
-    private _categoryService:CategoryService) { }
+    private _categoryService:CategoryService,
+    private _route:Router) { }
     ngOnInit(): void {
       this.renderer.addClass(document.body, 'no-footer');
       this.getProduct();
@@ -157,13 +158,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   getProduct() {
 
     let params = new HttpParams().set('count', 10);
-    // this._productService.getAll(params).subscribe((responce: any) => {
+    this._productService.getAll(params).subscribe((responce: any) => {
 
       this.products = responce.result.data;
       this.glideDataLoad = true;
 
     });
 
+  }
+  viewProduct()
+  {
+    this._route.navigate(['viewProducts'])
   }
   getLastNews(){
 
@@ -421,3 +426,4 @@ const data: IKnowledgeBase[] = [
   }
 ];
 export default data;
+

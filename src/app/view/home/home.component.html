@@ -1,504 +1,441 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
-    <div class="mobile-menu" (click)="$event.stopPropagation()">
-        <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
-            <span></span>
-        </a>
-        <ul class="navbar-nav">
-            <!-- (click)="scrollTo('#features')" -->
-            <li class="nav-item"><a href="javascript:;">Home</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-            <li class="nav-item"><a [routerLink]="['/viewProducts']">Our Prouducts</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-            <li class="nav-item"><a  [routerLink]="['/admin/production']">Admin</a></li>
+  <div class="mobile-menu" (click)="$event.stopPropagation()">
+      <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
+          <span></span>
+      </a>
+      <ul class="navbar-nav">
+          <!-- (click)="scrollTo('#features')" -->
+          <li class="nav-item"><a href="javascript:;">Home</a></li>
+          <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
+          <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a></li>
+          <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
+          <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
+          <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
 
 
-        </ul>
-    </div>
+      </ul>
+  </div>
 
-    <div class="main-container">
-        <ngx-headroom class="landing-page-nav">
-            <nav>
-                <div class="container d-flex align-items-center justify-content-between">
-                    <a class="navbar-logo pull-left" href="javascript:;">
-                        <span class="white"></span>
-                        <span class="dark"></span>
-                    </a>
-                    <ul class="navbar-nav d-none d-lg-flex flex-row">
-                        <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-                        <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a>
-                        </li>
-                        <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
-                        <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-                        <li class="nav-item"><a href="admin/production">Admin</a></li>
+  <div class="main-container">
+      <ngx-headroom class="landing-page-nav">
+          <nav>
+              <div class="container d-flex align-items-center justify-content-between">
+                  <a class="navbar-logo pull-left" href="javascript:;">
+                      <span class="white"></span>
+                      <span class="dark"></span>
+                  </a>
+                  <ul class="navbar-nav d-none d-lg-flex flex-row">
+                      <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
+                      <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a>
+                      </li>
+                      <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
+                      <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
+                      <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
 
-                    </ul>
-                    <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
-                        <i class="simple-icon-menu"></i>
-                    </span>
-                </div>
-            </nav>
-        </ngx-headroom>
-
-
-
-        <div class="content-container" id="home">
-
-            <div class="section home">
-                <div class="container">
-                    <div class="row home-row">
-                        <div class="col-12 d-block d-md-none">
-                            <a [href]="adminRoot" target="_blank">
-                                <!-- <img alt="mobile hero" class="mobile-hero"
-                                    style="height: 75%; width: 100%; border-radius: 16px;"
-                                    src="../../../assets/img/homePage/302995889005_3.jpg" /> -->
-
-                                <app-slider first="../../../assets/img/NEWS/t.jpg"
-                                    second="../../../assets/img/NEWS/u.jpg" third="../../../assets/img/NEWS/y.jpg"
-                                    fourth="../../../assets/img/NEWS/r.jpg"
-                                    fifth="../../../assets/img/NEWS/e.jpg"></app-slider>
-                            </a>
-                        </div>
+                  </ul>
+                  <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
+                      <i class="simple-icon-menu"></i>
+                  </span>
+              </div>
+          </nav>
+      </ngx-headroom>
 
 
-                        <div class="col-12    mt-5 d-none d-md-block">
-                            <app-slider first="../../../../assets/img/slider/mmt.jpg"
-                                second="../../../../assets/img/slider/persun.jpg"
-                                third="../../../../assets/img/homePageImage/age-sport.jpg"
-                                fourth="../../../../assets/img/homePageImage/Presun-Oil.jpg"
-                                fifth="../../../../assets/img/homePageImage/2.jpg"></app-slider>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-7 offset-xl-1 col-lg-7 col-md-6  d-none d-md-block">
+      <div class="content-container" id="home">
+
+          <div class="section home">
+              <div class="container  ">
+                  <div class="row home-row d-flex justify-content-end">
+                      <!-- <div class="col-12 d-block d-md-none">
+                          <a [href]="adminRoot" target="_blank">
 
 
-                            <!-- <img alt="hero" style="height:75%; width: 100%;  border-radius: 16px;"
-                                src="../../../assets/img/homePage/302995889005_3.jpg" /> -->
-                                <app-slider first="../../../../assets/img/slider/mmt.jpg" second="../../../../assets/img/slider/persun.jpg"></app-slider>
+                              <app-slider first="../../../assets/img/NEWS/t.jpg"
+                                  second="../../../assets/img/NEWS/u.jpg" third="../../../assets/img/NEWS/y.jpg"
+                                  fourth="../../../assets/img/NEWS/r.jpg"
+                                  fifth="../../../assets/img/NEWS/e.jpg"></app-slider>
+                          </a>
+                      </div> -->
 
-                        </div>
-                    </div>
+                      <div class="col-6 align-self-center">
+                       <p class="text-white">Company, actively involved in the field of electronics, electrical power,and the information industry.</p>
 
-                    <div class="row my-5" *ngIf="categoriesLoaded">
-                        <div class="col-12 p-0">
-                            <div class="home-carousel">
-                                <app-glide [settings]="slideSettings">
-                                    <div class="card" *ngFor="let category of categories">
-                                        <div class="card-body">
-                                            <div class="text-center">
-                                                <img alt="Profile" src="{{baseUrl+category.imagePath}}"
-                                                    class="img-thumbnail border-0 rounded-circle mb-4 list-thumbnail">
-                                                <p class="list-item-heading fw-bold mb-1">{{category.name}}</p>
-                                                <p class="mb-4 text-muted ">{{category.description}} hi hh hi h hi hi ih ih ih ih ih ih ih ih ih ih hi hh hi h hi hi ih ih ih ih ih ih ih ih ih ih</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </app-glide>
-                            </div>
-                        </div>
-                    </div>
+                      <p  class="text-white">It is a technology-driven value added system integrator,fueled by modern thinking and unique ideas, especially when adding our collective experience and innovative technologyý to our scope of delivery.
+                      </p>
+                      </div>
+                      <div class="col-6 mt-5 d-none d-md-block " >
+                          <app-slider first="../../../../assets/img/slider/mmt.jpg"
+                              second="../../../../assets/img/slider/persun.jpg"
+                              third="../../../../assets/img/homePageImage/age-sport.jpg"
+                              fourth="../../../../assets/img/homePageImage/Presun-Oil.jpg"
+                              fifth="../../../../assets/img/homePageImage/2.jpg"></app-slider>
+                      </div>
+
+                  </div>
+
+                  <div class="row my-5" *ngIf="categoriesLoaded">
+                      <div class="col-12 p-0">
+                          <div class="home-carousel">
+                              <app-glide [settings]="slideSettings">
+                                  <div class="card" style="max-height: 25rem;" *ngFor="let category of categories">
+                                      <div class="card-body " >
+                                          <div class="text-center" style="min-height: 20rem;">
+                                              <img alt="Profile" src="{{baseUrl+category.imagePath}}"
+                                                  class=" mb-4 list-thumbnail">
+                                              <p class="list-item-heading fw-bold mb-1">{{category.name}}</p>
+                                              <p class=" text-muted pb-5">{{category.description}} </p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </app-glide>
+                          </div>
+                      </div>
+                  </div>
 
 
-                    <div class="row">
-                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button" (click)="scrollTo('#News')">
-                            <i class="simple-icon-arrow-down"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                  <div class="row">
+                      <a class="btn btn-circle btn-outline-semi-light hero-circle-button" (click)="scrollTo('#News')">
+                          <i class="simple-icon-arrow-down"></i>
+                      </a>
+                  </div>
+              </div>
+          </div>
 
-            <div class="section">
-                <div class="container" id="News">
-                    <div class="row">
-                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                            <h1>DISCOVER MORE FROM AHC</h1>
-                            <p>
-                                Get the best care for your sensitive skin across all our product ranges.
-                            </p>
-                        </div>
-                    </div>
+          <div class="section">
+              <div class="container" id="News">
+                  <div class="row">
+                      <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
+                          <h1>DISCOVER MORE FROM AHC</h1>
+                          <p>
+                              Get the best care for your sensitive skin across all our product ranges.
+                          </p>
+                      </div>
+                  </div>
 
-                    <div *ngFor="let n of news;let i = index">
-                        <div *ngIf="i%2==0" class="row feature-row ">
-                            <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center">
-                                <div class="feature-text-container">
-                                    <h2>{{n.title}}</h2>
-                                    <p>{{n.description}}</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative">
-                                <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
-                                    class="feature-image-right feature-image-charts position-relative semi-rounded" />
-                            </div>
-                        </div>
+                  <div *ngFor="let n of news;let i = index">
+                      <div *ngIf="i%2==0" class="row feature-row ">
+                          <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center">
+                              <div class="feature-text-container">
+                                  <h2>{{n.title}}</h2>
+                                  <p>{{n.description}}</p>
+                              </div>
+                          </div>
+                          <div class="col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative">
+                              <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
+                                  class="feature-image-right feature-image-charts position-relative semi-rounded" />
+                          </div>
+                      </div>
 
-                        <div *ngIf="i%2==1" class="row feature-row">
-                            <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
-                                <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
-                                    class="feature-image-right feature-image-charts position-relative semi-rounded" />
-                            </div>
-                            <div
-                                class="col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2">
-                                <div class="feature-text-container">
-                                    <h2>{{n.title}}</h2>
-                                    <p>{{n.description}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                      <div *ngIf="i%2==1" class="row feature-row">
+                          <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
+                              <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
+                                  class="feature-image-right feature-image-charts position-relative semi-rounded" />
+                          </div>
+                          <div
+                              class="col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2">
+                              <div class="feature-text-container">
+                                  <h2>{{n.title}}</h2>
+                                  <p>{{n.description}}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
-                </div>
-            </div>
-            <div class="section background">
-                <div class="container" id="Prouducts">
-                    <div class="row">
-                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
-                            <h1>Prouducts</h1>
-                            <p class="section-text">
-                                We all have different skin.<br>We all have different routines and live in different
-                                environments.
-                                <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row screenshots">
-                        <div class="row" *ngIf="glideDataLoad">
-                            <div class=" card col-xl-3 col-lg-4 col-12 col-sm-6 mb-4"
-                                *ngFor="let product of products; let i=index">
+              </div>
+          </div>
+          <div class="section background">
+              <div class="container" id="Prouducts">
+                  <div class="row">
+                      <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
+                        <a [routerLink]="['/viewProducts']" ><h1 >Prouducts</h1></a>
+                          <p class="section-text">
+                              We all have different skin.<br>We all have different routines and live in different
+                              environments.
+                              <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
+                          </p>
+                      </div>
+                  </div>
+                  <div class="row screenshots">
+                      <div class="row" *ngIf="glideDataLoad">
+                          <div class=" card col-xl-3 col-lg-4 col-12 col-sm-6 mb-4"
+                              *ngFor="let product of products; let i=index">
 
-                                <div class="  position-relative">
-                                    <a class="d-flex" routerLink="/">
-                                    <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
-                                        src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
-                                    </a>
-                                        <span
-                                        class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                    <span
-                                        class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                    <span
-                                        class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
+                              <div class="  position-relative">
+                              <a [routerLink]="['/product-details',product.id]" >
+                                  <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
+                                      src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
+                                  </a>
+                                      <span
+                                      class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
+                                  <span
+                                      class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
+                                  <span
+                                      class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
 
-                                </div>
-                                <div class="card-body text-center">
-                                    <a routerLink="./">
-                                        <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                        </p>
-                                    </a>
+                              </div>
+                              <div class="card-body text-center">
+                                  <a [routerLink]="['/product-details',product.id]" >
+                                      <p class="list-item-heading fw-bold mb-4">{{product.name}}
+                                      </p>
+                                  </a>
+                              <a [routerLink]="['/viewProducts']" >
+                                  <p class="text-muted text-small mb-0 font-weight-light">
+                                      <!-- {{product.description|summary}} -->
+                                      <ng-container *ngIf="product.description!=null">
+                                        <ng-container  *ngIf="product.description.length>40; else elseBlock">
+                                          {{ product.description  | summary}}
+                                          </ng-container>
+                                        </ng-container>
+                                       <ng-template   #elseBlock>{{product.description}}</ng-template>
 
-                                    <p class="text-muted text-small mb-0 font-weight-light">
-                                        {{product.description}}</p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-12">
-                                <pagination class="justify-content-center" [totalItems]="30"
-                                    [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
-                                </pagination>
-                            </div>
-                            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
-                                <i class='simple-icon-arrow-right'></i>
-                            </ng-template>
-                            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
-                                <i class='simple-icon-arrow-left'></i>
-                            </ng-template>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="section background">
-                <div class="container" id="Prouducts">
-                    <div class="row">
-                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
-                            <h1>Prouducts</h1>
-                            <p class="section-text">
-                                We all have different skin.<br>We all have different routines and live in different
-                                environments.
-                                <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row screenshots">
-                        <div class="row" *ngIf="glideDataLoad">
-                            <div class=" card col-xl-3 col-lg-4 col-12 col-sm-6 mb-4"
-                                *ngFor="let product of products; let i=index">
-
-                                <div class="  position-relative">
-                                    <a class="d-flex" routerLink="/">
-                                    <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
-                                        src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
-                                    </a>
-                                        <span
-                                        class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                    <span
-                                        class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                    <span
-                                        class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
-
-                                </div>
-                                <div class="card-body text-center">
-                                    <a routerLink="./">
-                                        <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                        </p>
+                                    </p>
                                     </a>
 
-                                    <p class="text-muted text-small mb-0 font-weight-light">
-                                        {{product.description}}</p>
-
-                                </div>
-
-                            </div>
-
-                            <div class="col-12">
-                                <pagination class="justify-content-center" [totalItems]="30"
-                                    [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
-                                </pagination>
-                            </div>
-                            <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
-                                <i class='simple-icon-arrow-right'></i>
-                            </ng-template>
-                            <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
-                                <i class='simple-icon-arrow-left'></i>
-                            </ng-template>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="container">
-                    <div class="row" *ngIf="glideDataLoad">
-                        <div class="col-12 p-0 text-center">
-                            <h1>Recommended products</h1>
-                            <div class="home-carousel">
-                                <app-glide [settings]="slideSettings">
-                                    <div class="card " *ngFor="let product of products">
-                                        <div class="  position-relative">
-                                            <img class="card-img pt-4"
-                                                style="height: 100%; width: 100%; object-fit:contain  ;"
-                                                src="{{baseUrl+product.product_images[0].imagePath}}"
-                                                alt="Card image cap">
-                                            <span
-                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                            <span
-                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                            <span
-                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
 
 
-                                        </div>
+                              </div>
 
-                                        <div class="card-body">
-                                            <a routerLink="./">
-                                                <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                                <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                                </p>
-                                            </a>
+                          </div>
 
-                                            <p class="text-muted text-small mb-0 font-weight-light">
-                                                {{product.description}}</p>
+                          <div class="col-12">
+                              <pagination class="justify-content-center" [totalItems]="30"
+                                  [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+                              </pagination>
+                          </div>
+                          <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+                              <i class='simple-icon-arrow-right'></i>
+                          </ng-template>
+                          <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+                              <i class='simple-icon-arrow-left'></i>
+                          </ng-template>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+          <div class="section">
+              <div class="container">
+                  <div class="row" *ngIf="glideDataLoad">
+                      <div class="col-12 p-0 text-center">
+                          <h1>Recommended products</h1>
+                          <div class="home-carousel">
+                              <app-glide [settings]="slideSettings">
+                                  <div class="card " *ngFor="let product of products">
+                                      <div class="  position-relative">
+                                          <img class="card-img pt-4"
+                                              style="height: 100%; width: 100%; object-fit:contain  ;"
+                                              src="{{baseUrl+product.product_images[0].imagePath}}"
+                                              alt="Card image cap">
+                                          <span
+                                              class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
+                                          <span
+                                              class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
+                                          <span
+                                              class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
+
+                                      </div>
+
+                                      <div class="card-body">
+                                          <a routerLink="./">
+                                              <p class="list-item-heading fw-bold mb-4">{{product.name}}
+                                              </p>
+                                          </a>
+
+                                          <p class="text-muted text-small mb-0 font-weight-light">
+                                              {{product.description}}</p>
+
+                                      </div>
+
+                                  </div>
+                              </app-glide>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          <!--  -->
+          <!-- <app-contact-us></app-contact-us> -->
+
+          <div class="section">
+              <div class="container" id="about">
+                  <div class="row mb-5">
+                      <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
+                          <a routerLink="/about">
+                              <h1>About Us</h1>
+                          </a>
+
+                      </div>
+                  </div>
 
 
-                                                <p class="text-muted text-small mb-0 font-weight-light">{{product.description}}</p>
+                  <app-about></app-about>
+                  <!-- <div class="row d-flex justify-content-center">
+                      <div class="col-md-4 col-sm-12   mb-4">
+                          <a routerLink="./" class="card">
+                              <div class="card-body text-center" style="max-height: 10rem; ">
+                                  <img src="../../../assets/img/logos/mmt1-removebg-preview.png">
+                              </div>
+                          </a>
+                      </div>
+                      <div class="col-md-4   col-sm-12  mb-4">
+                          <a routerLink="./" class="card">
+                              <div class="card-body text-center" style="max-height: 10rem; ">
+                                  <img src="../../../assets/img/logos/mmt_care-removebg-preview.png">
+                              </div>
+                          </a>
+                      </div>
+                      <div class="col-md-4  col-sm-12  mb-4">
+                          <a routerLink="./" class="card">
+                              <div class="card-body text-center" style="max-height: 10rem; ">
+                                  <img src="../../../assets/img/logos/presun-removebg-preview.png" class=" pb-2">
+                              </div>
+                          </a>
+                      </div>
+                  </div> -->
+              </div>
 
-                                        </div>
+          </div>
+          <div class="section">
+              <div class="container text-center ">
+                  <h1> Recommended By Dermatologists, Loved By The Skin</h1>
 
-                                    </div>
-                                </app-glide>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!--  -->
-            <!-- <app-contact-us></app-contact-us> -->
-
-
-            <!-- <app-about></app-about> -->
-            <!-- <app-contact-us></app-contact-us> -->
-
-            <div class="section">
-                <div class="container" id="about">
-                    <div class="row mb-5">
-                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                            <a routerLink="/about">
-                                <h1>About Us</h1>
-                            </a>
-
-                        </div>
-                    </div>
-
-
-                    <app-about></app-about>
-                    <!-- <div class="row d-flex justify-content-center">
-                        <div class="col-md-4 col-sm-12   mb-4">
-                            <a routerLink="./" class="card">
-                                <div class="card-body text-center" style="max-height: 10rem; ">
-                                    <img src="../../../assets/img/logos/mmt1-removebg-preview.png">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4   col-sm-12  mb-4">
-                            <a routerLink="./" class="card">
-                                <div class="card-body text-center" style="max-height: 10rem; ">
-                                    <img src="../../../assets/img/logos/mmt_care-removebg-preview.png">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-4  col-sm-12  mb-4">
-                            <a routerLink="./" class="card">
-                                <div class="card-body text-center" style="max-height: 10rem; ">
-                                    <img src="../../../assets/img/logos/presun-removebg-preview.png" class=" pb-2">
-                                </div>
-                            </a>
-                        </div>
-                    </div> -->
-                </div>
-
-            </div>
-            <div class="section">
-                <div class="container text-center ">
-                    <h1> Recommended By Dermatologists, Loved By The Skin</h1>
-
-                    <app-player class="video-js side-bar-video " style="height: 70vh;" [options]="{
-                      preload: 'auto',
-                      controls: true,
-                      sources: [{src: 'https://cdn.shopify.com/s/files/1/0243/7342/8329/files/AHC_Brand_Film_New_Full_Eng_Smaller.mp4',
-                      type: 'video/mp4'}]}">
-                    </app-player>
-                </div>
-            </div>
+                  <app-player class="video-js side-bar-video " style="height: 70vh;" [options]="{
+                    preload: 'auto',
+                    controls: true,
+                    sources: [{src: 'https://cdn.shopify.com/s/files/1/0243/7342/8329/files/AHC_Brand_Film_New_Full_Eng_Smaller.mp4',
+                    type: 'video/mp4'}]}">
+                  </app-player>
+              </div>
+          </div>
 
 
 
 
-            <div class="section background">
-                <div class="container" id="Contact">
+          <div class="section background">
+              <div class="container" id="Contact">
 
-                    <div class="section-content text-center">
-                        <h1 class="section-header">Get in Touch with us</h1>
-                        <p>Please use the information below to get in touch.
-                            We look forward to hearing from you with any questions or queries you may have.</p>
-                    </div>
-
-
-                    <div class="contact-section">
-                        <div class="container">
-                            <form #overLineForm="ngForm" novalidate>
-                                <div class=" row d-flex justify-content-center ">
+                  <div class="section-content text-center">
+                      <h1 class="section-header">Get in Touch with us</h1>
+                      <p>Please use the information below to get in touch.
+                          We look forward to hearing from you with any questions or queries you may have.</p>
+                  </div>
 
 
-                                    <div class="col-6">
-                                        <label class="form-group has-float-label">
-                                            <input class="form-control" required ngModel #name="ngModel"
-                                                [(ngModel)]="contactUs.name" name="name" />
-                                            <span>Your name</span>
-                                            <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
-                                                Value is required!</div>
-                                        </label>
-
-                                        <label class="form-group has-float-label">
-                                            <input class="form-control" required ngModel #email2="ngModel"
-                                                [(ngModel)]="contactUs.email" name="email2" />
-                                            <span>Email</span>
-                                            <div *ngIf="!email2.valid && overLineForm.submitted"
-                                                class="invalid-tooltip">Value is required!</div>
-                                        </label>
-                                        <div class="input-group-prepend has-float-label">
-                                            <!-- <span class="input-group-text text-muted">Write To Us</span> -->
-                                            <span>Message</span>
-                                            <textarea class="form-control" aria-label="With textarea" ngModel
-                                                #message="ngModel" name="message"
-                                                [(ngModel)]="contactUs.message"></textarea>
-                                        </div>
-                                        <div class="d-flex justify-content-center mt-5">
-
-                                            <button type="button" class="btn btn-primary " (click)="save()"><i
-                                                    class="simple-icon-paper-plane me-1"></i> Send Message</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                    <div class=" text-center mt-5">
-
-                        <div class="row equal-height-container">
-                            <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <i [class]="item.icon+ ' large-icon'"></i>
-                                            <h5 class="mb-0  color-theme-1 mb-4">{{item.DepartmentName}}</h5>
-                                        </div>
-                                        <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
-                                            <label class="p-2"><i
-                                                    class="iconsminds-old-telephone  text-primary  me-2"></i>{{item.telephone}}</label>
-                                            <label class="p-2" for="SalesDepartmentFax"><i
-                                                    class="iconsminds-fax  text-primary me-2"></i>{{item.fax}}</label>
-                                            <a class="p-2" href="javascript:;"> <i
-                                                    class="iconsminds-envelope text-primary me-2"></i>{{item.email}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <i class="iconsminds-information large-icon"></i>
-                                            <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
-                                        </div>
-                                        <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
-                                            <div class="d-flex  justify-content-center">
-                                                <a href="javascript:;"><i
-                                                        class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="contact-section">
+                      <div class="container">
+                          <form #overLineForm="ngForm" novalidate>
+                              <div class=" row d-flex justify-content-center ">
 
 
+                                  <div class="col-6">
+                                      <label class="form-group has-float-label">
+                                          <input class="form-control" required ngModel #name="ngModel"
+                                              [(ngModel)]="contactUs.name" name="name" />
+                                          <span>Your name</span>
+                                          <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
+                                              Value is required!</div>
+                                      </label>
 
-                </div>
+                                      <label class="form-group has-float-label">
+                                          <input class="form-control" required ngModel #email2="ngModel"
+                                              [(ngModel)]="contactUs.email" name="email2" />
+                                          <span>Email</span>
+                                          <div *ngIf="!email2.valid && overLineForm.submitted"
+                                              class="invalid-tooltip">Value is required!</div>
+                                      </label>
+                                      <div class="input-group-prepend has-float-label">
+                                          <!-- <span class="input-group-text text-muted">Write To Us</span> -->
+                                          <span>Message</span>
+                                          <textarea class="form-control" aria-label="With textarea" ngModel
+                                              #message="ngModel" name="message"
+                                              [(ngModel)]="contactUs.message"></textarea>
+                                      </div>
+                                      <div class="d-flex justify-content-center mt-5">
+
+                                          <button type="button" class="btn btn-primary " (click)="save()"><i
+                                                  class="simple-icon-paper-plane me-1"></i> Send Message</button>
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                          </form>
+                      </div>
+                  </div>
+                  <div class=" text-center mt-5">
+
+                      <div class="row equal-height-container">
+                          <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="text-center">
+                                          <i [class]="item.icon+ ' large-icon'"></i>
+                                          <h5 class="mb-0  color-theme-1 mb-4">{{item.DepartmentName}}</h5>
+                                      </div>
+                                      <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                                          <label class="p-2"><i
+                                                  class="iconsminds-old-telephone  text-primary  me-2"></i>{{item.telephone}}</label>
+                                          <label class="p-2" for="SalesDepartmentFax"><i
+                                                  class="iconsminds-fax  text-primary me-2"></i>{{item.fax}}</label>
+                                          <a class="p-2" href="javascript:;"> <i
+                                                  class="iconsminds-envelope text-primary me-2"></i>{{item.email}}</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div>
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="text-center">
+                                          <i class="iconsminds-information large-icon"></i>
+                                          <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
+                                      </div>
+                                      <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                                          <div class="d-flex  justify-content-center">
+                                              <a href="javascript:;"><i
+                                                      class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
 
-            </div>
+
+              </div>
 
 
-            <div class="section footer ">
-                <div class="container">
-                    <div class="row footer-row">
-                        <div class="col-12 text-right">
-                            <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
-                                (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
-                        </div>
-                        <div class="col-12 text-center footer-content">
-                            <a (click)="scrollTo('#home')" href="javascript:;">
-                                <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container copyright pt-5 pb-5">
-                    <div class="row">
-                        <div class="col-12"></div>
-                        <div class="col-12 text-center">
-                            <p class="">2020 © ColoredStrategies</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
 
 
-        </div>
-    </div>
+          <div class="section footer ">
+              <div class="container">
+                  <div class="row footer-row">
+                      <div class="col-12 text-right">
+                          <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
+                              (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
+                      </div>
+                      <div class="col-12 text-center footer-content">
+                          <a (click)="scrollTo('#home')" href="javascript:;">
+                              <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="container copyright pt-5 pb-5">
+                  <div class="row">
+                      <div class="col-12"></div>
+                      <div class="col-12 text-center">
+                          <p class="">2020 © ColoredStrategies</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+  </div>

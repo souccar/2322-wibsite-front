@@ -23,6 +23,8 @@ import { SummaryPipe } from 'src/app/pipes/summary.pipe';
 import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
 import { CommonModule } from '@angular/common';
 import { ComponentsPlayerModule } from 'src/app/admin/components/player/components.player.module';
+import { StateButtonComponent } from './state-button/state-button.component';
+import { ComponentsStateButtonModule } from './state-button/components.state-button.module';
 
 
 
@@ -54,7 +56,8 @@ import { ComponentsPlayerModule } from 'src/app/admin/components/player/componen
     NgxDropzoneModule,
     TabsModule.forRoot(),
     ComponentsCarouselModule,
-    ComponentsPlayerModule
+    ComponentsPlayerModule,
+    ComponentsStateButtonModule
   ],
   exports: [
     RouterModule,
@@ -71,7 +74,8 @@ import { ComponentsPlayerModule } from 'src/app/admin/components/player/componen
     ReactiveFormsModule,
     TabsModule,
     ContextMenuModule,
-    SummaryPipe
+    SummaryPipe,
+    ComponentsStateButtonModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
