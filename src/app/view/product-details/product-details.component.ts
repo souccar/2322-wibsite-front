@@ -1,4 +1,6 @@
 import { Component, Injector } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { ReadProductDto } from 'src/shared/service-proxies/service-proxies';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 
@@ -8,146 +10,69 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent {
-  dataLoaded=false;
-  product:ReadProductDto;
-  myThumbnail="https://wittlock.github.io/ngx-image-zoom/assets/thumb.jpg";
-  myFullresImage="https://wittlock.github.io/ngx-image-zoom/assets/fullres.jpg";
-  max:number=5;
-  isReadyOnly:boolean=true;
-  rate = 4;
-  rateReadonly = 5;
+
+  product: ReadProductDto;
+
+  baseUrl = environment.baseUrl;
+  loading: boolean = false;
+  selectedImageUrl: string = '';
+  id: number;
+
+  detailImages: CarouselImage[] = [];
+  detailThumbs: CarouselImage[] = [];
+
+  img:CarouselImage;
+
   constructor(
     injector: Injector,
     private _productService: ProductService,
-    ) {
-      this.getProductById(1);
-    }
-
-
-
-    getProductById(id:any)
-    {
-      this._productService.getById(id).subscribe((responce:any)=>{
-     console.log(responce);
-     this.product=responce.result;
-     this.dataLoaded=true;
-      });
-    }
-  setting = {
-    gap: 0,
-    type: 'carousel',
-    hideNav: true,
-    perView: 1,
+    private route: ActivatedRoute
+  ) {
+    route.params.subscribe((e: any) => {
+      this.id = e.id;
+    });
+    this.getProductById(this.id);
   }
-  setting2 = {
-    gap: 0,
-    type: 'carousel',
-    hideNav: true,
-    perView: 1,
+
+  getProductById(id: any) {
+
+    this._productService.getById(id).subscribe((responce: any) => {
+      if (responce.success === true) {
+        this.product = new ReadProductDto();
+        this.product.id = responce.result.id;
+        this.product.name = responce.result.name;
+        this.product.point = responce.result.point;
+        this.product.description = responce.result.description;
+        this.product.category = responce.result.category;
+        this.product.brand = responce.result.brand;
+        this.product.skin_type = responce.result.skinType;
+        this.product.product_images = responce.result.images;
+
+        this.product.product_images.forEach((element)=>{
+          this.img = new CarouselImage();
+          this.img.id = element.id;
+          this.img.img = this.baseUrl+element.imagePath;
+
+          this.detailImages.push(this.img);
+          this.detailThumbs.push(this.img);
+        })
+
+        this.selectedImageUrl = this.product.product_images[0].imagePath;
+        this.loading = true;
+        console.log(this.detailImages)
+      }
+    });
   }
-  carouselData: ICarouselItem[] = [
-    {
-      id: 'carousel-0',
-      title: 'Homemade Cheesecake with Fresh Berries and Mint',
-      img: '/assets/img/cards/thumb-1.jpg',
-      detail: '10.12.2019',
-      category: 'Cupcakes',
-      badges: ['NEW']
-    },
-    {
-      id: 'carousel-1',
-      title: 'Wedding Cake with Flowers Macarons and Blueberries',
-      img: '/assets/img/cards/thumb-2.jpg',
-      detail: '10.06.2020',
-      category: 'Cakes',
-      badges: ['TRENDING']
-    },
-    {
-      id: 'carousel-2',
-      title: 'Cheesecake with Chocolate Cookies and Cream Biscuits',
-      img: '/assets/img/cards/thumb-3.jpg',
-      detail: '03.01.2020',
-      category: 'Cupcakes',
-      badges: ['PROCESSED']
-    },
-    {
-      id: 'carousel-3',
-      title: 'Homemade Cheesecake with Dried Lemon on Top',
-      img: '/assets/img/cards/thumb-1.jpg',
-      detail: '22.02.2020',
-      category: 'Cakes',
-      badges: ['']
-    },
-    {
-      id: 'carousel-4',
-      title: 'Cupcake with Cream Biscuit Bananas and Sour Cherry',
-      img: '/assets/img/cards/thumb-2.jpg',
-      detail: '12.05.2020',
-      category: 'Cakes',
-      badges: ['DONE']
-    }
-  ];
-  detailImages: ICarouselImage[] = [
-    {
-      id: 'large-0',
-      img: '/assets/img/homePage/302993927341_4.jpg',
-    },
-    {
-      id: 'large-1',
-      img: '/assets/img/homePage/302995889005_3.jpg',
-    },
-    {
-      id: 'large-2',
-      img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_CLEANSERS-resized.jpg',
-    },
 
-    {
-      id: 'large-4',
-      img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_MOISTURIZER-resized.jpg',
-    },
-    {
-      id: 'large-5',
-      img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_BABY-resized.jpg',
-    }
-  ];
-
-  detailThumbs: ICarouselImage[] = [
-    {
-      id: 'thumb-0',
-      img: '/assets/img/homePage/302993927341_4.jpg',
-    },
-    {
-      id: 'thumb-1',
-      img: '/assets/img/homePage/302995889005_3.jpg',
-    },
-    {
-      id: 'thumb-2',
-      img:  '/assets/img/homePage/CETAPHIL_Homepage_Tiles_CLEANSERS-resized.jpg',
-    },
-
-    {
-      id: 'thumb-4',
-      img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_MOISTURIZER-resized.jpg',
-    },
-    {
-      id: 'thumb-5',
-      img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_BABY-resized.jpg',
-    }
-  ];
-
+  changeImage(imagePath: string) {
+    this.selectedImageUrl = imagePath;
+  }
 
 }
-export interface ICarouselImage {
+
+export class CarouselImage {
   id: string;
   img: string;
-}
-export interface ICarouselItem {
-  id: string;
-  title: string;
-  img: string;
-  detail: string;
-  category: string;
-  badges: string[];
 }
 
 

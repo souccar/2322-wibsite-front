@@ -215,23 +215,23 @@
                                                 src="{{baseUrl+product.product_images[0].imagePath}}"
                                                 alt="Card image cap">
                                             <span
-                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category.name}}</span>
+                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
                                             <span
-                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type.name}}</span>
+                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
                                             <span
-                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand.name}}</span>
+                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
 
 
                                         </div>
 
                                         <div class="card-body">
                                             <a routerLink="./">
-                                                <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                                <p class="list-item-heading fw-bold mb-4">{{product.name}}
+                                                <p class="list-item-heading fw-bold mb-4">{{product?.name}}
+                                                <p class="list-item-heading fw-bold mb-4">{{product?.name}}
                                                 </p>
                                             </a>
 
-                                                <p class="text-muted text-small mb-0 font-weight-light">{{product.description}}</p>
+                                                <p class="text-muted text-small mb-0 font-weight-light">{{product?.description}}</p>
 
                                         </div>
 
