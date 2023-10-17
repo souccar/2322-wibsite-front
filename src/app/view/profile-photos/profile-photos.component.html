@@ -1,0 +1,27 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title"><span>{{ 'photos' | translate }}</span><a class="btn-link float-right text-small pt-1"
+        href="javascript:;">{{ 'view-all' | translate }}</a>
+    </h5>
+    <div class="row social-image-row gallery">
+     <!-- <h1>{{isLoading}}</h1> -->
+
+        <ng-container *ngIf="isLoading" >
+
+
+          raneem
+        </ng-container>
+
+        <ng-container *ngIf="!isLoading" >
+
+          mohammad
+
+        </ng-container>
+
+
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import {  Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ReadProductDto } from 'src/shared/service-proxies/service-proxies';
@@ -9,7 +9,55 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent {
+export class ProductDetailsComponent implements OnInit {
+
+  // detailImages: any[] = [
+  //   {
+  //     id: 'large-0',
+  //     img: '/assets/img/homePage/302993927341_4.jpg',
+  //   },
+  //   {
+  //     id: 'large-1',
+  //     img: '/assets/img/homePage/302995889005_3.jpg',
+  //   },
+  //   {
+  //     id: 'large-2',
+  //     img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_CLEANSERS-resized.jpg',
+  //   },
+
+  //   {
+  //     id: 'large-4',
+  //     img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_MOISTURIZER-resized.jpg',
+  //   },
+  //   {
+  //     id: 'large-5',
+  //     img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_BABY-resized.jpg',
+  //   }
+  // ];
+
+  // detailThumbs: any[] = [
+  //   {
+  //     id: 'thumb-0',
+  //     img: '/assets/img/homePage/302993927341_4.jpg',
+  //   },
+  //   {
+  //     id: 'thumb-1',
+  //     img: '/assets/img/homePage/302995889005_3.jpg',
+  //   },
+  //   {
+  //     id: 'thumb-2',
+  //     img:  '/assets/img/homePage/CETAPHIL_Homepage_Tiles_CLEANSERS-resized.jpg',
+  //   },
+
+  //   {
+  //     id: 'thumb-4',
+  //     img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_MOISTURIZER-resized.jpg',
+  //   },
+  //   {
+  //     id: 'thumb-5',
+  //     img: '/assets/img/homePage/CETAPHIL_Homepage_Tiles_BABY-resized.jpg',
+  //   }
+  // ];
 
   product: ReadProductDto;
 
@@ -17,7 +65,6 @@ export class ProductDetailsComponent {
   loading: boolean = false;
   selectedImageUrl: string = '';
   id: number;
-
   detailImages: CarouselImage[] = [];
   detailThumbs: CarouselImage[] = [];
 
@@ -26,15 +73,22 @@ export class ProductDetailsComponent {
   constructor(
     injector: Injector,
     private _productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {
-    route.params.subscribe((e: any) => {
+
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe((e: any) => {
       this.id = e.id;
     });
-    this.getProductById(this.id);
+
+      this.getProductById(this.id);
   }
 
   getProductById(id: any) {
+
 
     this._productService.getById(id).subscribe((responce: any) => {
       if (responce.success === true) {
@@ -50,16 +104,17 @@ export class ProductDetailsComponent {
 
         this.product.product_images.forEach((element)=>{
           this.img = new CarouselImage();
-          this.img.id = element.id;
+          this.img.id = element.id.toString();
           this.img.img = this.baseUrl+element.imagePath;
 
           this.detailImages.push(this.img);
           this.detailThumbs.push(this.img);
-        })
+        });
 
         this.selectedImageUrl = this.product.product_images[0].imagePath;
         this.loading = true;
         console.log(this.detailImages)
+        console.log(this.detailThumbs)
       }
     });
   }
