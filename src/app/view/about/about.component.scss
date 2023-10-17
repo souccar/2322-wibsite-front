@@ -93,3 +93,19 @@
 .text-wrapper2 h3,p{
 	color: black;
 }
+
+.rotate-in-down-left {
+	animation: rotate-in-down-left 2s ease ;
+  }
+  @keyframes rotate-in-down-left {
+	0% {
+	  transform-origin: left bottom;
+	  transform: rotate(-90deg);
+	  opacity: 0;
+	}
+	100% {
+	  transform-origin: left bottom;
+	  transform: rotate(0);
+	  opacity: 1;
+	}
+  }

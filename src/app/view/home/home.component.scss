@@ -1,4 +1,54 @@
 .badge-top-left-3 {
-    top: 70px;
-    left: -7px;
+  top: 70px;
+  left: -7px;
+}
+
+
+.cssBasedZoom {
+  transition: transform 0.23s;
+
+  &:hover {
+    transform: scale(1.1);
   }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fadeInUp-animation {
+  animation: 1.5s fadeInUp;
+}
+
+
+
+.slide {
+  
+  animation: MySlide 3s  ease-in;
+}
+.toRight {
+  animation-direction: normal;
+}
+
+.toLeft {
+  animation-direction: reverse;
+}
+
+
+
+@keyframes MySlide {
+  0%   {left: 0px; top: 0px;}
+  100%  {left: 75px; top: 0px;}
+}
+
+
+
+
