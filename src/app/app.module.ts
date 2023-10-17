@@ -13,6 +13,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.module';
 import { ToastrModule, provideToastr } from 'ngx-toastr';
+import { Lightbox } from 'ngx-lightbox';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { ToastrModule, provideToastr } from 'ngx-toastr';
   provideAnimations(), // required animations providers
   provideToastr(),],
   bootstrap: [AppComponent,
-   
+
 ],
   schemas:[NO_ERRORS_SCHEMA]
 

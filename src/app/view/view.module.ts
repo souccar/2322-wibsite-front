@@ -24,6 +24,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ProductDetailInfoComponent } from './product-detail-info/product-detail-info.component';
+import { ProductDetailTabsComponent } from './product-detail-tabs/product-detail-tabs.component';
+import { ProfilePhotosComponent } from './profile-photos/profile-photos.component';
+import { Lightbox, LightboxConfig, LightboxEvent } from 'ngx-lightbox';
+import { LightboxModule } from 'ngx-lightbox';
+import { GlideProductComponent } from './glide-product/glide-product.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,7 +45,11 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
      MainImageComponent,
      AccordionOfProductComponent,
      ViewProductsComponent,
-     ProductDetailsComponent
+     ProductDetailsComponent,
+     ProductDetailInfoComponent,
+     ProductDetailTabsComponent,
+     ProfilePhotosComponent,
+
 
   ],
   imports: [
@@ -50,19 +61,21 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
+    CommonModule,
     BasicComponentModule,
     ComponentsCarouselModule,
     MatTreeModule,
      MatButtonModule,
      MatIconModule,
-     PaginationModule
-
-
+     PaginationModule,
+     LightboxModule,
   ],
   exports:[ViewFooterComponent],
   schemas:[
-    NO_ERRORS_SCHEMA
+    NO_ERRORS_SCHEMA,
+
   ],
+
   providers:[BsModalService],
 })
 export class ViewModule { }

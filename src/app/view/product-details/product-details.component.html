@@ -1,14 +1,14 @@
-<app-heading></app-heading>
+<!-- <app-heading></app-heading>
 <br>
 <br>
 <br>
 <br>
 <br>
 <br>
-<br>
+<br> -->
 
-<div class="row" *ngIf="loading">
-    <div class="col-12 col-md-12 col-xl-8 col-left">
+<!-- <div class="row" *ngIf="loading">
+    <div class="col-lg-6 col-md-6  col-xl-8 col-left">
         <div class="card mb-4">
             <div class="card-body">
                 <app-glide-thumbs [images]="detailImages" [settingsImages]="{
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="col-12 col-md-12 col-xl-4 col-right">
+    <div class="col-lg-6 col-md-6 col-xl-4 col-right">
         <div class="card mb-4">
             <div class="position-absolute card-top-buttons">
                 <button class="btn btn-header-light icon-button">
@@ -52,7 +52,7 @@
                 </div>
                 <span class="text-primary fw-bold" style="font-size: xx-large;">
                     {{product.name}}
-                  </span>  
+                  </span>
                   <hr />
                   <h2 class="text-muted">
                       {{product.description}}
@@ -60,10 +60,10 @@
                   <div class="row mt-5">
                     <dt class="col-2 fs-5">Points</dt>
                     <dd class="col-10 fs-5">{{product.point}}</dd>
-                </div>  
+                </div>
                 <p class="text-muted text-small mt-5">Tags</p>
                 <p class="mb-3">
-                    <!-- <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.point | uppercase}}</span> -->
+                    <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.point | uppercase}}</span>
                     <span style="font-size: medium;" class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.category?.name | uppercase}}</span>
                     <span style="font-size: medium;" class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.brand?.name | uppercase}}</span>
                     <span style="font-size: medium;" class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.skin_type?.name | uppercase}}</span>
@@ -71,4 +71,55 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="row ml-5 mr-5">
+  <div class="col-12">
+    <h1>
+Mohammad
+
+    </h1>
+  </div>
+</div>
+
+<div class="row ml-5 mr-5">
+  <div class="col-12 col-md-12 col-xl-8 col-left">
+      <div class="card mb-4">
+          <div class="card-body">
+            <!-- <div class="carousel-item active" *ngFor="let i of detailImages ">
+              <img src="{{i.img}}" class="d-block w-100" alt="...">
+            </div> -->
+
+
+            <app-glide-thumbs  class="image" [images]="detailImages" [settingsImages]="{
+              bound: true,
+              rewind: false,
+              focusAt: 0,
+              startAt: 0,
+              gap: 5,
+              perView: 1,
+            }" [thumbs]="detailThumbs" [settingsThumbs]="{
+              bound: true,
+              rewind: false,
+              focusAt: 0,
+              startAt: 0,
+              gap: 10,
+              perView: 5,
+              breakpoints: {
+                '2640' : { perView: 5 },
+                '576' : { perView: 4 },
+                '420' : { perView: 3 }
+              }
+            }"></app-glide-thumbs>
+
+          </div>
+      </div>
+
+      <app-product-detail-tabs></app-product-detail-tabs>
+  </div>
+
+  <div class="col-12 col-md-12 col-xl-4 col-right">
+      <app-product-detail-info></app-product-detail-info>
+     <app-profile-photos></app-profile-photos>
+  </div>
 </div>

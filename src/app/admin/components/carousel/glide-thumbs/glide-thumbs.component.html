@@ -2,7 +2,7 @@
   <div class="glide__track" data-glide-el="track">
     <ul class="glide__slides" #glideSlides>
       <li class="glide__slide" *ngFor="let item of images">
-        <img alt="detail" [src]="item.img" class="responsive border-0 border-radius img-fluid mb-3" />
+        <img alt="detail" [src]="item.img" class="responsive border-0 border-radius img-fluid mb-3" style="width: 687px; height: 458px; object-fit: contain;" />
       </li>
     </ul>
   </div>
@@ -12,7 +12,7 @@
   <div class="glide__track" data-glide-el="track">
     <div class="glide__slides" #glideThumbs>
       <li [class]="activeIndex == i ? 'glide__slide active': 'glide__slide'" *ngFor="let item of thumbs; let i = index" (click)="onThumbClick(i)">
-        <img alt="thumb" [src]="item.img" class="responsive border-0 border-radius img-fluid" />
+        <img alt="thumb" [src]="item.img" class="responsive border-0 border-radius img-fluid" style="object-fit: contain;"/>
       </li>
 
     </div>
