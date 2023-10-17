@@ -12,7 +12,7 @@ import { CreateUpdateContactDto } from './../../../shared/service-proxies/servic
 import { ContactUsService } from 'src/shared/services/contact-us/contact-us.service';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
-
+import { getThemeColor, setThemeColor } from 'src/app/utils/util';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -23,7 +23,11 @@ import { CategoryService } from 'src/shared/services/category-service/category.s
 export class HomeComponent implements OnInit, OnDestroy {
 
   baseUrl=environment.baseUrl;
-  categoriesLoaded=false
+  categoriesLoaded=false;
+  showMobileMenu = false;
+  glideDataLoad = false;
+  adminRoot = environment.adminRoot;
+  isDarkModeActive = false;
   products: ReadProductDto[] = [];
   categories: ReadCategoryDto[]=[];
   news: ReadNewsDto[] = [];
@@ -34,7 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _contactUsService:ContactUsService,
     private toastr: ToastrService,
     private _categoryService:CategoryService,
-    private _route:Router) { }
+    private _route:Router) {
+      this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
+     }
     ngOnInit(): void {
       this.renderer.addClass(document.body, 'no-footer');
       this.getProduct();
@@ -42,9 +48,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this. getCategories();
     }
 
-  showMobileMenu = false;
-  glideDataLoad = false;
-  adminRoot = environment.adminRoot;
 
   slideSettings = {
     type: 'carousel',
@@ -146,6 +149,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   }]
+
+
+  onDarkModeChange(event): void {
+    
+    let color = getThemeColor();
+    if (color.indexOf('dark') > -1) {
+      color = color.replace('dark', 'light');
+    } else if (color.indexOf('light') > -1) {
+      color = color.replace('light', 'dark');
+    }
+    setThemeColor(color);
+    setTimeout(() => {
+      window.location.reload();
+    }, 200);
+  }
   getCategories(){
     this._categoryService.getAll().subscribe((responce:any)=>{
       this.categoriesLoaded=true
