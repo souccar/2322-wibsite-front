@@ -71,7 +71,6 @@ export class ProductDetailsComponent implements OnInit {
   img:CarouselImage;
 
   constructor(
-    injector: Injector,
     private _productService: ProductService,
     private route: ActivatedRoute,
 
@@ -88,8 +87,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductById(id: any) {
-
-
     this._productService.getById(id).subscribe((responce: any) => {
       if (responce.success === true) {
         this.product = new ReadProductDto();

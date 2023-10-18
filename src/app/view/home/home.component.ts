@@ -13,6 +13,7 @@ import { ContactUsService } from 'src/shared/services/contact-us/contact-us.serv
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { getThemeColor, setThemeColor } from 'src/app/utils/util';
+import AOS from "aos";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
      }
     ngOnInit(): void {
+      AOS.init();
       this.renderer.addClass(document.body, 'no-footer');
       this.getProduct();
       this.getLastNews();

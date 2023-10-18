@@ -18,6 +18,7 @@ export class ProfilePhotosComponent implements OnInit{
   baseUrl=environment.baseUrl;
   id:number;
   isLoading = false ;
+  album:{ src: string,thumb: string } []= []
 
   constructor(private lightbox: Lightbox ,private _productService:ProductService
     ,private route:ActivatedRoute) {
@@ -29,32 +30,29 @@ export class ProfilePhotosComponent implements OnInit{
        this.id = params['id'];
 
     });
+    
     this.getProductById();
   }
 
   getProductById()
   {
     this._productService.getById(this.id).subscribe((response:any)=>{
-        console.log(response.result.images)
+        
       this.product=response.result;
       this.images = response.result.images;
-      console.log(this.images)
-
-      //  response.result.images.forEach((element:any)=>{
-
-      //   this.images.push(element.imagePath)
-      //   console.log(this.images)
-      //  })
-
-      this.isLoading = true;
-
+       response.result.images.forEach((element:any)=>{
+        this.images.push(element.imagePath)
+        this.album.push({src:this.baseUrl+element.imagePath,thumb:this.baseUrl+element.imagePath})
+       })
+       console.log(this.album);
+       this.isLoading=true
     })
 
 
   }
   openLightbox(index: number): void {
-    console.log(index);
-    // this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
+    
+    this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
   }
 
   close(): void {
