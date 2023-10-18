@@ -10787,3 +10787,138 @@ footer.page-footer {
     padding-right: 1rem;
   }
 }
+
+
+
+
+
+footer.view-footer {
+  padding-top: 2.2rem;
+  padding-bottom: 2.2rem;
+  // border-top: 1px solid $separator-color;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  // height: 90px;
+
+  @include respond-below(xs) {
+    height: 60px;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .breadcrumb {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: $theme-color-1;
+  }
+
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .footer-content {
+    margin-left: $sub-menu-width + $main-menu-width + $main-margin;
+    margin-right: $main-margin;
+
+    @include respond-below(xl) {
+      margin-left: $sub-menu-width-lg + $main-menu-width-lg + $main-margin-lg;
+      margin-right: $main-margin-lg;
+    }
+
+    @include respond-below(lg) {
+      margin-left: $sub-menu-width-md + $main-menu-width-md + $main-margin-md;
+      margin-right: $main-margin-md;
+    }
+
+    @include respond-below(sm) {
+      margin-left: $main-margin-xs !important;
+      margin-right: $main-margin-xs !important;
+    }
+  }
+}
+
+.right-menu {
+  footer.view-footer {
+    padding-right: $app-menu-width;
+    @include respond-below(lg) {
+      padding-right: 0;
+    }
+  }
+}
+
+#app-container {
+  &.sub-hidden .footer-content,
+  &.menu-sub-hidden .footer-content,
+  &.menu-hidden .footer-content {
+    margin-left: $main-menu-width + $main-margin;
+  }
+
+  &.main-hidden .footer-content,
+  &.menu-hidden .footer-content {
+    margin-left: $main-margin;
+  }
+
+  &.menu-main-hidden {
+    .footer-content {
+      margin-left: $main-margin + $sub-menu-width;
+    }
+    &.menu-hidden {
+      .footer-content {
+        margin-left: $main-margin;
+      }
+    }
+  }
+
+  @include respond-below(xl) {
+    &.sub-hidden .footer-content,
+    &.menu-sub-hidden .footer-content,
+    &.menu-hidden .footer-content {
+      margin-left: $main-menu-width-lg + $main-margin-lg;
+    }
+
+    &.main-hidden .footer-content,
+    &.menu-hidden .footer-content {
+      margin-left: $main-margin-lg;
+    }
+
+    &.menu-main-hidden {
+      .footer-content {
+        margin-left: $main-margin-lg + $sub-menu-width-lg;
+      }
+      &.menu-hidden {
+        .footer-content {
+          margin-left: $main-margin-lg;
+        }
+      }
+    }
+  }
+
+  @include respond-below(lg) {
+    &.sub-hidden .footer-content,
+    &.menu-sub-hidden .footer-content,
+    &.menu-hidden .footer-content {
+      margin-left: $main-menu-width-md + $main-margin-md;
+    }
+
+    &.main-hidden .footer-content,
+    &.menu-hidden .footer-content {
+      margin-left: $main-margin-md;
+    }
+
+    &.menu-main-hidden {
+      .footer-content {
+        margin-left: $main-margin-md + $sub-menu-width-md;
+      }
+      &.menu-hidden {
+        .footer-content {
+          margin-left: $main-margin-md;
+        }
+      }
+    }
+  }
+}

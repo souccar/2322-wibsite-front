@@ -1,0 +1,31 @@
+<div class="mobile-menu" (click)="$event.stopPropagation()">
+  <a [routerLink]="['/']"href="javascript:;" class="logo-mobile">
+      <span></span>
+  </a>
+  <ul class="navbar-nav">
+
+      <!-- (click)="scrollTo('#features')" -->
+      <li class="nav-item"><a [routerLink]="['/']">Home</a></li>
+      <li class="nav-item"><a [routerLink]="['/admin/production']"href="javascript:;">page</a></li>
+      <li class="nav-item"><a [routerLink]="['/viewProducts']"href="javascript:;">Our Prouducts</a></li>
+
+
+      <li class="nav-item">
+          <div class="separator"></div>
+      </li>
+
+      <li class="nav-item text-center">
+          <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
+          (click)="onDarkModeChange($event)">
+          <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
+              data-placement="top" title="Light Mood"></i>
+          <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
+              data-placement="top" title="Dark Mood"></i>
+           </a>
+      </li>
+
+
+  </ul>
+</div>
+
+

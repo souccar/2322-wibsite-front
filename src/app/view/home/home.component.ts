@@ -152,7 +152,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   onDarkModeChange(event): void {
-    
+
     let color = getThemeColor();
     if (color.indexOf('dark') > -1) {
       color = color.replace('dark', 'light');
@@ -254,6 +254,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.scrollToService.scrollTo(config);
   }
+
+
 }
 
 

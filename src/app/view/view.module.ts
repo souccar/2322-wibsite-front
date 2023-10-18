@@ -31,6 +31,7 @@ import { Lightbox, LightboxConfig, LightboxEvent } from 'ngx-lightbox';
 import { LightboxModule } from 'ngx-lightbox';
 import { GlideProductComponent } from './glide-product/glide-product.component';
 import { CommonModule } from '@angular/common';
+import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CommonModule } from '@angular/common';
      ProductDetailInfoComponent,
      ProductDetailTabsComponent,
      ProfilePhotosComponent,
+     ViewNavbarComponent,
 
 
   ],
@@ -70,7 +72,7 @@ import { CommonModule } from '@angular/common';
      PaginationModule,
      LightboxModule,
   ],
-  exports:[ViewFooterComponent],
+  exports:[ViewFooterComponent,ViewNavbarComponent],
   schemas:[
     NO_ERRORS_SCHEMA,
 

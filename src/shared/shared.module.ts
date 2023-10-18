@@ -28,12 +28,14 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
 
 
 
+
 @NgModule({
   declarations: [
     AbpModalHeaderComponent,
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
-    SummaryPipe
+    SummaryPipe,
+
   ],
 
   imports: [
@@ -75,7 +77,7 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     TabsModule,
     ContextMenuModule,
     SummaryPipe,
-    ComponentsStateButtonModule
+    ComponentsStateButtonModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
