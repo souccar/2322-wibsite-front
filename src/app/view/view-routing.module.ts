@@ -44,15 +44,7 @@ let routes: Routes = [
     component: ProductDetailsComponent,
   },
 
-  },
-  {
-    path: 'viewProducts',
-    component: ViewProductsComponent,
-  },
-  {
-    path: 'product-details/:id',
-    component: ProductDetailsComponent,
-  },
+  
 
 
 ];

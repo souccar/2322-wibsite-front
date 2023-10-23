@@ -33,6 +33,7 @@ import { GlideProductComponent } from './glide-product/glide-product.component';
 import { CommonModule } from '@angular/common';
 import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
 import { ViewMainComponent } from './view-main/view-main.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [

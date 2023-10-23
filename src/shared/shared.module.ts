@@ -60,9 +60,6 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     ComponentsCarouselModule,
     ComponentsPlayerModule,
     ComponentsStateButtonModule
-    ComponentsCarouselModule,
-    ComponentsPlayerModule,
-    ComponentsStateButtonModule
   ],
   exports: [
     RouterModule,

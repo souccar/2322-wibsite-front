@@ -73,7 +73,7 @@
                         
               </div>
 
-                    <div class="row my-5" *ngIf="categoriesLoaded">
+                   
                     <div class="row my-5" *ngIf="categoriesLoaded">
                         <div class="col-12 p-0">
                             <div class="home-carousel" data-aos="fade-up" data-aos-duration="1000">
@@ -156,17 +156,14 @@
                             <a [routerLink]="['/viewProducts']">
                                 <h1>Prouducts</h1>
                             </a>
-                            <a [routerLink]="['/viewProducts']">
-                                <h1>Prouducts</h1>
-                            </a>
+                         
                             <p class="section-text">
                                 We all have different skin.<br>We all have different routines and live in different
                                 environments.
                                 <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
                                 We all have different skin.<br>We all have different routines and live in different
                                 environments.
-                                <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
-                            </p>
+                                    </p>
                         </div>
                     </div>
                     <div class="row "*ngIf="glideDataLoad">
@@ -242,19 +239,17 @@
                                         <div class="  position-relative">
                                             <img class="card-img pt-4"
                                                 style="height: 100%; width: 100%; object-fit:contain  ;"
-                                            <img class="card-img pt-4"
-                                                style="height: 100%; width: 100%; object-fit:contain  ;"
                                                 src="{{baseUrl+product.product_images[0].imagePath}}"
                                                 alt="Card image cap">
                                             <span
                                                 class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
+                                              
                                             <span
                                                 class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
+                                             
                                             <span
                                                 class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
-                                                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
+                                               
 
                                         </div>
 
