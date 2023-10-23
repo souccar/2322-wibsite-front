@@ -1,20 +1,97 @@
-<div class="mobile-menu" (click)="$event.stopPropagation()">
-  <a [routerLink]="['/']"href="javascript:;" class="logo-mobile">
-      <span></span>
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="d-flex align-items-center navbar-left">
+
+
+  </div>
+
+
+  <a class="navbar-logo" [routerLink]="adminRoot" >
+    <span class="logo d-none d-xs-block"></span>
+    <span class="logo-mobile d-block d-xs-none"></span>
   </a>
-  <ul class="navbar-nav">
-
-      <!-- (click)="scrollTo('#features')" -->
-      <li class="nav-item"><a [routerLink]="['/']">Home</a></li>
-      <li class="nav-item"><a [routerLink]="['/admin/production']"href="javascript:;">page</a></li>
-      <li class="nav-item"><a [routerLink]="['/viewProducts']"href="javascript:;">Our Prouducts</a></li>
-
-
-      <li class="nav-item">
-          <div class="separator"></div>
+  <div class="collapse navbar-collapse ml-5" id="navbarTogglerDemo03">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item" >
+        <a class="nav-link active " [routerLink]="['/']" aria-current="page">Home</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/viewProducts']" >Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
 
-      <li class="nav-item text-center">
+  </div> -->
+
+      <!-- <div class="mt-4 position-relative d-none d-sm-inline-block">
+
+
+            <a [routerLink]="['/']">
+
+              Home
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+
+              <span>Users</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+
+              <span>Components</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+
+              <span>Profits</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+
+              <span>Surveys</span>
+            </a>
+
+            <a href="javascript:;" class="icon-menu-item">
+
+              <span>Tasks</span>
+            </a>
+          </div> -->
+
+          <!-- <div class="d-none d-md-inline-block align-text-bottom mr-1">
+            <div class="custom-control custom-switch" tooltip="Dark Mode" placement="left">
+              <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
+              (click)="onDarkModeChange($event)">
+              <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
+                  data-placement="top" title="Light Mood"></i>
+              <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
+                  data-placement="top" title="Dark Mood"></i>
+               </a>
+            </div>
+          </div>
+      <div class="btn-group ml-2" dropdown *ngIf="!isSingleLang">
+
+      </div>
+
+
+</nav> -->
+
+
+
+
+<div  [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
+  <div class="mobile-menu"  (click)="$event.stopPropagation()">
+    <a href="javascript:;" class="logo-mobile">
+      <span></span>
+    </a>
+    <ul class="navbar-nav navbar-light bg-light">
+      <li class="nav-item"><a [routerLink]="['/']">Home</a></li>
+      <li class="nav-item"><a [routerLink]="['/viewProducts']">Products</a></li>
+      <div class="d-none d-md-inline-block align-text-bottom mr-1">
+        <div class="custom-control custom-switch" tooltip="Dark Mode" placement="left">
           <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
           (click)="onDarkModeChange($event)">
           <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
@@ -22,10 +99,81 @@
           <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
               data-placement="top" title="Dark Mood"></i>
            </a>
+        </div>
+      </div>
+
+
+      <li class="nav-item">
+        <div class="separator"></div>
       </li>
+    </ul>
+  </div>
+  <div class="main-container mb-4">
+    <ngx-headroom class="landing-page-nav">
+      <nav>
+        <div class="container d-flex align-items-center justify-content-between">
+          <a class="navbar-logo pull-left" href="javascript:;">
+            <span class="logo d-none d-xl-block "></span>
+          </a>
+          <ul class="navbar-nav d-none d-lg-flex flex-row">
+            <!-- 1 -->
+            <li class="nav-item  ">
+                <a class="nav-link active" style=" color: black;" [routerLink]="['/']">{{"Home" |translate}} </a>
+
+            </li>
+               <!-- 2 -->
+               <li class="nav-item  " id="menu-products">
+                <a class="nav-link active" [routerLink]="['/viewProducts']" style=" color: black;" >Products</a>
+              </li>
+
+              <div class="d-none d-md-inline-block align-text-bottom mr-1">
+                <div class="custom-control custom-switch" tooltip="Dark Mode" placement="left">
+                  <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
+                  (click)="onDarkModeChange($event)">
+                  <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
+                      data-placement="top" title="Light Mood"></i>
+                  <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
+                      data-placement="top" title="Dark Mood"></i>
+                   </a>
+                </div>
+              </div>
 
 
-  </ul>
+
+          </ul>
+          <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
+            <i class="simple-icon-menu"></i>
+          </span>
+        </div>
+      </nav>
+    </ngx-headroom>
+  </div>
 </div>
 
+<!-- modal -->
+<!-- <ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Contact With Us</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #overLineForm="ngForm" novalidate>
+      <label class="form-group has-float-label">
+        <input class="form-control" required ngModel #email2="ngModel" name="email2" />
+        <span>Email</span>
+        <div *ngIf="!email2.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" required ngModel #message="ngModel" name="message" />
+        <span>Message</span>
+        <div *ngIf="!message.valid && overLineForm.submitted" class="invalid-tooltip">Value is required!</div>
+      </label>
 
+
+
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+</ng-template> -->

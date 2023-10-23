@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail-tabs',
-  templateUrl: './product-detail-tabs.component.html'
+  templateUrl: './product-detail-tabs.component.html',
+  styleUrls: ['./product-detail-tabs.component.scss']
 })
 export class ProductDetailTabsComponent implements OnInit {
   comments:any[] = [

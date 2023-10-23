@@ -2076,7 +2076,7 @@ a.btn-secondary:not([href]):not([tabindex]) {
   background: url($logo-path) no-repeat;
   background-position: center center;
   margin: 0 auto;
-  background-size: contain;
+  background-size: cover;
   @include respond-below(sm) {
     width: 80px;
   }

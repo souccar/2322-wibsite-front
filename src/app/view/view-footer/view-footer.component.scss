@@ -19,6 +19,7 @@ $border-top-color_1: #bbb;
 	padding: 45px 0 20px;
 	font-size: 15px;
 	line-height: 24px;
+  margin-top: 100px;
 	color: $color_1;
 	hr {
 		border-top-color: $border-top-color_1;
@@ -61,7 +62,7 @@ $border-top-color_1: #bbb;
 		display: block;
 	}
 	a {
-		color: $color_1;
+		// color: $color_1;
 		&:active {
 			color: $color_4;
 			text-decoration: none;

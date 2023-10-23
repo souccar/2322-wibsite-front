@@ -1,25 +1,23 @@
-<div class="card mb-4">
+<div class="card mt-5">
   <div class="card-body">
     <h5 class="card-title"><span>{{ 'photos' | translate }}</span><a class="btn-link float-right text-small pt-1"
         href="javascript:;">{{ 'view-all' | translate }}</a>
     </h5>
-    <div class="row social-image-row gallery">
-     <!-- <h1>{{isLoading}}</h1> -->
-
-        <ng-container *ngIf="isLoading" >
+    <div class="row social-image-row gallery" >
 
 
-          raneem
-        </ng-container>
+   <ng-container *ngFor="let p of product let i=index" >
+    <ng-conatiner *ngFor="let im of p.images let i=index">
+      <img  src="{{baseUrl+im.imagePath}}">
+      <h1>{{baseUrl+im.imagePath}}</h1>
+      <!-- <div class="col-6" *ngFor="let image of images; let i=index">
 
-        <ng-container *ngIf="!isLoading" >
-
-          mohammad
-
-        </ng-container>
-
-
+        <img  class="img-fluid border-radius c-pointer" [src]="baseUrl+image.imagePath" (click)="openLightbox(i)" />
+      </div> -->
+    </ng-conatiner>
+    </ng-container>
     </div>
+
   </div>
 </div>
 

@@ -60,9 +60,8 @@ export class ProductDetailsComponent implements OnInit {
   // ];
 
   product: ReadProductDto;
-
   baseUrl = environment.baseUrl;
-  loading: boolean = false;
+  Isloading: boolean = false;
   selectedImageUrl: string = '';
   id: number;
   detailImages: CarouselImage[] = [];
@@ -112,7 +111,7 @@ export class ProductDetailsComponent implements OnInit {
         });
 
         this.selectedImageUrl = this.product.product_images[0].imagePath;
-        this.loading = true;
+        this.Isloading = true;
         console.log(this.detailImages)
         console.log(this.detailThumbs)
       }

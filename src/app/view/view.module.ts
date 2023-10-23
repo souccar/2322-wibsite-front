@@ -32,6 +32,7 @@ import { LightboxModule } from 'ngx-lightbox';
 import { GlideProductComponent } from './glide-product/glide-product.component';
 import { CommonModule } from '@angular/common';
 import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
+import { ViewMainComponent } from './view-main/view-main.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
      ProductDetailTabsComponent,
      ProfilePhotosComponent,
      ViewNavbarComponent,
+     ViewMainComponent,
 
 
   ],

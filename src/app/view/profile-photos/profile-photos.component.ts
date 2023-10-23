@@ -13,18 +13,17 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
 })
 export class ProfilePhotosComponent implements OnInit{
 
-  product:ProductDto=new ProductDto();
+  product:ProductDto[]=[];
   images: ImageModel[]=[];
   baseUrl=environment.baseUrl;
   id:number;
-  isLoading = false ;
+  isLoading:boolean = false ;
 
   constructor(private lightbox: Lightbox ,private _productService:ProductService
     ,private route:ActivatedRoute) {
   }
   ngOnInit(): void {
     this.images=[];
-    this.product.images=[];
     this.route.params.subscribe(params => {
        this.id = params['id'];
 
@@ -34,11 +33,14 @@ export class ProfilePhotosComponent implements OnInit{
 
   getProductById()
   {
-    this._productService.getById(this.id).subscribe((response:any)=>{
-        console.log(response.result.images)
-      this.product=response.result;
-      this.images = response.result.images;
-      console.log(this.images)
+    this._productService.getAll().subscribe((response:any)=>{
+      this.product=response.result.data;
+      this.isLoading = true;
+      console.log(this.product)
+      // this.images = response.result.images;
+      // this.isLoading = true;
+      // console.log(this.isLoading)
+      // console.log(this.images)
 
       //  response.result.images.forEach((element:any)=>{
 
@@ -46,11 +48,12 @@ export class ProfilePhotosComponent implements OnInit{
       //   console.log(this.images)
       //  })
 
-      this.isLoading = true;
-
-    })
 
 
+
+    });
+
+    console.log(this.isLoading )
   }
   openLightbox(index: number): void {
     console.log(index);
