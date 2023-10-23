@@ -1,0 +1,9 @@
+<div class="glide details" #glideRef >
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides" #glideSlides>
+      <li class="glide__slide" *ngFor="let item of images">
+        <img alt="detail" [src]="item.img" class="responsive border-0 border-radius img-fluid mb-3" style="width: 687px; height: 458px; object-fit: contain;" />
+      </li>
+    </ul>
+  </div>
+</div>

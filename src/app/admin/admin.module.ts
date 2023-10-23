@@ -13,6 +13,8 @@ import { NewsModule } from './news/news.module';
 import { DesignModule } from './design/design.module';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { SummaryPipe } from '../pipes/summary.pipe';
+import { LoginComponent } from './auth/login.component';
 
 
 
@@ -20,6 +22,7 @@ import { AdminRoutingModule } from './admin-routing.module';
   declarations: [
 
     AdminComponent,
+     LoginComponent,
 
 
 
@@ -36,7 +39,8 @@ import { AdminRoutingModule } from './admin-routing.module';
      ProductionModule,
      BrandModule,
      NewsModule,
-     DesignModule
+     DesignModule,
+
 
   ],
   exports:[

@@ -619,7 +619,7 @@ export class ReadProductDto implements IReadProductDto {
       this.category = _data["category"];
       this.skin_type = _data["skin_type"];
       this.brand = _data["brand"];
-   
+
       // this.image = _data["image"];
     }
   }
@@ -1442,7 +1442,7 @@ export interface ICreateUpdateContactDto {
     name:string;
     email:string;
     message:string;
-  
+
     constructor(data?: ICreateUpdateContactDto) {
       if (data) {
         for (var property in data) {
@@ -1451,36 +1451,36 @@ export interface ICreateUpdateContactDto {
         }
       }
     }
-  
+
     init(_data?: any) {
       if (_data) {
         this.name = _data["name"];
         this.email = _data["email"];
         this.message = _data["message"];
         // this. page_slug= _data["page_slug"];
-  
-  
+
+
       }
     }
-  
+
     static fromJS(data: any): CreateUpdateContactDto {
       data = typeof data === 'object' ? data : {};
       let result = new CreateUpdateContactDto();
       result.init(data);
       return result;
     }
-  
+
     toJSON(data?: any) {
       data = typeof data === 'object' ? data : {};
       data["name"] = this.name;
       data["email"] = this.email;
       data["message"] = this.message;
       // data["page_slug"] = this.page_slug;
-  
-  
+
+
       return data;
     }
-  
+
     clone(): CreateUpdateContactDto {
       const json = this.toJSON();
       let result = new CreateUpdateContactDto();
@@ -1488,16 +1488,16 @@ export interface ICreateUpdateContactDto {
       return result;
     }
   }
-  
-  
+
+// contact-us
   export interface IReadContactDto {
     id:number;
     name:string;
     email:string;
     message:string;
-  
+
   }
-  
+
   export class ReadContactDto implements IReadContactDto {
     id:number;
     name:string;
@@ -1511,37 +1511,37 @@ export interface ICreateUpdateContactDto {
         }
       }
     }
-  
-  
+
+
     init(_data?: any) {
       if (_data) {
         this.id = _data["id"];
         this.name = _data["name"];
         this.email = _data["email"];
         this.message = _data["message"];
-       
-  
+
+
       }
     }
-  
+
     static fromJS(data: any): ReadContactDto {
       data = typeof data === 'object' ? data : {};
       let result = new ReadContactDto();
       result.init(data);
       return result;
     }
-  
+
     toJSON(data?: any) {
       data = typeof data === 'object' ? data : {};
       data["id"] = this.id;
       data["name"] = this.name;
       data["email"] = this.email;
       data["message"] = this.message;
-     
-  
+
+
       return data;
     }
-  
+
     clone(): ReadContactDto {
       const json = this.toJSON();
       let result = new ReadContactDto();
@@ -1549,5 +1549,5 @@ export interface ICreateUpdateContactDto {
       return result;
     }
   }
-  
+
 

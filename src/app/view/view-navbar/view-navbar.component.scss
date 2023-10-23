@@ -1,0 +1,86 @@
+.nav-item .nav-link
+{
+  font-size: 16px;
+  color: black;
+
+}
+.badge-top-left-3 {
+  top: 70px;
+  left: -7px;
+}
+
+
+.cssBasedZoom {
+  transition: transform 0.23s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.fadeInUp-animation {
+  animation: 1.5s fadeInUp;
+}
+
+
+
+.slide {
+
+  animation: MySlide 3s  ease-in;
+}
+.toRight {
+  animation-direction: normal;
+}
+
+.toLeft {
+  animation-direction: reverse;
+}
+
+
+
+@keyframes MySlide {
+  0%   {left: 0px; top: 0px;}
+  100%  {left: 75px; top: 0px;}
+}
+.rotate-in-down-left {
+	animation: rotate-in-down-left 2s ease ;
+  }
+  @keyframes rotate-in-down-left {
+	0% {
+	  transform-origin: left bottom;
+	  transform: rotate(-90deg);
+	  opacity: 0;
+	}
+	100% {
+	  transform-origin: left bottom;
+	  transform: rotate(0);
+	  opacity: 1;
+	}
+  }
+
+  .landing-page .landing-page-nav nav
+  {
+    background-color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .landing-page{
+
+    margin-bottom: 105px;
+  }
+.landing-page-nav
+{
+  margin-bottom: 105px;
+}

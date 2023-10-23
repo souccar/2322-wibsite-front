@@ -33,8 +33,9 @@
               "src/assets/css/vendor/bootstrap.min.css",
               "src/assets/css/vendor/bootstrap.rtl.only.min.css",
               "node_modules/@glidejs/glide/dist/css/glide.core.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/ngx-toastr/toastr.css",
+              "./node_modules/video.js/dist/video-js.min.css",
+              "./node_modules/ngx-lightbox/lightbox.css",
               "src/styles.scss",
               {
                 "input": "src/assets/css/sass/themes/vien.light.blueyale.scss",

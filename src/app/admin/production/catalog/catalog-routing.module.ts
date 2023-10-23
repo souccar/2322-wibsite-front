@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
 import { CategoryComponent } from './categories/category.component';
-import { ProductComponent } from 'src/app/admin/components/product/product.component';
 import { ProductsComponent } from './products/products.component';
 import { SkinTypeComponent } from 'src/app/admin/skin-type/skin-type.component';
 import { BrandComponent } from '../../brands/brand.component';
