@@ -116,6 +116,7 @@ export class ProductDetailsComponent implements OnInit {
         console.log(this.detailThumbs)
       }
     });
+
   }
 
   changeImage(imagePath: string) {

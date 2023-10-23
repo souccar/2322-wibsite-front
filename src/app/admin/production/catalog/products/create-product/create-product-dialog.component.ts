@@ -13,7 +13,6 @@ import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.s
 
 })
 export class CreateProductDialogComponent extends AppComponentBase implements OnInit,OnDestroy {
-
   html: '';
   IsUploaded:boolean=false;
    saving = false;
@@ -42,7 +41,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
 
 
   ngOnInit(): void {
-    // this.editor = new Editor();
+
     this.product.images = [];
     this.initCategory();
     this.initBrand();

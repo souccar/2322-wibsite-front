@@ -42,9 +42,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _route:Router) {
       this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
      }
- 
+
     ngOnInit(): void {
-      
+
       AOS.init();
       this.renderer.addClass(document.body, 'no-footer');
       this.getProduct();
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       992: { perView: 2 },
       1200: { perView: 3 } }
     }
-  
+
 
 
   slideItems = [
@@ -162,7 +162,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   onDarkModeChange(event): void {
-    
+
     let color = getThemeColor();
     if (color.indexOf('dark') > -1) {
       color = color.replace('dark', 'light');
@@ -199,7 +199,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   {
     this._route.navigate(['viewProducts'])
   }
- 
+
   getLastNews(){
 
 
@@ -259,7 +259,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['$event'])
   onScroll(event): void {
     this.showMobileMenu = false;
-  
+
   }
 
   scrollTo(target): void {
@@ -270,7 +270,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.scrollToService.scrollTo(config);
   }
- 
+
 
   isScrolled = false;
 

@@ -28,7 +28,7 @@
     </div>
 
     <div class="main-container">
-      
+
         <ngx-headroom class="landing-page-nav"     [ngClass]="{'bg-primary ': isScrolled }"  >
             <nav>
                 <div class="container d-flex align-items-center justify-content-between ">
@@ -65,15 +65,15 @@
                 <slide *ngFor="let image of sliderImages ">
                   <img src="{{image.imagePath}}" alt="first slide" style="height: 100vh; width: 100%;">
                 </slide>
-              
+
               </carousel>
             <div class="section   ">
                 <div class="container-fluid  ">
                     <div class="col-12 d-none d-md-block " data-aos="fade-left" data-aos-duration="1000">
-                        
+
               </div>
 
-                   
+
                     <div class="row my-5" *ngIf="categoriesLoaded">
                         <div class="col-12 p-0">
                             <div class="home-carousel" data-aos="fade-up" data-aos-duration="1000">
@@ -156,7 +156,7 @@
                             <a [routerLink]="['/viewProducts']">
                                 <h1>Prouducts</h1>
                             </a>
-                         
+
                             <p class="section-text">
                                 We all have different skin.<br>We all have different routines and live in different
                                 environments.
@@ -167,8 +167,8 @@
                         </div>
                     </div>
                     <div class="row "*ngIf="glideDataLoad">
-                        
-                            <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 cssBasedZoom" 
+
+                            <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 cssBasedZoom"
                                 *ngFor="let product of products; let i=index">
 
                                 <div class="  position-relative">
@@ -219,14 +219,14 @@
                             <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
                                 <i class='simple-icon-arrow-left'></i>
                             </ng-template> -->
-                       
+
                     </div>
 
 
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" >
                 <div class="container">
                     <div class=" row" *ngIf="glideDataLoad" data-aos="fade-up" data-aos-duration="1000">
                         <div class="col-12 p-0 text-center">
@@ -243,13 +243,13 @@
                                                 alt="Card image cap">
                                             <span
                                                 class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                              
+
                                             <span
                                                 class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                             
+
                                             <span
                                                 class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
-                                               
+
 
                                         </div>
 
