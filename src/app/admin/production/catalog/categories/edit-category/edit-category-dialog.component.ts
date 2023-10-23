@@ -38,8 +38,8 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
       .subscribe((result: any) => {
         this.category = result.result;
         this.base64 = result.result.base64;
-        this.image = result.result.imagePath;
-        this.tempImage = this.image.split("/");
+        // this.image = result.result.imagePath;
+        this.tempImage = result.result.imagePath.split("/");
         this.initImage();
       });
 
@@ -69,17 +69,18 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
     myFormData.append("name", this.category.name);
     myFormData.append("point", this.category.point.toString());
     myFormData.append("description", this.category.description);
-    myFormData.append("image", this.image);
-    this._categoryService.edit(this.id, myFormData).subscribe(
-      () => {
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
+    if(this.image!=undefined)
+      myFormData.append("image",this.image);
+    this._categoryService.edit(this.id, myFormData).subscribe((responce)=>{
+      console.log(responce)
+      this.bsModalRef.hide();
+      this.onSave.emit();
 
-      },
-      () => {
-        this.saving = false;
-      }
+    },
+    
+      // () => {
+      //   this.saving = false;
+      // }
     );
   }
   onSelect(event: any) {

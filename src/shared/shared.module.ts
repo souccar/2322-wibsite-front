@@ -22,6 +22,10 @@ import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
 import { SummaryPipe } from 'src/app/pipes/summary.pipe';
 import { ComponentsCarouselModule } from 'src/app/admin/components/carousel/components.carousel.module';
 import { CommonModule } from '@angular/common';
+import { ComponentsPlayerModule } from 'src/app/admin/components/player/components.player.module';
+import { StateButtonComponent } from './state-button/state-button.component';
+import { ComponentsStateButtonModule } from './state-button/components.state-button.module';
+
 
 
 
@@ -30,7 +34,8 @@ import { CommonModule } from '@angular/common';
     AbpModalHeaderComponent,
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
-    SummaryPipe
+    SummaryPipe,
+
   ],
 
   imports: [
@@ -52,7 +57,9 @@ import { CommonModule } from '@angular/common';
     NgxDropzoneModule,
     NgxDropzoneModule,
     TabsModule.forRoot(),
-    ComponentsCarouselModule
+    ComponentsCarouselModule,
+    ComponentsPlayerModule,
+    ComponentsStateButtonModule
   ],
   exports: [
     RouterModule,
@@ -61,7 +68,7 @@ import { CommonModule } from '@angular/common';
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
-    
+    ComponentsPlayerModule,
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,
@@ -69,7 +76,8 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     TabsModule,
     ContextMenuModule,
-    SummaryPipe
+    SummaryPipe,
+    ComponentsStateButtonModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
