@@ -60,9 +60,8 @@ export class ProductDetailsComponent implements OnInit {
   // ];
 
   product: ReadProductDto;
-
   baseUrl = environment.baseUrl;
-  loading: boolean = false;
+  Isloading: boolean = false;
   selectedImageUrl: string = '';
   id: number;
   detailImages: CarouselImage[] = [];
@@ -71,6 +70,7 @@ export class ProductDetailsComponent implements OnInit {
   img:CarouselImage;
 
   constructor(
+    injector: Injector,
     private _productService: ProductService,
     private route: ActivatedRoute,
 
@@ -87,6 +87,8 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductById(id: any) {
+
+
     this._productService.getById(id).subscribe((responce: any) => {
       if (responce.success === true) {
         this.product = new ReadProductDto();
@@ -109,7 +111,7 @@ export class ProductDetailsComponent implements OnInit {
         });
 
         this.selectedImageUrl = this.product.product_images[0].imagePath;
-        this.loading = true;
+        this.Isloading = true;
         console.log(this.detailImages)
         console.log(this.detailThumbs)
       }

@@ -31,7 +31,8 @@ import { Lightbox, LightboxConfig, LightboxEvent } from 'ngx-lightbox';
 import { LightboxModule } from 'ngx-lightbox';
 import { GlideProductComponent } from './glide-product/glide-product.component';
 import { CommonModule } from '@angular/common';
-import { CarouselModule } from 'ngx-bootstrap/carousel';  
+import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
+import { ViewMainComponent } from './view-main/view-main.component';
 
 @NgModule({
   declarations: [
@@ -50,18 +51,23 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
      ProductDetailInfoComponent,
      ProductDetailTabsComponent,
      ProfilePhotosComponent,
+     ViewNavbarComponent,
+     ViewMainComponent,
 
 
   ],
   imports: [
     ViewRoutingModule,
     SharedModule,
+    SharedModule,
     FormsModule,
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
     PaginationModule.forRoot(),
+    PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
+    CommonModule,
     CommonModule,
     BasicComponentModule,
     ComponentsCarouselModule,
@@ -72,7 +78,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
      LightboxModule,
      CarouselModule.forRoot()
   ],
-  exports:[ViewFooterComponent],
+  exports:[ViewFooterComponent,ViewNavbarComponent],
   schemas:[
     NO_ERRORS_SCHEMA,
 

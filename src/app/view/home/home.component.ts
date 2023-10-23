@@ -7,6 +7,7 @@ import { LangService, Language } from 'src/shared/lang.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { HttpParams } from '@angular/common/http';
 import { ReadCategoryDto, ReadNewsDto, ReadProductDto } from 'src/shared/service-proxies/service-proxies';
+import { ReadCategoryDto, ReadNewsDto, ReadProductDto } from 'src/shared/service-proxies/service-proxies';
 import { NewsService } from 'src/shared/services/news-service/news.service';
 import { CreateUpdateContactDto } from './../../../shared/service-proxies/service-proxies';
 import { ContactUsService } from 'src/shared/services/contact-us/contact-us.service';
@@ -29,7 +30,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   glideDataLoad = false;
   adminRoot = environment.adminRoot;
   isDarkModeActive = false;
+  baseUrl=environment.baseUrl;
+  categoriesLoaded=false;
+  showMobileMenu = false;
+  glideDataLoad = false;
+  adminRoot = environment.adminRoot;
+  isDarkModeActive = false;
   products: ReadProductDto[] = [];
+  categories: ReadCategoryDto[]=[];
   categories: ReadCategoryDto[]=[];
   news: ReadNewsDto[] = [];
   contactUs=new CreateUpdateContactDto();
@@ -56,11 +64,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     type: 'carousel',
     gap: 30,
     perView: 3,
+    perView: 3,
     hideNav: true,
     peek: { before: 10, after: 10 },
     breakpoints: {
       600: { perView: 1 },
       992: { perView: 2 },
+      1200: { perView: 3 }, },
+
       1200: { perView: 3 }, },
 
   };
@@ -190,6 +201,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.products = responce.result.data;
       this.glideDataLoad = true;
 
+
     });
 
   }
@@ -197,11 +209,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   {
     this._route.navigate(['viewProducts'])
   }
+  viewProduct()
+  {
+    this._route.navigate(['viewProducts'])
+  }
   getLastNews(){
+
 
     this._newsService.getlastNews().subscribe((responce: any) => {
 
       this.news = responce.result;
+
 
     });
   }
@@ -215,6 +233,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.contactUs=new CreateUpdateContactDto()
   }
+
 
 
   ngOnDestroy(): void {

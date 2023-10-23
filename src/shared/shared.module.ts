@@ -28,12 +28,14 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
 
 
 
+
 @NgModule({
   declarations: [
     AbpModalHeaderComponent,
     AbpModalFooterComponent,
     AbpValidationSummaryComponent,
-    SummaryPipe
+    SummaryPipe,
+
   ],
 
   imports: [
@@ -58,6 +60,9 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     ComponentsCarouselModule,
     ComponentsPlayerModule,
     ComponentsStateButtonModule
+    ComponentsCarouselModule,
+    ComponentsPlayerModule,
+    ComponentsStateButtonModule
   ],
   exports: [
     RouterModule,
@@ -67,6 +72,7 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
     ComponentsPlayerModule,
+    ComponentsPlayerModule,
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,
@@ -75,7 +81,7 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     TabsModule,
     ContextMenuModule,
     SummaryPipe,
-    ComponentsStateButtonModule
+    ComponentsStateButtonModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

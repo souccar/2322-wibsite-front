@@ -72,26 +72,12 @@
         </div>
     </div>
 </div> -->
-
-<div class="row ml-5 mr-5">
-  <div class="col-12">
-    <h1>
-Mohammad
-
-    </h1>
-  </div>
-</div>
-
+<app-view-navbar></app-view-navbar>
 <div class="row ml-5 mr-5">
   <div class="col-12 col-md-12 col-xl-8 col-left">
-      <div class="card mb-4">
+      <div class="card ">
           <div class="card-body">
-            <!-- <div class="carousel-item active" *ngFor="let i of detailImages ">
-              <img src="{{i.img}}" class="d-block w-100" alt="...">
-            </div> -->
-
-
-            <app-glide-thumbs  class="image" [images]="detailImages" [settingsImages]="{
+            <app-glide-thumbs *ngIf="Isloading" class="image" [images]="detailImages" [settingsImages]="{
               bound: true,
               rewind: false,
               focusAt: 0,
@@ -122,4 +108,10 @@ Mohammad
       <app-product-detail-info></app-product-detail-info>
      <app-profile-photos></app-profile-photos>
   </div>
+
+
 </div>
+<!-- <app-footer></app-footer> -->
+<app-view-footer></app-view-footer>
+
+

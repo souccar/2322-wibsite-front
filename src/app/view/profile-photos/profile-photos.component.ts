@@ -13,46 +13,51 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
 })
 export class ProfilePhotosComponent implements OnInit{
 
-  product:ProductDto=new ProductDto();
+  product:ProductDto[]=[];
   images: ImageModel[]=[];
   baseUrl=environment.baseUrl;
   id:number;
-  isLoading = false ;
-  album:{ src: string,thumb: string } []= []
+  isLoading:boolean = false ;
 
   constructor(private lightbox: Lightbox ,private _productService:ProductService
     ,private route:ActivatedRoute) {
   }
   ngOnInit(): void {
     this.images=[];
-    this.product.images=[];
     this.route.params.subscribe(params => {
        this.id = params['id'];
 
     });
-    
     this.getProductById();
   }
 
   getProductById()
   {
-    this._productService.getById(this.id).subscribe((response:any)=>{
-        
-      this.product=response.result;
-      this.images = response.result.images;
-       response.result.images.forEach((element:any)=>{
-        this.images.push(element.imagePath)
-        this.album.push({src:this.baseUrl+element.imagePath,thumb:this.baseUrl+element.imagePath})
-       })
-       console.log(this.album);
-       this.isLoading=true
-    })
+    this._productService.getAll().subscribe((response:any)=>{
+      this.product=response.result.data;
+      this.isLoading = true;
+      console.log(this.product)
+      // this.images = response.result.images;
+      // this.isLoading = true;
+      // console.log(this.isLoading)
+      // console.log(this.images)
+
+      //  response.result.images.forEach((element:any)=>{
+
+      //   this.images.push(element.imagePath)
+      //   console.log(this.images)
+      //  })
 
 
+
+
+    });
+
+    console.log(this.isLoading )
   }
   openLightbox(index: number): void {
-    
-    this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
+    console.log(index);
+    // this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
   }
 
   close(): void {
