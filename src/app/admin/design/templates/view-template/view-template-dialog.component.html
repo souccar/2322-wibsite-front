@@ -88,6 +88,7 @@
                 #descriptionModel="ngModel"
                 #descriptionEl
                 [readonly]="!editable"
+                [innerHTML]="template.description"
               >
               </textarea>
               <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
@@ -305,6 +306,7 @@
               #descriptionModel="ngModel"
               #descriptionEl
               [readonly]="!editable"
+              [innerHTML]="childs.description"
             >
             </textarea>
             <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->

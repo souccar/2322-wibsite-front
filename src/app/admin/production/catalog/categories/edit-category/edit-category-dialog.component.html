@@ -21,7 +21,7 @@
           </label>
           <div class="col-md-9">
             <textarea type="text" class="form-control" name="description" id="description"
-              [(ngModel)]="category.description" #descriptionModel="ngModel" #descriptionEl >
+              [(ngModel)]="category.description" [innerHTML]="category.description"  #descriptionModel="ngModel" #descriptionEl >
               </textarea>
 
             <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary>

@@ -44,6 +44,8 @@ let routes: Routes = [
     component: ProductDetailsComponent,
   },
 
+  
+
 
 ];
 

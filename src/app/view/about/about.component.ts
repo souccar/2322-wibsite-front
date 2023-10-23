@@ -1,4 +1,6 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import AOS from "aos";
+import { ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-about',
