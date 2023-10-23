@@ -38,7 +38,7 @@
           </label>
           <div class="col-md-9">
             <textarea type="text" class="form-control" name="template.description" id="template.description"
-              [(ngModel)]="template.description" #descriptionModel="ngModel" #descriptionEl>
+              [(ngModel)]="template.description" [innerHTML]="template.description" #descriptionModel="ngModel" #descriptionEl>
               </textarea>
             <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
           </div>
@@ -184,7 +184,7 @@
           </label>
           <div class="col-md-9">
             <textarea type="text" class="form-control" name="childTemplate.description" id="childTemplate.description"
-              [(ngModel)]="childTemplate.description" #descriptionModel="ngModel" #descriptionEl>
+              [(ngModel)]="childTemplate.description" [innerHTML]="childTemplate.description" #descriptionModel="ngModel" #descriptionEl>
             </textarea>
             <!-- <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptionEl"></abp-validation-summary> -->
           </div>

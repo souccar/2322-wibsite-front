@@ -13,6 +13,7 @@ import { ContactUsService } from 'src/shared/services/contact-us/contact-us.serv
 import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { getThemeColor, setThemeColor } from 'src/app/utils/util';
+import AOS from "aos";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -41,7 +42,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _route:Router) {
       this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
      }
+ 
     ngOnInit(): void {
+      
+      AOS.init();
       this.renderer.addClass(document.body, 'no-footer');
       this.getProduct();
       this.getLastNews();
@@ -58,9 +62,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     breakpoints: {
       600: { perView: 1 },
       992: { perView: 2 },
-      1200: { perView: 3 }, },
-
-  };
+      1200: { perView: 3 } }
+    }
+  
 
 
   slideItems = [
@@ -114,7 +118,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
   ];
 
-  data: IKnowledgeBase[] = data;
+  sliderImages=[
+    {imagePath:"../../../assets/img/NEWS/t.jpg"},
+    {imagePath:"../../../assets/img/NEWS/u.jpg"},
+    {imagePath:"../../../assets/img/NEWS/y.jpg"},
+    {imagePath:"../../../assets/img/NEWS/r.jpg"},
+    {imagePath:"../../../assets/img/NEWS/e.jpg"},
+  ]
 
   contactData=[{
     DepartmentName:'Sales Department',
@@ -152,7 +162,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   onDarkModeChange(event): void {
-
+    
     let color = getThemeColor();
     if (color.indexOf('dark') > -1) {
       color = color.replace('dark', 'light');
@@ -181,6 +191,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.products = responce.result.data;
       this.glideDataLoad = true;
 
+
     });
 
   }
@@ -188,11 +199,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   {
     this._route.navigate(['viewProducts'])
   }
+ 
   getLastNews(){
+
 
     this._newsService.getlastNews().subscribe((responce: any) => {
 
       this.news = responce.result;
+
 
     });
   }
@@ -206,6 +220,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.contactUs=new CreateUpdateContactDto()
   }
+
 
 
   ngOnDestroy(): void {
@@ -244,6 +259,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['$event'])
   onScroll(event): void {
     this.showMobileMenu = false;
+  
   }
 
   scrollTo(target): void {
@@ -254,8 +270,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.scrollToService.scrollTo(config);
   }
+ 
+
+  isScrolled = false;
+
+@HostListener("window:scroll")
+scrollEvent() {
+  this.isScrolled = window.pageYOffset >= 80;
+}
 
 
+// onPageScroll() {
+//   // Get the current scroll position
+//   const scrollY = window.scrollY;
+//   console.log('onScroll called');
+
+//   // Change the text color based on the scroll position
+//   if (scrollY > 80) {
+//     console.log(scrollY)
+//   } else {
+//     console.log('nop')
+//   }
+// }
 }
 
 

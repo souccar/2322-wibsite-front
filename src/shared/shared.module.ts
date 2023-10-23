@@ -69,6 +69,7 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     AbpValidationSummaryComponent,
     NgxDropzoneModule,
     ComponentsPlayerModule,
+    ComponentsPlayerModule,
     ReactiveFormsModule,
     NgxDatatableModule,
     NgxPaginationModule,

@@ -33,6 +33,7 @@ import { GlideProductComponent } from './glide-product/glide-product.component';
 import { CommonModule } from '@angular/common';
 import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
 import { ViewMainComponent } from './view-main/view-main.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -59,12 +60,15 @@ import { ViewMainComponent } from './view-main/view-main.component';
   imports: [
     ViewRoutingModule,
     SharedModule,
+    SharedModule,
     FormsModule,
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
     PaginationModule.forRoot(),
+    PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
+    CommonModule,
     CommonModule,
     BasicComponentModule,
     ComponentsCarouselModule,
@@ -73,6 +77,7 @@ import { ViewMainComponent } from './view-main/view-main.component';
      MatIconModule,
      PaginationModule,
      LightboxModule,
+     CarouselModule.forRoot()
   ],
   exports:[ViewFooterComponent,ViewNavbarComponent],
   schemas:[

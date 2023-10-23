@@ -50,10 +50,10 @@ Table of Contents
 */
 
 /* 00.Variables and Imports */
-@font-face {
-  font-family: "Cairo";
-  src: local("Cairo"), url(../../fonts/cairo/fonts/Cairo-Regular.ttf) format("truetype");
-}
+// @font-face {
+//   font-family: "Cairo";
+//   src: local("Cairo"), url(../../fonts/cairo/fonts/Cairo-Regular.ttf) format("truetype");
+// }
 @import url("https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700");
 
 $main-menu-item-height: 110px;
@@ -130,7 +130,7 @@ html {
 }
 
 body {
-  font-family:"Cairo", "Nunito", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
   color: $primary-color;
@@ -541,7 +541,7 @@ a {
 p {
   font-size: 0.85rem;
   line-height: 1.3rem;
-  font-family: "Cairo","Nunito", sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .text-large {
@@ -3414,7 +3414,7 @@ body.default-transition main {
     background-color: $separator-color-light !important;
   }
   .fa {
-    font-family: "Cairo","simple-line-icons";
+    font-family: "simple-line-icons";
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -5973,7 +5973,7 @@ aw-wizard-navigation-bar.vertical.small ul.steps-indicator li:not(:last-child):a
   }
 
   &:after {
-    font-family: "Cairo","simple-line-icons";
+    font-family: "simple-line-icons";
     content: "\E090";
     font-size: 14px;
     color: $secondary-color;
@@ -6107,7 +6107,7 @@ rating span {
 }
 
 .bs-rating-star {
-  font-family: "Cairo","simple-line-icons";
+  font-family:"simple-line-icons";
   font-size: 16px;
   line-height: 1;
   letter-spacing: normal;
@@ -6687,7 +6687,7 @@ rating span {
 }
 
 .context-menu-item span {
-  font-family: "Cairo","Nunito", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
   margin-left: 0.5rem;
@@ -7412,7 +7412,7 @@ i.large-icon {
 .lb-nav a.lb-next,
 .lb-nav a.lb-prev {
   background: initial;
-  font-family:"Cairo", "simple-line-icons";
+  font-family: "simple-line-icons";
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -9656,8 +9656,8 @@ footer.page-footer {
 
       .nav-item > a,
       .nav-item > .dropdown > a {
-        color: $button-text-color;
-        font-family: "Cairo",Nunito, sans-serif;
+        color: $primary-color;
+        font-family: Nunito, sans-serif;
         font-size: 1rem;
         display: inline-block;
         margin-top: 0;
@@ -10417,7 +10417,7 @@ footer.page-footer {
 
     span {
       position: absolute;
-      font-family: "Cairo",VideoJS;
+      font-family: VideoJS;
       font-weight: 400;
       font-style: normal;
       background: rgba(255, 255, 255, 0.7);
