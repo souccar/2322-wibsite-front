@@ -1,6 +1,5 @@
 import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChild, OnDestroy } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Editor } from 'ngx-editor';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { BrandForDropdownDto, CategoryForDropdownDto, CreateUpdateProductDto, SkinTypeForDropdownDto } from 'src/shared/service-proxies/service-proxies';
@@ -14,7 +13,6 @@ import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.s
 
 })
 export class CreateProductDialogComponent extends AppComponentBase implements OnInit,OnDestroy {
-  editor: Editor;
   html: '';
   IsUploaded:boolean=false;
    saving = false;
@@ -38,12 +36,12 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
     super(injector);
   }
   ngOnDestroy(): void {
-    this.editor.destroy();
+    // this.editor.destroy();
   }
 
 
   ngOnInit(): void {
-    this.editor = new Editor();
+
     this.product.images = [];
     this.initCategory();
     this.initBrand();
