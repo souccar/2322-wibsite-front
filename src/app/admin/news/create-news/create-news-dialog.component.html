@@ -18,7 +18,7 @@
             </label>
             <div class="col-md-9">
               <input type="text" class="form-control" name="description" id="description"
-                [(ngModel)]="news.description" #descriptionModel="ngModel" #descriptioneEl  required  />
+                [(ngModel)]="news.description" #descriptionModel="ngModel" [innerHTML]="news.description"  #descriptioneEl  required  />
 
               <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptioneEl"></abp-validation-summary>
             </div>

@@ -31,6 +31,7 @@ import { Lightbox, LightboxConfig, LightboxEvent } from 'ngx-lightbox';
 import { LightboxModule } from 'ngx-lightbox';
 import { GlideProductComponent } from './glide-product/glide-product.component';
 import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'ngx-bootstrap/carousel';  
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CommonModule } from '@angular/common';
      MatIconModule,
      PaginationModule,
      LightboxModule,
+     CarouselModule.forRoot()
   ],
   exports:[ViewFooterComponent],
   schemas:[

@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
      }
     ngOnInit(): void {
+      
       AOS.init();
       this.renderer.addClass(document.body, 'no-footer');
       this.getProduct();
@@ -116,7 +117,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
   ];
 
-  data: IKnowledgeBase[] = data;
+  sliderImages=[
+    {imagePath:"../../../assets/img/NEWS/t.jpg"},
+    {imagePath:"../../../assets/img/NEWS/u.jpg"},
+    {imagePath:"../../../assets/img/NEWS/y.jpg"},
+    {imagePath:"../../../assets/img/NEWS/r.jpg"},
+    {imagePath:"../../../assets/img/NEWS/e.jpg"},
+  ]
 
   contactData=[{
     DepartmentName:'Sales Department',
@@ -246,6 +253,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   @HostListener('window:scroll', ['$event'])
   onScroll(event): void {
     this.showMobileMenu = false;
+  
   }
 
   scrollTo(target): void {
@@ -256,7 +264,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.scrollToService.scrollTo(config);
   }
+ 
+
+  isScrolled = false;
+
+@HostListener("window:scroll")
+scrollEvent() {
+  this.isScrolled = window.pageYOffset >= 80;
 }
+
+
+// onPageScroll() {
+//   // Get the current scroll position
+//   const scrollY = window.scrollY;
+//   console.log('onScroll called');
+
+//   // Change the text color based on the scroll position
+//   if (scrollY > 80) {
+//     console.log(scrollY)
+//   } else {
+//     console.log('nop')
+//   }
+// }
+ }
 
 
 

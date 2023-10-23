@@ -4,26 +4,23 @@
             <span></span>
         </a>
         <ul class="navbar-nav">
-            <!-- (click)="scrollTo('#features')" -->
             <li class="nav-item"><a href="javascript:;">Home</a></li>
             <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
             <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a></li>
             <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
             <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
             <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
-     
             <li class="nav-item">
                 <div class="separator"></div>
             </li>
-
             <li class="nav-item text-center">
                 <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
-                (click)="onDarkModeChange($event)">
-                <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
-                    data-placement="top" title="Light Mood"></i>
-                <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
-                    data-placement="top" title="Dark Mood"></i>
-                 </a>
+                    (click)="onDarkModeChange($event)">
+                    <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip" data-placement="top"
+                        title="Light Mood"></i>
+                    <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
+                        data-placement="top" title="Dark Mood"></i>
+                </a>
             </li>
 
 
@@ -31,14 +28,15 @@
     </div>
 
     <div class="main-container">
-        <ngx-headroom class="landing-page-nav">
+      
+        <ngx-headroom class="landing-page-nav"     [ngClass]="{'bg-primary ': isScrolled }"  >
             <nav>
-                <div class="container d-flex align-items-center justify-content-between">
+                <div class="container d-flex align-items-center justify-content-between ">
                     <a class="navbar-logo pull-left" href="javascript:;">
                         <span class="white"></span>
                         <span class="dark"></span>
                     </a>
-                    <ul class="navbar-nav d-none d-lg-flex flex-row">
+                    <ul class="navbar-nav d-none d-lg-flex flex-row  text-white">
                         <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
                         <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a>
                         </li>
@@ -52,7 +50,7 @@
                                     data-placement="top" title="Light Mood"></i>
                                 <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
                                     data-placement="top" title="Dark Mood"></i>
-                                 </a>
+                            </a>
                         </li>
                     </ul>
                     <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
@@ -62,54 +60,32 @@
             </nav>
         </ngx-headroom>
 
-
         <div class="content-container" id="home">
-
-            <div class="section home">
-                <div class="container  ">
-                    <div class="row home-row d-flex justify-content-end">
-                        <div class="col-12 d-block d-md-none">
-                            <a [href]="adminRoot" target="_blank">
-
-
-                                <app-slider first="../../../assets/img/NEWS/t.jpg"
-                                    second="../../../assets/img/NEWS/u.jpg" third="../../../assets/img/NEWS/y.jpg"
-                                    fourth="../../../assets/img/NEWS/r.jpg"
-                                    fifth="../../../assets/img/NEWS/e.jpg"></app-slider>
-                            </a>
-                        </div>
-
-                        <div class="col-md-6 col-sm-12 align-self-center">
-                            <p class="text-white">Company, actively involved in the field of electronics, electrical
-                                power,and the information industry.</p>
-
-                            <p class="text-white">It is a technology-driven value added system integrator,fueled by
-                                modern thinking and unique ideas, especially when adding our collective experience and
-                                innovative technologyý to our scope of delivery.
-                            </p>
-                        </div>
-                        <div class="col-6 mt-5 d-none d-md-block ">
-                            <app-slider first="../../../../assets/img/slider/mmt.jpg"
-                                second="../../../../assets/img/slider/persun.jpg"
-                                third="../../../../assets/img/homePageImage/age-sport.jpg"
-                                fourth="../../../../assets/img/homePageImage/Presun-Oil.jpg"
-                                fifth="../../../../assets/img/homePageImage/2.jpg"></app-slider>
-                        </div>
-
-                    </div>
+            <carousel [isAnimated]="true">
+                <slide *ngFor="let image of sliderImages ">
+                  <img src="{{image.imagePath}}" alt="first slide" style="height: 100vh; width: 100%;">
+                </slide>
+              
+              </carousel>
+            <div class="section   ">
+                <div class="container-fluid  ">
+                    <div class="col-12 d-none d-md-block " data-aos="fade-left" data-aos-duration="1000">
+                        
+              </div>
 
                     <div class="row my-5" *ngIf="categoriesLoaded">
                         <div class="col-12 p-0">
-                            <div class="home-carousel" data-aos="fade-up"data-aos-duration="1000">
+                            <div class="home-carousel" data-aos="fade-up" data-aos-duration="1000">
                                 <app-glide [settings]="slideSettings">
-                                    <div  class="card " style="max-height: 25rem;" *ngFor="let category of categories">
+                                    <div class="card " style="max-height: 25rem;" *ngFor="let category of categories">
                                         <div class="card-body ">
                                             <div class="text-center" style="min-height: 20rem;">
                                                 <img alt="Profile" src="{{baseUrl+category.imagePath}}"
                                                     class=" mb-4 list-thumbnail">
                                                 <p class="list-item-heading fw-bold mb-1">{{category.name}}</p>
-                                                <p class=" text-muted pb-5" data-toggle="tooltip"
-                                                data-placement="top" title="{{category.description}}">{{category.description|summary:150}} </p>
+                                                <p  [innerHTML]="category.description"  class=" text-muted pb-5" data-toggle="tooltip" data-placement="top"
+                                                    title="{{category.description}}">
+                                                    {{category.description|summary:150}} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="section">
+            <div class="section" data-aos="fade-up" data-aos-duration="1000" >
                 <div class="container" id="News">
                     <div class="row">
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
@@ -140,20 +116,23 @@
 
                     <div *ngFor="let n of news;let i = index">
                         <div *ngIf="i%2==0" class="row feature-row ">
-                            <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center "data-aos-duration="1000" data-aos="fade-left">
+                            <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center " data-aos-duration="1000"
+                                data-aos="fade-left">
                                 <div class="feature-text-container">
                                     <h2>{{n.title}}</h2>
                                     <p>{{n.description}}</p>
                                 </div>
                             </div>
-                            <div  data-aos-duration="1000" data-aos="fade-right" class=" col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative slide toLeft" >
+                            <div data-aos-duration="1000" data-aos="fade-right"
+                                class=" col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative  toLeft">
                                 <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
                                     class="feature-image-right feature-image-charts position-relative semi-rounded" />
                             </div>
                         </div>
 
-                        <div *ngIf="i%2==1" class="row feature-row">
-                            <div class="  col-12 col-md-6 col-lg-6 order-2 order-md-1" data-aos-duration="1000" data-aos="fade-left">
+                        <div *ngIf="i%2==1" class="row feature-row ">
+                            <div class="  col-12 col-md-6 col-lg-6 order-2 order-md-1" data-aos-duration="1000"
+                                data-aos="fade-left">
                                 <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
                                     class="feature-image-right feature-image-charts position-relative semi-rounded" />
                             </div>
@@ -169,7 +148,7 @@
 
                 </div>
             </div>
-            <div class="section background" data-aos="fade-up"data-aos-duration="1000">
+            <div class="section screenshots background" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="Prouducts">
                     <div class="row">
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
@@ -183,12 +162,12 @@
                             </p>
                         </div>
                     </div>
-                    <div class="row screenshots">
-                        <div class="row" *ngIf="glideDataLoad">
-                            <div class=" card col-xl-3 col-lg-4 col-12 col-sm-6 mb-4 cssBasedZoom"
+                    <div class="row "*ngIf="glideDataLoad">
+                        
+                            <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 cssBasedZoom" 
                                 *ngFor="let product of products; let i=index">
 
-                                <div class="box face front flow  position-relative">
+                                <div class="  position-relative">
                                     <a [routerLink]="['/product-details',product.id]">
                                         <img class="card-img pt-4"
                                             style="height: 100%; width: 100%; object-fit:contain  ;"
@@ -225,7 +204,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <!-- <div class="col-12">
                                 <pagination class="justify-content-center" [totalItems]="30"
                                     [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
                                 </pagination>
@@ -235,21 +214,22 @@
                             </ng-template>
                             <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
                                 <i class='simple-icon-arrow-left'></i>
-                            </ng-template>
-                        </div>
+                            </ng-template> -->
+                       
                     </div>
 
                 </div>
             </div>
 
-            <div class="section" data-aos="fade-up"data-aos-duration="1000">
+            <div class="section">
                 <div class="container">
-                    <div class=" row" *ngIf="glideDataLoad">
+                    <div class=" row" *ngIf="glideDataLoad" data-aos="fade-up" data-aos-duration="1000">
                         <div class="col-12 p-0 text-center">
                             <h1>Recommended products</h1>
                             <div class="  home-carousel">
                                 <app-glide [settings]="slideSettings">
-                                    <div class="cssBasedZoom card "  data-aos="fade-up"data-aos-duration="1000" *ngFor="let product of products">
+                                    <div class="cssBasedZoom card " data-aos="fade-up" data-aos-duration="1000"
+                                        *ngFor="let product of products">
                                         <div class="  position-relative">
                                             <img class="card-img pt-4"
                                                 style="height: 100%; width: 100%; object-fit:contain  ;"
@@ -286,7 +266,7 @@
             <!--  -->
             <!-- <app-contact-us></app-contact-us> -->
 
-            <div class="section background" data-aos="fade-up"data-aos-duration="1000">
+            <div class="section background" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="about">
                     <div class="row ">
                         <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
@@ -294,12 +274,12 @@
                                 <h1>About Us</h1>
                             </a>
 
-                        </div> 
-                          <app-about></app-about>
+                        </div>
+                        <app-about></app-about>
                     </div>
 
 
-                 
+
                     <!-- <div class="row d-flex justify-content-center">
                       <div class="col-md-4 col-sm-12   mb-4">
                           <a routerLink="./" class="card">
@@ -326,7 +306,7 @@
                 </div>
 
             </div>
-            <div class="section" data-aos="fade-up"data-aos-duration="1000">
+            <div class="section" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container text-center ">
                     <h1> Recommended By Dermatologists, Loved By The Skin</h1>
 
@@ -342,7 +322,7 @@
 
 
 
-            <div class="section background" data-aos="fade-up"data-aos-duration="1000">
+            <div class="section background" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="Contact">
 
                     <div class="section-content text-center">
@@ -393,11 +373,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class=" text-center mt-5" data-aos="fade-up"data-aos-duration="1000">
+                    <div class=" text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
 
                         <div class="row equal-height-container">
                             <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
-                                <div class="card"  data-aos="fade-up"data-aos-duration="1000">
+                                <div class="card" data-aos="fade-up" data-aos-duration="1000">
                                     <div class="card-body">
                                         <div class="text-center">
                                             <i [class]="item.icon+ ' large-icon'"></i>
@@ -414,22 +394,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row"  data-aos="fade-up"data-aos-duration="1000">
-                                <div class="card col-12">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <i class="iconsminds-information large-icon"></i>
-                                            <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
-                                        </div>
-                                        <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
-                                            <div class="d-flex  justify-content-center">
-                                                <a href="javascript:;"><i
-                                                        class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
-                                            </div>
+
+                            <div class="card col-12 " data-aos="fade-up" data-aos-duration="1000">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <i class="iconsminds-information large-icon"></i>
+                                        <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
+                                    </div>
+                                    <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                                        <div class="d-flex  justify-content-center">
+                                            <a href="javascript:;"><i
+                                                    class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 

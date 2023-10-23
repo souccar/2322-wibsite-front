@@ -1,3 +1,5 @@
+
+
 .badge-top-left-3 {
   top: 70px;
   left: -7px;
@@ -24,30 +26,8 @@
   }
 }
 
-.fadeInUp-animation {
-  animation: 1.5s fadeInUp;
-}
 
 
-
-.slide {
-  
-  animation: MySlide 3s  ease-in;
-}
-.toRight {
-  animation-direction: normal;
-}
-
-.toLeft {
-  animation-direction: reverse;
-}
-
-
-
-@keyframes MySlide {
-  0%   {left: 0px; top: 0px;}
-  100%  {left: 75px; top: 0px;}
-}
 
 
 
