@@ -13,17 +13,40 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
 })
 export class ProfilePhotosComponent implements OnInit{
 
-  product:ProductDto[]=[];
-  images: ImageModel[]=[];
+  product:ReadProductDto=new ReadProductDto();
   baseUrl=environment.baseUrl;
   id:number;
   isLoading:boolean = false ;
-
+  album = [
+    {
+      src: '/assets/img/products/marble-cake.jpg',
+      thumb: '/assets/img/products/1.png'
+    },
+    {
+      src: '/assets/img/products/parkin.jpg',
+      thumb: '/assets/img/products/2.png'
+    },
+    {
+      src: '/assets/img/products/fruitcake.jpg',
+      thumb: '/assets/img/products/3.png'
+    },
+    {
+      src: '/assets/img/products/tea-loaf.jpg',
+      thumb: '/assets/img/products/4.png'
+    },
+    {
+      src: '/assets/img/products/napoleonshat.jpg',
+      thumb: '/assets/img/products/5.png'
+    },
+    {
+      src: '/assets/img/products/magdalena.jpg',
+      thumb: '/assets/img/products/6.png'
+    }
+  ];
   constructor(private lightbox: Lightbox ,private _productService:ProductService
     ,private route:ActivatedRoute) {
   }
   ngOnInit(): void {
-    this.images=[];
     this.route.params.subscribe(params => {
        this.id = params['id'];
 
@@ -33,31 +56,13 @@ export class ProfilePhotosComponent implements OnInit{
 
   getProductById()
   {
-    this._productService.getAll().subscribe((response:any)=>{
-      this.product=response.result.data;
-      this.isLoading = true;
-      console.log(this.product)
-      // this.images = response.result.images;
-      // this.isLoading = true;
-      // console.log(this.isLoading)
-      // console.log(this.images)
-
-      //  response.result.images.forEach((element:any)=>{
-
-      //   this.images.push(element.imagePath)
-      //   console.log(this.images)
-      //  })
-
-
-
-
-    });
-
-    console.log(this.isLoading )
+       this._productService.getById(this.id).subscribe((result:any)=>{
+        this.product=result.result;
+       })
   }
   openLightbox(index: number): void {
     console.log(index);
-    // this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
+    this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
   }
 
   close(): void {
@@ -66,29 +71,5 @@ export class ProfilePhotosComponent implements OnInit{
 
 
 
-
-}
-
-
-export class ProductDto {
-  id: number;
-  name: string | undefined;
-  description: string | undefined;
-  point: number;
-  category:{id:number ,name:string};
-  // parentCategoryId: number | undefined;
-  images: any[];
-  sizes: any[];
-  skinType:{id:number ,name:string};
-  brand:{id:number ,name:string}
-
-
-}
-
-export class ImageModel{
-
-  base64:string;
-  id:number;
-  imagePath:string;
 
 }

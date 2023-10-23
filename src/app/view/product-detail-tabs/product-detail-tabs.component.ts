@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ReadProductDto } from 'src/shared/service-proxies/service-proxies';
+import { ProductService } from 'src/shared/services/product-service/product.service';
 
 
 @Component({
@@ -97,9 +100,23 @@ questions:any[] = [
   }
 ];
 
-  constructor() { }
+id:number;
+constructor(private route:ActivatedRoute,private _productService:ProductService) { }
+product:ReadProductDto=new ReadProductDto();
 
   ngOnInit(): void {
+
+    this.route.params.subscribe(params => {
+       this.id = params['id'];
+
+    });
+    this.getProductById();
+  }
+  getProductById()
+  {
+       this._productService.getById(this.id).subscribe((result:any)=>{
+        this.product=result.result;
+       })
   }
 
 
