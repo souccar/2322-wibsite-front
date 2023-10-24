@@ -12,6 +12,7 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
 export class ViewProductDialogComponent implements OnInit {
   baseUrl=environment.baseUrl;
   data = new ReadProductDto();
+  images:[{'imagePath':string}];
   id: number;
   editable: true;
   constructor(private _productService: ProductService,
@@ -26,8 +27,10 @@ export class ViewProductDialogComponent implements OnInit {
   displayProduct()
   {
     this._productService.getById(this.id).subscribe((result) => {
+      console.log(result)
       this.data = result.result;
-    
+      this.images=result.result.images
+      console.log(this.images)
     });
   }
 

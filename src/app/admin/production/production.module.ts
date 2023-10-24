@@ -6,6 +6,7 @@ import { ProductionComponent } from './production.component';
 import { TranslateService } from '@ngx-translate/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { SharedModule } from 'src/shared/shared.module';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -17,6 +18,7 @@ import { SharedModule } from 'src/shared/shared.module';
     CatalogModule,
     SharedModule,
     ProductionRoutingModule,
+   
 
 
   ],

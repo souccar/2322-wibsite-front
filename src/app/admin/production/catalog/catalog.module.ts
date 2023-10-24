@@ -16,6 +16,7 @@ import { ViewCategoryDialogComponent } from './categories/view-category/view-cat
 import { ContextMenuService } from '@perfectmemory/ngx-contextmenu';
 import { EditProductDialogComponent } from './products/edit-product/edit-product-dialog.component';
 import { ViewProductDialogComponent } from './products/view-product/view-product-dialog.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -38,6 +39,7 @@ import { ViewProductDialogComponent } from './products/view-product/view-product
     // ContextMenuModule,
     CatalogRoutingModule,
     SharedModule,
+    CarouselModule
 
 
 

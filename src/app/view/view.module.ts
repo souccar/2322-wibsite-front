@@ -60,7 +60,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   imports: [
     ViewRoutingModule,
     SharedModule,
-    SharedModule,
     FormsModule,
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
@@ -68,7 +67,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     PaginationModule.forRoot(),
     TranslateModule,
     LayoutModule,
-    CommonModule,
     CommonModule,
     BasicComponentModule,
     ComponentsCarouselModule,
