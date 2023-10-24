@@ -10,6 +10,7 @@ import { finalize } from 'rxjs';
 import { EditCategoryDialogComponent } from './edit-category/edit-category-dialog.component';
 import { ViewCategoryDialogComponent } from './view-category/view-category-dialog.component';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
+import { HttpParams } from '@angular/common/http';
 
 // import { ContextMenuComponent } from 'ngx-contextmenu';
 class PagedCategoriesRequestDto extends PagedRequestDto {
@@ -59,7 +60,9 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
 
   getAllCategory()
   {
-    this._categoryService.getAll().subscribe((response:any)=>{
+    let params = new HttpParams().set('count', this.itemsPerPage) ;
+
+    this._categoryService.getAll(params).subscribe((response:any)=>{
 
       console.log(response)
 
