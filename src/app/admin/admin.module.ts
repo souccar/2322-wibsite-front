@@ -15,6 +15,7 @@ import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { SummaryPipe } from '../pipes/summary.pipe';
 import { LoginComponent } from './auth/login.component';
+import { AdminHeaderComponent } from './containers/layout/admin-header/admin-header.component';
 
 
 
@@ -44,7 +45,8 @@ import { LoginComponent } from './auth/login.component';
 
   ],
   exports:[
-    RouterModule
+    RouterModule,
+    AdminHeaderComponent
   ],
   schemas:[
     NO_ERRORS_SCHEMA,

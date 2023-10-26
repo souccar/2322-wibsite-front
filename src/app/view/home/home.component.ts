@@ -22,9 +22,10 @@ import AOS from "aos";
 
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
+  isFullScreen = false;
   baseUrl=environment.baseUrl;
   categoriesLoaded=false;
+  displayName = 'Sarah Cortney';
   showMobileMenu = false;
   glideDataLoad = false;
   adminRoot = environment.adminRoot;
@@ -67,56 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
 
-  slideItems = [
-    {
-      icon: 'iconsminds-mouse-3',
-      title: 'Right Click Menu',
-      detail:
-        'Increases overall usability of the project by providing additional actions menu.',
-    },
-    {
-      icon: 'iconsminds-electric-guitar',
-      title: 'Video Player',
-      detail:
-        'Carefully themed multimedia players powered by Video.js library with Youtube support.',
-    },
-    {
-      icon: 'iconsminds-keyboard',
-      title: 'Keyboard Shortcuts',
-      detail:
-        'Easily configurable keyboard shortcuts plugin that highly improves user experience.',
-    },
-    {
-      icon: 'iconsminds-three-arrow-fork ',
-      title: 'Two Panels Menu',
-      detail:
-        'Three states two panels icon menu that looks good, auto resizes and does the job well.',
-    },
-    {
-      icon: 'iconsminds-deer',
-      title: 'Icons Mind',
-      detail:
-        '1040 icons in 53 different categories, designed pixel perfect and ready for your project.',
-    },
-    {
-      icon: 'iconsminds-palette',
-      title: '20 Color Schemes',
-      detail:
-        'Colors, icons and design harmony that creates excellent themes to cover entire project.',
-    },
-    {
-      icon: 'iconsminds-air-balloon-1',
-      title: '3 Applications',
-      detail:
-        'Applications that mostly made of components are the way to get started to create something similar.',
-    },
-    {
-      icon: 'iconsminds-resize',
-      title: 'Extra Responsive',
-      detail:
-        'Custom Bootstrap 4 xxs & xxl classes delivers better experiences for smaller and larger screens.',
-    },
-  ];
+
 
   sliderImages=[
     {imagePath:"../../../assets/img/NEWS/t.jpg"},
@@ -159,6 +111,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   }]
+
+  fullScreenClick(): void {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen();
+    }
+  }
+
+  @HostListener('document:fullscreenchange', ['$event'])
+  handleFullscreen(event:any): void {
+    if (document.fullscreenElement) {
+      this.isFullScreen = true;
+    } else {
+      this.isFullScreen = false;
+    }
+  }
+  onSignOut(): void {
+    // this.authService.signOut().subscribe(() => {
+    //   this.router.navigate(['/']);
+    // });
+  }
 
 
   onDarkModeChange(event): void {
@@ -227,57 +201,57 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.renderer.removeClass(document.body, 'no-footer');
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event): void {
-    const homeRect = this.elRef.nativeElement
-      .querySelector('.home-row')
-      .getBoundingClientRect();
+//   @HostListener('window:resize', ['$event'])
+//   onResize(event): void {
+//     const homeRect = this.elRef.nativeElement
+//       .querySelector('.home-row')
+//       .getBoundingClientRect();
 
-    const homeSection = this.elRef.nativeElement.querySelector(
-      '.landing-page .section.home'
-    );
-    homeSection.style.backgroundPositionX = homeRect.x - 580 + 'px';
+//     const homeSection = this.elRef.nativeElement.querySelector(
+//       '.landing-page .section.home'
+//     );
+//     homeSection.style.backgroundPositionX = homeRect.x - 580 + 'px';
 
-    const footerSection = this.elRef.nativeElement.querySelector(
-      '.landing-page .section.footer'
-    );
-    footerSection.style.backgroundPositionX = event.target.innerWidth - homeRect.x - 2000 + 'px';
+//     const footerSection = this.elRef.nativeElement.querySelector(
+//       '.landing-page .section.footer'
+//     );
+//     footerSection.style.backgroundPositionX = event.target.innerWidth - homeRect.x - 2000 + 'px';
 
-    if (event.target.innerWidth >= 992) {
-      this.renderer.removeClass(
-        this.elRef.nativeElement.querySelector('.landing-page'),
-        'show-mobile-menu'
-      );
-    }
-  }
+//     if (event.target.innerWidth >= 992) {
+//       this.renderer.removeClass(
+//         this.elRef.nativeElement.querySelector('.landing-page'),
+//         'show-mobile-menu'
+//       );
+//     }
+//   }
 
-  @HostListener('window:click', ['$event'])
-  onClick(event): void {
-    this.showMobileMenu = false;
-  }
+//   @HostListener('window:click', ['$event'])
+//   onClick(event): void {
+//     this.showMobileMenu = false;
+//   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event): void {
-    this.showMobileMenu = false;
-
-  }
+//   @HostListener('window:scroll', ['$event'])
+//   onScroll(event): void {
+//     this.showMobileMenu = false;
+//   }
 
   scrollTo(target): void {
+    
     const config: ScrollToConfigOptions = {
       target,
       offset: -150
     };
-
+    
     this.scrollToService.scrollTo(config);
   }
 
 
   isScrolled = false;
 
-@HostListener("window:scroll")
-scrollEvent() {
-  this.isScrolled = window.pageYOffset >= 80;
-}
+// @HostListener("window:scroll")
+// scrollEvent() {
+//   this.isScrolled = window.pageYOffset >= 80;
+// }
 
 
 // onPageScroll() {
@@ -304,182 +278,4 @@ scrollEvent() {
 
 
 
-export interface IKnowledgeBase {
-  title: string;
-  icon: string;
-  detail: string;
-  subtitles: IKnowledgeBaseSubTitle[];
-}
-export interface IKnowledgeBaseSubTitle {
-  title: string;
-  link: string;
-}
-
-const data: IKnowledgeBase[] = [
-  {
-    title: 'USING VIEN',
-    icon: 'iconsminds-director ',
-    detail: 'Systems thinking correlation, social impact; when revolutionary fully ethical life bandwidth and thought partnership.',
-    subtitles: [
-      {
-        title: 'Getting Started',
-        link: '#'
-      },
-      {
-        title: 'Game Changing Features',
-        link: '#'
-      },
-      {
-        title: 'Structure',
-        link: '#'
-      },
-      {
-        title: 'Adding Content',
-        link: '#'
-      },
-      {
-        title: 'Gulp & Package.json',
-        link: '#'
-      },
-      {
-        title: 'Codebase',
-        link: '#'
-      },
-      {
-        title: 'Styles and Themes',
-        link: '#'
-      },
-      {
-        title: 'Fonts',
-        link: '#'
-      },
-      {
-        title: 'Plugins',
-        link: '#'
-      },
-      {
-        title: 'Changelog',
-        link: '#'
-      }
-    ]
-  },
-  {
-    title: 'SECURITY',
-    icon: 'iconsminds-security-settings ',
-    detail: 'Tellus a sem condimentum, vitae convallis sapien feugiat. Aenean non nibh nec nunc aliquam iaculis. Ut quis suscipit nunc. Duis at lectus a est aliquam venenatis vitae eget arcu.',
-    subtitles: [
-      {
-        title: 'Securing Your Account',
-        link: '#'
-      },
-      {
-        title: 'Privacy',
-        link: '#'
-      },
-      {
-        title: 'Spam',
-        link: '#'
-      },
-      {
-        title: 'Sensitive Content',
-        link: '#'
-      },
-      {
-        title: 'Abuse',
-        link: '#'
-      },
-      {
-        title: 'Blocking Users',
-        link: '#'
-      },
-      {
-        title: 'Reporting',
-        link: '#'
-      }
-    ]
-  },
-  {
-    title: 'ACCOUNT',
-    icon: 'iconsminds-male',
-    detail: 'Squid single-origincoffeenulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beerlaborewes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butchervice lomo.',
-    subtitles: [
-      {
-        title: 'Login and Register',
-        link: '#'
-      },
-      {
-        title: 'Password Reset',
-        link: '#'
-      },
-      {
-        title: 'Devices',
-        link: '#'
-      },
-      {
-        title: 'Integrations',
-        link: '#'
-      },
-      {
-        title: 'Notifications',
-        link: '#'
-      },
-      {
-        title: 'Messages',
-        link: '#'
-      },
-      {
-        title: 'Blocking Users',
-        link: '#'
-      },
-      {
-        title: 'Following Users',
-        link: '#'
-      },
-      {
-        title: 'Login',
-        link: '#'
-      },
-      {
-        title: 'Content Filters',
-        link: '#'
-      }
-    ]
-  },
-  {
-    title: 'POLICIES',
-    icon: 'iconsminds-newspaper',
-    detail: 'Duis at lectus a est aliquam venenatis vitae eget arcu. Sed egestas felis eget convallis maximus. Curabitur maximus.',
-    subtitles: [
-      {
-        title: 'About',
-        link: '#'
-      },
-      {
-        title: 'Policies',
-        link: '#'
-      },
-      {
-        title: 'Privacy',
-        link: '#'
-      },
-      {
-        title: 'Ad Choices',
-        link: '#'
-      },
-      {
-        title: 'Researches and Experiments',
-        link: '#'
-      },
-      {
-        title: 'General Guidelines',
-        link: '#'
-      },
-      {
-        title: 'Cookies',
-        link: '#'
-      }
-    ]
-  }
-];
-export default data;
 

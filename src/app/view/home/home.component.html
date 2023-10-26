@@ -1,79 +1,16 @@
-<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
-    <div class="mobile-menu" (click)="$event.stopPropagation()">
-        <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
-            <span></span>
-        </a>
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="javascript:;">Home</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-            <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
-            <li class="nav-item">
-                <div class="separator"></div>
-            </li>
-            <li class="nav-item text-center">
-                <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
-                    (click)="onDarkModeChange($event)">
-                    <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip" data-placement="top"
-                        title="Light Mood"></i>
-                    <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
-                        data-placement="top" title="Dark Mood"></i>
-                </a>
-            </li>
-
-
-        </ul>
-    </div>
-
+<div [ngClass]="{'landing-page': true}">
     <div class="main-container">
-
-        <ngx-headroom class="landing-page-nav" [ngClass]="{'bg-primary ': isScrolled }">
-            <nav>
-                <div class="container d-flex align-items-center justify-content-between ">
-                    <a class="navbar-logo pull-left" href="javascript:;">
-                        <span class="white"></span>
-                        <span class="dark"></span>
-                    </a>
-                    <ul class="navbar-nav d-none d-lg-flex flex-row  text-white">
-                        <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-                        <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a>
-                        </li>
-                        <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
-                        <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-                        <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
-                        <li class="nav-item ">
-                            <a type="button" id="darkModeSwitch" class="btn btn-outline-semi-light btn-sm pr-4 pl-4"
-                                (click)="onDarkModeChange($event)">
-                                <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
-                                    data-placement="top" title="Light Mood"></i>
-                                <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
-                                    data-placement="top" title="Dark Mood"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
-                        <i class="simple-icon-menu"></i>
-                    </span>
-                </div>
-            </nav>
-        </ngx-headroom>
-
+        <app-admin-header></app-admin-header>
         <div class="content-container" id="home">
             <carousel [isAnimated]="true">
                 <slide *ngFor="let image of sliderImages ">
                     <img src="{{image.imagePath}}" alt="first slide" style="height: 100vh; width: 100%;">
                 </slide>
-
             </carousel>
             <div class="section   ">
                 <div class="container-fluid  ">
                     <div class="col-12 d-none d-md-block " data-aos="fade-left" data-aos-duration="1000">
-
                     </div>
-
-
                     <div class="row my-5" *ngIf="categoriesLoaded">
                         <div class="col-12 p-0">
                             <div class="home-carousel" data-aos="fade-up" data-aos-duration="1000">
@@ -167,11 +104,12 @@
                         </div>
                     </div>
                     <div class="row " *ngIf="glideDataLoad">
-                        <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 cssBasedZoom"
+                        <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 "
                             *ngFor="let product of products; let i=index">
                             <div class="  position-relative">
                                 <a [routerLink]="['/product-details',product.id]">
-                                    <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
+                                    <img class=" cssBasedZoom card-img pt-4"
+                                        style="height: 100%; width: 100%; object-fit:contain  ;"
                                         src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
                                 </a>
                                 <span
@@ -188,7 +126,7 @@
                                 </a>
                                 <a [routerLink]="['/viewProducts']">
                                     <p class="text-muted text-small mb-0 font-weight-light">
-                                        <!-- {{product.description|summary}} -->
+
                                         <ng-container *ngIf="product.description!=null">
                                             <ng-container *ngIf="product.description.length>40; else elseBlock">
                                                 {{ product.description | summary}}
@@ -211,10 +149,10 @@
                             <div class="  home-carousel">
                                 <div class="  home-carousel">
                                     <app-glide [settings]="slideSettings">
-                                        <div class="cssBasedZoom card " data-aos="fade-up" data-aos-duration="1000"
+                                        <div class=" card " data-aos="fade-up" data-aos-duration="1000"
                                             *ngFor="let product of products">
                                             <div class="  position-relative">
-                                                <img class="card-img pt-4"
+                                                <img class=" cssBasedZoom card-img pt-4"
                                                     style="height: 100%; width: 100%; object-fit:contain  ;"
                                                     src="{{baseUrl+product.product_images[0].imagePath}}"
                                                     alt="Card image cap">
@@ -310,7 +248,7 @@
                                                 class="invalid-tooltip">Value is required!</div>
                                         </label>
                                         <div class="input-group-prepend has-float-label">
-                                            <!-- <span class="input-group-text text-muted">Write To Us</span> -->
+
                                             <span>Message</span>
                                             <textarea class="form-control" aria-label="With textarea" ngModel
                                                 #message="ngModel" name="message"
