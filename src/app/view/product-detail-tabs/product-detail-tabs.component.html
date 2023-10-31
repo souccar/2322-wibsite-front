@@ -1,49 +1,5 @@
-<div class="card mt-5 mb-5">
+<div class="card mt-3 mb-5">
   <tabset class="card-tabs">
-    <tab heading="{{'details-title' | translate}}" class="card-body">
-      <p class="font-weight-bold">{{product.name}}</p>
-      <p>
-       {{product.description}}
-      </p>
-      <br />
-
-
-
-
-      <br />
-      <p class="font-weight-bold">Elementum Ultrices</p>
-
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-    </tab>
-
     <tab heading="{{'comments-title' | translate}} (19)" class="card-body">
       <div [class]="i===comments.length-1 ? 'd-flex flex-row mb-3 pb-3 justify-content-between': 'd-flex flex-row mb-3 pb-3 border-bottom justify-content-between'" *ngFor="let comment of comments; let i = index;">
         <a href="javascript:;">

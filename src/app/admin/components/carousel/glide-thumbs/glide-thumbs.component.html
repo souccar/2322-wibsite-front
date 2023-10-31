@@ -1,4 +1,4 @@
-<div class="glide details" #glideRef >
+<div class="glide details mb-5" #glideRef >
   <div class="glide__track" data-glide-el="track">
     <ul class="glide__slides" #glideSlides>
       <li class="glide__slide" *ngFor="let item of images">
@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="glide thumbs" #glideThumbsRef >
+<div class="glide thumbs " #glideThumbsRef style="margin-top: -70px;">
   <div class="glide__track" data-glide-el="track">
     <div class="glide__slides" #glideThumbs>
       <li [class]="activeIndex == i ? 'glide__slide active': 'glide__slide'" *ngFor="let item of thumbs; let i = index" (click)="onThumbClick(i)">
