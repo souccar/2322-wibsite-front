@@ -15,8 +15,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   declarations: [ProductionComponent],
   imports: [
     CommonModule,
-    CatalogModule,
     SharedModule,
+    CatalogModule,
     ProductionRoutingModule,
    
 
