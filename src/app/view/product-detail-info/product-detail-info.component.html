@@ -1,8 +1,10 @@
-<div class="card ">
+<div class="card mb-4" >
+
   <div class="position-absolute card-top-buttons">
       <button class="btn btn-header-light icon-button">
           <i class="simple-icon-refresh"></i>
       </button>
+
   </div>
   <div class="card-body">
       <div class="mb-3">
@@ -12,10 +14,15 @@
           <div class="post-icon d-inline-block"><i class="simple-icon-bubble mr-1"></i> <span>1
                   Comment</span></div>
       </div>
-      <p class="mb-3">
+
+     <h1 class="mb-3 mr-3 text-primary">
+      {{product.name}}
+    </h1>
+    <app-rating></app-rating>
+      <p class="mb-3 float-right">
           {{product.description}}
       </p>
-      <p class="text-muted text-small mb-2">{{product.name}}</p>
+
       <p class="mb-3">
         <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.category?.name | uppercase}}</span>
         <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.brand?.name | uppercase}}</span>

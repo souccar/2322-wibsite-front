@@ -1,10 +1,10 @@
-<div class="card mt-4 mb-2">
+<div class="card mt-3 mb-2" style="min-height: 30px;">
   <div class="card-body">
-    <h5 class="card-title"><span>{{ 'photos' | translate }}</span><a class="btn-link float-right text-small pt-1"
+    <h5 class="card-title"><span>{{ 'Related Products' | translate }}</span><a class="btn-link float-right text-small pt-1"
         href="javascript:;">{{ 'view-all' | translate }}</a>
     </h5>
     <div class="row social-image-row gallery">
-      <div class="col-6" *ngFor="let image of album; let i=index">
+      <div class="col-4" *ngFor="let image of album; let i=index">
         <img class="img-fluid border-radius c-pointer" [src]="image.thumb" (click)="openLightbox(i)" />
       </div>
     </div>
