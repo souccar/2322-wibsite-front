@@ -13,71 +13,85 @@ export interface IMenuItem {
 }
 
 const data: IMenuItem[] = [
-    //Production
+  //Production
+  {
+    icon: 'iconsminds-factory',
+    label: 'Production',
+    to: `${adminRoot}/production`,
+    subs: [
+      {
+        label: 'Catalog',
+        to: `${adminRoot}/production/catalog`,
+        subs: [
+          {
+            subs: [],
+            icon: 'simple-icon-layers',
+            label: 'Products',
+            to: `${adminRoot}/production/catalog/product`,
+          },
+          {
+            subs: [],
+            icon: 'simple-icon-list',
+            label: 'Categories',
+            to: `${adminRoot}/production/catalog/category`,
+          },
+
+          {
+            subs: [],
+            icon: 'simple-icon-user-female',
+            label: 'Skin Types',
+            to: `${adminRoot}/production/catalog/skintype`,
+          },
+          {
+            subs: [],
+            icon: 'simple-icon-bag',
+            label: 'Brands',
+            to: `${adminRoot}/production/catalog/brand`,
+          },
+          {
+            subs: [],
+            icon: 'iconsminds-newspaper',
+            label: 'news',
+            to: `${adminRoot}/production/catalog/news`,
+          },
+
+        ],
+      },
+    ],
+  },
+
+  //Design
+  {
+    icon: 'simple-icon-picture',
+    label: 'Design',
+    to: `${adminRoot}/design`,
+    subs: [
+      {
+        subs: [],
+        icon: 'iconsminds-full-view-2',
+        label: 'Templates',
+        to: `${adminRoot}/design/template`,
+      },
+      {
+        subs: [],
+        icon: 'simple-icon-docs',
+        label: 'Pages',
+        to: `${adminRoot}/design/page`,
+      },
+    ],
+  },
+    //MainPage
     {
-      icon: 'iconsminds-factory',
-      label: 'Production',
-      to: `${adminRoot}/production`,
+      icon: 'iconsminds-monitor---laptop',
+      label: 'mainPage',
+      to: `${adminRoot}/mainPage`,
       subs: [
         {
-          label: 'Catalog',
-          to: `${adminRoot}/production/catalog`,
-          subs: [
-            {
-              subs:[],
-              icon: 'simple-icon-layers',
-              label: 'Products',
-              to: `${adminRoot}/production/catalog/product`,
-            },
-            {
-              subs:[],
-              icon: 'simple-icon-list',
-              label: 'Categories',
-              to: `${adminRoot}/production/catalog/category`,
-            },
-
-            {
-              subs:[],
-              icon: 'simple-icon-user-female',
-              label: 'Skin Types',
-              to: `${adminRoot}/production/catalog/skintype`,
-            },
-            {
-              subs:[],
-              icon: 'simple-icon-bag',
-              label: 'Brands',
-              to: `${adminRoot}/production/catalog/brand`,
-            },
-            {
-              subs:[],
-              icon: 'iconsminds-newspaper',
-              label: 'news',
-              to: `${adminRoot}/production/catalog/news`,
-            },
-
-          ],
-        },
-      ],
-    },
-
-        //Design
-    {
-      icon: 'simple-icon-picture',
-      label: 'Design',
-      to: `${adminRoot}/design`,
-      subs: [
-            {
-              subs:[],
-              icon: 'iconsminds-full-view-2',
-              label: 'Templates',
-              to: `${adminRoot}/design/template`,
-            },
-            {
-              subs:[],
-              icon: 'simple-icon-docs',
-              label: 'Pages',
-              to: `${adminRoot}/design/page`,
-            },
+          subs: [],
+          icon: 'iconsminds-photo',
+          label: 'Images',
+          to: `${adminRoot}/mainPage/images`,
+        }
       ],
     },
 

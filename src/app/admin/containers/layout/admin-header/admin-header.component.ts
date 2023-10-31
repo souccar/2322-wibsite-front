@@ -24,18 +24,15 @@ export class AdminHeaderComponent implements OnInit, OnDestroy {
   isFullScreen = false;
   isDarkModeActive = false;
   searchKey = '';
-  showMobileMenu = false;
 
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
-    private langService: LangService,
-    private scrollToService: ScrollToService
+    private langService: LangService
   ) {
     this.languages = this.langService.supportedLanguages;
     this.currentLanguage = this.langService.languageShorthand;
     this.isSingleLang = this.langService.isSingleLang;
-    
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
 
@@ -112,24 +109,20 @@ export class AdminHeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  mobileMenuButtonClick(
- )  {
-   
+  mobileMenuButtonClick = (
+    event: { stopPropagation: () => void },
+    containerClassnames: string
+  ) => {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.sidebarService.clickOnMobileMenu(containerClassnames);
   }
 
   onSignOut(): void {
     // this.authService.signOut().subscribe(() => {
     //   this.router.navigate(['/']);
     // });
-  }
-    @HostListener('window:click', ['$event'])
-  onClick(event): void {
-    this.showMobileMenu = false;
-  }
-
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event): void {
-    this.showMobileMenu = false;
   }
 
   searchKeyUp(event: KeyboardEvent): void {
@@ -189,12 +182,4 @@ export class AdminHeaderComponent implements OnInit, OnDestroy {
     }
     this.searchKey = '';
   }
-  scrollTo(target): void {
-        const config: ScrollToConfigOptions = {
-          target,
-          offset: -150
-        };
-    
-        this.scrollToService.scrollTo(config);
-      }
 }

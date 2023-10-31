@@ -34,6 +34,7 @@ import { CommonModule } from '@angular/common';
 import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
 import { ViewMainComponent } from './view-main/view-main.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ScrollToModule.forRoot(),
     PaginationModule.forRoot(),
     PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(),
     TranslateModule,
     LayoutModule,
     CommonModule,

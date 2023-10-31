@@ -16,6 +16,8 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SummaryPipe } from '../pipes/summary.pipe';
 import { LoginComponent } from './auth/login.component';
 import { AdminHeaderComponent } from './containers/layout/admin-header/admin-header.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { MainPageModule } from './main-page/main-page.module';
 
 
 
@@ -23,13 +25,14 @@ import { AdminHeaderComponent } from './containers/layout/admin-header/admin-hea
   declarations: [
 
     AdminComponent,
-     LoginComponent,
+    LoginComponent,
+    MainPageComponent,
 
 
 
   ],
   imports: [
-     LayoutModule,
+    LayoutModule,
     RouterModule,
     SkinTypeModule,
     SharedModule,
@@ -37,24 +40,25 @@ import { AdminHeaderComponent } from './containers/layout/admin-header/admin-hea
     HttpClientModule,
     TranslateModule.forRoot(),
     AdminRoutingModule,
-     ProductionModule,
-     BrandModule,
-     NewsModule,
-     DesignModule,
+    ProductionModule,
+    BrandModule,
+    NewsModule,
+    DesignModule,
+    MainPageModule
 
 
   ],
-  exports:[
+  exports: [
     RouterModule,
     AdminHeaderComponent
   ],
-  schemas:[
+  schemas: [
     NO_ERRORS_SCHEMA,
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  providers:[BsModalService,TranslateService,
+  providers: [BsModalService, TranslateService,
 
-]
+  ]
 
 })
 export class AdminModule { }
