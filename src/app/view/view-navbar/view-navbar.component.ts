@@ -1,3 +1,4 @@
+import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
@@ -6,19 +7,26 @@ import { ISidebar, SidebarService } from 'src/app/admin/containers/layout/sideba
 import { getThemeColor, setThemeColor } from 'src/app/utils/util';
 import { environment } from 'src/environments/environment';
 import { LangService, Language } from 'src/shared/lang.service';
+import { ReadBrandDto, ReadCategoryDto, ReadSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
+import { CategoryService } from 'src/shared/services/category-service/category.service';
+import { BrandService } from 'src/shared/services/brand-service/brand.service';
 
 @Component({
   selector: 'app-view-navbar',
   templateUrl: './view-navbar.component.html',
   styleUrls: ['./view-navbar.component.scss']
 })
-export class ViewNavbarComponent  implements OnInit, OnDestroy {
+export class ViewNavbarComponent implements OnInit, OnDestroy {
   buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
   sidebar: ISidebar;
   subscription: Subscription;
   displayName = 'Sarah Cortney';
   languages: Language[];
+  categories: ReadCategoryDto[] = [];
+  skinTypes: ReadSkinTypeDto[] = [];
+  brands: ReadBrandDto[] = [];
+
   currentLanguage: string;
   isSingleLang;
   isFullScreen = false;
@@ -31,17 +39,40 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
     private sidebarService: SidebarService,
     private router: Router,
     private langService: LangService,
-    private scrollToService: ScrollToService
+    private scrollToService: ScrollToService,
+    private _categoryService: CategoryService,
+    private _skinTypeService: SkinTypeService,
+    private _brandService: BrandService
   ) {
     this.languages = this.langService.supportedLanguages;
     this.currentLanguage = this.langService.languageShorthand;
     this.isSingleLang = this.langService.isSingleLang;
-    
+
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
-  
 
-  onDarkModeChange(event:any): void {
+  getCategories() {
+    this._categoryService.getAll().subscribe((responce: any) => {
+      this.categories = responce.result
+      console.log(this.categories)
+    })
+
+  }
+  getSkinTypes() {
+    this._skinTypeService.getAll().subscribe((responce: any) => {
+      this.skinTypes = responce.result.data
+      console.log(this.skinTypes)
+    })
+
+  }
+  getBrands() {
+    this._brandService.getAll().subscribe((responce: any) => {
+      this.brands = responce.result.data
+      console.log(responce)
+    })
+
+  }
+  onDarkModeChange(event: any): void {
     let color = getThemeColor();
     if (color.indexOf('dark') > -1) {
       color = color.replace('dark', 'light');
@@ -63,7 +94,7 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
   }
 
   @HostListener('document:fullscreenchange', ['$event'])
-  handleFullscreen(event:any): void {
+  handleFullscreen(event: any): void {
     if (document.fullscreenElement) {
       this.isFullScreen = true;
     } else {
@@ -71,13 +102,15 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
     }
   }
 
-  onLanguageChange(lang:any): void {
+  onLanguageChange(lang: any): void {
     this.langService.language = lang.code;
     this.currentLanguage = this.langService.languageShorthand;
   }
 
   async ngOnInit(): Promise<void> {
-
+    this.getCategories();
+    this.getSkinTypes();
+    this.getBrands();
     this.subscription = this.sidebarService.getSidebar().subscribe(
       (res) => {
         this.sidebar = res;
@@ -115,8 +148,8 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
   }
 
   mobileMenuButtonClick(
- )  {
-   
+  ) {
+
   }
 
   onSignOut(): void {
@@ -124,7 +157,7 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
     //   this.router.navigate(['/']);
     // });
   }
-    @HostListener('window:click', ['$event'])
+  @HostListener('window:click', ['$event'])
   onClick(event): void {
     this.showMobileMenu = false;
   }
@@ -146,10 +179,10 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
     }
   }
 
-  searchAreaClick(event:any): void {
+  searchAreaClick(event: any): void {
     event.stopPropagation();
   }
-  searchClick(event:any): void {
+  searchClick(event: any): void {
     if (window.innerWidth < environment.menuHiddenBreakpoint) {
       let elem = event.target;
       if (!event.target.classList.contains('search')) {
@@ -184,7 +217,7 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
   }
 
   @HostListener('document:click', ['$event'])
-  handleDocumentClick(event:any): void {
+  handleDocumentClick(event: any): void {
     const input = document.querySelector('.mobile-view');
     if (input && input.classList) {
       input.classList.remove('mobile-view');
@@ -192,11 +225,11 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
     this.searchKey = '';
   }
   scrollTo(target): void {
-        const config: ScrollToConfigOptions = {
-          target,
-          offset: -150
-        };
-    
-        this.scrollToService.scrollTo(config);
-      }
+    const config: ScrollToConfigOptions = {
+      target,
+      offset: -150
+    };
+
+    this.scrollToService.scrollTo(config);
+  }
 }

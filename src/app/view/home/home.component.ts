@@ -53,7 +53,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     let scrollRef = 0;
 
     window.addEventListener('scroll', function () {
-      // increase value up to 10, then refresh AOS
       scrollRef <= 2 ? scrollRef++ : AOS.refresh();
     });
     this.renderer.addClass(document.body, 'no-footer');
@@ -76,8 +75,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       1200: { perView: 3 }
     }
   }
-
-
 
 
 

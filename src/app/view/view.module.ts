@@ -21,7 +21,6 @@ import { AccordionOfProductComponent } from './accordion-of-product/accordion-of
 import { MatTreeModule } from '@angular/material/tree';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { ViewProductsComponent } from './view-products/view-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ProductDetailInfoComponent } from './product-detail-info/product-detail-info.component';
@@ -48,7 +47,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
      ListOfProductsComponent,
      MainImageComponent,
      AccordionOfProductComponent,
-     ViewProductsComponent,
      ProductDetailsComponent,
      ProductDetailInfoComponent,
      ProductDetailTabsComponent,
