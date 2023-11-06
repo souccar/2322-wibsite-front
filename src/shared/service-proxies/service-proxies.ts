@@ -722,12 +722,14 @@ export interface ICreateUpdateNewsDto {
   title: string;
   description: string;
   image: any;
+  displayInHome:number;
 
 }
 export class CreateUpdateNewsDto implements ICreateUpdateNewsDto {
   title: string;
   description: string;
   image: any;
+  displayInHome:number;
   constructor(data?: ICreateUpdateNewsDto) {
     if (data) {
       for (var property in data) {
@@ -744,6 +746,7 @@ export class CreateUpdateNewsDto implements ICreateUpdateNewsDto {
       this.title = _data["title"];
       this.description = _data["description"];
       this.image = _data["image"];
+      this.displayInHome = _data["displayInHome"];
     }
   }
 
@@ -759,6 +762,7 @@ export class CreateUpdateNewsDto implements ICreateUpdateNewsDto {
     data["title"] = this.title;
     data["description"] = this.description;
     data["image"] = this.image;
+    data["displayInHome"] = this.displayInHome;
     return data;
   }
 
@@ -783,7 +787,6 @@ export class ReadNewsDto implements IReadNewsDto {
   title: string;
   description: string;
   imagePath: any;
-
   constructor(data?: ReadNewsDto) {
     if (data) {
       for (var property in data) {
@@ -800,6 +803,8 @@ export class ReadNewsDto implements IReadNewsDto {
       this.title = _data["title"];
       this.description = _data["description"];
       this.imagePath = _data["imagePath"];
+
+
     }
   }
 

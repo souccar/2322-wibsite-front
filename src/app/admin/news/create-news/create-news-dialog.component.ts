@@ -34,12 +34,13 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
 	}
   save(): void {
     this.saving = true;
+    console.log(this.news.displayInHome)
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
     myFormData.append("image",this.image);
-    
-    console.log(this.news)
+    myFormData.append("displayInHome",this.news.displayInHome.toString());
+
     this._newsService
       .insert(
         myFormData

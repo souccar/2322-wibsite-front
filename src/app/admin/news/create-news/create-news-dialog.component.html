@@ -1,47 +1,62 @@
 <form class="form-horizontal " autocomplete="off" #createNewsModal="ngForm" (ngSubmit)="save()" >
-    <abp-modal-header [title]="'Create New News' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
-    <div class="modal-body modal-xl">
-          <div class="form-group row required">
-            <label class="col-md-3 col-form-label " for="title">
-              {{ "Title" | translate }}
-            </label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" name="title" id="title" required
-                [(ngModel)]="news.title" #titleModel="ngModel" #titleEl   />
+  <abp-modal-header [title]="'Create New News' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+  <div class="modal-body modal-xl">
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label " for="title">
+            {{ "Title" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="title" id="title" required
+              [(ngModel)]="news.title" #titleModel="ngModel" #titleEl   />
 
-              <abp-validation-summary [control]="titleModel" [controlEl]="titleEl"></abp-validation-summary>
-            </div>
-          </div>
-          <div class="form-group row required">
-            <label class="col-md-3 col-form-label " for="description">
-              {{ "Description" | translate }}
-            </label>
-            <div class="col-md-9">
-              <input type="text" class="form-control" name="description" id="description"
-                [(ngModel)]="news.description" #descriptionModel="ngModel" [innerHTML]="news.description"  #descriptioneEl  required  />
-
-              <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptioneEl"></abp-validation-summary>
-            </div>
-          </div>
-          <div class="form-group row required">
-            <label class="col-md-3 col-form-label " for="news">
-                {{ "Image" | translate }}
-            </label>
-            <div class="col-md-9">
-              <div class="custom-dropzone" [multiple]="false" required ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
-                <ngx-dropzone-label >
-                  <div>
-                    <h2>{{'Upload Image'|translate}}</h2>
-                  </div>
-                </ngx-dropzone-label>
-                <ngx-dropzone-image-preview   [multiple]="false"  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                </ngx-dropzone-image-preview>
-              </div>
+            <abp-validation-summary [control]="titleModel" [controlEl]="titleEl"></abp-validation-summary>
           </div>
         </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label " for="description">
+            {{ "Description" | translate }}
+          </label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" name="description" id="description"
+              [(ngModel)]="news.description" #descriptionModel="ngModel" [innerHTML]="news.description"  #descriptioneEl  required  />
 
-    </div>
-    <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createNewsModal.form.valid || saving"
-      (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
-  </form>
+            <abp-validation-summary [control]="descriptionModel" [controlEl]="descriptioneEl"></abp-validation-summary>
+          </div>
+        </div>
+        <div class="form-group row required">
+          <label class="col-md-3 col-form-label " for="news">
+              {{ "Image" | translate }}
+          </label>
+          <div class="col-md-9">
+            <div class="custom-dropzone" [multiple]="false" required ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+              <ngx-dropzone-label >
+                <div>
+                  <h2>{{'Upload Image'|translate}}</h2>
+                </div>
+              </ngx-dropzone-label>
+              <ngx-dropzone-image-preview   [multiple]="false"  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+              </ngx-dropzone-image-preview>
+            </div>
+        </div>
+      </div>
 
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label " for="displayInHome">
+
+        </label>
+        <div class="col-md-9">
+          <div class="m-4">
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="customCheckThis"
+                 [ngModel]="news.displayInHome  == 1 ? true : news.displayInHome  == 0 ? false : null" (ngModelChange)="news.displayInHome  = $event ? 1 : 0"
+              name="displayInHome" #displayInHomeModel="ngModel" #displayInHomeEl>
+              <label class="custom-control-label" for="customCheckThis">Add To Main Page</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createNewsModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>
