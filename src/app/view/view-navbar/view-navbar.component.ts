@@ -23,8 +23,9 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
   isSingleLang;
   isFullScreen = false;
   isDarkModeActive = false;
-  searchKey = '';
   showMobileMenu = false;
+  isOpened = false;
+  searchKey = '';
 
   constructor(
     private sidebarService: SidebarService,
@@ -38,6 +39,7 @@ export class ViewNavbarComponent  implements OnInit, OnDestroy {
     
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
+  
 
   onDarkModeChange(event:any): void {
     let color = getThemeColor();
