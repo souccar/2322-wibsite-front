@@ -1,0 +1,35 @@
+<div class="row equal-height-container">
+    <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
+        <div class="card" data-aos="fade-up" data-aos-duration="1000">
+            <div class="card-body">
+                <div class="text-center">
+                    <i [class]="item.icon+' large-icon'"></i>
+                    <h5 class="mb-0  color-theme-1 mb-4">{{item.DepartmentName}}</h5>
+                </div>
+                <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                    <label class="p-2"><i
+                            class="iconsminds-old-telephone  text-primary  me-2"></i>{{item.telephone}}</label>
+                    <label class="p-2" for="SalesDepartmentFax"><i
+                            class="iconsminds-fax  text-primary me-2"></i>{{item.fax}}</label>
+                    <a class="p-2" href="javascript:;"> <i
+                            class="iconsminds-envelope text-primary me-2"></i>{{item.email}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card col-12 " data-aos="fade-up" data-aos-duration="1000">
+        <div class="card-body">
+            <div class="text-center">
+                <i class="iconsminds-information large-icon"></i>
+                <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
+            </div>
+            <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
+                <div class="d-flex  justify-content-center">
+                    <a href="javascript:;"><i
+                            class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

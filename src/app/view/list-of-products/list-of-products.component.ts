@@ -34,7 +34,7 @@ export class ListOfProductsComponent implements OnInit{
   pageChanged(event: any): void {
 
 
-    this.getAllProduct(  );
+    this.getAllProduct();
   }
 
  products:ReadProductDto[]=[];

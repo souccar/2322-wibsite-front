@@ -18,16 +18,21 @@
                     <!-- <a [routerLink]="adminRoot + '/pages/blog/blog-detail'"> -->
                         <h5 class="mb-3 listing-heading" ellipsis>{{item.title}}</h5>
                     <!-- </a> -->
-                    <p class="listing-desc text-muted" ellipsis>{{item.description}}
+                    <p class="listing-desc text-muted" ellipsis data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="  {{ item.description }}">{{item.description|summary:200}}
                     </p>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-12">
-        <pagination class="justify-content-center" [totalItems]="30"
+        <!-- <pagination class="justify-content-center" [totalItems]="1"
         [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
-        </pagination>
+        </pagination> -->
+        <pagination [totalItems]="3" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+        [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
+        [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+      </pagination>
     </div>
 </div>
 

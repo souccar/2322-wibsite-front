@@ -34,12 +34,16 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
 	}
   save(): void {
     this.saving = true;
-    console.log(this.news.displayInHome)
+   
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
     myFormData.append("image",this.image);
-    myFormData.append("displayInHome",this.news.displayInHome.toString());
+    if(this.news.displayInHome!=undefined)
+      myFormData.append("displayInHome",this.news.displayInHome.toString());
+    else
+     myFormData.append("displayInHome",'0');
+
 
     this._newsService
       .insert(
@@ -51,7 +55,7 @@ export class CreateNewsDialogComponent extends AppComponentBase implements OnIni
         })
       )
       .subscribe((responce) => {
-        console.log(responce);
+       
         //  this.notify.info('SavedSuccessfully');
         this.bsModalRef.hide();
         this.onSave.emit();

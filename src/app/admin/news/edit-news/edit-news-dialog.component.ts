@@ -70,6 +70,7 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     this.files.splice(this.files.indexOf(event), 1);
   }
   save(): void {
+    console.log("hiiii");
     this.saving = true;
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);

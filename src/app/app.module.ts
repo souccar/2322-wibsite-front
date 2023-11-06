@@ -15,9 +15,11 @@ import { ServiceProxyModule } from 'src/shared/service-proxies/service-proxy.mod
 import { ToastrModule, provideToastr } from 'ngx-toastr';
 import { Lightbox } from 'ngx-lightbox';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+ 
 
 
 

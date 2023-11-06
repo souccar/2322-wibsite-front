@@ -2,43 +2,28 @@
     <div class="main-container">
         <app-view-navbar></app-view-navbar>
         <div class="content-container" id="home">
-            <carousel [isAnimated]="true">
-                <slide *ngFor="let image of sliderImages ">
-                    <img src="{{baseUrl+image.imagePath}}" alt="{{image.title}}" style="height: 100vh; width: 100%;">
-                </slide>
-            </carousel>
+            <app-home-main-image></app-home-main-image>
+            <!-- category cards -->
             <div class="section" data-aos="fade-up" data-aos-duration="1000">
-                <div class="container-fluid "*ngIf="categoriesLoaded">
+                <div class="container-fluid ">
                     <div class="row my-5">
                         <div class="col-12 p-0">
-                            <div class="home-carousel" >
-                                <app-glide [settings]="slideSettings">
-                                    <div class="card " style="max-height: 25rem;" *ngFor="let category of categories">
-                                        <div class="card-body ">
-                                            <div class="text-center" style="min-height: 20rem;">
-                                                <img alt="Profile" src="{{baseUrl+category.imagePath}}"
-                                                    class=" mb-4 list-thumbnail">
-                                                <p class="list-item-heading fw-bold mb-1">{{category.name}}</p>
-                                                <p [innerHTML]="category.description" class=" text-muted pb-5"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="{{category.description}}">
-                                                    {{category.description|summary:150}} </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </app-glide>
+                            <div class="home-carousel">
+                                <app-category-card></app-category-card>
                             </div>
                         </div>
                     </div>
 
 
                     <div class="row m-5">
-                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button " (click)="scrollTo('#News')">
+                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button "
+                            (click)="scrollTo('#News')">
                             <i class="simple-icon-arrow-down"></i>
                         </a>
                     </div>
                 </div>
             </div>
+            <!-- news cards -->
             <div class="section" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="News">
                     <div class="row">
@@ -49,273 +34,105 @@
                             </p>
                         </div>
                     </div>
-
-                    <div *ngFor="let n of news;let i = index">
-                        <div *ngIf="i%2==0" class="row feature-row ">
-                            <div class="col-12 col-md-6 col-lg-5 d-flex align-items-center " data-aos-duration="1000"
-                                data-aos="fade-left">
-                                <div class="feature-text-container">
-                                    <h2>{{n.title}}</h2>
-                                    <p>{{n.description}}</p>
-                                </div>
-                            </div>
-                            <div data-aos-duration="1000" data-aos="fade-right"
-                                class=" col-12 col-md-6 col-lg-6 offset-lg-1 offset-md-0 position-relative  toLeft">
-                                <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
-                                    class="feature-image-right feature-image-charts position-relative semi-rounded" />
-                            </div>
-                        </div>
-
-                        <div *ngIf="i%2==1" class="row feature-row ">
-                            <div class="  col-12 col-md-6 col-lg-6 order-2 order-md-1" data-aos-duration="1000"
-                                data-aos="fade-left">
-                                <img style="width:100% ; height: 100%; " [alt]="n.title" [src]="baseUrl+n.imagePath"
-                                    class="feature-image-right feature-image-charts position-relative semi-rounded" />
-                            </div>
-                            <div data-aos="fade-right" data-aos-duration="1000"
-                                class="  col-12 col-md-6 offset-md-0 col-lg-5 offset-lg-1 d-flex align-items-center order-1 order-md-2">
-                                <div class="feature-text-container">
-                                    <h2>{{n.title}}</h2>
-                                    <p>{{n.description}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-5 " data-aos="fade-up" data-aos-duration="1000">
-                    <button class="btn btn-primary " (click)="GoToNewsPage()">
-                      View More
-                    <!-- <div class="row"  >
-                      <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                        <div class="spinner-bordermt-5" *ngIf="this.isLoading" role="status">
-                          <span class="visually-hidden">Loading...</span>
-                        </div>
-                      </div>
-                  </div> -->
-                </button>
-              </div>
-
+                    <app-news-home-card></app-news-home-card>
                 </div>
-            </div>
-            <div class="section screenshots background" data-aos="fade-up" data-aos-duration="1000">
-                <div class="container" id="Prouducts">
-                    <div class="row">
-                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
-                            <a [routerLink]="['/viewProduct']">
-                                <h1>Prouducts</h1>
-                            </a>
-                            <p class="section-text">
-                                We all have different skin.<br>We all have different routines and live in different
-                                environments.
-                                <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
-                                We all have different skin.<br>We all have different routines and live in different
-                                environments.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row " *ngIf="glideDataLoad">
-                        <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 "
-                            *ngFor="let product of products; let i=index">
-                            <div class="  position-relative">
-                                <a [routerLink]="['/product-details',product.id]">
-                                    <img class=" cssBasedZoom card-img pt-4"
-                                        style="height: 100%; width: 100%; object-fit:contain  ;"
-                                        src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
-                                </a>
-                                <span
-                                    class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                <span
-                                    class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                <span
-                                    class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
-                            </div>
-                            <div class="card-body text-center">
-                                <a [routerLink]="['/product-details',product.id]">
-                                    <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                    </p>
-                                </a>
-                                <a [routerLink]="['/viewProduct']">
-                                    <p class="text-muted text-small mb-0 font-weight-light">
 
-                                        <ng-container *ngIf="product.description!=null">
-                                            <ng-container *ngIf="product.description.length>40; else elseBlock">
-                                                {{ product.description | summary}}
-                                            </ng-container>
-                                        </ng-container>
-                                        <ng-template #elseBlock>{{product.description}}</ng-template>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
+            </div>
+        </div>
+        <!-- product cards -->
+        <div class="section screenshots background" data-aos="fade-up" data-aos-duration="1000">
+            <div class="container" id="Prouducts">
+                <div class="row">
+                    <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center mb-4">
+                        <a [routerLink]="['/viewProduct']">
+                            <h1>Prouducts</h1>
+                        </a>
+                        <p class="section-text">
+                            We all have different skin.<br>We all have different routines and live in different
+                            environments.
+                            <br>That’s why AHC doesn’t just rely on one particular ingredient, formula, or method.
+                            We all have different skin.<br>We all have different routines and live in different
+                            environments.
+                        </p>
                     </div>
                 </div>
+                <app-products-home-card></app-products-home-card>
             </div>
-            <div class="section mb-5 "   data-aos="fade-up" data-aos-duration="1000">
-                <div *ngIf="glideDataLoad" class="container">
-                    <div class=" row ">
-                        <div class="col-12 p-0 text-center">
-                            <h1>Recommended products</h1>
+        </div>
+        <!-- recommanded products -->
+        <div class="section mb-5 " data-aos="fade-up" data-aos-duration="1000">
+            <div  class="container">
+                <div class=" row ">
+                    <div class="col-12 p-0 text-center">
+                        <h1>Recommended products</h1>
+                        <div class="  home-carousel">
                             <div class="  home-carousel">
-                                <div class="  home-carousel">
-                                    <app-glide [settings]="slideSettings">
-                                        <div class=" card " data-aos="fade-up" data-aos-duration="1000"
-                                            *ngFor="let product of products">
-                                            <div class="  position-relative">
-                                                <img class=" cssBasedZoom card-img pt-4"
-                                                    style="height: 100%; width: 100%; object-fit:contain  ;"
-                                                    src="{{baseUrl+product.product_images[0].imagePath}}"
-                                                    alt="Card image cap">
-                                                <span
-                                                    class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
-                                                <span
-                                                    class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
-                                                <span
-                                                    class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <a routerLink="./">
-                                                    <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                                                    </p>
-                                                </a>
-                                                <p class="text-muted text-small mb-0 font-weight-light">
-                                                    {{product.description}}</p>
-                                            </div>
-                                        </div>
-                                    </app-glide>
-                                </div>
+                               <app-recommended-products-home-card></app-recommended-products-home-card>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="section background mt-5" data-aos="fade-up" data-aos-duration="1000">
-                <div class="container" id="about">
-                    <div class="row ">
-                        <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
-                            <a routerLink="/about">
-                                <h1>About Us</h1>
-                            </a>
-                        </div>
-                        <app-about></app-about>
+        </div>
+        <!-- About Us -->
+        <div class="section background mt-5" data-aos="fade-up" data-aos-duration="1000">
+            <div class="container" id="about">
+                <div class="row ">
+                    <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
+                        <a routerLink="/about">
+                            <h1>About Us</h1>
+                        </a>
+                    </div>
+                    <app-about></app-about>
+                </div>
+            </div>
+        </div>
+        <!-- Video -->
+        <div class="section" data-aos="fade-up" data-aos-duration="1000">
+          <app-video-home-card></app-video-home-card>
+        </div>
+        <!-- contact us -->
+        <div class="section background" data-aos="fade-up" data-aos-duration="1000">
+            <div class="container" id="Contact">
+
+
+                <div class="section-content text-center">
+                    <h1 class="section-header">Get in Touch with us</h1>
+                    <p>Please use the information below to get in touch.
+                        We look forward to hearing from you with any questions or queries you may have.</p>
+                </div>
+                <div class="contact-section">
+                    <div class="container">
+                  <app-contact-us-home-card></app-contact-us-home-card>
+                    </div>
+                </div>
+
+                <div class=" text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
+             
+                 <app-contact-numbers-home-card></app-contact-numbers-home-card>
+                </div>
+            </div>
+        </div>
+        <div class="section footer mb-0 ">
+            <div class="container">
+                <div class="row footer-row">
+                    <div class="col-12 text-right">
+                        <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
+                            (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
+                    </div>
+                    <div class="col-12 text-center footer-content">
+                        <a (click)="scrollTo('#home')" href="javascript:;">
+                            <img class="footer-logo" alt="footer logo" src="/assets/logos/white.svg" />
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="section" data-aos="fade-up" data-aos-duration="1000">
-                <div class="container text-center ">
-                    <h1> Recommended By Dermatologists, Loved By The Skin</h1>
-
-                    <app-player class="video-js side-bar-video " style="height: 70vh;" [options]="{
-                        preload: 'auto',
-                        controls: true,
-                        sources: [{src: 'https://cdn.shopify.com/s/files/1/0243/7342/8329/files/AHC_Brand_Film_New_Full_Eng_Smaller.mp4',
-                        type: 'video/mp4'}]}">
-                    </app-player>
-                </div>
-            </div>
-            <div class="section background" data-aos="fade-up" data-aos-duration="1000">
-                <div class="container" id="Contact">
-
-
-                    <div class="section-content text-center">
-                        <h1 class="section-header">Get in Touch with us</h1>
-                        <p>Please use the information below to get in touch.
-                            We look forward to hearing from you with any questions or queries you may have.</p>
-                    </div>
-                    <div class="contact-section">
-                        <div class="container">
-                            <form #overLineForm="ngForm" novalidate>
-                                <div class=" row d-flex justify-content-center ">
-                                    <div class="col-6">
-                                        <label class="form-group has-float-label">
-                                            <input class="form-control" required ngModel #name="ngModel"
-                                                [(ngModel)]="contactUs.name" name="name" />
-                                            <span>Your name</span>
-                                            <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
-                                                Value is required!</div>
-                                        </label>
-                                        <label class="form-group has-float-label">
-                                            <input class="form-control" required ngModel #email2="ngModel"
-                                                [(ngModel)]="contactUs.email" name="email2" />
-                                            <span>Email</span>
-                                            <div *ngIf="!email2.valid && overLineForm.submitted"
-                                                class="invalid-tooltip">Value is required!</div>
-                                        </label>
-                                        <div class="input-group-prepend has-float-label">
-                                            <span>Message</span>
-                                            <textarea class="form-control" aria-label="With textarea" ngModel
-                                                #message="ngModel" name="message"
-                                                [(ngModel)]="contactUs.message"></textarea>
-                                        </div>
-                                        <div class="d-flex justify-content-center mt-5">
-                                            <button type="button" class="btn btn-primary " (click)="save()"><i
-                                                    class="simple-icon-paper-plane me-1"></i> Send
-                                                Message</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class=" text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="row equal-height-container">
-                            <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
-                                <div class="card" data-aos="fade-up" data-aos-duration="1000">
-                                    <div class="card-body">
-                                        <div class="text-center">
-                                            <i [class]="item.icon+ ' large-icon'"></i>
-                                            <h5 class="mb-0  color-theme-1 mb-4">{{item.DepartmentName}}</h5>
-                                        </div>
-                                        <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
-                                            <label class="p-2"><i
-                                                    class="iconsminds-old-telephone  text-primary  me-2"></i>{{item.telephone}}</label>
-                                            <label class="p-2" for="SalesDepartmentFax"><i
-                                                    class="iconsminds-fax  text-primary me-2"></i>{{item.fax}}</label>
-                                            <a class="p-2" href="javascript:;"> <i
-                                                    class="iconsminds-envelope text-primary me-2"></i>{{item.email}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card col-12 " data-aos="fade-up" data-aos-duration="1000">
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <i class="iconsminds-information large-icon"></i>
-                                        <h5 class="mb-0  color-theme-1 mb-4"> Applying for a job</h5>
-                                    </div>
-                                    <div class="pl-3 pr-3 pt-3 pb-0 d-flex flex-column  flex-grow-1">
-                                        <div class="d-flex  justify-content-center">
-                                            <a href="javascript:;"><i
-                                                    class="iconsminds-envelope text-primary me-2"></i>hr@ahc-me.net</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="container copyright pt-5 pb-5">
+                <div class="row">
+                    <div class="col-12"></div>
+                    <div class="col-12 text-center">
+                        <p class="">2020 © ColoredStrategies</p>
                     </div>
                 </div>
             </div>
-            <div class="section footer mb-0 ">
-                <div class="container">
-                    <div class="row footer-row">
-                        <div class="col-12 text-right">
-                            <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
-                                (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
-                        </div>
-                        <div class="col-12 text-center footer-content">
-                            <a (click)="scrollTo('#home')" href="javascript:;">
-                                <img class="footer-logo" alt="footer logo" src="/assets/logos/white.svg" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container copyright pt-5 pb-5">
-                    <div class="row">
-                        <div class="col-12"></div>
-                        <div class="col-12 text-center">
-                            <p class="">2020 © ColoredStrategies</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        </div>

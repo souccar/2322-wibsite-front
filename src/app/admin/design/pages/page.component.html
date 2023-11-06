@@ -27,7 +27,7 @@
         <ng-template let-row="row" ngx-datatable-cell-template>
           <a class="c-pointer">
             <div [contextMenu]="basicMenu" [contextMenuSubject]="row">
-              {{ row.title }}
+              {{ row?.title }}
             </div>
           </a>
         </ng-template>
@@ -36,28 +36,28 @@
         <ng-template let-row="row" ngx-datatable-cell-template>
           <a class="c-pointer">
             <div [contextMenu]="basicMenu" [contextMenuSubject]="row">
-              {{ row.slug }}
+              {{ row?.slug }}
             </div>
           </a>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column [name]="('Description')" prop="description" [flexGrow]="1">
-        <ng-template [innerHTML]="row.description"  let-row="row" ngx-datatable-cell-template >
-          {{row.description}}
+        <ng-template [innerHTML]="row?.description"  let-row="row" ngx-datatable-cell-template >
+          {{row?.description}}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column [name]="('Action')" prop="action" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty" (click)="addTemplate(row.id)">
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty text-primary" (click)="addTemplate(row.id)">
             <i class="simple-icon-plus"></i>
           </button>
-          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty" (click)="showEditModal(row.id)">
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty text-primary" (click)="showEditModal(row.id)">
             <i class="simple-icon-pencil"></i>
           </button>
-          <button id="button-basic" type="button"  id="delete" class="header-icon btn btn-empty" (click)="deletebutton(row.id)">
+          <button id="button-basic" type="button"  id="delete" class="header-icon btn btn-empty text-primary" (click)="deletebutton(row.id)">
             <i class="simple-icon-trash"></i>
           </button>
-          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty" (click)="viewPage(row.id)">
+          <button id="button-basic" type="button" id="edit" class="header-icon btn btn-empty text-primary" (click)="viewPage(row.id)">
             <i class="simple-icon-eye"></i>
           </button>
         </ng-template>
