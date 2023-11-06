@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { LangService, Language } from 'src/shared/lang.service';
 import { Router } from '@angular/router';
 import { getThemeColor, setThemeColor } from 'src/app/utils/util';
+import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'app-admin-header',

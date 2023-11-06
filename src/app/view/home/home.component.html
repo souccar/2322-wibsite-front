@@ -1,82 +1,17 @@
-<div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
-    <div class="mobile-menu" (click)="$event.stopPropagation()">
-        <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
-            <span></span>
-        </a>
-        <ul class="navbar-nav">
-            <li class="nav-item"><a href="javascript:;">Home</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
-            <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-            <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
-            <li class="nav-item">
-                <div class="separator"></div>
-            </li>
-            <li class="nav-item text-center">
-                <a type="button" id="darkModeSwitch" class="btn btn-outline-primary btn-sm mobile-menu-cta"
-                    (click)="onDarkModeChange($event)">
-                    <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip" data-placement="top"
-                        title="Light Mood"></i>
-                    <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
-                        data-placement="top" title="Dark Mood"></i>
-                </a>
-            </li>
-
-
-        </ul>
-    </div>
-
+<div [ngClass]="{'landing-page': true}">
     <div class="main-container">
-
-        <ngx-headroom class="landing-page-nav" [ngClass]="{'bg-primary ': isScrolled }">
-            <nav>
-                <div class="container d-flex align-items-center justify-content-between ">
-                    <a class="navbar-logo pull-left" href="javascript:;">
-                        <span class="white"></span>
-                        <span class="dark"></span>
-                    </a>
-                    <ul class="navbar-nav d-none d-lg-flex flex-row  text-white">
-                        <li class="nav-item"><a (click)="scrollTo('#News')" href="javascript:;">What's News</a></li>
-                        <li class="nav-item"><a (click)="scrollTo('#Prouducts')" href="javascript:;">Our Prouducts</a>
-                        </li>
-                        <li class="nav-item"><a (click)="scrollTo('#about')" href="javascript:;">Who we Are</a></li>
-                        <li class="nav-item"><a (click)="scrollTo('#Contact')" href="javascript:;">Contact-US</a></li>
-                        <li class="nav-item"><a [routerLink]="['/admin/production']">Admin</a></li>
-                        <li class="nav-item ">
-                            <a type="button" id="darkModeSwitch" class="btn btn-outline-semi-light btn-sm pr-4 pl-4"
-                                (click)="onDarkModeChange($event)">
-                                <i *ngIf="isDarkModeActive" class=" iconsminds-sun" data-toggle="tooltip"
-                                    data-placement="top" title="Light Mood"></i>
-                                <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon " data-toggle="tooltip"
-                                    data-placement="top" title="Dark Mood"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <span class="mobile-menu-button" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
-                        <i class="simple-icon-menu"></i>
-                    </span>
-                </div>
-            </nav>
-        </ngx-headroom>
-
+        <app-view-navbar></app-view-navbar>
         <div class="content-container" id="home">
             <carousel [isAnimated]="true">
                 <slide *ngFor="let image of sliderImages ">
-                    <img src="{{image.imagePath}}" alt="first slide" style="height: 100vh; width: 100%;">
+                    <img src="{{baseUrl+image.imagePath}}" alt="{{image.title}}" style="height: 100vh; width: 100%;">
                 </slide>
-
             </carousel>
-            <div class="section   ">
-                <div class="container-fluid  ">
-                    <div class="col-12 d-none d-md-block " data-aos="fade-left" data-aos-duration="1000">
-
-                    </div>
-
-
-                    <div class="row my-5" *ngIf="categoriesLoaded">
+            <div class="section" data-aos="fade-up" data-aos-duration="1000">
+                <div class="container-fluid "*ngIf="categoriesLoaded">
+                    <div class="row my-5">
                         <div class="col-12 p-0">
-                            <div class="home-carousel" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="home-carousel" >
                                 <app-glide [settings]="slideSettings">
                                     <div class="card " style="max-height: 25rem;" *ngFor="let category of categories">
                                         <div class="card-body ">
@@ -97,14 +32,13 @@
                     </div>
 
 
-                    <div class="row">
-                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button" (click)="scrollTo('#News')">
+                    <div class="row m-5">
+                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button " (click)="scrollTo('#News')">
                             <i class="simple-icon-arrow-down"></i>
                         </a>
                     </div>
                 </div>
             </div>
-
             <div class="section" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="News">
                     <div class="row">
@@ -179,11 +113,12 @@
                         </div>
                     </div>
                     <div class="row " *ngIf="glideDataLoad">
-                        <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 cssBasedZoom"
+                        <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 "
                             *ngFor="let product of products; let i=index">
                             <div class="  position-relative">
                                 <a [routerLink]="['/product-details',product.id]">
-                                    <img class="card-img pt-4" style="height: 100%; width: 100%; object-fit:contain  ;"
+                                    <img class=" cssBasedZoom card-img pt-4"
+                                        style="height: 100%; width: 100%; object-fit:contain  ;"
                                         src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
                                 </a>
                                 <span
@@ -200,6 +135,7 @@
                                 </a>
                                 <a [routerLink]="['/viewProducts']">
                                     <p class="text-muted text-small mb-0 font-weight-light">
+
                                         <ng-container *ngIf="product.description!=null">
                                             <ng-container *ngIf="product.description.length>40; else elseBlock">
                                                 {{ product.description | summary}}
@@ -213,19 +149,18 @@
                     </div>
                 </div>
             </div>
-
-            <div class="section mb-5">
-                <div class="container">
-                    <div class=" row " *ngIf="glideDataLoad" data-aos="fade-up" data-aos-duration="1000">
+            <div class="section mb-5 "   data-aos="fade-up" data-aos-duration="1000">
+                <div *ngIf="glideDataLoad" class="container">
+                    <div class=" row ">
                         <div class="col-12 p-0 text-center">
                             <h1>Recommended products</h1>
                             <div class="  home-carousel">
                                 <div class="  home-carousel">
                                     <app-glide [settings]="slideSettings">
-                                        <div class="cssBasedZoom card " data-aos="fade-up" data-aos-duration="1000"
+                                        <div class=" card " data-aos="fade-up" data-aos-duration="1000"
                                             *ngFor="let product of products">
                                             <div class="  position-relative">
-                                                <img class="card-img pt-4"
+                                                <img class=" cssBasedZoom card-img pt-4"
                                                     style="height: 100%; width: 100%; object-fit:contain  ;"
                                                     src="{{baseUrl+product.product_images[0].imagePath}}"
                                                     alt="Card image cap">
@@ -252,8 +187,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="section background mt-5" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="about">
                     <div class="row ">
@@ -261,30 +194,23 @@
                             <a routerLink="/about">
                                 <h1>About Us</h1>
                             </a>
-
-
                         </div>
                         <app-about></app-about>
                     </div>
                 </div>
-
             </div>
             <div class="section" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container text-center ">
                     <h1> Recommended By Dermatologists, Loved By The Skin</h1>
 
                     <app-player class="video-js side-bar-video " style="height: 70vh;" [options]="{
-                    preload: 'auto',
-                    controls: true,
-                    sources: [{src: 'https://cdn.shopify.com/s/files/1/0243/7342/8329/files/AHC_Brand_Film_New_Full_Eng_Smaller.mp4',
-                    type: 'video/mp4'}]}">
+                        preload: 'auto',
+                        controls: true,
+                        sources: [{src: 'https://cdn.shopify.com/s/files/1/0243/7342/8329/files/AHC_Brand_Film_New_Full_Eng_Smaller.mp4',
+                        type: 'video/mp4'}]}">
                     </app-player>
                 </div>
             </div>
-
-
-
-
             <div class="section background" data-aos="fade-up" data-aos-duration="1000">
                 <div class="container" id="Contact">
 
@@ -294,16 +220,10 @@
                         <p>Please use the information below to get in touch.
                             We look forward to hearing from you with any questions or queries you may have.</p>
                     </div>
-
-
-
-
                     <div class="contact-section">
                         <div class="container">
                             <form #overLineForm="ngForm" novalidate>
                                 <div class=" row d-flex justify-content-center ">
-
-
                                     <div class="col-6">
                                         <label class="form-group has-float-label">
                                             <input class="form-control" required ngModel #name="ngModel"
@@ -312,7 +232,6 @@
                                             <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
                                                 Value is required!</div>
                                         </label>
-
                                         <label class="form-group has-float-label">
                                             <input class="form-control" required ngModel #email2="ngModel"
                                                 [(ngModel)]="contactUs.email" name="email2" />
@@ -327,20 +246,17 @@
                                                 [(ngModel)]="contactUs.message"></textarea>
                                         </div>
                                         <div class="d-flex justify-content-center mt-5">
-
                                             <button type="button" class="btn btn-primary " (click)="save()"><i
                                                     class="simple-icon-paper-plane me-1"></i> Send
                                                 Message</button>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </form>
                         </div>
                     </div>
-                    <div class=" text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
 
+                    <div class=" text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
                         <div class="row equal-height-container">
                             <div class="col-md-12 col-xl-6 mb-4 col-item" *ngFor="let item of contactData">
                                 <div class="card" data-aos="fade-up" data-aos-duration="1000">
@@ -375,19 +291,11 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-
-
                 </div>
-
-
             </div>
-
-
-            <div class="section footer ">
+            <div class="section footer mb-0 ">
                 <div class="container">
                     <div class="row footer-row">
                         <div class="col-12 text-right">
@@ -396,7 +304,7 @@
                         </div>
                         <div class="col-12 text-center footer-content">
                             <a (click)="scrollTo('#home')" href="javascript:;">
-                                <img class="footer-logo" alt="footer logo" src="/assets/logos/white-full.svg" />
+                                <img class="footer-logo" alt="footer logo" src="/assets/logos/white.svg" />
                             </a>
                         </div>
                     </div>
@@ -406,11 +314,8 @@
                         <div class="col-12"></div>
                         <div class="col-12 text-center">
                             <p class="">2020 © ColoredStrategies</p>
-
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
+

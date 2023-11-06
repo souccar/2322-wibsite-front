@@ -1556,3 +1556,128 @@ export interface ICreateUpdateContactDto {
   }
 
 
+/**
+* Main Image Slider
+*/ 
+
+
+
+
+export interface ICreateUpdateSliderDto {
+  title: string | undefined;
+  imagePath: string | undefined;
+}
+
+export class CreateUpdateSliderDto implements ICreateUpdateSliderDto {
+  title: string | undefined;
+  imagePath: string | undefined;
+
+
+
+
+  constructor(data?: ICreateUpdateSliderDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+
+
+
+  init(_data?: any) {
+    if (_data) {
+      this.title = _data["title"];
+      this.imagePath = _data["imagePath"];
+    }
+  }
+
+
+  static fromJS(data: any): CreateUpdateSliderDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new CreateUpdateSliderDto();
+    result.init(data);
+    return result;
+  }
+
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["title"] = this.title;
+    data["imagePath"] = this.imagePath;
+    return data;
+  }
+
+
+  clone(): CreateUpdateSliderDto {
+    const json = this.toJSON();
+    let result = new CreateUpdateSliderDto();
+    result.init(json);
+    return result;
+  }
+}
+
+
+
+export interface IReadSliderDto {
+  id: number;
+  title: string | undefined;
+  imagePath: string | undefined;
+}
+
+
+export class ReadSliderDto implements IReadSliderDto {
+  id: number;
+  title: string | undefined;
+  imagePath: string | undefined;
+
+
+
+
+  constructor(data?: IReadSliderDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+
+
+
+  init(_data?: any) {
+    if (_data) {
+      this.id = _data["id"];
+      this.title = _data["title"];
+      this.imagePath = _data["imagePath"];
+    }
+  }
+
+
+  static fromJS(data: any): ReadSliderDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new ReadSliderDto();
+    result.init(data);
+    return result;
+  }
+
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["id"] = this.id;
+    data["title"] = this.title;
+    data["imagePath"] = this.imagePath;
+    return data;
+  }
+
+
+  clone(): ReadSliderDto {
+    const json = this.toJSON();
+    let result = new ReadSliderDto();
+    result.init(json);
+    return result;
+  }
+}
