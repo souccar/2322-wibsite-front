@@ -147,6 +147,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-primary " (click)="GoToNewsPage()">
+                      View More
+                    <!-- <div class="row"  >
+                      <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
+                        <div class="spinner-bordermt-5" *ngIf="this.isLoading" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+                  </div> -->
+                </button>
+              </div>
 
                 </div>
             </div>
@@ -188,7 +200,6 @@
                                 </a>
                                 <a [routerLink]="['/viewProducts']">
                                     <p class="text-muted text-small mb-0 font-weight-light">
-                                        <!-- {{product.description|summary}} -->
                                         <ng-container *ngIf="product.description!=null">
                                             <ng-container *ngIf="product.description.length>40; else elseBlock">
                                                 {{ product.description | summary}}
@@ -310,7 +321,6 @@
                                                 class="invalid-tooltip">Value is required!</div>
                                         </label>
                                         <div class="input-group-prepend has-float-label">
-                                            <!-- <span class="input-group-text text-muted">Write To Us</span> -->
                                             <span>Message</span>
                                             <textarea class="form-control" aria-label="With textarea" ngModel
                                                 #message="ngModel" name="message"

@@ -74,6 +74,7 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);
     myFormData.append("description",this.news.description);
+    myFormData.append("displayInHome",this.news.displayInHome.toString());
     if(this.image!=undefined)
       myFormData.append("image",this.image);
     this._newsService.edit(this.id,myFormData).subscribe((response)=>{

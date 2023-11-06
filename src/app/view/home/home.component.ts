@@ -210,10 +210,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     });
   }
+  isLoading: boolean = false
+
+  GoToNewsPage() {
+    this._route.navigate(['news'])
+  this.isLoading = true
+  }
   save(){
-    console.log(this.contactUs);
+
     this._contactUsService.insert(this.contactUs).subscribe((responce: any) => {
-      console.log(responce)
+
       if(responce.success)
       {  console.log("hello they")
          this.toastr.success('Message Sent');}
