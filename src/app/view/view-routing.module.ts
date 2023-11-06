@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ViewNewsComponent } from './view-news/view-news.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewsComponent } from './what-is-news/news.component';
 
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -20,7 +19,7 @@ let routes: Routes = [
     pathMatch: 'full',
   },
 
-   { path: 'contactUs', component: ContactUsComponent },
+
    { path: 'GetNews/:id', component: NewsComponent },
 
 

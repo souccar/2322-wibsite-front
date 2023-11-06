@@ -1,0 +1,27 @@
+
+
+.badge-top-left-3 {
+    top: 70px;
+    left: -7px;
+  }
+  
+  
+  .cssBasedZoom {
+    transition: transform 0.23s;
+  
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }

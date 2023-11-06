@@ -1,0 +1,31 @@
+<form #overLineForm="ngForm" novalidate>
+    <div class=" row d-flex justify-content-center ">
+        <div class="col-6">
+            <label class="form-group has-float-label">
+                <input class="form-control" required ngModel #name="ngModel"
+                    [(ngModel)]="contactUs.name" name="name" />
+                <span>Your name</span>
+                <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
+                    Value is required!</div>
+            </label>
+            <label class="form-group has-float-label">
+                <input class="form-control" required ngModel #email2="ngModel"
+                    [(ngModel)]="contactUs.email" name="email2" />
+                <span>Email</span>
+                <div *ngIf="!email2.valid && overLineForm.submitted" class="invalid-tooltip">
+                    Value is required!</div>
+            </label>
+            <div class="input-group-prepend has-float-label">
+                <span>Message</span>
+                <textarea class="form-control" aria-label="With textarea" ngModel
+                    #message="ngModel" name="message"
+                    [(ngModel)]="contactUs.message"></textarea>
+            </div>
+            <div class="d-flex justify-content-center mt-5">
+                <button type="button" class="btn btn-primary " (click)="save()"><i
+                        class="simple-icon-paper-plane me-1"></i> Send
+                    Message</button>
+            </div>
+        </div>
+    </div>
+</form>

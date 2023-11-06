@@ -18,31 +18,18 @@ import { SliderService } from 'src/shared/services/slider/slider.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-
-
 })
 export class HomeComponent implements OnInit, OnDestroy {
   isFullScreen = false;
   baseUrl = environment.baseUrl;
-  categoriesLoaded = false;
   displayName = 'Sarah Cortney';
   showMobileMenu = false;
-  glideDataLoad = false;
   adminRoot = environment.adminRoot;
   isDarkModeActive = false;
-  products: ReadProductDto[] = [];
-  categories: ReadCategoryDto[] = [];
-  sliderImages: ReadSliderDto[] = [];
-  news: ReadNewsDto[] = [];
-  contactUs = new CreateUpdateContactDto();
+  glideDataLoad = false;
+ 
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService,
-    private _productService: ProductService,
-    private _newsService: NewsService,
-    private _sliderService: SliderService,
-    private _contactUsService: ContactUsService,
     private toastr: ToastrService,
-    private _categoryService: CategoryService,
     private _route: Router) {
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
@@ -56,79 +43,17 @@ export class HomeComponent implements OnInit, OnDestroy {
       scrollRef <= 2 ? scrollRef++ : AOS.refresh();
     });
     this.renderer.addClass(document.body, 'no-footer');
-    this.getProduct();
-    this.getLastNews();
-    this.getCategories();
-    this.getAllSlider();
-  }
 
-
-  slideSettings = {
-    type: 'carousel',
-    gap: 30,
-    perView: 3,
-    hideNav: true,
-    peek: { before: 10, after: 10 },
-    breakpoints: {
-      600: { perView: 1 },
-      992: { perView: 2 },
-      1200: { perView: 3 }
-    }
+  
+  
+   
   }
 
 
 
+ 
 
 
-
-  // sliderImages=[
-  //   {imagePath:"../../../assets/img/NEWS/t.jpg"},
-  //   {imagePath:"../../../assets/img/NEWS/u.jpg"},
-  //   {imagePath:"../../../assets/img/NEWS/y.jpg"},
-  //   {imagePath:"../../../assets/img/NEWS/r.jpg"},
-  //   {imagePath:"../../../assets/img/NEWS/e.jpg"},
-  // ]
-
-  getAllSlider() {
-    this._sliderService.getAll().subscribe((response: any) => {
-      console.log(response.result);
-      this.sliderImages = response.result;
-    })
-  }
-
-  contactData = [{
-    DepartmentName: 'Sales Department',
-    telephone: '+ (963) 11 543 4200 / Ext. 1624',
-    fax: '+ (963) 11 543  4217',
-    email: 'sales@ahc-me.net',
-    icon: 'simple-icon-basket-loaded'
-
-  },
-  {
-    DepartmentName: 'Marketing Department',
-    telephone: '+ (963) 11 543 4200 Ext. 1626',
-    fax: '+ (963) 11 543 4217',
-    email: 'marketing@ahc-me.net',
-    icon: 'simple-icon-credit-card'
-
-
-  }, {
-    DepartmentName: 'Business Development Department',
-    telephone: '+ (963) 11 543 4200  Ext. 1625',
-    fax: '+ (963) 11 5434217',
-    email: 'bd@ahc-me.net',
-    icon: 'simple-icon-briefcase'
-
-
-  }, {
-    DepartmentName: 'General inquiries',
-    telephone: '+ (963) 11 543 4200Ext. 1622',
-    fax: '+ (963) 11 543 4217',
-    email: 'info@ahc-me.net',
-    icon: 'simple-icon-globe-alt'
-
-
-  }]
 
   fullScreenClick(): void {
     if (document.fullscreenElement) {
@@ -166,60 +91,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       window.location.reload();
     }, 200);
   }
-  getCategories() {
-    this._categoryService.getAll().subscribe((responce: any) => {
-      this.categoriesLoaded = true
-      this.categories = responce.result
-      console.log(this.categories)
-    })
-
-  }
-
-  getProduct() {
-
-    let params = new HttpParams().set('count', 10);
-    this._productService.getAll(params).subscribe((responce: any) => {
-
-      this.products = responce.result.data;
-      this.glideDataLoad = true;
 
 
-    });
-
-  }
   viewProduct() {
     this._route.navigate(['viewProducts'])
   }
 
-  getLastNews() {
 
-
-    this._newsService.getlastNews().subscribe((responce: any) => {
-
-      this.news = responce.result;
-
-
-    });
-  }
-
-  isLoading: boolean = false
-
-  GoToNewsPage() {
-    this._route.navigate(['news'])
-  this.isLoading = true
-  }
-  save() {
-    console.log(this.contactUs);
-    this._contactUsService.insert(this.contactUs).subscribe((responce: any) => {
-      console.log(responce)
-      if (responce.success) {
-        console.log("hello they")
-        this.toastr.success('Message Sent');
-      }
-
-    });
-    this.contactUs = new CreateUpdateContactDto()
-  }
 
 
 

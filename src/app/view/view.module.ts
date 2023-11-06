@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { BasicComponentModule } from '../admin/components/basic-component.module';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NewsComponent } from './what-is-news/news.component';
 import { ComponentsCarouselModule } from '../admin/components/carousel/components.carousel.module';
 import { ViewFooterComponent } from './view-footer/view-footer.component';
@@ -34,14 +33,20 @@ import { ViewNavbarComponent } from './view-navbar/view-navbar.component';
 import { ViewMainComponent } from './view-main/view-main.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { HomeMainImageComponent } from './home-main-image/home-main-image.component';
+import { CategoryCardComponent } from './category-card/category-card.component';
+import { NewsHomeCardComponent } from './news-home-card/news-home-card.component';
+import { ProductsHomeCardComponent } from './products-home-card/products-home-card.component';
+import { RecommendedProductsHomeCardComponent } from './recommended-products-home-card/recommended-products-home-card.component';
+import { ContactUsHomeCardComponent } from './contact-us-home-card/contact-us-home-card.component';
+import { ContactNumbersHomeCardComponent } from './contact-numbers-home-card/contact-numbers-home-card.component';
+import { VideoHomeCardComponent } from './video-home-card/video-home-card.component';
 
 @NgModule({
   declarations: [
      HomeComponent,
-     ContactUsComponent,
      NewsComponent,
      ViewFooterComponent,
-     ContactUsComponent,
      AboutComponent,
      ViewNewsComponent,
      ListOfProductsComponent,
@@ -53,6 +58,14 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
      ProfilePhotosComponent,
      ViewNavbarComponent,
      ViewMainComponent,
+     HomeMainImageComponent,
+     CategoryCardComponent,
+     NewsHomeCardComponent,
+     ProductsHomeCardComponent,
+     RecommendedProductsHomeCardComponent,
+     ContactUsHomeCardComponent,
+     ContactNumbersHomeCardComponent,
+     VideoHomeCardComponent,
 
 
   ],

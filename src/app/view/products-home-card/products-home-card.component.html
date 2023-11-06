@@ -1,0 +1,35 @@
+<div class="row " *ngIf="glideDataLoad">
+    <div class=" card col-xl-3 col-lg-6 col-12 col-sm-6 mb-4 "
+        *ngFor="let product of products; let i=index">
+        <div class="  position-relative">
+            <a [routerLink]="['/product-details',product.id]">
+                <img class=" cssBasedZoom card-img pt-4"
+                    style="height: 100%; width: 100%; object-fit:contain  ;"
+                    src="{{baseUrl+product.product_images[0].imagePath}}" alt="Card image cap">
+            </a>
+            <span
+                class="badge badge-pill badge-theme-1 position-absolute badge-top-left">{{product.category?.name}}</span>
+            <span
+                class="badge badge-pill badge-secondary position-absolute badge-top-left-2">{{product.skin_type?.name}}</span>
+            <span
+                class="badge badge-pill badge-light position-absolute badge-top-left-3">{{product.brand?.name}}</span>
+        </div>
+        <div class="card-body text-center">
+            <a [routerLink]="['/product-details',product.id]">
+                <p class="list-item-heading fw-bold mb-4">{{product.name}}
+                </p>
+            </a>
+            <a [routerLink]="['/viewProduct']">
+                <p class="text-muted text-small mb-0 font-weight-light">
+
+                    <ng-container *ngIf="product.description!=null">
+                        <ng-container *ngIf="product.description.length>40; else elseBlock">
+                            {{ product.description | summary}}
+                        </ng-container>
+                    </ng-container>
+                    <ng-template #elseBlock>{{product.description}}</ng-template>
+                </p>
+            </a>
+        </div>
+    </div>
+</div>
