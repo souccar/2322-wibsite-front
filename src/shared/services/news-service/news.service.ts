@@ -11,10 +11,10 @@ export class NewsService {
 
   constructor(private http:HttpClient) { }
 
-  getAll(params?:HttpParams)
+  getAll(itemsPerPage:number,currentPage:number)
   {
-
-    return this.http.get(this.baseUrl+'api/news',{params});
+    let apiUrl = this.baseUrl +'api/news' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
   }
   getlastNews(){
 

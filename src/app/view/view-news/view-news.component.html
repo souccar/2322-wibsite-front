@@ -29,7 +29,7 @@
         <!-- <pagination class="justify-content-center" [totalItems]="1"
         [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
         </pagination> -->
-        <pagination [totalItems]="3" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+        <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
         [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
         [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
       </pagination>

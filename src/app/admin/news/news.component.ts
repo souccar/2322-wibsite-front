@@ -63,23 +63,27 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
   }
   override ngOnInit(): void {
    
-    this.getAllNews()
-    // this.loadData(this.itemsPerPage, 1, this.search);
+    this.getAllNews(this.itemsPerPage,1)
   }
 
-  getAllNews()
+  getAllNews(itemsPerPage:number,currentPage:number)
   {
-    let params = new HttpParams().set('count', this.itemsPerPage) ;
-
-    this._newsService.getAll(params).subscribe((responce:any)=>{
-      this.data=responce.result
-      console.log(responce)
-
-    });
+   
+    this._newsService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+        console.log(response)
+      this.data=response.result.data;
+      this.totalItem=response.result.total
+    })
+  }
+  
+  pageChanged(event: any): void {
+   
+      this.getAllNews(this.itemsPerPage,event.page);
+  
   }
   deletebutton(id:number){
     this._newsService.delete(id).subscribe((responce:any)=>{
-      this.getAllNews()
+      this.getAllNews(this.itemsPerPage,1)
     });
 
   }
@@ -98,7 +102,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
         }
       );
       editNewsDialog.content.onSave.subscribe(() => {
-        this.getAllNews()
+        this.getAllNews(this.itemsPerPage,1)
       });
 
     }
@@ -234,7 +238,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
       }
     );
     createOrEditNewsDialog.content.onSave.subscribe(() => {
-      this.getAllNews();
+      this.getAllNews(this.itemsPerPage,1)
     });
   }
   // item: ReadNewsDto
@@ -268,9 +272,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
       // );
     }
   }
-  pageChanged(event: any): void {
-    // this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
+
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', sort_Desc: boolean = false): void {
     let request: PagedNewsRequestDto = new PagedNewsRequestDto();
     this.itemsPerPage = pageSize;

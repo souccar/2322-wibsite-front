@@ -1,4 +1,4 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ReadNewsDto } from 'src/shared/service-proxies/service-proxies';
@@ -13,31 +13,39 @@ export class ViewNewsComponent implements OnInit{
 news:ReadNewsDto[]=[];
 baseUrl = environment.baseUrl;
 currentPage = 1;
-itemsPerPage =4;
+itemsPerPage =3;
 totalItem = 0;
 totalPage = 0;
 
 
 
-constructor( private _newsService: NewsService){}
+constructor( private _newsService: NewsService,
+  private http:HttpClient){}
   ngOnInit(): void {
-
-    this.getAllNews()
+    this.getAllNews(this.itemsPerPage,1)
   }
 
 
 
-getAllNews()
+getAllNews(itemsPerPage:number,currentPage:number)
 {
-  let params = new HttpParams().set('count', this.itemsPerPage) ;
-  this._newsService.getAll(params).subscribe((response:any)=>{
+ 
+  this._newsService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
       console.log(response)
-    this.news=response.result;
-    // this.totalItem=response.result.total
+    this.news=response.result.data;
+    this.totalItem=response.result.total
   })
 }
+
 pageChanged(event: any): void {
-  console.log(event)
-  // this.getAllNews()
+ 
+    this.getAllNews(this.itemsPerPage,event.page);
+
 }
+
+
+
+
 }
+
+
