@@ -8,9 +8,15 @@ import { environment } from 'src/environments/environment';
 export class CategoryService {
   constructor(private http:HttpClient) { }
   baseUrl=environment.baseUrl;
-  getAll(params?:HttpParams)
+
+  getAll(itemsPerPage:number,currentPage:number)
   {
-    return this.http.get(this.baseUrl+'api/categories',{params});
+    let apiUrl = this.baseUrl +'api/categories' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination()
+  {
+    return this.http.get(this.baseUrl+'api/categories');
   }
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/categories'+'/'+id);

@@ -76,7 +76,6 @@ import { VideoHomeCardComponent } from './video-home-card/video-home-card.compon
     TabsModule.forRoot(),
     ScrollToModule.forRoot(),
     PaginationModule.forRoot(),
-    PaginationModule.forRoot(),
     BsDropdownModule.forRoot(),
     TranslateModule,
     LayoutModule,
@@ -86,7 +85,6 @@ import { VideoHomeCardComponent } from './video-home-card/video-home-card.compon
     MatTreeModule,
      MatButtonModule,
      MatIconModule,
-     PaginationModule,
      LightboxModule,
      CarouselModule.forRoot()
   ],

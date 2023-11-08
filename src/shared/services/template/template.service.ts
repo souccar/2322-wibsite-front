@@ -15,10 +15,17 @@ export class TemplateService {
   {
     return this.http.get(this.baseUrl+'api/getTemplatesForDrobdown',{params});
   }
-  getAllTemplates(params?:HttpParams)
+ 
+  getAll(itemsPerPage:number,currentPage:number)
+  {
+    let apiUrl = this.baseUrl +'api/getAllTemplates' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination(params?:HttpParams)
   {
     return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
   }
+
   getById(params:HttpParams){
    
     return this.http.get(this.baseUrl+'api/getWithChildren',{params});

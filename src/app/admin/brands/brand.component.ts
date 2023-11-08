@@ -55,22 +55,31 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
 
     super(injector);
   }
+
+
+
   override ngOnInit(): void {
-    this.getAllBrand()
 
+    this.getAllBrand(this.itemsPerPage,1)
   }
-
-  getAllBrand()
+  getAllBrand(itemsPerPage:number,currentPage:number)
   {
-    let params = new HttpParams().set('count', this.itemsPerPage) ;
-
-    this._brandService.getAll(params).subscribe((responce:any)=>{
-      this.data=responce.result.data
-    });
+   
+    this._brandService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+        console.log(response)
+      this.data=response.result.data;
+      this.totalItem=response.result.total
+    })
+  }
+  
+  pageChanged(event: any): void {
+   
+      this.getAllBrand(this.itemsPerPage,event.page);
+  
   }
   deletebutton(id:number){
     this._brandService.delete(id).subscribe((responce:any)=>{
-      this.getAllBrand();
+      this.getAllBrand(this.itemsPerPage,1)
     });
 
   }
@@ -88,15 +97,13 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
         }
       );
       editBrandDialog.content.onSave.subscribe(() => {
-        this.getAllBrand();
+      this.getAllBrand(this.itemsPerPage,1)
       });
 
     }
 
 
-  itemsPerPageChange(perPage: number): void {
-    this.loadData(perPage, 1, this.search);
-  }
+  
 
   searchKeyUp(event:any): void {
     const val = event.target.value.toLowerCase().trim();
@@ -159,8 +166,12 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
       }
     );
     createOrEditBrandDialog.content.onSave.subscribe(() => {
-     this.getAllBrand();
+      this.getAllBrand(this.itemsPerPage,1)
     });
+  }
+   itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllBrand(this.itemsPerPage,1)
   }
 
   onSelect(item: any): void {
@@ -193,9 +204,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
       // );
     }
   }
-  pageChanged(event: any): void {
-    // this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
+
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', sort_Desc: boolean = false): void {
     let request: PagedBrandRequestDto = new PagedBrandRequestDto();
     this.itemsPerPage = pageSize;

@@ -49,7 +49,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
   }
   initCategory()
   {
-    this._categoryService.getAll().subscribe((response:any) => {
+    this._categoryService.getWithoutPagination().subscribe((response:any) => {
        this.categories = response.result;
 
     });
@@ -57,7 +57,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
   }
   initBrand()
   {
-    this._brandService.getAll().subscribe((response:any)=>{
+    this._brandService.getWithoutPagination().subscribe((response:any)=>{
 
         this.brands=response.result.data
 
@@ -65,7 +65,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
   }
   initSkinType()
   {
-    this._skinTypeServices.getAll().subscribe((response:any)=>{
+    this._skinTypeServices.getWithoutPagination().subscribe((response:any)=>{
 
         this.skinType=response.result.data
 

@@ -29,7 +29,7 @@ export class CategoryCardComponent implements OnInit {
     this.getCategories();
   }
   getCategories() {
-    this._categoryService.getAll().subscribe((responce: any) => {
+    this._categoryService.getWithoutPagination().subscribe((responce: any) => {
       this.categoriesLoaded = true
       this.categories = responce.result
       console.log(this.categories)

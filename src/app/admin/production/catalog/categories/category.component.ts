@@ -25,7 +25,7 @@ class PagedCategoriesRequestDto extends PagedRequestDto {
 
 })
 
-export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto>{
+export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto> {
   title = "Categories"
   displayMode = 'list';
   itemOrder = { label: "name", value: "name" };
@@ -54,26 +54,34 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   {
     super(injector);
 
-    this.getAllCategory();
+   
 
   }
 
-  getAllCategory()
+  override ngOnInit(): void {
+
+    this.getAllCategory(this.itemsPerPage,1)
+  }
+  getAllCategory(itemsPerPage:number,currentPage:number)
   {
-    let params = new HttpParams().set('count', this.itemsPerPage) ;
+   
+    this._categoryService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+     
 
-    this._categoryService.getAll(params).subscribe((response:any)=>{
-
-      console.log(response)
-
-       this.data=response.result;
-
+      this.data=response.result.data;
+      this.totalItem=response.result.total
     })
   }
-  itemsPerPageChange(perPage: number): void {
-    // this.loadData(perPage, 1, this.search, this.itemOrder.value);
+  itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllCategory(this.itemsPerPage,1)
   }
-
+  pageChanged(event: any): void {
+   
+      this.getAllCategory(this.itemsPerPage,event.page);
+  
+  }
+  
   searchKeyUp(event:any): void {
     const val = event.target.value.toLowerCase().trim();
     // this.loadData(this.itemsPerPage, 1, val, this.itemOrder.value);
@@ -97,7 +105,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     }
     this.setSelectAllState();
   }
-
+ 
   changeDisplayMode(mode:any): void {
     this.displayMode = mode;
   }
@@ -123,7 +131,8 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   }
   deletebutton(id:number){
     this._categoryService.delete(id).subscribe((responce:any)=>{
-      this.getAllCategory()
+
+      this.getAllCategory(this.itemsPerPage,1)
     });
 
   }
@@ -155,7 +164,7 @@ editModal(id:number): void {
       }
     );
     editCategoryDialog.content.onSave.subscribe(() => {
-      this.getAllCategory();
+      this.getAllCategory(this.itemsPerPage,1)
     });
 
 }
@@ -199,7 +208,7 @@ viewModal(id:number)
       }
     );
     createOrEditCategoryDialog.content.onSave.subscribe(() => {
-      this.getAllCategory();
+      this.getAllCategory(this.itemsPerPage,1)
     });
   }
   // item: ReadCategoryDto
@@ -233,9 +242,7 @@ viewModal(id:number)
       // );
     }
   }
-  pageChanged(event: any): void {
-    // this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
+
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', sort_Desc: boolean = false): void {
     let request: PagedCategoriesRequestDto = new PagedCategoriesRequestDto();
     this.itemsPerPage = pageSize;

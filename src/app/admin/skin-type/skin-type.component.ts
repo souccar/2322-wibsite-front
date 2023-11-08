@@ -45,21 +45,30 @@ export class SkinTypeComponent implements OnInit {
    
 
   }
+
+
   ngOnInit(): void {
-    this.getAllSkinType()
-    // this.loadData(this.itemsPerPage, 1, this.search);
-  }
 
-  getAllSkinType()
-  { let params = new HttpParams().set('count', this.itemsPerPage) ;
-    this._skinTypeService.getAll(params).subscribe((responce:any)=>{
-      this.data=responce.result.data
-    });
+    this.getAllSkinType(this.itemsPerPage,1)
   }
-
+  getAllSkinType(itemsPerPage:number,currentPage:number)
+  {
+   
+    this._skinTypeService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+        console.log(response)
+      this.data=response.result.data;
+      this.totalItem=response.result.total
+    })
+  }
+  
+  pageChanged(event: any): void {
+   
+      this.getAllSkinType(this.itemsPerPage,event.page);
+  
+  }
   deletebutton(id:number){
     this._skinTypeService.delete(id).subscribe((responce:any)=>{
-      this.getAllSkinType()
+      this.getAllSkinType(this.itemsPerPage,1)
     });
   
   }
@@ -71,8 +80,9 @@ export class SkinTypeComponent implements OnInit {
 
 
 
-  itemsPerPageChange(perPage: number): void {
-    this.loadData(perPage, 1, this.search);
+  itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllSkinType(itemsPerPage,1);
   }
 
   searchKeyUp(event:any): void {
@@ -106,19 +116,7 @@ export class SkinTypeComponent implements OnInit {
    
     finishedCallback: Function
   ): void {
-    request.keyword = this.search;
-
-    this._skinTypeService
-     .getAll()
-      .pipe(
-        finalize(() => {
-          finishedCallback();
-        })
-      )
-      .subscribe((result :any) => {
-        this.data = result.data;
-        // this.setSelectAllState();
-      });
+   
   }
 
 
@@ -169,7 +167,8 @@ export class SkinTypeComponent implements OnInit {
       }
     );
     editSkinTypeDialog.content.onSave.subscribe(() => {
-      this.getAllSkinType()
+ 
+      this.getAllSkinType(this.itemsPerPage,1)
     });
 
 }
@@ -200,7 +199,8 @@ export class SkinTypeComponent implements OnInit {
       }
     );
     createOrEditSkinTypeDialog.content.onSave.subscribe(() => {
-      this.getAllSkinType()
+ 
+      this.getAllSkinType(this.itemsPerPage,1)
     });
   }
   // item: ReadSkinTypeDto
@@ -234,9 +234,7 @@ export class SkinTypeComponent implements OnInit {
       // );
     }
   }
-  pageChanged(event: any): void {
-    // this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
+
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', sort_Desc: boolean = false): void {
     let request: PagedSkinTypeRequestDto = new PagedSkinTypeRequestDto();
     this.itemsPerPage = pageSize;

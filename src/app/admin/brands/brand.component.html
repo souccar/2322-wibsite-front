@@ -48,9 +48,9 @@
         <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
           let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset" let-limit="limit">
           <div class="w-100 d-flex justify-content-center">
-          <pagination  totalItems="totalItem" itemsPerPage="itemsPerPage" rotate="true" maxSize="5"
+          <pagination  [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
           [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
-          customNextTemplate="nextTemplate" customPreviousTemplate="prevTemplate">
+          [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
           </pagination>
         <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
           <i class='simple-icon-arrow-right'></i>

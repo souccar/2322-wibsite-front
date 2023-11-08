@@ -10,9 +10,15 @@ export class SkinTypeService {
 
   constructor(private http:HttpClient) { }
   baseUrl=environment.baseUrl;
-  getAll(params?:HttpParams)
+
+  getAll(itemsPerPage:number,currentPage:number)
   {
-    return this.http.get(this.baseUrl+'api/skinTypes',{params});
+    let apiUrl = this.baseUrl +'api/skinTypes' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination()
+  {
+    return this.http.get(this.baseUrl+'api/skinTypes');
   }
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/skinTypes'+'/'+id);

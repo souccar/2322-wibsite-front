@@ -10,7 +10,12 @@ export class BrandService {
  
   constructor(private http:HttpClient) { }
 
-  getAll(params?:HttpParams)
+  getAll(itemsPerPage:number,currentPage:number)
+  {
+    let apiUrl = this.baseUrl +'api/brands' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination(params?:HttpParams)
   {
     return this.http.get(this.baseUrl+'api/brands',{params});
   }

@@ -45,22 +45,24 @@ export class SliderComponent implements OnInit {
    
 
   }
+
+
   ngOnInit(): void {
-    this.getAllSlider();
-    // this.loadData(this.itemsPerPage, 1, this.search);
-  }
 
-  getAllSlider()
-  { let params = new HttpParams().set('count', this.itemsPerPage) ;
-    this._sliderService.getAll(params).subscribe((responce:any)=>{
-      this.data=responce.result;
-      
-    });
+    this.getAllSlider(this.itemsPerPage,1)
   }
-
+  getAllSlider(itemsPerPage:number,currentPage:number)
+  {
+   
+    this._sliderService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+        console.log(response)
+      this.data=response.result.data;
+      this.totalItem=response.result.total
+    })
+  }
   deletebutton(id:number){
     this._sliderService.delete(id).subscribe((responce:any)=>{
-      this.getAllSlider()
+      this.getAllSlider(this.itemsPerPage,1)
     });
   
   }
@@ -72,8 +74,9 @@ export class SliderComponent implements OnInit {
 
 
 
-  itemsPerPageChange(perPage: any): void {
-    this.loadData(perPage, 1, this.search);
+  itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllSlider(this.itemsPerPage,1)
   }
 
   searchKeyUp(event:any): void {
@@ -107,19 +110,6 @@ export class SliderComponent implements OnInit {
    
     finishedCallback: Function
   ): void {
-    request.keyword = this.search;
-
-    this._sliderService
-     .getAll()
-      .pipe(
-        finalize(() => {
-          finishedCallback();
-        })
-      )
-      .subscribe((result :any) => {
-        this.data = result.data;
-        // this.setSelectAllState();
-      });
   }
 
 
@@ -170,7 +160,7 @@ export class SliderComponent implements OnInit {
       }
     );
     editSliderDialog.content.onSave.subscribe(() => {
-      this.getAllSlider()
+      this.getAllSlider(this.itemsPerPage,1)
     });
 
 }
@@ -201,7 +191,7 @@ export class SliderComponent implements OnInit {
       }
     );
     createOrEditSliderDialog.content.onSave.subscribe(() => {
-      this.getAllSlider()
+      this.getAllSlider(this.itemsPerPage,1)
     });
   }
   // item: ReadSliderDto

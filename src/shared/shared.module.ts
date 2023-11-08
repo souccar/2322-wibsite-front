@@ -73,10 +73,10 @@ import { ComponentsStateButtonModule } from './state-button/components.state-but
     NgxDatatableModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule,
     TabsModule,
     ContextMenuModule,
     SummaryPipe,
+    PaginationModule,
     ComponentsStateButtonModule,
   ],
 

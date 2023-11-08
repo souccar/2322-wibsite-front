@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Direction } from '@glidejs/glide/components/direction';
 import { Router } from '@angular/router';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isDarkModeActive = false;
   glideDataLoad = false;
  
+ 
   constructor(private renderer: Renderer2, private elRef: ElementRef, private scrollToService: ScrollToService,
     private toastr: ToastrService,
     private _route: Router) {
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       scrollRef <= 2 ? scrollRef++ : AOS.refresh();
     });
     this.renderer.addClass(document.body, 'no-footer');
+  
 
   
   
