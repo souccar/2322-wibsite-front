@@ -17,11 +17,11 @@ export class ContactUsHomeCardComponent implements OnInit{
     
   }
   save() {
-    console.log(this.contactUs);
+
     this._contactUsService.insert(this.contactUs).subscribe((responce: any) => {
-      console.log(responce)
+
       if (responce.success) {
-        console.log("hello they")
+
         this.toastr.success('Message Sent');
       }
     });

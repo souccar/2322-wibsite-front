@@ -10,16 +10,18 @@ export class ProductService {
 
   constructor(private http:HttpClient) { }
   baseUrl=environment.baseUrl;
-  getAll( params?:HttpParams)
+  
+  getAll(itemsPerPage:number,currentPage:number)
   {
-
+    let apiUrl = this.baseUrl +'api/products' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination(params?:HttpParams)
+  {
     return this.http.get(this.baseUrl+'api/products',{params});
-
-
   }
   insert(product:any)
   {
-    console.log(product);
     return this.http.post(this.baseUrl+'api/products',product);
   }
   getById(id:number):any{

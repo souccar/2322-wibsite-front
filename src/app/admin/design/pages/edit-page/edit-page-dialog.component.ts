@@ -36,7 +36,7 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
   }
   initPage() {
     this._PageService.getById(this.id).subscribe((result:any) => {
-       console.log(result)
+    
       this.page=result.result;
       this.base64 = result.result.base64;
       this.image = result.result.imagePath;
@@ -68,7 +68,7 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
      const file=new FormData();
      file.append("image",this.image);
     this._PageService.uploadImage(file).subscribe((response:any)=>{
-      console.log(response);
+     
      this.page.imagePath=response
     })
 	}
@@ -89,7 +89,7 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
         })
       )
       .subscribe((response: any) => {
-        console.log(response);
+
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();

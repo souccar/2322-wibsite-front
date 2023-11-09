@@ -94,6 +94,28 @@ const data: IMenuItem[] = [
         }
       ],
     },
+     //Security
+  {
+    icon: 'iconsminds-security-settings',
+    label: 'Security',
+    to: `${adminRoot}/security`,
+    subs: [
+      {
+        label: 'User',
+        icon: 'iconsminds-business-man-woman',
+        to: `${adminRoot}/security/user`,
+        subs: [
+        ],
+      },
+      {
+        label: 'Role',
+        icon: 'iconsminds-security-check',
+        to: `${adminRoot}/security/role`,
+        subs: [
+        ],
+      },
+    ],
+  },
 
 ];
 export default data;

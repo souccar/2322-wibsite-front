@@ -9,7 +9,6 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { ProductionModule } from './production/production.module';
 import { SkinTypeModule } from './skin-type/skin-type.module';
 import { BrandModule } from './brands/brand.module';
-import { NewsModule } from './news/news.module';
 import { DesignModule } from './design/design.module';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -18,7 +17,10 @@ import { LoginComponent } from './auth/login.component';
 import { AdminHeaderComponent } from './containers/layout/admin-header/admin-header.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MainPageModule } from './main-page/main-page.module';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
+import { NewsModule } from './news/news.module';
+import { SecurityComponent } from './security/security.component';
 
 
 @NgModule({
@@ -27,11 +29,14 @@ import { MainPageModule } from './main-page/main-page.module';
     AdminComponent,
     LoginComponent,
     MainPageComponent,
+    SecurityComponent,
+    
 
 
 
   ],
   imports: [
+    
     LayoutModule,
     RouterModule,
     SkinTypeModule,
@@ -42,9 +47,10 @@ import { MainPageModule } from './main-page/main-page.module';
     AdminRoutingModule,
     ProductionModule,
     BrandModule,
-    NewsModule,
     DesignModule,
-    MainPageModule
+    MainPageModule,
+    NewsModule
+   
 
 
   ],

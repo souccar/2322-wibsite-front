@@ -1,5 +1,5 @@
 import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
   templateUrl: './view-navbar.component.html',
   styleUrls: ['./view-navbar.component.scss']
 })
-export class ViewNavbarComponent implements OnInit, OnDestroy {
+export class ViewNavbarComponent implements OnInit {
   buyUrl = environment.buyUrl;
   adminRoot = environment.adminRoot;
   sidebar: ISidebar;
@@ -34,7 +34,8 @@ export class ViewNavbarComponent implements OnInit, OnDestroy {
   showMobileMenu = false;
   isOpened = false;
   searchKey = '';
-
+  @ViewChild('cont') private cont: ElementRef;
+  @ViewChild('navbar') private navbar: ElementRef;
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
@@ -42,7 +43,8 @@ export class ViewNavbarComponent implements OnInit, OnDestroy {
     private scrollToService: ScrollToService,
     private _categoryService: CategoryService,
     private _skinTypeService: SkinTypeService,
-    private _brandService: BrandService
+    private _brandService: BrandService,
+    private renderer: Renderer2, private elRef: ElementRef
   ) {
     this.languages = this.langService.supportedLanguages;
     this.currentLanguage = this.langService.languageShorthand;
@@ -51,24 +53,53 @@ export class ViewNavbarComponent implements OnInit, OnDestroy {
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
 
+   ngOnInit() {
+    this. removeItemFromNavbar();
+    this.getCategories();
+    this.getSkinTypes();
+    this.getBrands();
+   
+  }
+  removeItemFromNavbar(){
+    this.router.events.subscribe((event:any) => {
+      if (event.routerEvent.url.includes('/home')) {
+        
+        this.navbar.nativeElement.querySelector('li:nth-child(3) a');
+        this.navbar.nativeElement.querySelector('li:nth-child(2) a');
+        // this.navbar.nativeElement.querySelector('li:nth-child(1) a').classList.add('text-white');
+   
+  
+      } 
+      else if (event.routerEvent.url.includes('/news')||event.routerEvent.url.includes('/viewProduct')
+      || event.routerEvent.url.includes('/product-details')){
+        
+        this.navbar.nativeElement.querySelector('li:nth-child(2) a').remove();
+        this.navbar.nativeElement.querySelector('li:nth-child(3) a').remove();
+      }
+    });
+  }
+
   getCategories() {
-    this._categoryService.getAll().subscribe((responce: any) => {
-      this.categories = responce.result
-      console.log(this.categories)
+    this._categoryService.getWithoutPagination().subscribe((responce: any) => {
+    
+      this.categories = responce.result.data
+    
     })
 
   }
   getSkinTypes() {
-    this._skinTypeService.getAll().subscribe((responce: any) => {
+    this._skinTypeService.getWithoutPagination().subscribe((responce: any) => {
+      
       this.skinTypes = responce.result.data
-      console.log(this.skinTypes)
+    
     })
 
   }
   getBrands() {
-    this._brandService.getAll().subscribe((responce: any) => {
+    this._brandService.getWithoutPagination().subscribe((responce: any) => {
+  
       this.brands = responce.result.data
-      console.log(responce)
+     
     })
 
   }
@@ -107,23 +138,7 @@ export class ViewNavbarComponent implements OnInit, OnDestroy {
     this.currentLanguage = this.langService.languageShorthand;
   }
 
-  async ngOnInit(): Promise<void> {
-    this.getCategories();
-    this.getSkinTypes();
-    this.getBrands();
-    this.subscription = this.sidebarService.getSidebar().subscribe(
-      (res) => {
-        this.sidebar = res;
-      },
-      (err) => {
-        console.error(`An error occurred: ${err.message}`);
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+  
 
   menuButtonClick = (
     e: { stopPropagation: () => void },

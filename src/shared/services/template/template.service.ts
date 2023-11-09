@@ -15,25 +15,30 @@ export class TemplateService {
   {
     return this.http.get(this.baseUrl+'api/getTemplatesForDrobdown',{params});
   }
-  getAllTemplates(params?:HttpParams)
+ 
+  getAll(itemsPerPage:number,currentPage:number)
+  {
+    let apiUrl = this.baseUrl +'api/getAllTemplates' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination(params?:HttpParams)
   {
     return this.http.get(this.baseUrl+'api/getAllTemplates',{params});
   }
+
   getById(params:HttpParams){
    
     return this.http.get(this.baseUrl+'api/getWithChildren',{params});
   }
   insert(template:any)
   {
-    console.log(template)
     return this.http.post(this.baseUrl+'api/templates',template,{headers:{
       "Content-Type": "application/json",
 
   }});
   }
   edit(id:number,template:any)
-  {  console.log(id)
-    console.log(template)
+  {  
      return this.http.post(this.baseUrl+'api/templates'+'/'+id,template);
   }
   delete(id:number)

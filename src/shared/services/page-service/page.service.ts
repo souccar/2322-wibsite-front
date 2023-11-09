@@ -10,11 +10,17 @@ export class PageService {
   baseUrl=environment.baseUrl;
 
   constructor(private http:HttpClient) { }
-
-  getAllPages(params?:HttpParams)
+  getAll(itemsPerPage:number,currentPage:number)
+  {
+    let apiUrl = this.baseUrl +'api/getAllPages' + '?page=' +currentPage+'&count='+itemsPerPage;
+    return this.http.get(apiUrl);
+  }
+  getWithoutPagination(params?:HttpParams)
   {
     return this.http.get(this.baseUrl+'api/getAllPages',{params});
   }
+
+ 
   getSlugs(){
     return this.http.get(this.baseUrl+'api/getPagesForDrobdown');
   }

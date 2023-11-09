@@ -29,19 +29,19 @@ export class AccordionOfProductComponent implements OnInit {
   }
   getSkinType()
   {
-    this._skinTypeService.getAll().subscribe((response:any)=>{
+    this._skinTypeService.getWithoutPagination().subscribe((response:any)=>{
       this._accordionService.skinTypes=response.result.data;
     })
   }
   getBrand()
   {
-    this._brandService.getAll().subscribe((response:any)=>{
+    this._brandService.getWithoutPagination().subscribe((response:any)=>{
       this._accordionService.brands=response.result.data;
     })
   }
   getCategory()
   {
-    this._categoryService.getAll().subscribe((response:any)=>{
+    this._categoryService.getWithoutPagination().subscribe((response:any)=>{
       this._accordionService.categories=response.result;
 
 

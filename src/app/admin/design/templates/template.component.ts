@@ -37,10 +37,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   selectedCount = 0;
   isActive: boolean | null = true;
   advancedFiltersVisible = false;
-
-  //
   loading = false;
-
   ColumnMode = ColumnMode;
   // @ViewChild('basicMenu') public basicMenu: ContextMenuComponent;
   @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreateTemplateDialogComponent;
@@ -55,22 +52,26 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   }
 
   override ngOnInit(): void {
-    this.getAllTemplates()
-    this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
+
+    this.getAllTemplates(this.itemsPerPage,1)
   }
-
-  getAllTemplates() {
-
-    let params = new HttpParams().set('count', this.itemsPerPage);
-
-
-    this._templateService.getAllTemplates(params).subscribe((response: any) => {
-
-      this.data = response.result.data;
-       console.log(this.data);
-
+  getAllTemplates(itemsPerPage:number,currentPage:number)
+  {
+   
+    this._templateService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+    
+      this.data=response.result.data;
+      this.totalItem=response.result.total
     })
   }
+  
+  pageChanged(event: any): void {
+   
+      this.getAllTemplates(this.itemsPerPage,event.page);
+  
+  }
+
+
   ViewChildTemplate(id: number) {
 
 
@@ -102,22 +103,20 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
       }
     );
     editNewsDialog.content.onSave.subscribe(() => {
-      this.getAllTemplates();
+      this.getAllTemplates(this.itemsPerPage,1)
     });
 
   }
   deletebutton(id: number) {
     this._templateService.delete(id).subscribe((rec) => {
-      this.getAllTemplates()
+      this.getAllTemplates(this.itemsPerPage,1)
     })
   }
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
 
-  pageChanged(event: any): void {
-    this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
+  
 
   changeDisplayMode(mode: any): void {
     this.displayMode = mode;
@@ -135,7 +134,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
       }
     );
     createOrEditProductDialog.content.onSave.subscribe(() => {
-      this.getAllTemplates();
+      this.getAllTemplates(this.itemsPerPage,1)
     });
   }
 
@@ -246,10 +245,10 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
     }
   }
 
-  itemsPerPageChange(perPage: any): void {
-    this.loadData(perPage, 1, this.search, this.itemOrder.value);
+  itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllTemplates(this.itemsPerPage,1)
   }
-
   isSelected(p: ReadTemplateDto): boolean {
     return this.selected.findIndex(x => x.id === p.id) > -1;
   }

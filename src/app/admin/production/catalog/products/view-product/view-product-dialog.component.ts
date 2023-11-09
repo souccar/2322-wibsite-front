@@ -27,10 +27,10 @@ export class ViewProductDialogComponent implements OnInit {
   displayProduct()
   {
     this._productService.getById(this.id).subscribe((result) => {
-      console.log(result)
+      
       this.data = result.result;
       this.images=result.result.images
-      console.log(this.images)
+
     });
   }
 

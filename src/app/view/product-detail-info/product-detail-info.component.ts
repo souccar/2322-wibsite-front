@@ -23,7 +23,6 @@ export class ProductDetailInfoComponent implements OnInit {
   getProductById()
   {
        this._productService.getById(this.id).subscribe((result:any)=>{
-        console.log(result);
         this.product=result.result;
         // this.product=result.category.nam
        })

@@ -40,7 +40,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
   initSlug(){
 
     this._pageService.getSlugs().subscribe((res:any)=>{
-      console.log(res.result)
+
       this.slugs=res.result;
     })
   }
@@ -86,7 +86,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
    
     this.template.child_templates=this.tempChild;
    
-    console.log(this.template)
+  
     this._templateService
     .insert(
         this.template

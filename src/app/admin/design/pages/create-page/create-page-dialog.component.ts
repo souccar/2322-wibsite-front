@@ -47,7 +47,7 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
 	}
 
   save(): void {
-    console.log(this.page)
+
     this.saving = true;
 
     this._PageService
@@ -60,7 +60,7 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
         })
     )
     .subscribe((response:any) => {
-      console.log(response);
+
       // this.notify.info(this.l('SavedSuccessfully'));
       this.bsModalRef.hide();
       this.onSave.emit();

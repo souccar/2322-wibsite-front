@@ -19,6 +19,7 @@ import { ViewProductDialogComponent } from './view-product/view-product-dialog.c
 })
 export class ProductsComponent extends PagedListingComponentBase<ReadProductDto> {
 
+
   title = "Products"
   displayMode = 'list';
   itemOrder = { label:("Name"), value: "name" };
@@ -60,19 +61,30 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
 
   override ngOnInit(): void {
 
-    this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
+    this.getAllProduct(this.itemsPerPage,1)
   }
-
+  getAllProduct(itemsPerPage:number,currentPage:number)
+  {
+   
+    this._productService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+   
+      this.data=response.result.data;
+      this.totalItem=response.result.total
+    })
+  }
+  
+  pageChanged(event: any): void {
+   
+      this.getAllProduct(this.itemsPerPage,event.page);
+  
+  }
 
 
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
 
-  pageChanged(event: any): void {
-    this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
-
+  
   changeDisplayMode(mode:any): void {
     this.displayMode = mode;
   }
@@ -238,8 +250,10 @@ viewModal(id:number)
     }
   }
 
-  itemsPerPageChange(perPage: number): void {
-    this.loadData(perPage, 1, this.search, this.itemOrder.value);
+  
+  itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllProduct(this.itemsPerPage,1)
   }
 
   isSelected(p: ReadProductDto): boolean {
@@ -252,19 +266,11 @@ viewModal(id:number)
     } else {
       this.selected.push(item);
     }
-    // this.setSelectAllState();
+
     this.selectedCount = this.selected.length;
   }
 
-  // setSelectAllState(): void {
-  //   if (this.selected.length === this.data.length) {
-  //     this.selectAllState = 'checked';
-  //   } else if (this.selected.length !== 0) {
-  //     this.selectAllState = 'indeterminate';
-  //   } else {
-  //     this.selectAllState = '';
-  //   }
-  // }
+ 
 
   selectAllChange($event:any): void {
     if ($event.target.checked) {
@@ -272,38 +278,9 @@ viewModal(id:number)
     } else {
       this.selected = [];
     }
-    // this.setSelectAllState();
+
   }
 
-  // clearFilters(): void {
-  //   this.search = '';
-  //   this.isActive = undefined;
-  //   this.getDataPage(1);
-  // }
-
-  protected list(
-    request: PagedProductsRequestDto,
-    pageNumber: number,
-    finishedCallback: Function
-  ): void {
-    request.keyword = this.search;
-
-    this._productService
-    .getAll()
-      .pipe(
-        finalize(() => {
-          finishedCallback();
-        })
-      )
-      .subscribe((response:any) => {
-
-        this.data = response.result.data;
-
-        this.totalItem = response.totalCount;
-        this.totalPage =  ((response.totalCount - (response.totalCount % this.pageSize)) / this.pageSize) + 1;
-
-      });
-  }
 
   setPage($event:any){
     this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
@@ -322,6 +299,9 @@ viewModal(id:number)
 
       this.loading = false;
 
+  }
+  protected override list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
+    
   }
 }
 

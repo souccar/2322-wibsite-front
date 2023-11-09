@@ -58,7 +58,7 @@ export class EditSliderDialogComponent extends AppComponentBase    implements On
   initialSlider() {
 
     this._sliderService.getById(this.id).subscribe((result:any) => {
-      console.log(result);
+
       this.slider=result.result;
       this.base64 = result.result.base64;
       this.image = result.result.imagePath;
@@ -85,7 +85,7 @@ export class EditSliderDialogComponent extends AppComponentBase    implements On
      const file=new FormData();
      file.append("image",this.image);
     this._sliderService.uploadImage(file).subscribe((response:any)=>{
-      console.log(response);
+   
      this.slider.imagePath=response
     })
 	}

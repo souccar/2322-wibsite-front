@@ -70,7 +70,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
   {
    
     this._newsService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-        console.log(response)
+    
       this.data=response.result.data;
       this.totalItem=response.result.total
     })
@@ -108,9 +108,10 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
     }
 
 
-  itemsPerPageChange(perPage: number): void {
-    this.loadData(perPage, 1, this.search);
-  }
+    itemsPerPageChange(itemsPerPage: any): void {
+      this.itemsPerPage=itemsPerPage
+      this.getAllNews(this.itemsPerPage,1)
+    }
 
   searchKeyUp(event:any): void {
     const val = event.target.value.toLowerCase().trim();

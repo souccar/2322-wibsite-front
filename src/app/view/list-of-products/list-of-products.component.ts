@@ -106,10 +106,9 @@ export class ListOfProductsComponent implements OnInit{
     let params = new HttpParams().set('count', 4) ;
     this.products=[];
       this.isLoading=true;
-      this._productService.getAll(params).subscribe((response:any)=>{
+      this._productService.getWithoutPagination(params).subscribe((response:any)=>{
         this.totalItems=response.result.total
         this.products=response.result.data;
-        console.log(response)
         this.isLoading=false;
       })
     ;

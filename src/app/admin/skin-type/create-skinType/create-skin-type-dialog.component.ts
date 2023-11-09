@@ -30,7 +30,7 @@ export class CreateSkinTypeDialogComponent extends AppComponentBase implements O
 
   save(): void {
     this.saving = true;
-    console.log(this.skinType)
+
     this._skinTypeService
       .insert(
         this.skinType
@@ -41,7 +41,7 @@ export class CreateSkinTypeDialogComponent extends AppComponentBase implements O
         })
       )
       .subscribe((responce) => {
-        console.log(responce);
+
         //  this.notify.info('SavedSuccessfully');
         this.bsModalRef.hide();
         this.onSave.emit();

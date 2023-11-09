@@ -72,7 +72,7 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
     if(this.image!=undefined)
       myFormData.append("image",this.image);
     this._categoryService.edit(this.id, myFormData).subscribe((responce)=>{
-      console.log(responce)
+  
       this.bsModalRef.hide();
       this.onSave.emit();
 

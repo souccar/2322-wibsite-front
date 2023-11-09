@@ -47,7 +47,6 @@ export class AccordionService {
     let params = new HttpParams().set('brandId', brandId);
     this.products=[];
     this._productService.getByBrand(params).subscribe((responce:any)=>{
-      console.log(responce)
       responce.result.data?.forEach(element => {
         this.product = new ReadProductDto();
         this.product.product_images=[];

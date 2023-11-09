@@ -55,7 +55,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
 
   initTemplate() {
     let params = new HttpParams().set('id', this.id);
-    console.log(params)
+   
     this._templateService.getById(params).subscribe((result: any) => {
       this.template = result.result;
       
@@ -120,7 +120,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
   saveChild(childTemplate:CreateUpdateChildTemplateDto) {
     this.tempChild.push(childTemplate);
     this.childTemplate = new CreateUpdateChildTemplateDto();
-    console.log(this.childTemplate)
+
   
   }
   onRemove() {
@@ -137,7 +137,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
   save(): void {
     this.saving = true;
     this.template.child_templates = this.tempChild;
-    console.log(this.template)
+
     this._templateService
       .edit(this.id,
         this.template
@@ -148,7 +148,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
         })
       )
       .subscribe((result) => {
-        console.log(result)
+     
         // this.notify.info(this.l('SavedSuccessfully'));
         this.bsModalRef.hide();
         this.onSave.emit();

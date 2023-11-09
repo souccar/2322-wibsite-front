@@ -27,10 +27,7 @@ let routes: Routes = [
     path: 'admin',
     loadChildren: () => import('../admin/admin.module').then((m) => m.AdminModule),
   },
-  {
-    path:'about',
-    component:AboutComponent
-  },
+
   {
     path:'news',
     component:ViewNewsComponent

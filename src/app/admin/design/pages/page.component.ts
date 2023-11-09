@@ -53,9 +53,25 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
   }
 
+
+
   override ngOnInit(): void {
-    this.getAllPages();
-    // this.loadData(this.itemsPerPage, 1, this.search, this.itemOrder.value);
+
+    this.getAllPages(this.itemsPerPage,1)
+  }
+  getAllPages(itemsPerPage:number,currentPage:number)
+  {
+   
+    this._pageService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+      
+      this.data=response.result.data;
+      this.totalItem=response.result.total
+    })
+  }
+
+  itemsPerPageChange(itemsPerPage: any): void {
+    this.itemsPerPage=itemsPerPage
+    this.getAllPages(this.itemsPerPage,1)
   }
 
   editModal(id: number) {
@@ -65,7 +81,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
 
     this._pageService.delete(id).subscribe((responce:any)=>{
 
-      this.getAllPages();
+      this.getAllPages(this.itemsPerPage,1)
     });
 
   }
@@ -85,7 +101,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       }
     );
     addTemplateDialog.content.onSave.subscribe(() => {
-      this.getAllPages();
+      this.getAllPages(this.itemsPerPage,1)
     });
   }
   viewPage(id:number)
@@ -101,17 +117,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       }
     );
   }
-  getAllPages() {
-    let params = new HttpParams().set('count', this.itemsPerPage) ;
 
-
-    this._pageService.getAllPages(params).subscribe((response: any) => {
-      this.data = response.result.data;
-
-
-
-    })
-  }
 
   changeOrderBy(item: any): void {
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
@@ -137,7 +143,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
       }
     );
     createOrEditPageDialog.content.onSave.subscribe(() => {
-     this.getAllPages()
+     this.getAllPages(this.itemsPerPage,1)
     });
   }
 
@@ -248,9 +254,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     }
   }
 
-  itemsPerPageChange(perPage: any): void {
-    this.loadData(perPage, 1, this.search, this.itemOrder.value);
-  }
+  
 
   isSelected(p: ReadPageDto): boolean {
     return this.selected.findIndex(x => x.id === p.id) > -1;

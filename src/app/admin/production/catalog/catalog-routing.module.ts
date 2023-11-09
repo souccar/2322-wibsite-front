@@ -7,6 +7,7 @@ import { ProductsComponent } from './products/products.component';
 import { SkinTypeComponent } from 'src/app/admin/skin-type/skin-type.component';
 import { BrandComponent } from '../../brands/brand.component';
 import { NewsComponent } from '../../news/news.component';
+
 const routes: Routes = [{
   path: '', component: CatalogComponent ,
   children:[
@@ -51,7 +52,7 @@ const routes: Routes = [{
     },
     {
       path: 'news',
-      component: NewsComponent,
+       component: NewsComponent,
       //data: { permission : 'Pages.Categories' },
       // canActivate: [AppRouteGuard]
     },
