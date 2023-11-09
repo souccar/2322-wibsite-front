@@ -29,7 +29,7 @@ export class CreateSliderDialogComponent extends AppComponentBase implements OnI
   }
   save(): void {
     this.saving = true;
-    console.log(this.slider)
+
     this._sliderService
       .insert(
         this.slider
@@ -40,7 +40,7 @@ export class CreateSliderDialogComponent extends AppComponentBase implements OnI
         })
       )
       .subscribe((responce) => {
-        console.log(responce);
+
         //  this.notify.info('SavedSuccessfully');
         this.bsModalRef.hide();
         this.onSave.emit();
@@ -54,7 +54,7 @@ export class CreateSliderDialogComponent extends AppComponentBase implements OnI
      const file=new FormData();
      file.append("image",this.image);
     this._sliderService.uploadImage(file).subscribe((response:any)=>{
-      console.log(response)
+
      this.slider.imagePath=response
     })
 	}

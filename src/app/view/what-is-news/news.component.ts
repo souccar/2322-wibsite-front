@@ -32,7 +32,6 @@ export class NewsComponent implements OnInit {
 
   getNewsById(id) {
     this._newsService.getById(id).subscribe((response: any) => {
-      console.log(response);
       this.news = response.result;
     })
 

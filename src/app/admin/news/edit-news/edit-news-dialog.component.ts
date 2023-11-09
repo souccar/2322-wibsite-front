@@ -70,7 +70,7 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     this.files.splice(this.files.indexOf(event), 1);
   }
   save(): void {
-    console.log("hiiii");
+
     this.saving = true;
     const myFormData=new FormData();
     myFormData.append("title",this.news.title);
@@ -79,7 +79,6 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     if(this.image!=undefined)
       myFormData.append("image",this.image);
     this._newsService.edit(this.id,myFormData).subscribe((response)=>{
-      console.log(response);
       this.bsModalRef.hide();
       this.onSave.emit();
 

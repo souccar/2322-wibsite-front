@@ -17,8 +17,8 @@ export class HomeMainImageComponent implements OnInit  {
   }
   getAllSlider() {
     this._sliderService.getWithoutPagination().subscribe((response: any) => {
-      console.log(response.result);
-      this.sliderImages = response.result;
+
+      this.sliderImages = response.result.data;
     })
   }
 }

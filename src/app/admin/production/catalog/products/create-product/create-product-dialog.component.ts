@@ -75,7 +75,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
 
     this.saving = true;
     if(this.IsUploaded && this.saving){
-      console.log(this.product)
+
       this._productService
       .insert(
         this.product

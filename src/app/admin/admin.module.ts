@@ -20,6 +20,7 @@ import { MainPageModule } from './main-page/main-page.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { NewsModule } from './news/news.module';
+import { SecurityComponent } from './security/security.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { NewsModule } from './news/news.module';
     AdminComponent,
     LoginComponent,
     MainPageComponent,
+    SecurityComponent,
     
 
 

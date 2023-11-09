@@ -63,7 +63,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   {
    
     this._pageService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-        console.log(response)
+      
       this.data=response.result.data;
       this.totalItem=response.result.total
     })

@@ -109,7 +109,6 @@ export class ListOfProductsComponent implements OnInit{
       this._productService.getWithoutPagination(params).subscribe((response:any)=>{
         this.totalItems=response.result.total
         this.products=response.result.data;
-        console.log(response)
         this.isLoading=false;
       })
     ;

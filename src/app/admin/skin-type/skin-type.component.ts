@@ -49,13 +49,13 @@ export class SkinTypeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getAllSkinType(this.itemsPerPage,1)
+    // this.getAllSkinType(this.itemsPerPage,1)
   }
   getAllSkinType(itemsPerPage:number,currentPage:number)
   {
    
     this._skinTypeService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-        console.log(response)
+
       this.data=response.result.data;
       this.totalItem=response.result.total
     })
@@ -75,7 +75,7 @@ export class SkinTypeComponent implements OnInit {
 
   edit (id:number)
   {
-    console.log(id)
+
   }
 
 

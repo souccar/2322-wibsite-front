@@ -31,8 +31,8 @@ export class CategoryCardComponent implements OnInit {
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {
       this.categoriesLoaded = true
-      this.categories = responce.result
-      console.log(this.categories)
+      this.categories = responce.result.data
+
     })
 
   }

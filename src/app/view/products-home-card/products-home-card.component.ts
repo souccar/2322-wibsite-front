@@ -19,7 +19,7 @@ export class ProductsHomeCardComponent  implements OnInit {
   }
   
   getProduct() {
-    let params = new HttpParams().set('count', 10);
+    let params = new HttpParams().set('count',4);
     this._productService.getWithoutPagination(params).subscribe((responce: any) => {
       this.products = responce.result.data;
       this.glideDataLoad = true;

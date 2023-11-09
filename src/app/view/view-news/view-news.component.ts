@@ -31,7 +31,6 @@ getAllNews(itemsPerPage:number,currentPage:number)
 {
  
   this._newsService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-      console.log(response)
     this.news=response.result.data;
     this.totalItem=response.result.total
   })

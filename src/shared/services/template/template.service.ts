@@ -32,15 +32,13 @@ export class TemplateService {
   }
   insert(template:any)
   {
-    console.log(template)
     return this.http.post(this.baseUrl+'api/templates',template,{headers:{
       "Content-Type": "application/json",
 
   }});
   }
   edit(id:number,template:any)
-  {  console.log(id)
-    console.log(template)
+  {  
      return this.http.post(this.baseUrl+'api/templates'+'/'+id,template);
   }
   delete(id:number)

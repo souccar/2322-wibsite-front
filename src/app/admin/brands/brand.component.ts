@@ -66,7 +66,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
   {
    
     this._brandService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-        console.log(response)
+    
       this.data=response.result.data;
       this.totalItem=response.result.total
     })

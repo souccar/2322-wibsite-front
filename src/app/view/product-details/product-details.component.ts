@@ -112,8 +112,6 @@ export class ProductDetailsComponent implements OnInit {
 
         this.selectedImageUrl = this.product.product_images[0].imagePath;
         this.Isloading = true;
-        console.log(this.detailImages)
-        console.log(this.detailThumbs)
       }
     });
 

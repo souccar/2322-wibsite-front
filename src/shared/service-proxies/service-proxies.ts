@@ -1681,3 +1681,140 @@ export class ReadSliderDto implements IReadSliderDto {
     return result;
   }
 }
+
+
+
+/**
+* User
+*/ 
+
+
+
+
+export interface ICreateUpdateUserDto {
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+}
+
+export class CreateUpdateUserDto implements ICreateUpdateUserDto {
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+
+
+
+
+  constructor(data?: ICreateUpdateUserDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+
+
+
+  init(_data?: any) {
+    if (_data) {
+      this.name = _data["name"];
+      this.email = _data["email"];
+      this.password = _data["password"];
+    
+    }
+  }
+
+
+  static fromJS(data: any): CreateUpdateUserDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new CreateUpdateUserDto();
+    result.init(data);
+    return result;
+  }
+
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["name"] = this.name;
+    data["email"] = this.email;
+    data["password"] = this.password;
+    return data;
+  }
+
+
+  clone(): CreateUpdateUserDto {
+    const json = this.toJSON();
+    let result = new CreateUpdateUserDto();
+    result.init(json);
+    return result;
+  }
+}
+
+
+
+export interface IReadUserDto {
+  id: number;
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+}
+
+
+export class ReadUserDto implements IReadUserDto {
+  id: number;
+  name: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+
+
+
+
+  constructor(data?: IReadUserDto) {
+    if (data) {
+      for (var property in data) {
+        if (data.hasOwnProperty(property))
+          (<any>this)[property] = (<any>data)[property];
+      }
+    }
+  }
+
+
+
+
+  init(_data?: any) {
+    if (_data) {
+      this.id = _data["id"];
+      this.name = _data["name"];
+      this.email = _data["email"];
+      this.password = _data["password"];
+    }
+  }
+
+
+  static fromJS(data: any): ReadUserDto {
+    data = typeof data === 'object' ? data : {};
+    let result = new ReadUserDto();
+    result.init(data);
+    return result;
+  }
+
+
+  toJSON(data?: any) {
+    data = typeof data === 'object' ? data : {};
+    data["id"] = this.id;
+    data["name"] = this.name;
+    data["email"] = this.email;
+    data["password"] = this.password;
+    return data;
+  }
+
+
+  clone(): ReadUserDto {
+    const json = this.toJSON();
+    let result = new ReadUserDto();
+    result.init(json);
+    return result;
+  }
+}

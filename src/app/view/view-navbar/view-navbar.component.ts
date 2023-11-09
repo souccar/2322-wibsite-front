@@ -62,7 +62,6 @@ export class ViewNavbarComponent implements OnInit {
   }
   removeItemFromNavbar(){
     this.router.events.subscribe((event:any) => {
-      console.log(event)
       if (event.routerEvent.url.includes('/home')) {
         
         this.navbar.nativeElement.querySelector('li:nth-child(3) a');
@@ -82,13 +81,15 @@ export class ViewNavbarComponent implements OnInit {
 
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {
-      this.categories = responce.result
+    
+      this.categories = responce.result.data
     
     })
 
   }
   getSkinTypes() {
     this._skinTypeService.getWithoutPagination().subscribe((responce: any) => {
+      
       this.skinTypes = responce.result.data
     
     })
@@ -96,6 +97,7 @@ export class ViewNavbarComponent implements OnInit {
   }
   getBrands() {
     this._brandService.getWithoutPagination().subscribe((responce: any) => {
+  
       this.brands = responce.result.data
      
     })

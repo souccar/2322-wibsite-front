@@ -61,7 +61,7 @@ export class ProfilePhotosComponent implements OnInit{
        })
   }
   openLightbox(index: number): void {
-    console.log(index);
+
     this.lightbox.open(this.album, index, {centerVertically: true, positionFromTop: 0, disableScrolling: true, wrapAround: true});
   }
 

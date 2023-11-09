@@ -42,8 +42,6 @@ export class SliderComponent implements OnInit {
     private _modalService: BsModalService,
     private _sliderService:SliderService)
   {
-   
-
   }
 
 
@@ -55,7 +53,7 @@ export class SliderComponent implements OnInit {
   {
    
     this._sliderService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-        console.log(response)
+     
       this.data=response.result.data;
       this.totalItem=response.result.total
     })
@@ -66,15 +64,23 @@ export class SliderComponent implements OnInit {
     });
   
   }
+  pageChanged(event: any): void {
+
+   
+    this.getAllSlider(this.itemsPerPage,event.page);
+
+}
+
 
   edit (id:number)
   {
-    console.log(id)
+
   }
 
 
 
   itemsPerPageChange(itemsPerPage: any): void {
+
     this.itemsPerPage=itemsPerPage
     this.getAllSlider(this.itemsPerPage,1)
   }
@@ -225,9 +231,7 @@ export class SliderComponent implements OnInit {
       // );
     }
   }
-  pageChanged(event: any): void {
-    // this.loadData(this.itemsPerPage, event.page, this.search, this.itemOrder.value);
-  }
+
   loadData(pageSize: number = 10, currentPage: number = 1, search: string = '', sort_Desc: boolean = false): void {
     let request: PagedSliderRequestDto = new PagedSliderRequestDto();
     this.itemsPerPage = pageSize;

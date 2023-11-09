@@ -22,7 +22,6 @@ export class ProductService {
   }
   insert(product:any)
   {
-    console.log(product);
     return this.http.post(this.baseUrl+'api/products',product);
   }
   getById(id:number):any{

@@ -46,7 +46,7 @@ export class HeadingComponent  implements OnInit{
   }
 
   navigateByNewsId(id:any){
-    console.log(id);
+
     this.router.navigate(['/GetNews', id,]);
   }
 

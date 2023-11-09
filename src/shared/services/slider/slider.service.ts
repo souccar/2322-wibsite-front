@@ -21,7 +21,6 @@ export class SliderService {
   }
   insert(slider:any)
   {
-    console.log(slider);
     return this.http.post(this.baseUrl+'api/Sliders',slider);
   }
   edit(id:number,slider:CreateUpdateSliderDto)
