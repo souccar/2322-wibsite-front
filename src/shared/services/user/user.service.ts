@@ -14,7 +14,7 @@ export class UserService {
 
   getAll(itemsPerPage:number,currentPage:number)
   {
-    let apiUrl = this.baseUrl +'api/user' + '?page=' +currentPage+'&count='+itemsPerPage;
+    let apiUrl = this.baseUrl +'api/users/'+itemsPerPage+ '?page='+currentPage;
     return this.http.get(apiUrl);
   }
   getWithoutPagination(params?:HttpParams)
@@ -26,14 +26,14 @@ export class UserService {
   }
   insert(user:CreateUpdateUserDto)
   {
-    return this.http.post(this.baseUrl+'api/user',user);
+    return this.http.post(this.baseUrl+'api/register',user);
   }
   edit(id:number,user:CreateUpdateUserDto)
   {
-     return this.http.post(this.baseUrl+'api/user'+'/'+id,user);
+     return this.http.post(this.baseUrl+'api/editUser'+'/'+id,user);
   }
   delete(id:number)
   {
-    return this.http.delete(this.baseUrl+'api/user'+'/'+id);
+    return this.http.delete(this.baseUrl+'api/deleteUser'+'/'+id);
   }
 }

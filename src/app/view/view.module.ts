@@ -41,6 +41,7 @@ import { RecommendedProductsHomeCardComponent } from './recommended-products-hom
 import { ContactUsHomeCardComponent } from './contact-us-home-card/contact-us-home-card.component';
 import { ContactNumbersHomeCardComponent } from './contact-numbers-home-card/contact-numbers-home-card.component';
 import { VideoHomeCardComponent } from './video-home-card/video-home-card.component';
+import { FooterComponent } from '../admin/containers/layout/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { VideoHomeCardComponent } from './video-home-card/video-home-card.compon
      ContactUsHomeCardComponent,
      ContactNumbersHomeCardComponent,
      VideoHomeCardComponent,
+    
 
 
   ],

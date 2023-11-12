@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdatePageDto } from 'src/shared/service-proxies/service-proxies';
@@ -22,7 +23,7 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
     injector: Injector,
     public _PageService: PageService,
     public bsModalRef: BsModalRef,
-    // public _sizeService:ProductSizeServiceProxy,
+    private toastr: ToastrService
 
 
   ) {
@@ -61,10 +62,10 @@ export class CreatePageDialogComponent extends AppComponentBase implements OnIni
     )
     .subscribe((response:any) => {
 
-      // this.notify.info(this.l('SavedSuccessfully'));
-      this.bsModalRef.hide();
-      this.onSave.emit();
-
+      if(response.success){  
+        this.toastr.success('Add Successfully');
+        this.bsModalRef.hide();
+        this.onSave.emit();}
     });
   }
 

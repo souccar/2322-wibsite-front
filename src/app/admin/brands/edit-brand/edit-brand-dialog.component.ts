@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateBrandDto } from 'src/shared/service-proxies/service-proxies';
 import { BrandService } from 'src/shared/services/brand-service/brand.service';
@@ -17,6 +19,7 @@ export class EditBrandDialogComponent extends AppComponentBase  implements OnIni
     injector: Injector,
     public _brandService: BrandService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -33,16 +36,16 @@ export class EditBrandDialogComponent extends AppComponentBase  implements OnIni
 
   save(): void {
     this.saving = true;
-    this._brandService.edit(this.id,this.brand).subscribe(
-      () => {
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
-
-      },
-      () => {
+    this._brandService.edit(this.id,this.brand)   .pipe(
+      finalize(() => {
         this.saving = false;
-      }
-    );
+      })
+    )
+    .subscribe((response:any) => {
+      if(response.success){  
+        this.toastr.success('Edit Successfully');
+        this.bsModalRef.hide();
+        this.onSave.emit();}
+    });
   }
 }

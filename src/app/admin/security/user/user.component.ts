@@ -6,6 +6,7 @@ import { UserService } from 'src/shared/services/user/user.service';
 import { EditUserDialogComponent } from './edit-user/edit-user-dialog.component';
 import { CreateUserDialogComponent } from './create-user/create-user-dialog.component';
 import { PagedListingComponentBase, PagedRequestDto } from 'src/shared/paged-listing-component-base';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -38,7 +39,8 @@ export class UserComponent extends PagedListingComponentBase<ReadUserDto> {
   // @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreateUserDialogComponent;
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _userService:UserService)
+    private _userService:UserService,
+    private toastr: ToastrService)
   {
    
 super(injector);
@@ -67,6 +69,8 @@ super(injector);
   deletebutton(id:number){
     this._userService.delete(id).subscribe((responce:any)=>{
       this.getAllUser(this.itemsPerPage,1)
+
+      this.toastr.success(responce.message);
     });
   
   }
@@ -187,7 +191,7 @@ super(injector);
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );

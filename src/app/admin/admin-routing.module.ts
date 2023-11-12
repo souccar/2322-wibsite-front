@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'production' },
-    
+
       { path: 'production', loadChildren: () => import('../admin/production/production.module').then(m => m.ProductionModule) },
       { path: 'design', loadChildren: () => import('./design/design.module').then(m => m.DesignModule) },
       { path: 'mainPage', loadChildren: () => import('./main-page/main-page.module').then(m => m.MainPageModule) },
@@ -17,8 +17,10 @@ const routes: Routes = [
 
     ],
   },
-  {path:'login', component:LoginComponent,
-  children: []}
+  {
+    path: 'login', component: LoginComponent,
+    children: []
+  }
 
 ];
 

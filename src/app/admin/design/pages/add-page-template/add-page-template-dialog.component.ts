@@ -6,6 +6,7 @@ import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdatePageTemplateDto, CreateUpdateTemplateDto, PreviousTamplatesDto, ReadTemplateDto } from 'src/shared/service-proxies/service-proxies';
 import { PageService } from 'src/shared/services/page-service/page.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-page-template-dialog',
@@ -32,6 +33,7 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
     public _templateService: TemplateService,
     public _pageService: PageService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -97,10 +99,11 @@ export class AddPageTemplateDialogComponent extends AppComponentBase implements 
         })
       )
       .subscribe((response: any) => {
-
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
+        if(response.success){  
+          this.toastr.success('Add Successfully');
+          this.bsModalRef.hide();
+          this.onSave.emit();}
+    
 
       });
   }

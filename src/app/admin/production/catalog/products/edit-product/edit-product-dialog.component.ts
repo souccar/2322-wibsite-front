@@ -8,6 +8,7 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
 import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { ProductService } from 'src/shared/services/product-service/product.service';
 import { SkinTypeService } from 'src/shared/services/skinType-service/skinType.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-product-dialog',
@@ -33,7 +34,7 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
     public _productService: ProductService,
     public _categoryService: CategoryService,
     public _brandService: BrandService,
-    public _skinTypeServices: SkinTypeService,) {
+    public _skinTypeServices: SkinTypeService,private toastr: ToastrService) {
 
     super(injector);
   }
@@ -51,6 +52,7 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
   initialProduct() {
     this._productService.getById(this.id)
       .subscribe((result: any) => {
+       
         this.product = result.result;
         this.product.categoryId = result.result.category?.id;
         this.product.brandId = result.result.brand?.id;
@@ -72,7 +74,7 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
 
   initCategory() {
     this._categoryService.getWithoutPagination().subscribe((response: any) => {
-      this.categories = response.result;
+      this.categories = response.result.data;
 
     });
 
@@ -100,8 +102,15 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
       })
     })
     this.product.images = this.imagePaths;
-    this._productService.edit(this.id, this.product).subscribe((response) => {
-      this.bsModalRef.hide();
+    this._productService.edit(this.id, this.product).subscribe((response:any) => {
+
+    
+        if(response.success){  
+          this.toastr.success('Edit Successfully');
+          this.bsModalRef.hide();
+          this.onSave.emit();}
+
+   
     })
 
   }

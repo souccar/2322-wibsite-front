@@ -21,7 +21,22 @@
           <a class="navbar-logo ml-5  pull-left" (click)="scrollTo('#home')" href="javascript:;">
             <span class="logo d-none d-xs-block "></span>
           </a>
-
+          <div></div>
+          <a href="javascript:;" (click)="fullScreenClick()" id="fullScreenButton" class="pull-left" >
+            <i *ngIf="!isFullScreen" class="simple-icon-size-fullscreen d-block" data-bs-toggle="tooltip"
+              data-bs-placement="top" title="full Screen size"></i>
+            <i *ngIf="isFullScreen" class="simple-icon-size-actual d-block" data-bs-toggle="tooltip"
+              data-bs-placement="top" title="Actual Screen size"></i>
+            <!-- <span>Screen Size </span> -->
+          </a>
+          <a href="javascript:;" id="darkModeSwitch" class="pull-left"   (click)="onDarkModeChange($event)">
+            <i *ngIf="isDarkModeActive" class=" iconsminds-sun d-block" data-toggle="tooltip" data-placement="top"
+              title="Light Mood"></i>
+            <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon d-block " data-toggle="tooltip"
+              data-placement="top" title="Dark Mood"></i>
+            <!-- <span class="text-small">Mood</span> -->
+          </a>
+<!-- 
           <div dropdown>
             <button dropdownToggle type="button" class="header-icon btn btn-empty">
               <i class="simple-icon-grid" data-bs-toggle="tooltip"
@@ -44,7 +59,7 @@
                 <span class="text-small">Mood</span>
               </a>
             </div>
-          </div>
+          </div> -->
         </div>
 
 

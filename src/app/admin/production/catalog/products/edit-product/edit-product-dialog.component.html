@@ -84,8 +84,8 @@
           class="form-control"
           aria-label="Brand"
           #brandModel="ngModel"
-          [(ngModel)]="product.brandId"
           name="brandId"
+          [(ngModel)]="product.brandId"
           #brandIdEl
         >
           <option *ngFor="let item of brands" value="{{ item.id }}">
@@ -93,11 +93,12 @@
           </option>
         </select>
         <abp-validation-summary
-          [control]="categoryModel"
-          [controlEl]="categoryIdEl"
+          [control]="brandModel"
+          [controlEl]="brandIdEl"
         ></abp-validation-summary>
       </div>
     </div>
+ 
     <div class="form-group row">
       <label class="col-md-3 col-form-label" for="product.skinType">
         {{ "Skin Type" | translate }}

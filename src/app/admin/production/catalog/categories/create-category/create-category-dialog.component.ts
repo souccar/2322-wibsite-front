@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Injector, OnInit, Output, ViewChild } from '@angular/core';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateCategoryDto } from 'src/shared/service-proxies/service-proxies';
@@ -19,6 +20,7 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
   constructor(injector: Injector,
    public _categoryService: CategoryService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
 
   ) {
     super(injector);
@@ -51,10 +53,11 @@ export class CreateCategoryDialogComponent extends AppComponentBase implements O
             this.saving = false;
             })
         )
-        .subscribe((responce) => {
-        //  this.notify.info('SavedSuccessfully');
-          this.bsModalRef.hide();
-          this.onSave.emit();
+        .subscribe((response:any) => {
+          if(response.success){  
+            this.toastr.success('Add Successfully');
+            this.bsModalRef.hide();
+            this.onSave.emit();}
         });
 
   }

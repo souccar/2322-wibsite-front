@@ -8,15 +8,17 @@ import { SliderService } from 'src/shared/services/slider/slider.service';
   templateUrl: './home-main-image.component.html',
 
 })
-export class HomeMainImageComponent implements OnInit  {
+export class HomeMainImageComponent implements OnInit {
   sliderImages: ReadSliderDto[] = [];
   baseUrl = environment.baseUrl;
-  constructor(private _sliderService: SliderService){}
+  loadData = false;
+  constructor(private _sliderService: SliderService) { }
   ngOnInit(): void {
     this.getAllSlider();
   }
   getAllSlider() {
     this._sliderService.getWithoutPagination().subscribe((response: any) => {
+      this.loadData = true;
 
       this.sliderImages = response.result.data;
     })

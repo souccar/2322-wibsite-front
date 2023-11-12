@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateNewsDto } from 'src/shared/service-proxies/service-proxies';
 import { NewsService } from 'src/shared/services/news-service/news.service';
@@ -23,6 +24,7 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     injector: Injector,
     public _newsService: NewsService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -78,9 +80,11 @@ export class EditNewsDialogComponent  extends AppComponentBase implements OnInit
     myFormData.append("displayInHome",this.news.displayInHome.toString());
     if(this.image!=undefined)
       myFormData.append("image",this.image);
-    this._newsService.edit(this.id,myFormData).subscribe((response)=>{
-      this.bsModalRef.hide();
-      this.onSave.emit();
+    this._newsService.edit(this.id,myFormData).subscribe((response:any)=>{
+      if(response.success){  
+        this.toastr.success('Edit Successfully');
+        this.bsModalRef.hide();
+        this.onSave.emit();}
 
     })
 
