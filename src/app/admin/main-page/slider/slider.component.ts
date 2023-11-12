@@ -8,6 +8,7 @@ import { SliderService } from 'src/shared/services/slider/slider.service';
 import { PagedRequestDto } from 'src/shared/paged-listing-component-base';
 import { CreateSliderDialogComponent } from './create-slider/create-slider-dialog.component';
 import { EditSliderDialogComponent } from './edit-slider/edit-slider-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-slider',
@@ -40,7 +41,8 @@ export class SliderComponent implements OnInit {
   // @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreateSliderDialogComponent;
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _sliderService:SliderService)
+    private _sliderService:SliderService,
+    private toastr: ToastrService)
   {
   }
 
@@ -59,8 +61,9 @@ export class SliderComponent implements OnInit {
     })
   }
   deletebutton(id:number){
-    this._sliderService.delete(id).subscribe((responce:any)=>{
+    this._sliderService.delete(id).subscribe((response:any)=>{
       this.getAllSlider(this.itemsPerPage,1)
+      this.toastr.success(response.message);
     });
   
   }
@@ -192,7 +195,7 @@ export class SliderComponent implements OnInit {
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );

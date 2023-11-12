@@ -11,6 +11,7 @@ import { EditCategoryDialogComponent } from './edit-category/edit-category-dialo
 import { ViewCategoryDialogComponent } from './view-category/view-category-dialog.component';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { HttpParams } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 // import { ContextMenuComponent } from 'ngx-contextmenu';
 class PagedCategoriesRequestDto extends PagedRequestDto {
@@ -50,7 +51,8 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _categoryService:CategoryService)
+    private _categoryService:CategoryService,
+    private toastr: ToastrService)
   {
     super(injector);
 
@@ -131,8 +133,8 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   }
   deletebutton(id:number){
     this._categoryService.delete(id).subscribe((responce:any)=>{
-
       this.getAllCategory(this.itemsPerPage,1)
+      this.toastr.success(responce.message);
     });
 
   }
@@ -203,7 +205,7 @@ viewModal(id:number)
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );

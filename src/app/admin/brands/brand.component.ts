@@ -8,6 +8,7 @@ import { BrandService } from 'src/shared/services/brand-service/brand.service';
 import { CreateBrandDialogComponent } from './create-brand/create-brand-dialog.component';
 import { HttpParams } from '@angular/common/http';
 import { EditBrandDialogComponent } from './edit-brand/edit-brand-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -50,7 +51,8 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _brandService:BrandService)
+    private _brandService:BrandService,
+    private toastr: ToastrService)
   {
 
     super(injector);
@@ -80,6 +82,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
   deletebutton(id:number){
     this._brandService.delete(id).subscribe((responce:any)=>{
       this.getAllBrand(this.itemsPerPage,1)
+      this.toastr.success(responce.message);
     });
 
   }
@@ -161,7 +164,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );

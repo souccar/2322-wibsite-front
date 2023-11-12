@@ -19,7 +19,7 @@
       {{product.name}}
     </h1>
     <app-rating></app-rating>
-      <p class="mb-3 float-right">
+      <p class="mb-3 float-right" [innerHTML]="product.description">
           {{product.description}}
       </p>
 

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateUserDto } from 'src/shared/service-proxies/service-proxies';
@@ -11,14 +12,12 @@ import { UserService } from 'src/shared/services/user/user.service';
   
 })
 export class CreateUserDialogComponent extends AppComponentBase implements OnInit {
-
-
   saving = false;
   user = new CreateUpdateUserDto();
   @Output() onSave = new EventEmitter<any>();
   constructor(injector: Injector,
     public _userService: UserService,
-    public bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -30,7 +29,7 @@ export class CreateUserDialogComponent extends AppComponentBase implements OnIni
 
   save(): void {
     this.saving = true;
-
+    console.log(this.user)
     this._userService
       .insert(
         this.user
@@ -40,11 +39,11 @@ export class CreateUserDialogComponent extends AppComponentBase implements OnIni
           this.saving = false;
         })
       )
-      .subscribe((responce) => {
-
-        //  this.notify.info('SavedSuccessfully');
-        this.bsModalRef.hide();
-        this.onSave.emit();
+      .subscribe((responce:any) => {
+        if(responce.success){  
+          this.toastr.success('Add Successfully');
+          this.bsModalRef.hide();
+          this.onSave.emit();}
       });
 
   }

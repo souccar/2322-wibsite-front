@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
@@ -18,7 +19,7 @@ export class CreateSkinTypeDialogComponent extends AppComponentBase implements O
   @Output() onSave = new EventEmitter<any>();
   constructor(injector: Injector,
     public _skinTypeService: SkinTypeService,
-    public bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -40,11 +41,13 @@ export class CreateSkinTypeDialogComponent extends AppComponentBase implements O
           this.saving = false;
         })
       )
-      .subscribe((responce) => {
-
-        //  this.notify.info('SavedSuccessfully');
+      .subscribe((responce:any) => {
+       
+        if(responce.success){  
+        this.toastr.success('Add Successfully');
         this.bsModalRef.hide();
-        this.onSave.emit();
+        this.onSave.emit();}
+    
       });
 
   }

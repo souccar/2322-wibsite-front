@@ -8,6 +8,7 @@ import { TemplateService } from 'src/shared/services/template/template.service';
 import { ViewTemplateDialogComponent } from './view-template/view-template-dialog.component';
 import { EditTemplateDialogComponent } from './edit-template/edit-template-dialog.component';
 import { HttpParams } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-template',
@@ -46,6 +47,7 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
     injector: Injector,
     private _templateService: TemplateService,
     private _modalService: BsModalService,
+    private toastr: ToastrService
   ) {
     super(injector);
 
@@ -59,7 +61,6 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
   {
    
     this._templateService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-    
       this.data=response.result.data;
       this.totalItem=response.result.total
     })
@@ -108,8 +109,9 @@ export class TemplateComponent extends PagedListingComponentBase<ReadTemplateDto
 
   }
   deletebutton(id: number) {
-    this._templateService.delete(id).subscribe((rec) => {
+    this._templateService.delete(id).subscribe((response:any) => {
       this.getAllTemplates(this.itemsPerPage,1)
+      this.toastr.success(response.message);
     })
   }
   changeOrderBy(item: any): void {

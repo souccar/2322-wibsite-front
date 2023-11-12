@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChild } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateChildTemplateDto, CreateUpdateTemplateDto } from 'src/shared/service-proxies/service-proxies';
@@ -29,6 +30,7 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
     public _templateService: TemplateService,
     private _pageService:PageService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -96,10 +98,11 @@ export class CreateTemplateDialogComponent extends AppComponentBase implements O
         this.saving = false;
         })
     )
-    .subscribe(() => {
-      // this.notify.info(this.l('SavedSuccessfully'));
-      this.bsModalRef.hide();
-      this.onSave.emit();
+    .subscribe((response:any) => {
+      if(response.success){  
+        this.toastr.success('Add Successfully');
+        this.bsModalRef.hide();
+        this.onSave.emit();}
 
     });
   }

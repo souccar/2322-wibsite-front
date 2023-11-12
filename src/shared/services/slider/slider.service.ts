@@ -28,6 +28,7 @@ export class SliderService {
      return this.http.post(this.baseUrl+'api/Sliders'+'/'+id,slider);
   }
   getById(id:number):any{
+    console.log(id)
     return this.http.get(this.baseUrl+'api/Sliders'+'/'+id);
   }
   delete(id:number)

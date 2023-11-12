@@ -10,6 +10,7 @@ import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { EditPageDialogComponent } from './edit-page/edit-page-dialog.component';
 import { HttpParams } from '@angular/common/http';
 import { ViewPageDialogComponent } from './view-page/view-page-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-page',
@@ -48,6 +49,7 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
     injector: Injector,
     private _pageService: PageService,
     private _modalService: BsModalService,
+    private toastr: ToastrService
   ) {
     super(injector);
 
@@ -80,8 +82,8 @@ export class PageComponent extends PagedListingComponentBase<ReadPageDto> {
   deletebutton(id:number){
 
     this._pageService.delete(id).subscribe((responce:any)=>{
-
       this.getAllPages(this.itemsPerPage,1)
+      this.toastr.success(responce.message);
     });
 
   }

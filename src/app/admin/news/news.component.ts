@@ -7,6 +7,7 @@ import { NewsService } from 'src/shared/services/news-service/news.service';
 import { CreateNewsDialogComponent } from './create-news/create-news-dialog.component';
 import { EditNewsDialogComponent } from './edit-news/edit-news-dialog.component';
 import { HttpParams } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -56,7 +57,8 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
 
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _newsService:NewsService)
+    private _newsService:NewsService,
+    private toastr: ToastrService)
   {
 
     super(injector);
@@ -84,6 +86,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
   deletebutton(id:number){
     this._newsService.delete(id).subscribe((responce:any)=>{
       this.getAllNews(this.itemsPerPage,1)
+      this.toastr.success(responce.message);
     });
 
   }
@@ -234,7 +237,7 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );

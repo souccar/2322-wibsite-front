@@ -1,5 +1,6 @@
-<carousel [isAnimated]="true">
+<carousel [isAnimated]="true" *ngIf="loadData">
     <slide *ngFor="let image of sliderImages ">
         <img src="{{baseUrl+image.imagePath}}" alt="{{image.title}}" style="height: 100vh; width: 100%;">
     </slide>
 </carousel>
+

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppComponentBase } from 'src/shared/app-component-base';
@@ -24,7 +25,8 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
   constructor(
     injector: Injector,
     public bsModalRef: BsModalRef,
-    public _categoryService: CategoryService) {
+    public _categoryService: CategoryService,
+    private toastr: ToastrService) {
     super(injector);
   }
 
@@ -71,10 +73,12 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
     myFormData.append("description", this.category.description);
     if(this.image!=undefined)
       myFormData.append("image",this.image);
-    this._categoryService.edit(this.id, myFormData).subscribe((responce)=>{
+    this._categoryService.edit(this.id, myFormData).subscribe((response:any)=>{
   
-      this.bsModalRef.hide();
-      this.onSave.emit();
+      if(response.success){  
+        this.toastr.success('Edit Successfully');
+        this.bsModalRef.hide();
+        this.onSave.emit();}
 
     },
     

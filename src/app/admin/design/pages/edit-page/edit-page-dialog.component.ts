@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppComponentBase } from 'src/shared/app-component-base';
@@ -31,6 +32,7 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
     injector: Injector,
     public _PageService: PageService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -89,10 +91,10 @@ export class EditPageDialogComponent extends AppComponentBase implements OnInit 
         })
       )
       .subscribe((response: any) => {
-
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
+        if(response.success){  
+          this.toastr.success('Edit Successfully');
+          this.bsModalRef.hide();
+          this.onSave.emit();}
 
       });
   }

@@ -10,6 +10,7 @@ import { finalize } from 'rxjs';
 import { ContextMenuComponent } from '@perfectmemory/ngx-contextmenu';
 import { EditProductDialogComponent } from './edit-product/edit-product-dialog.component';
 import { ViewProductDialogComponent } from './view-product/view-product-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
   constructor(
     injector: Injector,
     private _productService:ProductService,
-    private _modalService: BsModalService,
+    private _modalService: BsModalService,private toastr: ToastrService
     ) {
     super(injector);
 
@@ -96,7 +97,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );
@@ -161,7 +162,8 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
 deletebutton(id:number)
 {
   this._productService.delete(id).subscribe((responce:any)=>{
-    window.location.reload();
+    this.getAllProduct(this.itemsPerPage,1);
+    this.toastr.success(responce.message);
   });
 
 }

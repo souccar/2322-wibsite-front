@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { CreateUpdateSliderDto } from 'src/shared/service-proxies/service-proxies';
 import { SliderService } from 'src/shared/services/slider/slider.service';
@@ -24,6 +26,7 @@ export class EditSliderDialogComponent extends AppComponentBase    implements On
     injector: Injector,
     public _sliderService: SliderService,
     public bsModalRef: BsModalRef,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -36,17 +39,18 @@ export class EditSliderDialogComponent extends AppComponentBase    implements On
 
   save(): void {
     this.saving = true;
-    this._sliderService.edit(this.id,this.slider).subscribe(
-      () => {
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
-
-      },
-      () => {
+    console.log(this.slider)
+    this._sliderService.edit(this.id,this.slider).pipe(
+      finalize(() => {
         this.saving = false;
-      }
-    );
+      })
+    )
+    .subscribe((response:any) => {
+      if(response.success){  
+        this.toastr.success('Edit Successfully');
+        this.bsModalRef.hide();
+        this.onSave.emit();}
+    });
   }
 
   initImage() {
@@ -58,9 +62,9 @@ export class EditSliderDialogComponent extends AppComponentBase    implements On
   initialSlider() {
 
     this._sliderService.getById(this.id).subscribe((result:any) => {
-
       this.slider=result.result;
-      this.base64 = result.result.base64;
+      console.log(result)
+      this.base64 = result.result.imageBase64;
       this.image = result.result.imagePath;
       this.tempImage = this.image.split("/");
       this.initImage();

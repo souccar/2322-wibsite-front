@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Injector, OnInit, Output, ViewChild, OnDestroy } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { AppComponentBase } from 'src/shared/app-component-base';
 import { BrandForDropdownDto, CategoryForDropdownDto, CreateUpdateProductDto, SkinTypeForDropdownDto } from 'src/shared/service-proxies/service-proxies';
@@ -30,7 +31,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
     public _categoryService :CategoryService,
     public _brandService:BrandService,
     public _skinTypeServices:SkinTypeService,
-    public bsModalRef: BsModalRef,
+    public bsModalRef: BsModalRef,private toastr: ToastrService
 
   ) {
     super(injector);
@@ -50,7 +51,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
   initCategory()
   {
     this._categoryService.getWithoutPagination().subscribe((response:any) => {
-       this.categories = response.result;
+       this.categories = response.result.data;
 
     });
 
@@ -58,7 +59,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
   initBrand()
   {
     this._brandService.getWithoutPagination().subscribe((response:any)=>{
-
+        
         this.brands=response.result.data
 
     })
@@ -74,6 +75,7 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
   save(): void {
 
     this.saving = true;
+
     if(this.IsUploaded && this.saving){
 
       this._productService
@@ -85,10 +87,15 @@ export class CreateProductDialogComponent extends AppComponentBase implements On
           this.saving = false;
           })
       )
-      .subscribe((response) => {
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
+      .subscribe((response:any) => {
+   
+        if(response.success){  
+
+          this.toastr.success('Add Successfully');
+          this.bsModalRef.hide();
+          this.onSave.emit();}
+
+   
 
       });
     }

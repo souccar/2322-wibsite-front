@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AppComponentBase } from 'src/shared/app-component-base';
@@ -43,7 +44,8 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
     public _templateService: TemplateService,
     public bsModalRef: BsModalRef,
     private _pageService: PageService,
-    private sanitizer:DomSanitizer
+    private sanitizer:DomSanitizer,
+    private toastr: ToastrService
   ) {
     super(injector);
   }
@@ -57,6 +59,7 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
     let params = new HttpParams().set('id', this.id);
    
     this._templateService.getById(params).subscribe((result: any) => {
+      console.log(result)
       this.template = result.result;
       
 
@@ -147,11 +150,12 @@ export class EditTemplateDialogComponent extends AppComponentBase implements OnI
           this.saving = false;
         })
       )
-      .subscribe((result) => {
+      .subscribe((response:any) => {
      
-        // this.notify.info(this.l('SavedSuccessfully'));
-        this.bsModalRef.hide();
-        this.onSave.emit();
+        if(response.success){  
+          this.toastr.success('Add Successfully');
+          this.bsModalRef.hide();
+          this.onSave.emit();}
 
       });
   }

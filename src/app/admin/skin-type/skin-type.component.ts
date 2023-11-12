@@ -8,6 +8,7 @@ import { ReadSkinTypeDto } from 'src/shared/service-proxies/service-proxies';
 import { finalize } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { EditSkinTypeDialogComponent } from './edit-skinType/edit-skin-type-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-skin-type',
@@ -40,16 +41,15 @@ export class SkinTypeComponent implements OnInit {
   // @ViewChild('addNewModalRef', { static: true }) addNewModalRef: CreateSkinTypeDialogComponent;
   constructor( injector: Injector,
     private _modalService: BsModalService,
-    private _skinTypeService:SkinTypeService)
+    private _skinTypeService:SkinTypeService,private toastr: ToastrService
+  )
   {
-   
-
   }
 
 
   ngOnInit(): void {
 
-    // this.getAllSkinType(this.itemsPerPage,1)
+    this.getAllSkinType(this.itemsPerPage,1)
   }
   getAllSkinType(itemsPerPage:number,currentPage:number)
   {
@@ -69,6 +69,7 @@ export class SkinTypeComponent implements OnInit {
   deletebutton(id:number){
     this._skinTypeService.delete(id).subscribe((responce:any)=>{
       this.getAllSkinType(this.itemsPerPage,1)
+     this.toastr.success(responce.message);
     });
   
   }
@@ -194,7 +195,7 @@ export class SkinTypeComponent implements OnInit {
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        class: 'modal-lg',
 
       }
     );
