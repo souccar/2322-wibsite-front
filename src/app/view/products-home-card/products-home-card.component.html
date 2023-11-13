@@ -16,10 +16,10 @@
         </div>
         <div class="card-body text-center">
             <a [routerLink]="['/product-details',product.id]">
-                <p class="list-item-heading fw-bold mb-4">{{product.name}}
-                </p>
+                <h3 class="list-item-heading text-muted fw-bold mb-4">{{product.name}}
+                </h3>
             </a>
-            <a [routerLink]="['/viewProduct']">
+            <!-- <a [routerLink]="['/viewProduct']">
                 <p class="text-muted text-small mb-0 font-weight-light">
 
                     <ng-container *ngIf="product.description!=null">
@@ -29,7 +29,7 @@
                     </ng-container>
                     <ng-template #elseBlock>{{product.description}}</ng-template>
                 </p>
-            </a>
+            </a> -->
         </div>
     </div>
 </div>

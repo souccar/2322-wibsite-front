@@ -1,54 +1,50 @@
 <app-view-navbar></app-view-navbar>
-<br/><br/><br/><br/><br/><br/>
+<br /><br /><br /><br /><br /><br />
+
+
 <div class="row ml-5 mr-5">
-  <div class="col-lg-7 col-md-12 col-xl-7 ">
-      <div class="card mb-4">
-          <div class="card-body">
-            <app-glide-thumbs *ngIf="Isloading" class="image" [images]="detailImages" [settingsImages]="{
-              bound: true,
-              rewind: false,
-              focusAt: 0,
-              startAt: 0,
-              gap: 5,
-              perView: 1,
+  <div class="col-lg-12 col-xl-7  col-md-12 col-sm-12 col-xs-12   col-left ">
+    <div class="card mb-4 height" *ngIf="Isloading">
+      <div class="card-body">
+        <app-glide-thumbs class="image " [images]="detailImages" [settingsImages]="{
+          bound: true,
+          rewind: false,
+          focusAt: 0,
+          startAt: 0,
+          gap: 5,
+          perView: 1
             }" [thumbs]="detailThumbs" [settingsThumbs]="{
               bound: true,
               rewind: false,
               focusAt: 0,
               startAt: 0,
               gap: 10,
-              perView: 5,
+              perView:3,
               breakpoints: {
-                '2640' : { perView: 5 },
-                '576' : { perView: 4 },
+                '2640' : { perView:3 },
+                '576' : { perView:3 },
                 '420' : { perView: 3 }
               }
             }"></app-glide-thumbs>
 
-          </div>
       </div>
-
-  </div>
-
-  <div class="col-lg-5 col-md-12 col-xl-5">
-    <app-product-detail-info></app-product-detail-info>
     </div>
-
-
-
-
+  </div>
+  <div class="col-lg-12 col-xl-5 col-md-12 col-sm-12 col-xs-12  mb-4 ">
+    <app-product-detail-info></app-product-detail-info>
+  </div>
 </div>
+
+
+
+
+
 <div class="row ml-5 mr-5">
-<div class="col-lg-7 col-md-12 col-xl-7 ">
-  <app-product-detail-tabs></app-product-detail-tabs>
-
-</div>
-<div class="col-lg-5 col-md-12 col-xl-5">
-  <app-profile-photos></app-profile-photos>
-
-</div>
-
+  <div class="col-lg-7 col-md-12 col-xl-7 ">
+    <app-product-detail-tabs></app-product-detail-tabs>
+  </div>
+  <div class="col-lg-5 col-md-12 col-xl-5">
+    <app-profile-photos></app-profile-photos>
+  </div>
 </div>
 <app-footer></app-footer>
-
-
