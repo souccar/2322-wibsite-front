@@ -38,6 +38,7 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
   initialCategory() {
     this._categoryService.getById(this.id)
       .subscribe((result: any) => {
+
         this.category = result.result;
         this.base64 = result.result.base64;
         // this.image = result.result.imagePath;
@@ -74,14 +75,14 @@ export class EditCategoryDialogComponent extends AppComponentBase implements OnI
     if(this.image!=undefined)
       myFormData.append("image",this.image);
     this._categoryService.edit(this.id, myFormData).subscribe((response:any)=>{
-  
-      if(response.success){  
+
+      if(response.success){
         this.toastr.success('Edit Successfully');
         this.bsModalRef.hide();
         this.onSave.emit();}
 
     },
-    
+
       // () => {
       //   this.saving = false;
       // }
