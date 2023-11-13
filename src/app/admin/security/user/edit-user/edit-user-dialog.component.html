@@ -1,1 +1,30 @@
-<p>edit-user-dialog works!</p>
+
+<form class="form-horizontal " autocomplete="off" #createSkinTypeModal="ngForm" (ngSubmit)="save()" >
+    <abp-modal-header [title]="'Edit  User' | translate" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body modal-xl">
+          <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="name">
+              {{ "Name" | translate }}
+            </label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" name="name" id="name" required
+                [(ngModel)]="user.name" #nameModel="ngModel" #nameEl   />
+            </div>
+          </div>
+          <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="email">
+              {{ "Email" | translate }}
+            </label>
+            <div class="col-md-9">
+              <input type="email" class="form-control" name="email"  id="email" required
+                [(ngModel)]="user.email" emailModel="ngModel" #emailEl   />
+            </div>
+          </div>
+        
+  
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createSkinTypeModal.form.valid || saving"
+      (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+  </form>
+  
+  

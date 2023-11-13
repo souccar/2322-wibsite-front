@@ -56,7 +56,7 @@ export class SliderComponent implements OnInit {
 
     this._sliderService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
 
-      this.data=response.result;
+      this.data=response.result.data;
       this.totalItem=response.result.total
     })
   }

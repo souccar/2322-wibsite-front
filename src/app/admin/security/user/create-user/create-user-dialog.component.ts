@@ -11,15 +11,15 @@ import { UserService } from 'src/shared/services/user/user.service';
   templateUrl: './create-user-dialog.component.html',
   
 })
-export class CreateUserDialogComponent extends AppComponentBase implements OnInit {
+export class CreateUserDialogComponent  implements OnInit {
   saving = false;
   user = new CreateUpdateUserDto();
   @Output() onSave = new EventEmitter<any>();
-  constructor(injector: Injector,
+  constructor(
     public _userService: UserService,
     public bsModalRef: BsModalRef,private toastr: ToastrService
   ) {
-    super(injector);
+    
   }
   ngOnInit(): void {
   }

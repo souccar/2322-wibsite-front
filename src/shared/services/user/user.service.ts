@@ -30,7 +30,7 @@ export class UserService {
   }
   edit(id:number,user:CreateUpdateUserDto)
   {
-     return this.http.post(this.baseUrl+'api/editUser'+'/'+id,user);
+     return this.http.put(this.baseUrl+'api/editUser'+'/'+id,user);
   }
   delete(id:number)
   {
