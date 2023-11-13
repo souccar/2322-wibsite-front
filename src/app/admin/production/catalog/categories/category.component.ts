@@ -158,7 +158,7 @@ editModal(id:number): void {
       {
         backdrop: true,
         ignoreBackdropClick: true,
-        class: 'modal-right',
+        
         initialState: {
           id: id,
         },

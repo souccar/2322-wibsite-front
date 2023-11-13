@@ -74,13 +74,13 @@
       </div>
     </div>
     <!--Image-->
-    <div class="form-group row">
-      <label class="col-md-3 col-form-label" for="imageCategoryNews">
+    <div class="form-group row required ">
+      <label class="col-md-3 col-form-label " for="imageCategoryNews">
         {{ "Image" | translate }}
       </label>
       <div class="col-md-9">
         <div class="upload-img">
-          <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+          <div class="custom-dropzone" required ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
             <ngx-dropzone-label>
               <div>
                 <h2>Select Image</h2>

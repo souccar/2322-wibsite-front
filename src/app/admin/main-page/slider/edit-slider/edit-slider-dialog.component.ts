@@ -39,7 +39,7 @@ export class EditSliderDialogComponent extends AppComponentBase    implements On
 
   save(): void {
     this.saving = true;
-    console.log(this.slider)
+   
     this._sliderService.edit(this.id,this.slider).pipe(
       finalize(() => {
         this.saving = false;

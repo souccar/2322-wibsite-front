@@ -1,25 +1,26 @@
 <app-view-navbar></app-view-navbar>
 <br><br>
 <div class="row">
-  <div class="col-12">
-    <div class="separator mb-5"></div>
-  </div>
+    <div class="col-12">
+        <div class="separator mb-5"></div>
+    </div>
 </div>
 <div class="row m-5">
     <div class="col-12 col-lg-6 mb-5" *ngFor="let item of news">
         <div class="card flex-row listing-card-container">
             <div class="w-40 position-relative">
-                <!-- <a [routerLink]="adminRoot + '/pages/blog/blog-detail'"> -->
-                    <img class="card-img-left" [src]="baseUrl+item.imagePath" alt="Card image cap">
-                <!-- </a> -->
+
+                <img class="card-img-left" style="max-height: 20rem;" [src]="baseUrl+item.imagePath" alt="Card image cap">
+
             </div>
             <div class="w-60 d-flex align-items-center">
                 <div class="card-body">
-                    <!-- <a [routerLink]="adminRoot + '/pages/blog/blog-detail'"> -->
-                        <h5 class="mb-3 listing-heading" ellipsis>{{item.title}}</h5>
-                    <!-- </a> -->
-                    <p class="listing-desc text-muted" ellipsis data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="  {{ item.description }}">{{item.description|summary:200}}
+
+                    <h5 class="mb-3 listing-heading" ellipsis>{{item.title}}</h5>
+
+                    <p class="listing-desc text-muted" ellipsis data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="  {{ item.description }}"[innerHTML]="item.description |summary:200" >
+                        <!-- {{item.description|summary:200}} -->
                     </p>
                 </div>
             </div>
@@ -27,9 +28,9 @@
     </div>
     <div class="col-12">
         <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
-        [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
-        [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
-      </pagination>
+            [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
+            [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+        </pagination>
     </div>
 </div>
 

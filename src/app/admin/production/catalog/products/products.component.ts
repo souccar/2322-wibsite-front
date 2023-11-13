@@ -148,14 +148,14 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
         {
           backdrop: true,
           ignoreBackdropClick: true,
-          class: 'modal-right',
+          
           initialState: {
             id: id,
           },
         }
       );
       editProductDialog.content.onSave.subscribe(() => {
-        this.refresh();
+        this.getAllProduct(this.itemsPerPage,1)
       });
   }
 
