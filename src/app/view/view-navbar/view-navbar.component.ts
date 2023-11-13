@@ -63,37 +63,7 @@ export class ViewNavbarComponent implements OnInit {
 
 
   }
-  removeItemFromNavbar(){
-    this.router.events.subscribe((event:any) => {
-
-      if (event.routerEvent.url.includes('/home')) {
-
-
-        // this.navbar.nativeElement.querySelector('li:nth-child(3) a');
-        // this.navbar.nativeElement.querySelector('li:nth-child(2) a');
-        // this.SmNavbar.nativeElement.querySelector('li:nth-child(2) a');
-
-
-
-
-      }
-
-
-      else if (event.routerEvent.url.includes('/news')||event.routerEvent.url.includes('/viewProduct')
-      || event.routerEvent.url.includes('/product-details')){
-
-        this.router.navigate(['/home'])
-
-        // this.navbar.nativeElement.querySelector('li:nth-child(2) a').remove();
-        // this.navbar.nativeElement.querySelector('li:nth-child(3) a').remove();
-        // this.SmNavbar.nativeElement.querySelector('li:nth-child(1) a').remove();
-        // this.SmNavbar.nativeElement.querySelector('li:nth-child(3) a').remove();
-        // this.SmNavbar.nativeElement.querySelector('li:nth-child(4) a').remove();
-
-      }
-
-
-
+ 
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {
 
