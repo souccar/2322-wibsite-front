@@ -15,9 +15,9 @@ export class BrandService {
     let apiUrl = this.baseUrl +'api/brands' + '?page=' +currentPage+'&count='+itemsPerPage;
     return this.http.get(apiUrl);
   }
-  getWithoutPagination(params?:HttpParams)
+  getWithoutPagination()
   {
-    return this.http.get(this.baseUrl+'api/brands',{params});
+    return this.http.get(this.baseUrl+'api/brands');
   }
   getById(id:number):any{
     return this.http.get(this.baseUrl+'api/brands'+'/'+id);

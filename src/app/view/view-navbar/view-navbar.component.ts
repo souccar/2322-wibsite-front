@@ -92,9 +92,7 @@ export class ViewNavbarComponent implements OnInit {
 
       }
 
-    });
 
-  }
 
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {

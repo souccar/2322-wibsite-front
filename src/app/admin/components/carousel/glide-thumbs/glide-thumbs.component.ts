@@ -20,7 +20,7 @@ export class GlideThumbsComponent implements  AfterViewInit, OnDestroy {
   @Input() images:any;
   @Input() thumbs:any;
 
-  glideThumbCountMax = 5;
+  glideThumbCountMax = 3;
   glideCount:any = [];
   glideCarouselImages:any;
   glideCarouselThumbs:any;

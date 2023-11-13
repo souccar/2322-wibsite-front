@@ -1,52 +1,95 @@
 <app-view-navbar></app-view-navbar>
-<br /><br /><br /><br />
-<app-main-image></app-main-image>
-<div class="row mt-4 mb-2 mx-2">
-  <!-- filtered list  -->
-  <div
-    class="col-xs-6 col-lg-4 col-md-6 col-12 mb-4"
-    *ngFor="let product of products"
-  >
-    <div
-      class="card flex-row listing-card-container align-items-center"
-      style="min-height: 12rem"
-    >
-      <div class="w-40 position-relative">
-        <a [routerLink]="['/product-details', product.id]">
-          <img
-            class="card-img-left ms-3"
-            style="width: 75%; max-height: 9rem; object-fit: contain"
-            src="{{ baseUrl + product.product_images[0].imagePath }}"
-            alt="Card image cap"
-          />
-          <span
-            class="badge badge-pill badge-theme-1 position-absolute badge-top-left"
-            *ngIf="product.skin_type?.name != null"
-            >{{ product.skin_type?.name }}</span
-          >
-          <span
-            class="badge badge-pill badge-secondary position-absolute badge-top-left-2"
-            *ngIf="product.brand?.name != null"
-            >{{ product.brand?.name }}</span
-          >
-          <span
-            class="badge badge-pill badge-light position-absolute badge-top-left-3"
-            *ngIf="product.category?.name != null"
-            >{{ product.category?.name }}</span
-          >
-        </a>
-      </div>
-      <div class="w-60 d-flex align-items-center">
-        <div class="card-body">
-          <a [routerLink]="['/product-details', product.id]">
-            <h5 class="mb-3 listing-heading" ellipsis>{{ product.name }}</h5>
-          </a>
-          <p class="listing-desc text-muted" ellipsis [innerHTML]="product.description">
-            {{ product.description }}
-          </p>
-        </div>
-      </div>
-    </div>
+<br /><br /><br />
+
+
+<div class="row ">
+  <div class="col-12 mb-5">
+    <img class=" w-100 " style="height: 50vh;" src="/assets/img/slider/mmt.jpg" />
   </div>
 </div>
+
+
+<div class="row m-5">
+  <div class="col-12  col-lg-8 offset-lg-2 text-center">
+    <h1 class="text-primary">Whether on the screen or in everyday life, she constantly shines in various fields of
+      interest. Her unwavering and enterprising attitude has driven her to, transform herself and not being satisfied
+      with her current status. She personifies the journey of beauty AHC advocates.</h1>
+
+  </div>
+</div>
+
+<div >
+    <div class="row m-5">
+    <div class="col-12 offset-0 col-lg-8 offset-lg-2 text-center">
+      <h1>Explore Products<span class="text-primary" *ngIf="type == 'category'"> by Category</span>
+        <span class="text-primary" *ngIf="type == 'brand'"> by Brand</span>
+        <span class="text-primary" *ngIf="type == 'skinType'"> by Skin Type</span>
+      </h1>
+    </div>
+  </div>
+  <div class="d-flex  justify-content-center ">
+    <div class="row container ">
+      <div class="col-12 list">
+        <div class="row ">
+          <div class="col-xl-3 col-lg-4 col-12 col-sm-6 mb-4 " *ngFor="let product of products; let i=index">
+           <a [routerLink]="[goToProductDetail(product.id)]">
+            <div class="" [ngClass]="{'card': true}">
+              <div class="position-relative">
+                <a href="javascript:;"><img class="card-img-top img-fluid" 
+                    src="{{ baseUrl + product.product_images[0].imagePath }}"  [alt]=" product.name "></a>
+
+                <span class="badge badge-pill badge-theme-1 position-absolute badge-top-left"
+                  *ngIf="product.skin_type?.name != null">{{ product.skin_type?.name }}</span>
+                <span class="badge badge-pill badge-secondary position-absolute badge-top-left-2"
+                  *ngIf="product.brand?.name != null">{{ product.brand?.name }}</span>
+                <span class="badge badge-pill badge-light position-absolute badge-top-left-3"
+                  *ngIf="product.category?.name != null">{{ product.category?.name }}</span>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2">
+                  </div>
+                  <div class="col-10">
+                    <a href="javascript:;">
+                      <p class="list-item-heading mb-4 pt-1">{{product.name }}</p>
+                    </a>
+                    <footer>
+                      <!-- <p class="text-muted text-small mb-0 font-weight-light" [innerHTML]="product.description">
+                        {{ product.description |summary:5}}</p> -->
+                        <p class="text-muted" ellipsis [innerHTML]="product.description |summary:125" >
+                        </p>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="col-12">
+    <pagination [totalItems]="totalItem" [itemsPerPage]="itemsPerPage" [rotate]="true" [maxSize]="5"
+      [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" class="justify-content-center"
+      [customNextTemplate]="nextTemplate" [customPreviousTemplate]="prevTemplate">
+    </pagination>
+  </div>
+
+ 
+</div>
+
+
+
+<ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+  <i class='simple-icon-arrow-right'></i>
+</ng-template>
+<ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+  <i class='simple-icon-arrow-left'></i>
+</ng-template>
+
+
 <app-footer></app-footer>
