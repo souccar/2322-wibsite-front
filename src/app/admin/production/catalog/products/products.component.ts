@@ -66,18 +66,18 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
   }
   getAllProduct(itemsPerPage:number,currentPage:number)
   {
-   
+
     this._productService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-   
+
       this.data=response.result.data;
       this.totalItem=response.result.total
     })
   }
-  
+
   pageChanged(event: any): void {
-   
+
       this.getAllProduct(this.itemsPerPage,event.page);
-  
+
   }
 
 
@@ -85,7 +85,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
     this.loadData(this.itemsPerPage, 1, this.search, item.value);
   }
 
-  
+
   changeDisplayMode(mode:any): void {
     this.displayMode = mode;
   }
@@ -252,7 +252,7 @@ viewModal(id:number)
     }
   }
 
-  
+
   itemsPerPageChange(itemsPerPage: any): void {
     this.itemsPerPage=itemsPerPage
     this.getAllProduct(this.itemsPerPage,1)
@@ -272,7 +272,7 @@ viewModal(id:number)
     this.selectedCount = this.selected.length;
   }
 
- 
+
 
   selectAllChange($event:any): void {
     if ($event.target.checked) {
@@ -303,7 +303,7 @@ viewModal(id:number)
 
   }
   protected override list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
-    
+
   }
 }
 

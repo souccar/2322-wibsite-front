@@ -1,10 +1,10 @@
 <div [ngClass]="{'landing-page': true,'show-mobile-menu': showMobileMenu}">
   <div class="mobile-menu " (click)="$event.stopPropagation()">
 
-    <a (click)="scrollTo('#home')" href="javascript:;" class="logo-mobile">
+    <a (click)="scrollTo('#home')" href="javascript:;" class="logo">
       <span class="logo d-none d-xs-block "></span>
     </a>
-    <ul class="navbar-nav ">
+    <ul class="navbar-nav " #SmNavbar>
       <li class="nav-item"><a [routerLink]="['/']">Home</a></li>
       <li class="nav-item"><a type="button" (click)="scrollTo('#Prouducts')">Products</a></li>
       <li class="nav-item"><a type="button" (click)="scrollTo('#about')">Who we Are</a></li>
@@ -13,68 +13,42 @@
   </div>
   <div class="main-container">
     <ngx-headroom class=" landing-page-nav">
-      <nav class="navbar">
+      <nav class="navbar" #navbar>
 
-        <div class="d-flex flex-row mb-4  navbar-left">
-
-
-          <a class="navbar-logo ml-5  pull-left" (click)="scrollTo('#home')" href="javascript:;">
+        <div class="d-flex flex-row mb-4">
+          <a class="navbar-logo ml-5 mb-5 " (click)="scrollTo('#home')" href="javascript:;">
             <span class="logo d-none d-xs-block "></span>
           </a>
-          <div></div>
-          <a href="javascript:;" (click)="fullScreenClick()" id="fullScreenButton" class="pull-left" >
+          <a href="javascript:;" (click)="fullScreenClick()" id="fullScreenButton" class="pull-left mt-3" >
             <i *ngIf="!isFullScreen" class="simple-icon-size-fullscreen d-block" data-bs-toggle="tooltip"
               data-bs-placement="top" title="full Screen size"></i>
             <i *ngIf="isFullScreen" class="simple-icon-size-actual d-block" data-bs-toggle="tooltip"
               data-bs-placement="top" title="Actual Screen size"></i>
-            <!-- <span>Screen Size </span> -->
           </a>
-          <a href="javascript:;" id="darkModeSwitch" class="pull-left"   (click)="onDarkModeChange($event)">
-            <i *ngIf="isDarkModeActive" class=" iconsminds-sun d-block" data-toggle="tooltip" data-placement="top"
-              title="Light Mood"></i>
-            <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon d-block " data-toggle="tooltip"
-              data-placement="top" title="Dark Mood"></i>
-            <!-- <span class="text-small">Mood</span> -->
+          <a href="javascript:;" (click)="onDarkModeChange($event)" id="fullScreenButton" class="pull-left  ml-3" >
+            <i *ngIf="isDarkModeActive" class=" iconsminds-sun d-block " data-toggle="tooltip"
+             data-placement="top" title="Light Mood" style="margin-top: 0.85rem;"></i>
+          <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon d-block " data-toggle="tooltip"
+            data-placement="top" title="Dark Mood" style="margin-top: 0.85rem;"></i>
           </a>
-<!-- 
-          <div dropdown>
-            <button dropdownToggle type="button" class="header-icon btn btn-empty">
-              <i class="simple-icon-grid" data-bs-toggle="tooltip"
-              data-bs-placement="right" title="Settings"></i>
-            </button>
-            <div *dropdownMenu class="dropdown-menu dropdown-menu-left ml-5" role="menu" aria-labelledby="button-basic"
-              id="iconMenuDropdown">
-              <a href="javascript:;" (click)="fullScreenClick()" id="fullScreenButton" class="icon-menu-item">
-                <i *ngIf="!isFullScreen" class="simple-icon-size-fullscreen d-block" data-bs-toggle="tooltip"
-                  data-bs-placement="top" title="full Screen size"></i>
-                <i *ngIf="isFullScreen" class="simple-icon-size-actual d-block" data-bs-toggle="tooltip"
-                  data-bs-placement="top" title="Actual Screen size"></i>
-                <span>Screen Size </span>
-              </a>
-              <a href="javascript:;" id="darkModeSwitch" class="icon-menu-item" (click)="onDarkModeChange($event)">
-                <i *ngIf="isDarkModeActive" class=" iconsminds-sun d-block" data-toggle="tooltip" data-placement="top"
-                  title="Light Mood"></i>
-                <i *ngIf="!isDarkModeActive" class=" iconsminds-half-moon d-block " data-toggle="tooltip"
-                  data-placement="top" title="Dark Mood"></i>
-                <span class="text-small">Mood</span>
-              </a>
-            </div>
-          </div> -->
         </div>
 
 
         <div class="navbar-right d-none d-lg-flex flex-row mb-4">
           <ul class="navbar-nav d-none d-lg-flex flex-row  text-nowrap  " #navbar>
-            <li  class="nav-item">
-              <div class="dropdown ">
-                  <a class="nav-link dropbtn active mt-3  " (click)="scrollTo('#Prouducts')" type="button">
+            <li  class="nav-item" #product >
+              <div class="dropdown " >
+                  <a class="nav-link dropbtn active mt-3" (click)="scrollTo('#Prouducts')" type="button" >
                   Our Prouducts
                   </a>
+
                 <div class="dropdown-content dropdown-menu" [ngStyle]="{'background-color': (isDarkModeActive) ? '#232223' : '#fff'}">
                   <div class="row">
                     <div class="col-4">
+
                       <h6 class=" text-center text-muted mt-2">Category</h6>
                       <div class="separator mx-2"></div>     
+
                       <ng-contanier  *ngFor="let category of categories" class="text-center">
                       <a class="dropdown-item"[routerLink]="['/viewProduct',category.id,'category']">{{category.name}}</a>
                     </ng-contanier>
@@ -99,11 +73,11 @@
             </li>
 
             <li class="nav-item  ">
-              <a class="nav-link active" type="button" (click)="scrollTo('#about')">
+              <a class="nav-link active mb-1" type="button" (click)="scrollTo('#about')">
                 Who we Are
               </a>
             </li>
-            <li class="nav-item  co" #cont>
+            <li class="nav-item mb-1" #cont>
               <a class="nav-link " type="button" (click)="scrollTo('#Contact')">
                 ContactUS
               </a>
@@ -112,7 +86,7 @@
 
           <div class="d-flex align-items-end me-3 mb-3  ">
             <div class="user " dropdown>
-              <button class="btn btn-empty p-0" type="button" dropdownToggle>
+              <button class="btn btn-empty p-0 mb-1" type="button" dropdownToggle>
                 <div class="d-flex flex-row align-items-center">
                   <label *ngIf="isDarkModeActive" class="text-white text-nowrap mt-2">{{displayName}}</label>
                   <label *ngIf="!isDarkModeActive" class="text-dark text-nowrap mt-2">{{displayName}}</label>
@@ -131,14 +105,8 @@
               </div>
             </div>
           </div>
-
-
-
-
-
         </div>
         <span class="mobile-menu-button mr-4 mb-4" (click)="showMobileMenu=!showMobileMenu; $event.stopPropagation()">
-
           <i *ngIf="isDarkModeActive" class="text-white simple-icon-menu"></i>
           <i *ngIf="!isDarkModeActive" class="text-dark simple-icon-menu"></i>
         </span>

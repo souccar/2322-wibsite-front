@@ -52,7 +52,7 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
   initialProduct() {
     this._productService.getById(this.id)
       .subscribe((result: any) => {
-       
+
         this.product = result.result;
         this.product.categoryId = result.result.category?.id;
         this.product.brandId = result.result.brand?.id;
@@ -74,17 +74,13 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
 
   initCategory() {
     this._categoryService.getWithoutPagination().subscribe((response: any) => {
-      // this.categories = response.result;
-      console.log(response)
-
+      this.categories = response.result;
     });
 
   }
   initBrand() {
     this._brandService.getWithoutPagination().subscribe((response: any) => {
-console.log(response)
-      this.brands = response.result
-
+      this.brands = response.result.data
     })
   }
   initSkinType() {
@@ -105,13 +101,13 @@ console.log(response)
     this.product.images = this.imagePaths;
     this._productService.edit(this.id, this.product).subscribe((response:any) => {
 
-    
-        if(response.success){  
+
+        if(response.success){
           this.toastr.success('Edit Successfully');
           this.bsModalRef.hide();
           this.onSave.emit();}
 
-   
+
     })
 
   }

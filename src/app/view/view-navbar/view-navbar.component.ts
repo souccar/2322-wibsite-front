@@ -33,9 +33,11 @@ export class ViewNavbarComponent implements OnInit {
   isDarkModeActive = false;
   showMobileMenu = false;
   isOpened = false;
+  IsMainPage=false;
   searchKey = '';
-  @ViewChild('cont') private cont: ElementRef;
-  @ViewChild('navbar') private navbar: ElementRef;
+  @ViewChild('product') private product: ElementRef;
+  @ViewChild('navbar') private navbar: ElementRef<any>;
+  @ViewChild('SmNavbar') private SmNavbar: ElementRef;
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
@@ -53,36 +55,15 @@ export class ViewNavbarComponent implements OnInit {
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
 
-  ngOnInit() {
-    this.removeItemFromNavbar();
+   ngOnInit() {
+
     this.getCategories();
     this.getSkinTypes();
     this.getBrands();
 
+
   }
-  removeItemFromNavbar() {
-    this.router.events.subscribe((event: any) => {
-      console.log(event)
-      if (event.routerEvent.urlAfterRedirects.includes('/home')) {
-
-
-        this.navbar.nativeElement.querySelector('li:nth-child(3) a');
-        this.navbar.nativeElement.querySelector('li:nth-child(2) a');
-        // this.navbar.nativeElement.querySelector('li:nth-child(1) a').classList.add('text-white');
-
-
-      }
-      else if (event.routerEvent.urlAfterRedirects.includes('/news') || event.routerEvent.urlAfterRedirects.includes('/viewProduct')
-        || event.routerEvent.urlAfterRedirects.includes('/product-details')) {
-     
-
-        this.navbar.nativeElement.querySelector('li:nth-child(2) a').remove();
-        this.navbar.nativeElement.querySelector('li:nth-child(3) a').remove();}
-
-      
-    });
-  }
-
+ 
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {
 
@@ -248,7 +229,26 @@ export class ViewNavbarComponent implements OnInit {
       target,
       offset: -150
     };
+     const url1="/";
+     const url2=this.router.url
+   if(url1!=url2)
+   {
+    this.router.navigate(['/']).then(() => {
+      const config: ScrollToConfigOptions = {
+        target,
+        offset: -150
+      };
 
+      this.scrollToService.scrollTo(config);
+    });
+   }
+   else{
     this.scrollToService.scrollTo(config);
+   }
+
+
+
+
   }
+
 }

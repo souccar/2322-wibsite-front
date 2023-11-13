@@ -64,24 +64,24 @@ export class NewsComponent extends PagedListingComponentBase<ReadNewsDto>  imple
     super(injector);
   }
   override ngOnInit(): void {
-   
+
     this.getAllNews(this.itemsPerPage,1)
   }
 
   getAllNews(itemsPerPage:number,currentPage:number)
   {
-   
+
     this._newsService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-    
-      this.data=response.result.data;
+
+      this.data=response.result;
       this.totalItem=response.result.total
     })
   }
-  
+
   pageChanged(event: any): void {
-   
+
       this.getAllNews(this.itemsPerPage,event.page);
-  
+
   }
   deletebutton(id:number){
     this._newsService.delete(id).subscribe((responce:any)=>{

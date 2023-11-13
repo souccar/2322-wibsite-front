@@ -56,7 +56,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   {
     super(injector);
 
-   
+
 
   }
 
@@ -66,11 +66,10 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
   }
   getAllCategory(itemsPerPage:number,currentPage:number)
   {
-   
-    this._categoryService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-     
 
-      this.data=response.result.data;
+    this._categoryService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+
+      this.data=response.result;
       this.totalItem=response.result.total
     })
   }
@@ -79,11 +78,11 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     this.getAllCategory(this.itemsPerPage,1)
   }
   pageChanged(event: any): void {
-   
+
       this.getAllCategory(this.itemsPerPage,event.page);
-  
+
   }
-  
+
   searchKeyUp(event:any): void {
     const val = event.target.value.toLowerCase().trim();
     // this.loadData(this.itemsPerPage, 1, val, this.itemOrder.value);
@@ -107,7 +106,7 @@ export class CategoryComponent extends PagedListingComponentBase<ReadCategoryDto
     }
     this.setSelectAllState();
   }
- 
+
   changeDisplayMode(mode:any): void {
     this.displayMode = mode;
   }
