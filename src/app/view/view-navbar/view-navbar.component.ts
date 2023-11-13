@@ -55,8 +55,8 @@ export class ViewNavbarComponent implements OnInit {
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
 
-   ngOnInit() {
-    this. removeItemFromNavbar();
+  ngOnInit() {
+    this.removeItemFromNavbar();
     this.getCategories();
     this.getSkinTypes();
     this.getBrands();
@@ -95,9 +95,7 @@ export class ViewNavbarComponent implements OnInit {
 
       }
 
-    });
 
-  }
 
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {

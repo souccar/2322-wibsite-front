@@ -6,7 +6,7 @@ import { CategoryService } from 'src/shared/services/category-service/category.s
 @Component({
   selector: 'app-category-card',
   templateUrl: './category-card.component.html',
-  styleUrls: ['./category-card.component.scss']
+
 })
 export class CategoryCardComponent implements OnInit {
   baseUrl = environment.baseUrl;
