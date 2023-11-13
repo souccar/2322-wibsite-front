@@ -56,14 +56,11 @@ export class ViewNavbarComponent implements OnInit {
   }
 
    ngOnInit() {
-    this. removeItemFromNavbar();
+
     this.getCategories();
     this.getSkinTypes();
     this.getBrands();
-    if(this.router.url==='/')
-    {
-     console.log("Ranoom")
-    }
+
 
   }
   removeItemFromNavbar(){
