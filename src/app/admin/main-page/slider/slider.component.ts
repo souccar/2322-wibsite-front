@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  
+
 })
 export class SliderComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class SliderComponent implements OnInit {
   selectAllState = '';
   selected: ReadSliderDto[] = [];
   data: ReadSliderDto[] = [];
- 
+
 
   currentPage = 1;
   search = '';
@@ -53,10 +53,10 @@ export class SliderComponent implements OnInit {
   }
   getAllSlider(itemsPerPage:number,currentPage:number)
   {
-   
+
     this._sliderService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
-     
-      this.data=response.result.data;
+
+      this.data=response.result;
       this.totalItem=response.result.total
     })
   }
@@ -65,11 +65,11 @@ export class SliderComponent implements OnInit {
       this.getAllSlider(this.itemsPerPage,1)
       this.toastr.success(response.message);
     });
-  
+
   }
   pageChanged(event: any): void {
 
-   
+
     this.getAllSlider(this.itemsPerPage,event.page);
 
 }
@@ -116,7 +116,7 @@ export class SliderComponent implements OnInit {
   }
   protected list(
     request: PagedSliderRequestDto,
-   
+
     finishedCallback: Function
   ): void {
   }

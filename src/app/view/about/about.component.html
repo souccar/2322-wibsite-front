@@ -4,10 +4,10 @@
       About Us
     </h1>
   </div> -->
-
+  <ng-container *ngIf="!isMobileXsmall && !isMobileMiddle && !isMobilexMiddle">
   <div class="row about-row align-items-start ">
-    <!-- <div class="col-lg-1"></div> -->
-    <div class="col-12 col-lg-6 " data-aos="fade-right" data-aos-duration="1000">
+
+    <div class="col-lg-6 col-xl-6 col-md-6" data-aos="fade-right" data-aos-duration="1000">
       <div class="card-wrapper1 bg-primary">
         <div class="card-title-wrapper1">
           <h4 class="text-center text-primary">
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="col-12 col-lg-6"  data-aos="fade-left" data-aos-duration="1000">
+    <div class="col-lg-6 col-xl-6 col-md-6" data-aos="fade-left" data-aos-duration="1000">
       <div class="card-wrapper2 bg-light">
         <div class="card-title-wrapper2 bg-primary">
           <h4 class="text-center ">
@@ -51,5 +51,53 @@
           </div>
       </div>
     </div>
+
+
   </div>
+</ng-container>
+
+  <ng-conatiner  *ngIf="isMobileXsmall || isMobileMiddle || isMobilexMiddle">
+    <div class="card"  data-aos="fade-left" data-aos-duration="1000">
+      <div class="card-title-wrapper2 bg-primary">
+        <h4 class="text-center ">
+        HCPC
+        </h4>
+      </div>
+      <div class="text-wrapper2 ">
+        <h3 >
+          “HCPC” Overview
+        </h3>
+        <p>
+          Health Care Products Corp. “HCPC” is an advanced dedicated manufacturing facility which produce AHCMEs’ items for MEA & Asian regions
+        </p>
+        <p>
+          HCPC is part of Riad Souccar Group & Based in Syria, with a production capacity of up to 20 million tubes annually, HCPC production is supervised by    AHC-USA technical staff to manufacture AHC-USA products. In addition, all of HCPC's raw materials are supplied by AHC-USA.          </p>
+          <p>
+            HCPC, has a GMP certificate, it is registered in several countries and equipped with the highest technology in addition to its experienced and trained staff, to ensure supplying top quality products to AHCME's customers.
+          </p>
+        </div>
+    </div>
+    <div class="card bg-primary"  data-aos="fade-right" data-aos-duration="1000">
+      <div class="card-title-wrapper1">
+        <h4 class="text-center text-primary">
+          AHC
+        </h4>
+      </div>
+      <div class="text-wrapper">
+        <h3 class="text-wrapper">
+          “American Health Care - Middle East” in lines
+        </h3>
+        <p class="text-wrapper">
+          American Health Care- Middle East is a regional firm distributing American Health Care US products in Asian & MEA regions. Based in Rockledge -Florida; American Health Care US with efforts of its innovative research and development team works with the highest standards & finest quality to produce a broad range of cosmetics and pharmaceutical items.
+        </p>
+        <p class="text-wrapper">
+
+          American Health Care - Middle East manufactures under licensed products from American Health Care US at HCPC factory located in Syria , and covering: Face & Body Care, Eye care, Sunscreens, Dermatological, Health Care & anti aging products.
+        <p>
+
+      </div>
+    </div>
+
+    </ng-conatiner>
+
   </div>
