@@ -102,7 +102,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
       }
     );
     createOrEditProductDialog.content.onSave.subscribe(() => {
-      this.refresh();
+      this.getAllProduct(this.itemsPerPage,1)
     });
   }
 
@@ -155,7 +155,7 @@ export class ProductsComponent extends PagedListingComponentBase<ReadProductDto>
         }
       );
       editProductDialog.content.onSave.subscribe(() => {
-        this.refresh();
+        this.getAllProduct(this.itemsPerPage,1)
       });
   }
 
