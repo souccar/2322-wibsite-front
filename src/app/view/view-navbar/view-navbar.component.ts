@@ -53,53 +53,57 @@ export class ViewNavbarComponent implements OnInit {
     this.isDarkModeActive = getThemeColor().indexOf('dark') > -1 ? true : false;
   }
 
-   ngOnInit() {
-    this. removeItemFromNavbar();
+  ngOnInit() {
+    this.removeItemFromNavbar();
     this.getCategories();
     this.getSkinTypes();
     this.getBrands();
-   
+
   }
-  removeItemFromNavbar(){
-    this.router.events.subscribe((event:any) => {
-      if (event.routerEvent.url.includes('/home')) {
-        
+  removeItemFromNavbar() {
+    this.router.events.subscribe((event: any) => {
+      console.log(event)
+      if (event.routerEvent.urlAfterRedirects.includes('/home')) {
+
+
         this.navbar.nativeElement.querySelector('li:nth-child(3) a');
         this.navbar.nativeElement.querySelector('li:nth-child(2) a');
         // this.navbar.nativeElement.querySelector('li:nth-child(1) a').classList.add('text-white');
-   
-  
-      } 
-      else if (event.routerEvent.url.includes('/news')||event.routerEvent.url.includes('/viewProduct')
-      || event.routerEvent.url.includes('/product-details')){
-        
-        this.navbar.nativeElement.querySelector('li:nth-child(2) a').remove();
-        this.navbar.nativeElement.querySelector('li:nth-child(3) a').remove();
+
+
       }
+      else if (event.routerEvent.urlAfterRedirects.includes('/news') || event.routerEvent.urlAfterRedirects.includes('/viewProduct')
+        || event.routerEvent.urlAfterRedirects.includes('/product-details')) {
+     
+
+        this.navbar.nativeElement.querySelector('li:nth-child(2) a').remove();
+        this.navbar.nativeElement.querySelector('li:nth-child(3) a').remove();}
+
+      
     });
   }
 
   getCategories() {
     this._categoryService.getWithoutPagination().subscribe((responce: any) => {
-    
+
       this.categories = responce.result.data
-    
+
     })
 
   }
   getSkinTypes() {
     this._skinTypeService.getWithoutPagination().subscribe((responce: any) => {
-      
+
       this.skinTypes = responce.result.data
-    
+
     })
 
   }
   getBrands() {
     this._brandService.getWithoutPagination().subscribe((responce: any) => {
-  
+
       this.brands = responce.result.data
-     
+
     })
 
   }
@@ -138,7 +142,7 @@ export class ViewNavbarComponent implements OnInit {
     this.currentLanguage = this.langService.languageShorthand;
   }
 
-  
+
 
   menuButtonClick = (
     e: { stopPropagation: () => void },

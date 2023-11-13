@@ -1,26 +1,24 @@
 <div [ngClass]="{'landing-page': true}">
     <div class="main-container">
+      
         <app-view-navbar></app-view-navbar>
         <div class="content-container" id="home">
+ 
             <app-home-main-image></app-home-main-image>
             <!-- category cards -->
-            <div class="section" data-aos="fade-up" data-aos-duration="1000">
-                <div class="container-fluid ">
+            <div class="section " data-aos="fade-up" data-aos-duration="1000">
+                <div class="container ">
                     <div class="row my-5">
                         <div class="col-12 p-0">
-                            <div class="home-carousel">
+                            <div class="home-carousel text-center">
+                                <h1 class="mb-5">Our category </h1>
                                 <app-category-card></app-category-card>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="row m-5">
-                        <a class="btn btn-circle btn-outline-semi-light hero-circle-button "
-                            (click)="scrollTo('#News')">
-                            <i class="simple-icon-arrow-down"></i>
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
             <!-- news cards -->
@@ -115,9 +113,9 @@
         </div>
         <div class="section footer mb-0 ">
             <div class="container">
-                <div class="row footer-row">
+                <div class="row footer-row mt-5">
                     <div class="col-12 text-right">
-                        <a class="btn btn-circle btn-outline-semi-light footer-circle-button"
+                        <a class="btn btn-circle btn-outline-semi-light footer-circle-button "
                             (click)="scrollTo('#home')" href="javascript:;"><i class="simple-icon-arrow-up"></i></a>
                     </div>
                     <div class="col-12 text-center footer-content">

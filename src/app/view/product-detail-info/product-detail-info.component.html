@@ -1,33 +1,47 @@
-<div class="card mb-4" >
+<div class="card height">
 
   <div class="position-absolute card-top-buttons">
-      <button class="btn btn-header-light icon-button">
-          <i class="simple-icon-refresh"></i>
-      </button>
+    <button class="btn btn-header-light icon-button">
+      <i class="simple-icon-refresh"></i>
+    </button>
 
   </div>
   <div class="card-body">
-      <div class="mb-3">
-          <div class="post-icon mr-3 d-inline-block"><a href="#"><i
-                      class="simple-icon-heart mr-1"></i></a> <span>4
-                  Likes</span></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-3">
+          <div class="post-icon mr-3 d-inline-block"><a href="#"><i class="simple-icon-heart mr-1"></i></a> <span>4
+              Likes</span></div>
           <div class="post-icon d-inline-block"><i class="simple-icon-bubble mr-1"></i> <span>1
-                  Comment</span></div>
+              Comment</span></div>
+        </div>
       </div>
-
-     <h1 class="mb-3 mr-3 text-primary">
+    </div>
+<div class="row">
+  <div class="col-12"><h1 class="mb-3 mr-3 text-primary">
       {{product.name}}
     </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
     <app-rating></app-rating>
-      <p class="mb-3 float-right" [innerHTML]="product.description">
-          {{product.description}}
-      </p>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-12">
+    <p class="mb-3 float-left" [innerHTML]="product.description">
+      {{product.description}}
+    </p>
 
-      <p class="mb-3">
-        <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.category?.name | uppercase}}</span>
-        <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.brand?.name | uppercase}}</span>
-        <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.skin_type?.name | uppercase}}</span>
+  </div>
+</div>
+ 
+    <p class="mb-3">
+      <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.category?.name | uppercase}}</span>
+      <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.brand?.name | uppercase}}</span>
+      <span class="badge mb-1 mr-1 badge-outline-secondary badge-pill">{{product.skin_type?.name | uppercase}}</span>
 
-      </p>
+    </p>
   </div>
 </div>

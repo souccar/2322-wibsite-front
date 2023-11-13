@@ -1,14 +1,15 @@
 <app-glide [settings]="slideSettings" *ngIf="categoriesLoaded">
     <div class="card " style="max-height: 25rem;" *ngFor="let category of categories">
         <div class="card-body ">
-            <div class="text-center" style="min-height: 20rem;">
+            <div class="text-center" >
+                <!-- style="min-height: 20rem;" -->
                 <img alt="Profile" src="{{baseUrl+category.imagePath}}"
                     class=" mb-4 list-thumbnail">
-                <p class="list-item-heading fw-bold mb-1">{{category.name}}</p>
-                <p [innerHTML]="category.description" class=" text-muted pb-5"
+                <h3 class="list-item-heading text-primary fw-bold mb-1">{{category.name}}</h3>
+                <!-- <p [innerHTML]="category.description" class=" text-muted pb-5"
                     data-toggle="tooltip" data-placement="top"
                     title="{{category.description}}">
-                    {{category.description|summary:150}} </p>
+                    {{category.description|summary:150}} </p> -->
             </div>
         </div>
     </div>

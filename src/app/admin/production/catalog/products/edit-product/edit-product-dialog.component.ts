@@ -74,15 +74,16 @@ export class EditProductDialogComponent extends AppComponentBase implements OnIn
 
   initCategory() {
     this._categoryService.getWithoutPagination().subscribe((response: any) => {
-      this.categories = response.result.data;
+      // this.categories = response.result;
+      console.log(response)
 
     });
 
   }
   initBrand() {
     this._brandService.getWithoutPagination().subscribe((response: any) => {
-
-      this.brands = response.result.data
+console.log(response)
+      this.brands = response.result
 
     })
   }

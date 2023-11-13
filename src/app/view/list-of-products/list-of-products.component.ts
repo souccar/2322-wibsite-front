@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ReadProductDto } from 'src/shared/service-proxies/service-proxies';
 import { AccordionService } from 'src/shared/services/accordion-service/accordion.service';
@@ -13,8 +13,9 @@ import { ProductService } from 'src/shared/services/product-service/product.serv
   styleUrls: ['./list-of-products.component.scss']
 })
 export class ListOfProductsComponent implements OnInit{
-  totalItems =0;
-  itemsPerPage = 5;
+
+  totalItem=0
+  itemsPerPage =8;
   apiUrl ='';
   currentPage = 1;
   isLoading:boolean=false;
@@ -34,20 +35,18 @@ export class ListOfProductsComponent implements OnInit{
   pageChanged(event: any): void {
 
 
-    this.getAllProduct();
+    this.getAllProduct(this.itemsPerPage,event.page);
   }
 
  products:ReadProductDto[]=[];
  baseUrl=environment.baseUrl;
   constructor(public _accordionService:AccordionService,
-    private _productService:ProductService,private route:ActivatedRoute)
+    private _productService:ProductService,private route:ActivatedRoute,
+   private router:Router)
   {
 
   }
   ngOnInit(): void {
-  //
-
-
    this.route.params.subscribe((value:any)=>{
     this.id = value.id;
     this.type = value.type;
@@ -66,11 +65,14 @@ export class ListOfProductsComponent implements OnInit{
     this.getProductsBySkinType(this.id);
   }
   else{
-    this.getAllProduct();
+    this.getAllProduct(this.itemsPerPage,1);
   }
 
   }
-
+  goToProductDetail(id:number){
+    // this.router.navigateByUrl()
+    return `/product-details/${id}`;
+  }
 
   getProductsByCategory(categoryId){
     let params = new HttpParams().set('categoryId', categoryId);
@@ -100,14 +102,14 @@ export class ListOfProductsComponent implements OnInit{
       this.isFiltering=true;
     });
   }
-  getAllProduct()
+  getAllProduct( itemsPerPage:number,currentPage:number)
   {
 
-    let params = new HttpParams().set('count', 4) ;
+    // let params = new HttpParams().set('count', this.itemsPerPage) ;
     this.products=[];
       this.isLoading=true;
-      this._productService.getWithoutPagination(params).subscribe((response:any)=>{
-        this.totalItems=response.result.total
+      this._productService.getAll(itemsPerPage,currentPage).subscribe((response:any)=>{
+        this.totalItem=response.result.total
         this.products=response.result.data;
         this.isLoading=false;
       })
