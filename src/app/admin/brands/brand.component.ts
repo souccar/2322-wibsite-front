@@ -97,6 +97,7 @@ export class BrandComponent extends PagedListingComponentBase<ReadBrandDto>  imp
           initialState: {
             id: id,
           },
+          // class: 'modal-xl',
         }
       );
       editBrandDialog.content.onSave.subscribe(() => {

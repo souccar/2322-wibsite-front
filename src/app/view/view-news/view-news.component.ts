@@ -13,7 +13,7 @@ export class ViewNewsComponent implements OnInit{
 news:ReadNewsDto[]=[];
 baseUrl = environment.baseUrl;
 currentPage = 1;
-itemsPerPage =3;
+itemsPerPage =4;
 totalItem = 0;
 totalPage = 0;
 

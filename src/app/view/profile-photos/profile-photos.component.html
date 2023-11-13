@@ -5,7 +5,7 @@
     </h5>
     <div class="row social-image-row gallery">
       <div class="col-4" *ngFor="let image of album; let i=index">
-        <img class="img-fluid border-radius c-pointer" [src]="image.thumb"  />
+        <img class="img-fluid border-radius c-pointer" style="max-height: 20rem;" [src]="image.thumb"  />
       </div>
     </div>
   </div>

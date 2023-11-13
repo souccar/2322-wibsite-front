@@ -73,21 +73,21 @@
                 <div class="dropdown-content dropdown-menu" [ngStyle]="{'background-color': (isDarkModeActive) ? '#232223' : '#fff'}">
                   <div class="row">
                     <div class="col-4">
-                      <h6 class=" text-center mt-2">Category</h6>
+                      <h6 class=" text-center text-muted mt-2">Category</h6>
                       <div class="separator mx-2"></div>     
                       <ng-contanier  *ngFor="let category of categories" class="text-center">
                       <a class="dropdown-item"[routerLink]="['/viewProduct',category.id,'category']">{{category.name}}</a>
                     </ng-contanier>
                     </div>
                     <div class="col-4">
-                      <h6 class=" text-center mt-2" >Skin Type</h6>
+                      <h6 class=" text-center text-muted  mt-2" >Skin Type</h6>
                       <div class="separator mx-2"></div>
                       <ng-contanier  *ngFor="let skinType of skinTypes" class="text-center">
                       <a class="dropdown-item"[routerLink]="['/viewProduct',skinType.id,'skinType']">{{skinType.name}}</a>
                     </ng-contanier>
                     </div>
                     <div class="col-4">
-                      <h6 class=" text-center mt-2" >Brand</h6>
+                      <h6 class=" text-center text-muted  mt-2" >Brand</h6>
                       <div class="separator mx-2"></div>
                       <ng-contanier  *ngFor="let brand of brands" class="text-center">
                       <a class="dropdown-item" [routerLink]="['/viewProduct',brand.id,'brand']">{{brand.name}}</a>
