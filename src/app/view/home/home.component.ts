@@ -1,23 +1,15 @@
-import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { Direction } from '@glidejs/glide/components/direction';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 import { environment } from 'src/environments/environment';
-import { LangService, Language } from 'src/shared/lang.service';
-import { ProductService } from 'src/shared/services/product-service/product.service';
-import { HttpParams } from '@angular/common/http';
-import { ReadCategoryDto, ReadNewsDto, ReadProductDto, ReadSliderDto } from 'src/shared/service-proxies/service-proxies';
-import { NewsService } from 'src/shared/services/news-service/news.service';
-import { CreateUpdateContactDto } from './../../../shared/service-proxies/service-proxies';
-import { ContactUsService } from 'src/shared/services/contact-us/contact-us.service';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryService } from 'src/shared/services/category-service/category.service';
 import { getThemeColor, setThemeColor } from 'src/app/utils/util';
 import AOS from "aos";
-import { SliderService } from 'src/shared/services/slider/slider.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
+
 })
 export class HomeComponent implements OnInit, OnDestroy {
   isFullScreen = false;

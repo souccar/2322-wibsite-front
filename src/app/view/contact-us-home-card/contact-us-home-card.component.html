@@ -1,31 +1,70 @@
-<form #overLineForm="ngForm" novalidate>
-    <div class=" row d-flex justify-content-center ">
-        <div class="col-6">
-            <label class="form-group has-float-label">
-                <input class="form-control" required ngModel #name="ngModel"
-                    [(ngModel)]="contactUs.name" name="name" />
-                <span>Your name</span>
-                <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
-                    Value is required!</div>
-            </label>
-            <label class="form-group has-float-label">
-                <input class="form-control" required ngModel #email2="ngModel"
-                    [(ngModel)]="contactUs.email" name="email2" />
-                <span>Email</span>
-                <div *ngIf="!email2.valid && overLineForm.submitted" class="invalid-tooltip">
-                    Value is required!</div>
-            </label>
-            <div class="input-group-prepend has-float-label">
-                <span>Message</span>
-                <textarea class="form-control" aria-label="With textarea" ngModel
-                    #message="ngModel" name="message"
-                    [(ngModel)]="contactUs.message"></textarea>
-            </div>
-            <div class="d-flex justify-content-center mt-5">
-                <button type="button" class="btn btn-primary " (click)="save()"><i
-                        class="simple-icon-paper-plane me-1"></i> Send
-                    Message</button>
+<app-view-navbar></app-view-navbar>
+<br><br>
+<br><br>
+
+
+<div class="container my-5" id="Contact">
+
+
+  <div class="card">
+    <div  class="row">
+        <div class="col-12 col-md-6 col-lg-6 align-self-center" data-aos-duration="1000" data-aos="fade-left">
+            <div class="feature-text-container card-body">
+                <div class="text-center">
+                    <h1 class="text-primary">Get in Touch with us</h1>
+                    <p>Please use the information below to get in touch.
+                        We look forward to hearing from you with any questions or queries you may have.</p>
+                </div>
+                <div class="container">
+                    <form #overLineForm="ngForm" novalidate>
+                        <div class=" row d-flex justify-content-center ">
+                            <div class="col-6">
+                                <label class="form-group has-float-label">
+                                    <input class="form-control" required ngModel #name="ngModel" [(ngModel)]="contactUs.name"
+                                        name="name" />
+                                    <span>Your name</span>
+                                    <div *ngIf="!name.valid && overLineForm.submitted" class="invalid-tooltip">
+                                        Value is required!</div>
+                                </label>
+                                <label class="form-group has-float-label">
+                                    <input class="form-control" required ngModel #email2="ngModel" [(ngModel)]="contactUs.email"
+                                        name="email2" />
+                                    <span>Email</span>
+                                    <div *ngIf="!email2.valid && overLineForm.submitted" class="invalid-tooltip">
+                                        Value is required!</div>
+                                </label>
+                                <div class="input-group-prepend has-float-label">
+                                    <span>Message</span>
+                                    <textarea class="form-control" aria-label="With textarea" ngModel #message="ngModel"
+                                        name="message" [(ngModel)]="contactUs.message"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-center mt-5">
+                                    <button type="button" class="btn btn-primary " (click)="save()"><i
+                                            class="simple-icon-paper-plane me-1"></i> Send
+                                        Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            
             </div>
         </div>
+        <div 
+            class=" col-12 col-md-6 col-lg-6 card-img-right" data-aos-duration="1000" data-aos="fade-right">
+            <img style="width:100% ; min-height: 35rem; " alt="contact" src="../../../assets/img/contact-us/contact1.jpg" />
+        </div>
     </div>
-</form>
+  </div>
+
+
+    
+    <div class=" text-center my-5" >
+
+
+        <app-contact-numbers-home-card></app-contact-numbers-home-card>
+    </div>
+</div>
+
+
+<app-view-footer></app-view-footer>

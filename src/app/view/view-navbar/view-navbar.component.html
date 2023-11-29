@@ -8,7 +8,7 @@
       <li class="nav-item"><a [routerLink]="['/']">Home</a></li>
       <li class="nav-item"><a type="button" (click)="scrollTo('#Prouducts')">Products</a></li>
       <li class="nav-item"><a type="button" (click)="scrollTo('#about')">Who we Are</a></li>
-      <li class="nav-item"><a type="button" (click)="scrollTo('#Contact')">Contact-US</a></li>
+      <li class="nav-item"><a type="button" [routerLink]="['/contactus']">Contact-US</a></li>
     </ul>
   </div>
   <div class="main-container">
@@ -78,7 +78,7 @@
               </a>
             </li>
             <li class="nav-item mb-1" #cont>
-              <a class="nav-link " type="button" (click)="scrollTo('#Contact')">
+              <a class="nav-link " type="button"  [routerLink]="['/contactus']">
                 ContactUS
               </a>
             </li>

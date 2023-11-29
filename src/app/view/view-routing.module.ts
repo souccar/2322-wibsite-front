@@ -9,6 +9,7 @@ import { NewsComponent } from './what-is-news/news.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ViewMainComponent } from './view-main/view-main.component';
 import { ListOfProductsComponent } from './list-of-products/list-of-products.component';
+import { ContactUsHomeCardComponent } from './contact-us-home-card/contact-us-home-card.component';
 
 const adminRoot = environment.adminRoot.substr(1); // path cannot start with a slash
 
@@ -31,6 +32,10 @@ let routes: Routes = [
   {
     path:'news',
     component:ViewNewsComponent
+  },
+  {
+    path:'contactus',
+    component:ContactUsHomeCardComponent
   },
 
   {
